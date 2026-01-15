@@ -4,7 +4,7 @@
 {% block body %}
 
 <div class="main container">
-<div class="site-slogan">{{ 'slogan' | trans }}</div>
+<div class="site-slogan">Deckbuilder for Star Wars Destiny & Fan Expansions</div>
 </div> <!-- .container -->
 
 <div class="main container">
@@ -110,14 +110,14 @@
     </div>
 	<div class="row">
 		<div class="col-md-12">
-			<p style="font-size:1.5em;font-variant:small-caps">our top patrons:</p>
+			<p style="font-size:1.5em;font-variant:small-caps">our top 3 patrons:</p>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-4">
 			<div class="lightflippy" style="background-color:{% if app.request.cookies.get('lightmode') %}white{% else %}#0b1822{% endif %};border: 1px solid black;height:72px;margin-bottom:5px">
-				<img src="{{ asset('/bundles/app/images/avatars/avatar_1.png') }}" style="float:left;border-right:1px solid black">
-				<div class="site-slogan" style="margin-top:5px">DarthVienneau</div>
+				<img src="{{ asset('/bundles/app/images/avatars/avatar_3.png') }}" style="float:left;border-right:1px solid black">
+				<div class="site-slogan" style="margin-top:5px">Majobasil</div>
 			</div>
 		</div>
 		<div class="col-md-4">
@@ -128,14 +128,8 @@
 		</div>
 		<div class="col-md-4">
 			<div class="lightflippy" style="background-color:{% if app.request.cookies.get('lightmode') %}white{% else %}#0b1822{% endif %};border: 1px solid black;height:72px;margin-bottom:5px">
-				<img src="{{ asset('/bundles/app/images/avatars/avatar_3.png') }}" style="float:left;border-right:1px solid black">
-				<div class="site-slogan" style="margin-top:5px">RebelRancor</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="lightflippy" style="background-color:{% if app.request.cookies.get('lightmode') %}white{% else %}#0b1822{% endif %};border: 1px solid black;height:72px;margin-bottom:5px">
-				<img src="{{ asset('/bundles/app/images/avatars/avatar_3.png') }}" style="float:left;border-right:1px solid black">
-				<div class="site-slogan" style="margin-top:5px">Stinger</div>
+				<img src="{{ asset('/bundles/app/images/avatars/avatar_1.png') }}" style="float:left;border-right:1px solid black">
+				<div class="site-slogan" style="margin-top:5px">DarthVienneau</div>
 			</div>
 		</div>
 	</div>
