@@ -55,7 +55,7 @@
           <a class="navbar-brand" href="{{ path('index') }}">
             <span class="icon icon-link-half-top"></span>
             <span class="icon icon-link-half-bottom"></span>
-            SWD: ARH Database
+            Star Wars Destiny: ARH Database
           </a>
         </div>
 
@@ -69,7 +69,6 @@
               <ul class="dropdown-menu" role="menu">
                 <li><a href="{{ path('cards_search') }}">{{ 'nav.advancedsearch' | trans}}</a></li>
                 <li class="divider"></li>
-				<li><a style="font-weight:bold" href="https://www.fantasyflightgames.com/en/products/star-wars-destiny/" target="_blank">Fantasy Flight Games</a></li>
 				{% set projectName = null %}
 	            {% for line in cards_data.allsetsdata() %}
 				  {% if line['projectName'] != 'Echoes of Destiny Archive' %}
@@ -79,11 +78,13 @@
 	                </li>
 	                {% endif %}
 	                {% set projectName = line['projectName'] %}
-	                <li class="divider"></li>
-                      
-                      {% if projectName == 'A Renewed Hope' %}
+
+				{% if projectName == 'A Renewed Hope' %}
                         <li><a style="font-weight:bold" href="https://swdrenewedhope.com" target="_blank">{{ projectName }}</a></li>
                       {% endif %}
+
+			   <li class="divider"></li>
+				<li><a style="font-weight:bold" href="https://www.fantasyflightgames.com/en/products/star-wars-destiny/" target="_blank">Fantasy Flight Games</a></li>
                       
 	              {% endif %}
 	              	    <li><a href="{{ line['url'] }}">{{ line['label'] | raw }}</a></li>
