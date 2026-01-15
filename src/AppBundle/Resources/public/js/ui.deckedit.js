@@ -29,7 +29,7 @@ ui.read_config_from_storage = function read_config_from_storage() {
 	Config = _.extend({
 		'show-unusable': false,
 		'show-only-deck': false,
-		'show-only-owned': true,
+		'show-only-owned': false,
 		'buttons-behavior': 'cumulative'
 	}, Config || {});
 }
@@ -72,7 +72,7 @@ ui.set_max_qty = function set_max_qty() {
 	app.data.cards.find().forEach(function(record) {
 		var max_value = record.deck_limit || 2;
 		if(record.type_code=='character' && !record.is_unique) {
-			max_value = Math.min(parseInt(30 / parseInt(record.points, 10)));
+			max_value = record.deck_limit; // change from doing auto maths
 		} else if (app.deck.is_included('08143') && _.includes(['upgrade', 'downgrade', 'support', 'event'], record.type_code)) {
 			max_value++;
 		}  else if (app.deck.is_included('09114') && record.type_code==='event' && _.map(record.subtypes, 'code').includes('move')) {
@@ -394,7 +394,7 @@ ui.on_modal_quantity_change = function on_modal_quantity_change(event) {
 	ui.on_quantity_change(code, quantity, dices);
 
 	setTimeout(function () {
-		$('#filter-text').typeahead('val', '').focus();
+		$('#filter-text').typeahead('val', '');
 	}, 100);
 }
 
@@ -534,7 +534,8 @@ var OptionsTemplate = Handlebars.templates['card_modal-options'];
 
 ui.build_quantity_options = function build_quantity_options(card, prefix) {
 	
-	var multiple_copies = (card.type_code == 'character' && !card.is_unique && card.maxqty.dice > 1);
+	var non_dice_elite = (!card.has_die && card.points && card.points.includes("/"));
+	
 	if(multiple_copies) {
 		if(!card.indeck.dices) {
 			card.indeck.dices = [];
@@ -545,6 +546,20 @@ ui.build_quantity_options = function build_quantity_options(card, prefix) {
 		} else {
 			for(var i = card.indeck.dices.length; i < card.maxqty.cards; i++) {
 				card.indeck.dices.push(0);
+			}
+		}
+	}
+	
+	if(non_dice_elite) {
+		if(!card.indeck.tier) {
+			card.indeck.tier = [];
+			for(var i = 0; i < card.points.split("/").length; i++) {
+				// Will provide some kind of retro-compatibility
+				card.indeck.tier.push(i < card.indeck.cards ? 1 : 0);
+			}
+		} else {
+			for(var i = card.indeck.tier.length; i < card.points.split("/").length; i++) {
+				card.indeck.tier.push(0);
 			}
 		}
 	}

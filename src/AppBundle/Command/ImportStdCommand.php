@@ -685,8 +685,8 @@ class ImportStdCommand extends ContainerAwareCommand
 				
 				$orig = $side->toString();
 
-				preg_match('/^([-+]?)([0-9]*|X)?(RD|MD|ID|F|Dc|Dr|Sh|R|Sp|-|\*)(\d*?)$/', $sideData, $result);
-				list($all, $modifier, $value, $type, $cost) = $result;
+				preg_match('/^([-+]?)([0-9]*|X)?(RD|MD|ID|F|Dc|Dr|Sh|R|Sp|Re|-|\*)([i]?)(\d*?)$/', $sideData, $result);
+				list($all, $modifier, $value, $type, $indCostIndicator, $cost) = $result;
 
 				if($type == '*')
 					$side->setType(NULL);
@@ -701,7 +701,8 @@ class ImportStdCommand extends ContainerAwareCommand
 					$side->setValue(NULL);
 				else
 					$side->setValue((int) $value);
-
+				
+				$side->setIndCostIndicator(($indCostIndicator=='i' ? 1 : 0));
 				$side->setCost((int) $cost);
 
 				if($orig !== $side->toString())
@@ -721,7 +722,7 @@ class ImportStdCommand extends ContainerAwareCommand
 				$reprintOfCard = $this->em->getRepository("AppBundle:Card")->findOneBy(['code' => $data['reprint_of']]);
 
 			if(!$reprintOfCard)
-				throw new \Exception('Card ['.$card->getName().'] is marked as reprint of a card that doesn\'t exists: '.$data["reprint_of"]);
+				throw new \Exception('Card ['.$card->getName().'] is marked as reprint of a card that doesn\'t exist: '.$data["reprint_of"]);
 
 			$card->setReprintOf($reprintOfCard);
 			$reprintOfCard->addReprint($card);
@@ -739,7 +740,7 @@ class ImportStdCommand extends ContainerAwareCommand
 				$parallelDiceOfCard = $this->em->getRepository("AppBundle:Card")->findOneBy(['code' => $data['parallel_die']]);
 
 			if(!$parallelDiceOfCard)
-				throw new \Exception('Card ['.$card->getName().'] is marked as having parallel die a card that doesn\'t exists: '.$data["parallel_die"]);
+				throw new \Exception('Card ['.$card->getName().'] is marked as having parallel die a card that doesn\'t exist: '.$data["parallel_die"]);
 
 			$card->setParallelDie($parallelDiceOfCard);
 			$parallelDiceOfCard->addParallelDie($card);

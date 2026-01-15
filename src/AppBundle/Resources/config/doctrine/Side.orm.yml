@@ -26,6 +26,9 @@ AppBundle\Entity\Side:
         modifier:
             type: smallint
             nullable: true
+        indCostIndicator:
+            type: smallint
+            nullable: true
         cost:
             type: smallint
             nullable: true

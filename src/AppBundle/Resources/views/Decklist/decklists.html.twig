@@ -84,9 +84,13 @@ $(function () {
 	            <div class="character-unique"><span class="icon-unique"></span></div>
 	            {% endif %}
 	            <div class="character-dice">
-	                {% for i in 1..character.getDice() %}
-	                <span class="icon-die"></span>
-	            	{% endfor %}
+	                {% if card.has_die %}
+					{% for i in 1..character.getDice() %}
+					<span class="icon-die"></span>
+					{% endfor %}
+					{% elseif character.getQuantity() == 2 %}
+					<strong>E</strong>
+					{% endif %}
 	            </div>
             </div>
 		</div>

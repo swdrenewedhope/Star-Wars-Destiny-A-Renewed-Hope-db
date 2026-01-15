@@ -4,10 +4,11 @@
 {% block body %}
 
 <div class="main container">
-<h1 class="site-title hidden-xs">SWDestinyDB</h1>
+<h1 class="site-title hidden-xs">SWD: ARH Database</h1>
 <div class="site-slogan">{{ 'slogan' | trans }}</div>
 </div> <!-- .container -->
 
+<!-- Hide swdestinydb Twitter for now
 <div class="main container">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-sm-12">
@@ -34,7 +35,7 @@
         </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="main container">
     <div class="row">
@@ -60,7 +61,7 @@
                 </div>
               </div>
           </div>
-          <div style="background-color: white; padding: 10px 20px 20px 20px; border: 1px solid black; border-top: 0;">
+          <div class="lightflippy" style="background-color: {% if app.request.cookies.get('lightmode') %}white{% else %}#0b1822{% endif %}; padding: 10px 20px 20px 20px; border: 1px solid black; border-top: 0;">
               <div class="small pull-right">
                   {{ macros.decklist_social_icons(data.decklist ) }}
               </div>
@@ -74,6 +75,8 @@
                 {% for plot in data.plot_deck %}
                   {% set card = cards_data.getCardInfo(plot.getCard()) %}
                   <div class="index-plot">
+<!-- DEBUG code={{ card.code }} imagesrc={{ card.imagesrc|e }} -->
+
                     <div class="plot-thumbnail card-thumbnail-2x card-thumbnail-plot" style="background-image:url('{{card.imagesrc}}')">
                       <div class="plot-icon">
                         <span class="icon-plot"></span>
@@ -92,9 +95,13 @@
                       <div class="character-unique"><span class="icon-unique"></span></div>
                       {% endif %}
                       <div class="character-dice">
+					  {% if card.has_die %}
                       {% for i in 1..character.getDice() %}
                       <span class="icon-die"></span>
                       {% endfor %}
+					  {% elseif character.getQuantity() == 2 %}
+					  <strong>E</strong>
+					  {% endif %}
                       </div>
                     </div>
                     <a href="{{ path('cards_zoom', {card_code: card.code}) }}" class="fg-{{card.faction_code}} card card-tip" data-code="{{card.code}}" data-toggle="modal" data-target="#cardModal" data-remote="false">
@@ -132,11 +139,42 @@
       {% endfor %}
     {% endfor %}
     </div>
-    <div class="row">
-    	<div class="col-md-12">
+	<div class="row">
+		<div class="col-md-12">
+			<p style="font-size:1.5em;font-variant:small-caps">our top patrons:</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="lightflippy" style="background-color:{% if app.request.cookies.get('lightmode') %}white{% else %}#0b1822{% endif %};border: 1px solid black;height:72px;margin-bottom:5px">
+				<img src="{{ asset('/bundles/app/images/avatars/avatar_1.png') }}" style="float:left;border-right:1px solid black">
+				<div class="site-slogan" style="margin-top:5px">DarthVienneau</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="lightflippy" style="background-color:{% if app.request.cookies.get('lightmode') %}white{% else %}#0b1822{% endif %};border: 1px solid black;height:72px;margin-bottom:5px">
+				<img src="{{ asset('/bundles/app/images/avatars/avatar_2.png') }}" style="float:left;border-right:1px solid black">
+				<div class="site-slogan" style="margin-top:5px">Kingwood Hobbies</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="lightflippy" style="background-color:{% if app.request.cookies.get('lightmode') %}white{% else %}#0b1822{% endif %};border: 1px solid black;height:72px;margin-bottom:5px">
+				<img src="{{ asset('/bundles/app/images/avatars/avatar_3.png') }}" style="float:left;border-right:1px solid black">
+				<div class="site-slogan" style="margin-top:5px">RebelRancor</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="lightflippy" style="background-color:{% if app.request.cookies.get('lightmode') %}white{% else %}#0b1822{% endif %};border: 1px solid black;height:72px;margin-bottom:5px">
+				<img src="{{ asset('/bundles/app/images/avatars/avatar_3.png') }}" style="float:left;border-right:1px solid black">
+				<div class="site-slogan" style="margin-top:5px">Stinger</div>
+			</div>
+		</div>
+	</div>
+    <!--<div class="row">
+    	<div class="col-md-12">-->
     		{% include "AppBundle:Default:google-adaptable-ad.html.twig" %}
-    	</div>
-    </div>
+    	<!--</div>
+    </div>-->
 </div>
 
 {% endblock %}
@@ -147,10 +185,10 @@
 {
    "@context": "http://schema.org",
    "@type": "WebSite",
-   "url": "https://swdestinydb.com/",
+   "url": "https://db.swdrenewedhope.com/",
    "potentialAction": {
      "@type": "SearchAction",
-     "target": "http://swdestinydb.com/find/?q={search_term_string}",
+     "target": "http://db.swdrenewedhope.com/find/?q={search_term_string}",
      "query-input": "required name=search_term_string"
    }
 }

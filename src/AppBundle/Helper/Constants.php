@@ -10,7 +10,8 @@ class Constants
 		'ambush',
 		'detect',
 		'renew',
-		'piloting'
+		'piloting',
+		'charm'
 	];
 
 	const ICONS = [
@@ -30,7 +31,8 @@ class Constants
 		'resource',
 		'shield',
 		'special',
-		'blank'
+		'blank',
+		'reroll'
 	];
 
 	const PROBLEMS = [

@@ -20,6 +20,7 @@ class SearchController extends Controller
 			'h' => 'health',
 			'i' => 'illustrator',
 			'l' => 'subtitle',
+			'm' => 'format',
 			'o' => 'cost',
 			'r' => 'date_release',
 			's' => 'set',
@@ -33,6 +34,7 @@ class SearchController extends Controller
 	public static $searchTypes = array(
 			'a' => 'code',
 			'b' => 'code',
+			'm' => 'code',
 			't' => 'code',
 			'f' => 'code',
 			's' => 'code',
@@ -64,7 +66,7 @@ class SearchController extends Controller
 		$rarities = $this->getDoctrine()->getRepository('AppBundle:Rarity')->findAll();
 		$affiliations = $this->getDoctrine()->getRepository('AppBundle:Affiliation')->findAllAndOrderByName();
 		$factions = $this->getDoctrine()->getRepository('AppBundle:Faction')->findAllAndOrderByName();
-
+		$formats = $this->getDoctrine()->getRepository('AppBundle:Format')->findAll();
 
 		$list_illustrators = $dbh->executeQuery("SELECT DISTINCT c.illustrator FROM card c WHERE c.illustrator != '' ORDER BY c.illustrator")->fetchAll();
 		$illustrators = array_map(function ($card) {
@@ -78,6 +80,7 @@ class SearchController extends Controller
 				"types" => $types,
 				"rarities" => $rarities,
 				"factions" => $factions,
+				"formats" => $formats,
 				"affiliations" => $affiliations,
 				"subtypes" => $subtypes,
 				"illustrators" => $illustrators,
@@ -290,9 +293,34 @@ class SearchController extends Controller
         		if(count($conditions) == 1 && count($conditions[0]) == 3 && $conditions[0][1] == ":") {
         			if($conditions[0][0] == "s") {
         				$set = $this->getDoctrine()->getRepository('AppBundle:Set')->findByCode($conditions[0][2]);
-        				if($set) $pagetitle = $set->getName();
+        				if($set)					
+							$pagetitle = $set->getName();
         			}
         		}
+			}
+			
+			// If we're in EoD, hide banned cards
+			if(count($conditions) == 1 && count($conditions[0]) == 3 && $conditions[0][1] == ":") {
+				if($conditions[0][0] == "s") {
+					$set = $this->getDoctrine()->getRepository('AppBundle:Set')->findByCode($conditions[0][2]);
+					if($set) {
+						if ($set->getCode() == 'EoD') {
+							// Get ARHS format
+							$arhs = $this->getDoctrine()->getRepository('AppBundle:Format')->findByCode('ARHS');
+							$banlist = $arhs->getData()[banned];
+							$removelist = [];
+							$rowsclone = $rows;
+							foreach ($rowsclone as $cardrow => $checkcard) {
+								if (is_numeric($checkcard->getCode()) && in_array($checkcard->getCode(),$banlist))
+									$removelist[] = $cardrow;
+							}
+							foreach ($removelist as $indextoremove) {
+								unset($rowsclone[$indextoremove]);
+							}
+							$rows = array_values($rowsclone);
+						}
+					}
+				}
 			}
 
 

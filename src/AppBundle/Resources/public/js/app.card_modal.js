@@ -58,7 +58,7 @@ $(function () {
 		setTimeout(function () {
 			let tmp = document.createElement("div");
    			tmp.innerHTML = $('#filter-text').val();
-			$('#filter-text').typeahead('val', tmp.textContent || tmp.innerText || "").focus();
+			$('#filter-text').typeahead('val', tmp.textContent || tmp.innerText || "");
 		}, 100);
 	}});
 

@@ -1,4 +1,4 @@
-{% if card.type_code == 'character' %}
+{% if (card.type_code == 'character' or card.type_code == 'plot') %}
 <div class="card-balance">
 	<h5>{{ 'card.info.balance' | trans }}</h5>
 	<div class="card-balance-table"><div class="text-center"><span class="fa fa-spinner fa-spin"></span></div></div>

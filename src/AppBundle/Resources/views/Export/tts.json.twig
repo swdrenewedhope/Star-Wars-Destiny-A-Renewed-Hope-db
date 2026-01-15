@@ -176,7 +176,16 @@
 			      "scaleZ": 1.42055011
 			    },
 			    "Nickname": "{{ slotLabel|replace({"\"":"\\\""})|raw }}",
-			    "Description": "{% if slot.dice == 2 %}elite {% endif %}{{slot.card.set.code}} {{slot.card.position}}",
+				{% set reprint = slot.card %}
+				{% set deeper = true %}
+				{% for i in 0..10000 if deeper %}
+				  {% if "EoD" in reprint.set.code and reprint.reprintOf %}
+					{% set reprint = reprint.reprintOf %}
+			      {% else %}
+					"Description": "{% if slot.dice == 2 %}elite {% endif %}{{reprint.set.code}} {{reprint.position}}",
+					{% set deeper = false %}
+				  {% endif %}
+				{% endfor %}
 			    "ColorDiffuse": {
 			      "r": 0.713235259,
 			      "g": 0.713235259,
@@ -360,7 +369,16 @@
 			            "scaleZ": 1.42055011
 			          },
 			          "Nickname": "{{ slotLabel|replace({"\"":"\\\""})|raw }}",
-			          "Description": "{{slot.card.set.code}} {{slot.card.position}}",
+					  {% set reprint = slot.card %}
+					  {% set deeper = true %}
+					  {% for i in 0..10000 if deeper %}
+						{% if "EoD" in reprint.set.code and reprint.reprintOf %}
+						  {% set reprint = reprint.reprintOf %}
+						{% else %}
+			          "Description": "{{reprint.set.code}} {{reprint.position}}",
+						  {% set deeper = false %}
+						{% endif %}
+					  {% endfor %}
 			          "ColorDiffuse": {
 			            "r": 0.713235259,
 			            "g": 0.713235259,

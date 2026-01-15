@@ -87,7 +87,7 @@ class BuilderController extends Controller
         $deck->setAffiliation($affiliation);
         $deck->setFormat($format);
         $deck->setName($name);
-        $deck->setProblem('too_few_cards');
+        $deck->setProblem('incorrect_size');
         $deck->setTags(join(' ', array_unique($tags)));
         $deck->setUser($this->getUser());
 
@@ -822,7 +822,7 @@ class BuilderController extends Controller
             throw new BadRequestHttpException("Wrong content ".json_encode($diff));
         }
 
-        if(count($diff[0]) || count($diff[1])) {
+        if(count((array)$diff[0]) || count((array)$diff[1])) {
             $change = new Deckchange();
             $change->setDeck($deck);
             $change->setVariation(json_encode($diff));

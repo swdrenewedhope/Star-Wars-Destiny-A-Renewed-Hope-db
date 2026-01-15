@@ -2,41 +2,20 @@
     <div class="col-xs-12">
 
     <ul class="list-inline">
-    <li><a href="{{ path('about') }}">{{'footer.about' | trans }}</a></li>
     <li><a href="{{ path('api_intro') }}">{{'footer.api' | trans }}</a></li>
     <li><a href="{{ path('donators') }}">{{'footer.donators.label' | trans }}</a> <span class="fa fa-gift donator" title="{{'footer.donators.title' | trans }}"></span></li>
     </ul>
 
     <p>
-        {% trans with {'%netrunner%': '<a href="https://netrunnerdb.com" target="_blank">NetrunnerDB</a>', '%thronesdb%': '<a href="https://thronesdb.com" target="_blank">ThronesDB</a>'} %}footer.original{% endtrans %}
+        Original design by <a href="https://www.x.com/Alsciende" target="_blank">Alsciende</a>, adapted to SWD by <a href="https://github.com/fafranco82" target="_blank">Fafranco82</a>, further developed and maintained by the ARH team.
     </p>
 
     <p>
-        {{'footer.adapted' | trans}}
-        {{'footer.contact' | trans}}: 
-        <a href="https://twitter.com/swdestinydb" title="Twitter"><span class="fa fa-twitter"></span></a>
-        <a href="mailto:webmaster@swdestinydb.com" title="E-mail"><span class="fa fa-envelope"></span></a>
-    </p>
+    	The information presented on this site about Star Wars Destiny, both literal and graphical, is copyrighted by Fantasy Flight Games and/or Star Wars Destiny: ARH.
 
-    {% if app.request.locale != default_locale %}
-        <p>
-            {{'footer.translated.text' | trans}}
-            {{'footer.contact' | trans}}: 
-            {% trans %}footer.translated.contact{% endtrans %}
-        </p>
-    {% endif %}
 
-    <p>
-        {% trans with {'%link%': '<a href="https://github.com/fafranco82/swdestinydb/issues">GitHub</a>'} %}footer.report{% endtrans %}
-    </p>
-
-    <p>
-        {% trans with {'%link%': '<a href="https://paypal.me/fafranco82">Paypal</a>'} %}footer.contribute{% endtrans %}
-    </p>
-
-    <p>
-        {{'footer.legal' | trans}}
-    </p>
+	This website is not produced, endorsed, supported, or affiliated with Fantasy Flight Games.  
+   </p>
 
     </div>
 </div>

@@ -255,10 +255,10 @@
         return colors;
     })();
     deck_charts.chart_dice = function chart_dice() {
-        var symbols = {MD: 'melee', RD: 'ranged', ID: 'indirect', F: 'focus', Dr: 'disrupt', Dc: 'discard', Sh: 'shield', R: 'resource', Sp: 'special', '-': 'blank'};
+        var symbols = {MD: 'melee', RD: 'ranged', ID: 'indirect', F: 'focus', Dr: 'disrupt', Dc: 'discard', Sh: 'shield', Re: 'reroll', R: 'resource', Sp: 'special', '-': 'blank'};
 
         var categories = [];
-        ["MD", "RD", "ID", "F", "Dr", "Sh", "Dc", "R", "Sp", "-"].forEach(function(symbol) {
+        ["MD", "RD", "ID", "F", "Dr", "Re", "Sh", "Dc", "R", "Sp", "-"].forEach(function(symbol) {
             categories.push({
                 name: Translator.trans('icon.'+symbols[symbol]),
                 code: symbol,

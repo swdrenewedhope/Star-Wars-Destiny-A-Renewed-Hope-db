@@ -54,7 +54,13 @@
 						</button>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="{{ path('deck_export_text', {deck_id:deck_id}) }}">{{ 'decks.form.download.text' | trans }}</a></li>
-							<li><a href="{{ path('deck_export_tts', {deck_id:deck_id}) }}">TableTop Simulator</a></li>
+<li>
+  <a href="{{ path('deck_export_tts', {deck_id: deck_id}) }}"
+     onclick="window.__ttsDeprecatedToast && window.__ttsDeprecatedToast();">
+    TableTop Simulator
+  </a>
+</li>
+						
 						</ul>
 					</div>
 				</div>
@@ -99,6 +105,20 @@
 
 	</div><!-- .row -->
 </div><!-- .container -->
+
+<script>
+  window.__ttsDeprecatedToast = function () {
+    var el = document.getElementById('tts-deprecated-toast');
+    if (!el) return;
+    el.style.display = 'block';
+    el.onclick = function(){ el.style.display = 'none'; };
+    clearTimeout(window.__ttsDeprecatedToastTimer);
+    window.__ttsDeprecatedToastTimer = setTimeout(function () {
+      el.style.display = 'none';
+    }, 20000);
+  };
+</script>
+
 
 {% include 'AppBundle:Modale:odds.html.twig' %}
 {% include 'AppBundle:Modale:delete.html.twig' %}

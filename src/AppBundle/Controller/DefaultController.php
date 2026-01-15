@@ -80,8 +80,8 @@ class DefaultController extends Controller
         $publisher_name = $this->container->getParameter('publisher_name');
         
         return $this->render('AppBundle:Default:index.html.twig', [
-            'pagetitle' =>  "$game_name Deckbuilder",
-            'pagedescription' => "Build your deck for $game_name by $publisher_name. Browse the cards and the thousand of decklists submitted by the community. Publish your own decks and get feedback.",
+            'pagetitle' =>  "SWD: ARH Deckbuilder",
+            'pagedescription' => "Build your deck for Star Wars: Destiny. Browse the cards and the thousand of decklists submitted by the community. Publish your own decks and get feedback.",
             'decklists_by_faction' => $decklists_by_faction,
             'typeNames' => $typeNames,
             'factionNames' => $factionNames

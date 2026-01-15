@@ -9,7 +9,7 @@ class DecklistRepository extends TranslatableRepository
 		parent::__construct($entityManager, $entityManager->getClassMetadata('AppBundle\Entity\Decklist'));
 	}
 
-	public function find($id)
+	public function find($id, $lockMode = NULL, $lockVersion = NULL)
 	{
 		$qb = $this->createQueryBuilder('d')
 			->select('d, a, ds, c, t, s')

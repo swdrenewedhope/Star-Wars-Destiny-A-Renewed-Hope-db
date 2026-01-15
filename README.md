@@ -1,11 +1,11 @@
-SWDestinyDB
+Star Wars Destiny - A Renewed Hope db
 =======
 
 # Very quick guide on how to install a local copy
 
 This guide assumes you know how to use the command-line and that your machine has php and mysql installed.
 
-- install composer: https://getcomposer.org/download/
+- install composer: https://getcomposer.org/download/ - Recommend composer 1.10.27
 - install npm: https://www.npmjs.com/
 - clone the repo somewhere
 - cd to it

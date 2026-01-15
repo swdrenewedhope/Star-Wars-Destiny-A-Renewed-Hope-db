@@ -7,8 +7,8 @@
       <span class="card-die-face-value">{{face.modifier ? '+' : ''}}{{ macros.integer_or_x(face.value) }}</span>{% if face.type %}<span class="icon-{{face.type.icon}}"></span>{% endif %}
     </div>
     {% if face.cost %}
-    <div class="card-die-face-cost">
-      {{face.cost}}<span class="icon-resource"></span>
+    <div class="{% if face.indCostIndicator %}card-die-face-indirect-cost{% else %}card-die-face-cost{% endif %}">
+      {{face.cost}}{% if face.indCostIndicator %}<span class="icon-indirect"></span>{% else %}<span class="icon-resource"></span>{% endif %}
     </div>
     {% endif %}
   </div>

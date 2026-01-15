@@ -175,7 +175,7 @@ deck.get_name = function get_name() {
 
  	//balance of the force
  	_.forIn(data.data.balance, function(points, code) {
- 		var pointsData = /^(\d+)(\/(\d+))?$/.exec(points);
+ 		var pointsData = /^(-?\d+)(\/(-?\d+))?$/.exec(points);
  		app.data.cards.updateById(code, {
  			points: points,
  			cp: parseInt(pointsData[1], 10)*100+parseInt(pointsData[3]||0, 10),
@@ -287,6 +287,10 @@ deck.get_character_points = function get_character_points() {
 				points += parseInt(character.points.split('/')[character.indeck.dices[i]-1], 10);
 			}
 			return points;
+		} else if (character.points.includes('/') && !character.has_die) { // non-dice elite
+			return points + parseInt(character.points.split('/')[character.indeck.cards-1], 10);
+		} else if(character.is_unique && !character.points.includes('/')) { // non-dice unique non-elite
+			return points + parseInt(character.points, 10);
 		} else if(character.is_unique) {
 			return points + parseInt(character.points.split('/')[character.indeck.dice-1], 10);
 		} else {
@@ -314,6 +318,11 @@ deck.get_character_points = function get_character_points() {
 			points -= 1;
 		}
 	}
+	if(deck.is_included('20145')) {
+		if(deck.get_character_row_data().filter(card => card.code !== '20145' && _.map(card.subtypes, 'code').includes('spectre')).length > 0) {
+			points -= 1;
+		}
+	}
 
 	//if Luke Skywalker - Seeking The Path (TR #2A)
 	if(deck.is_included('13002A')) {
@@ -321,24 +330,45 @@ deck.get_character_points = function get_character_points() {
 		var characters = deck.get_character_row_data().filter(card => teamup.includes(card.name)).length;
 		points -= characters;
 	}
-
-	//if Closing In (TR #6A)
-	if(deck.is_included('13006A')) {
-		//every bounty-hunter cost 1 point less
-		var bh = deck.get_character_row_data().filter(card => _.map(card.subtypes, 'code').includes('bounty-hunter')).length;
-		points -= bh;
-	}
-
-	//if Rescue Han Solo (TR #7A)
-	if(deck.is_included('13007A')) {
-		var teamup = ['Chewbacca','Lando Calrissian','Leia Organa','Luke Skywalker'];
+	
+	//if Savage Opress (RD #4)
+	if(deck.is_included('15004A')) {
+		var teamup = ['Maul'];
 		var characters = deck.get_character_row_data().filter(card => teamup.includes(card.name)).length;
 		points -= characters;
 	}
-
-	//if Rescue The Princess (EC #44B)
-	if(deck.is_included('701044B')) {
-		var teamup = ['Chewbacca','Han Solo','Luke Skywalker','Obi-Wan Kenobi'];
+	
+	//if Jaro Tapal (RD #40)
+	if(deck.is_included('15037')) {
+		var teamup = ['Cal Kestis'];
+		var characters = deck.get_character_row_data().filter(card => teamup.includes(card.name)).length;
+		points -= characters;
+	}
+	
+	//if Grand Inquisitor (HS #4)
+	if(deck.is_included('16003')) {
+		//every inquisitor makes him cost 1 point less
+		var inquisitors = deck.get_character_row_data().filter(card => _.map(card.subtypes, 'code').includes('inquisitor')).length;
+		points -= (inquisitors-1);
+	}
+	
+	//if General Kalani (DoP #16)
+	if(deck.is_included('22016')) {
+		//every droid makes him cost 1 point less
+		var droids = deck.get_character_row_data().filter(card => _.map(card.subtypes, 'code').includes('droid')).length;
+		points -= (droids-1);
+	}
+	
+	//if Allya (RES #1)
+	if(deck.is_included('23001')) {
+		//every witch makes her cost 1 point less
+		var witches = deck.get_character_row_data().filter(card => _.map(card.subtypes, 'code').includes('witch')).length;
+		points -= (witches-1);
+	}
+	
+	//if Sabine Wren (AF #72)
+	if(deck.is_included('24072')) {
+		var teamup = ['Ahsoka Tano'];
 		var characters = deck.get_character_row_data().filter(card => teamup.includes(card.name)).length;
 		points -= characters;
 	}
@@ -417,6 +447,77 @@ deck.get_plot_points = function get_plot_points() {
 		//every death star plot cost 1 point less
 		var plots = deck.get_plot_deck().filter(card => _.map(card.subtypes, 'code').includes('death-star')).length;
 		points -= plots;
+	}
+	
+	//if Closing In (TR #6A)
+	if(deck.is_included('13006A')) {
+		//every unique bounty-hunter makes thiscost 1 point less
+		var bh = deck.get_character_row_data().filter(card => _.map(card.subtypes, 'code').includes('bounty-hunter')).filter(card => card.is_unique).length;
+		points -= bh;
+	}
+
+	//if Rescue Han Solo (TR #7A)
+	if(deck.is_included('13007A')) {
+		var teamup = ['Chewbacca','Lando Calrissian','Leia Organa','Luke Skywalker'];
+		var characters = deck.get_character_row_data().filter(card => teamup.includes(card.name)).length;
+		points -= characters;
+		
+		// Elite point fix
+		if ((deck.get_cards().filter(card => card.code == '13007A')[0].indeck.cards) === 2)
+			points--;
+	}
+	
+	//if Sweeper Droid Infiltration (TR #4A)
+	if(deck.is_included('13004A')) {
+		// Elite point fix
+		if ((deck.get_cards().filter(card => card.code == '13004A')[0].indeck.cards) === 2)
+			points--;
+	}
+	
+	//if Relentless Advance (RD #24)
+	if(deck.is_included('15021')) {
+		//every trooper makes this cost 1 point less
+		var bh = deck.get_character_row_data().filter(card => _.map(card.subtypes, 'code').includes('trooper')).length;
+		points -= bh;
+		// as does Veers
+		var teamup = ['General Veers'];
+		var characters = deck.get_character_row_data().filter(card => teamup.includes(card.name)).length;
+		points -= characters;
+	}
+	
+	//if Ultimate Heist (RD #95)
+	if(deck.is_included('15092A')) {
+		//every pirate makes this cost 1 point less
+		var bh = deck.get_character_row_data().filter(card => _.map(card.subtypes, 'code').includes('pirate')).length;
+		points -= bh;
+	}
+	
+	//if Crucial Intel (UH #25)
+	if(deck.is_included('18025')) {
+		//every leader makes this cost 1 point less
+		var bh = deck.get_character_row_data().filter(card => _.map(card.subtypes, 'code').includes('leader')).length;
+		points -= bh;
+	}
+	
+	//if Ace Pilots (UH #97)
+	if(deck.is_included('18097')) {
+		//every unique pilot makes thiscost 1 point less
+		var bh = deck.get_character_row_data().filter(card => _.map(card.subtypes, 'code').includes('pilot')).filter(card => card.is_unique).length;
+		points -= bh;
+	}
+	
+	//if The Mission That Never Ends (UH #98)
+	if(deck.is_included('18098')) {
+		//every trooper makes this cost 1 point less
+		var bh = deck.get_character_row_data().filter(card => _.map(card.subtypes, 'code').includes('trooper')).length;
+		points -= bh;
+	}
+	
+	//if Far, Far Away (AF #81)
+	if(deck.is_included('24081')) {
+		// Elite point fix
+		if ((deck.get_cards().filter(card => card.code == '24081')[0].indeck.cards) === 2)
+			points--;
 	}
 
 	return points;
@@ -549,7 +650,8 @@ deck.set_card_copies = function set_card_copies(card_code, nb_copies, dices) {
 	app.data.cards.updateById(card_code, {
 		indeck: {
 			cards: dices ? dices.length : nb_copies,
-			dice: dices ? dices.length : (card.has_die ? nb_copies : 0),
+			// dice: dices ? dices.length : (card.has_die ? nb_copies : 0),
+			dice: dices ? dices.reduce((a, b) => a + b, 0) : (card.has_die ? nb_copies : 0),
 			dices: dices
 		}
 	});
@@ -648,6 +750,10 @@ deck.get_problem = function get_problem() {
 	
 	// at least 30 others cards (40 if RM #101  plot is present)
 	var deckSize = deck.is_included('15101') ? 40 : 30;
+
+	// +4 cards if Strategic Discipline (SA 91) is present
+	deckSize = deck.is_included('21091') ? (deckSize+4) : deckSize;
+
 	if(deck.get_draw_deck_size() != deckSize) {
 		return 'incorrect_size';
 	}
@@ -705,7 +811,7 @@ deck.get_problem = function get_problem() {
 	}
 
 	// cards included from different faction of characters
-	if(deck.get_notmatching_cards().length > 0) {
+	if(deck.get_notmatching_cards().length > 0 && !deck.is_included('21085')) { // Insurgent Group (SA 82)
 		return 'faction_not_included';
 	}
 
@@ -735,13 +841,19 @@ var plotChecks = {
 	'08156': function() {
 		var factions = _(deck.get_character_deck()).map('faction_code').uniq().value();
 		var cards = app.data.cards.find({
-			type_code: {$in: ['upgrade', 'event', 'support']},
+			type_code: {$in: ['upgrade', 'event', 'support','downgrade']},
 			indeck: {cards: {$gt: 1}}
 		});
 		return factions.length == 1 && cards.length == 0;
 	},
-	//Temporarty Truce (SoH 119)
+	//Temporary Truce (SoH 119)
 	'11119': function() {
+		var greys = deck.get_draw_deck().filter(card => card.faction_code=='gray');
+		var nonReylo = deck.get_cards(null, {type_code: 'character', name: {$nin: ['Rey', 'Kylo Ren']}});
+
+		return greys.length+nonReylo.length == 0;
+	},
+	'20128': function() {
 		var greys = deck.get_draw_deck().filter(card => card.faction_code=='gray');
 		var nonReylo = deck.get_cards(null, {type_code: 'character', name: {$nin: ['Rey', 'Kylo Ren']}});
 
@@ -752,6 +864,18 @@ var plotChecks = {
 		return _.every(deck.get_character_deck(), function(card) {
 			return _.includes(_.map(card.subtypes, 'code'), 'spectre');
 		});
+	},
+	//Insurgent Group (SA 82)
+	'21082': function() {
+		return _.every(deck.get_character_deck(), function(card) {
+			return _.includes(_.map(card.subtypes, 'code'), 'partisan');
+		});
+	},
+	//The Father (DoP 87)
+	'22087': function() {
+		var nonChild = deck.get_cards(null, {type_code: 'character', name: {$nin: ['The Son', 'The Daughter']}});
+
+		return nonChild.length == 0;
 	}
 };
 
@@ -836,10 +960,132 @@ deck.can_include_card = function can_include_card(card) {
 	if(deck.is_included('11119')) {
 		return true;
 	}
-
+	if(deck.is_included('20128')) {
+		return true;
+	}
+	
+	// The Father (DoP #87) special case
+	if(deck.is_included('22087')) {
+		return true;
+	}
+	
 	// Pong Krell (CM #3)
 	if(deck.is_included('12003')) {
 		if(card.faction_code==='blue' && card.affiliation_code==='hero' && card.type_code !== 'character') {
+			return true;
+		}
+	}
+	
+	// Cassian Andor (FA #40)
+	if(deck.is_included('14040')) {
+		if(_.some(card.subtypes, st => ['intel'].includes(st.code)) && card.type_code !== 'character' && card.type_code !== 'plot') {
+			return true;
+		}
+	}
+	
+	// Merrin (FA #63)
+	if(deck.is_included('14063')) {
+		if(card.faction_code==='blue' && card.affiliation_code==='villain' &&  _.some(card.subtypes, st => ['curse'].includes(st.code))) {
+			return true;
+		}
+	}
+	
+	// IG-11 (HS #28) special case
+	// Pt 1: Allow IG-11 with a hero engineer
+	if (card.code==='16027') {
+		var igcheck = false;
+		deck.get_character_deck().forEach(function(teamcharacter){
+			if (teamcharacter.affiliation_code==='hero' &&
+			_.some(teamcharacter.subtypes, st => ['engineer'].includes(st.code))) {
+				igcheck = true;
+			}
+		})
+		return igcheck;
+	}
+	// Pt 2: Allow villain cards with IG-11
+	if(deck.is_included('16027')) {
+		if(card.affiliation_code==='villain' && card.type_code !== 'character')
+			return true;
+	}
+	
+	// Iden Versio (UH #18) special case
+	// Pt 1: Allow Iden with a Red hero leader
+	if (card.code==='18018') {
+		var idencheck = false;
+		deck.get_character_deck().forEach(function(teamcharacter){
+			if (teamcharacter.affiliation_code==='hero' &&
+			_.some(teamcharacter.subtypes, st => ['leader'].includes(st.code)) &&
+			teamcharacter.faction_code==='red') {
+				idencheck = true;
+			}
+		})
+		return idencheck;
+	}
+	// Pt 2: Allow villain cards with Iden
+	if(deck.is_included('18018')) {
+		if(card.affiliation_code==='villain' && card.type_code !== 'character')
+			return true;
+	}
+	
+	// Insurgent Group (SA #82) special case
+	if(deck.is_included('21082')) {
+		if(card.type_code !== 'plot' && card.type_code !== 'character') {
+			return true;
+		}
+	}
+	
+	// Boba Fett (SA #95) special case
+	if(deck.is_included('21095')) {
+		if(card.type_code !== 'plot' && card.type_code !== 'character' & card.faction_code==='yellow') {
+			return true;
+		}
+	}
+	
+	// Barriss Offee (RES #2)
+	if(deck.is_included('23002')) {
+		if(card.type_code==='event' && card.affiliation_code==='hero') {
+			return true;
+		}
+	}
+	
+	// Mon Mothma (RES #60)
+	if(deck.is_included('23060')) {
+		if(card.type_code==='support' && card.faction_code==='yellow') {
+			return true;
+		}
+	}
+	
+	// Bix Caleen (RES #70)
+	if(deck.is_included('23070')) {
+		if(card.faction_code==='red' && _.some(card.subtypes, st => ['mod'].includes(st.code))) {
+			return true;
+		}
+	}
+	
+	// Asajj Ventress (RES #87)
+	if(deck.is_included('23087')) {
+		if(card.type_code==='downgrade') {
+			return true;
+		}
+	}
+	
+	// Count Dooku (RES #88)
+	if(deck.is_included('23088')) {
+		if(card.type_code==='upgrade' && card.faction_code==='blue') {
+			return true;
+		}
+	}
+	
+	// Morgan Elspeth (AF #18)
+	if(deck.is_included('24018')) {
+		if(card.faction_code==='blue' && card.affiliation_code==='villain') {
+			return true;
+		}
+	}
+	
+	// Cal Kestis (AF #47)
+	if(deck.is_included('24047')) {
+		if(card.type_code==='upgrade' && card.faction_code==='yellow') {
 			return true;
 		}
 	}
@@ -881,6 +1127,32 @@ deck.card_spot_faction = function card_spot_faction(card, character_factions) {
 	if(deck.get_cards(null, {code: '01045'}).length > 0) {
 		if(card.affiliation_code==='villain' && card.faction_code==='red' && _.includes(['vehicle','weapon'], card.subtype_code))
 			return true;
+	}
+	
+	// Asajj Ventress (RES #87)
+	if(deck.get_cards(null, {code: '23087'}).length > 0) {
+		if(card.type_code==='downgrade') {
+			return true;
+		}
+	}
+	
+	// Bix Caleen (RES #70)
+	if(deck.get_cards(null, {code: '23070'}).length > 0) {
+		if(card.faction_code==='red' && _.some(card.subtypes, st => ['mod'].includes(st.code))) {
+			return true;
+		}
+	}
+	
+	// Insurgent Group (SA #82) special case
+	if(deck.get_cards(null, {code: '21082'}).length > 0) {
+		return true;
+	}
+	
+	// Mon Mothma (RES #60)
+	if(deck.get_cards(null, {code: '23060'}).length > 0) {
+		if(card.type_code==='support' && card.faction_code==='yellow') {
+			return true;
+		}
 	}
 
 	return false;

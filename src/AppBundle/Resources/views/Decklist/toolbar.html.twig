@@ -13,8 +13,13 @@
 	</button>
 	<ul class="dropdown-menu" role="menu">
 		<li><a href="#" id="btn-download-text">{{ 'decks.form.download.text' | trans }}</a></li>
-		<li><a href="#" id="btn-download-tts">TableTop Simulator</a></li>
-	</ul>
+	<li>
+  <a href="{{ path('deck_export_tts', {deck_id: deck_id}) }}"
+     onclick="window.__ttsDeprecatedToast && window.__ttsDeprecatedToast();">
+    TableTop Simulator
+  </a>
+</li>
+</ul>
 </div>
 {#
 <div class="btn-group">
@@ -41,4 +46,18 @@
 <button type="button" id="btn-compare" class="btn btn-sm btn-default">
 	<span class="fa fa-duplicate"></span> <span class="hidden-xs">Compare</span>
 </button>
+
+<script>
+  window.__ttsDeprecatedToast = function () {
+    var el = document.getElementById('tts-deprecated-toast');
+    if (!el) return;
+    el.style.display = 'block';
+    el.onclick = function(){ el.style.display = 'none'; };
+    clearTimeout(window.__ttsDeprecatedToastTimer);
+    window.__ttsDeprecatedToastTimer = setTimeout(function () {
+      el.style.display = 'none';
+    }, 20000);
+  };
+</script>
+
 #}

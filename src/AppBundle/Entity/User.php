@@ -11,7 +11,11 @@ class User extends BaseUser
 {
 	public function getMaxNbDecks()
 	{
-		return 2*(100+floor($this->reputation/ 10));
+		if ($this->getDonation() > 0) { return 1000; }
+		
+		$days = $this->getDateCreation()->diff(new \DateTime())->days;
+		
+		return min(500, 250 + min(250, (int) floor($days / 70) * 50));
 	}
 
     /**
