@@ -1,4 +1,4 @@
-Star Wars Destiny - A Renewed Hope db
+Star Wars Destiny - A Renewed Hope Database
 =======
 
 # Very quick guide on how to install a local copy
@@ -23,7 +23,7 @@ This guide assumes you know how to use the command-line and that your machine ha
 - make sure your account is enabled (or run `php app/console fos:user:activate <username>`)
 - run `php app/console fos:user:promote --super <username>`
 
-## Translating the site
+## Translating the site - Out of date
 
 The string literals of this site are hosted in [Loco](https://localise.biz/swdestinydb). If you want to translate the site, please contact project administrator via mail (webmaster@swdestinydb.com), asking for an invitation to the translation platform providing full name, an email and the language you are willing to translate into.
 
