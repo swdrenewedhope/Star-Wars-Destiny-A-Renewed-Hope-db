@@ -4,38 +4,8 @@
 {% block body %}
 
 <div class="main container">
-<h1 class="site-title hidden-xs">SWD: ARH Database</h1>
 <div class="site-slogan">{{ 'slogan' | trans }}</div>
 </div> <!-- .container -->
-
-<!-- Hide swdestinydb Twitter for now
-<div class="main container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-sm-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h5 class="panel-title">
-            <a href="#twitter-feed" data-toggle="collapse">
-              <span class="fa fa-twitter"></span>
-              News from @swdestinydb
-              <span class="fa fa-caret-down"></span>
-            </a>
-          </h5>
-        </div>
-        <div class="panel-collapse collapse" id="twitter-feed">
-          <div class="panel-body">
-            <a class="twitter-timeline" href="https://twitter.com/swdestinydb"
-              data-chrome="noborders noheader nofooter"
-              data-height="200">
-              News from @swdestinydb
-            </a>
-
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          </div>
-        </div>
-    </div>
-  </div>
-</div> -->
 
 <div class="main container">
     <div class="row">
@@ -75,7 +45,6 @@
                 {% for plot in data.plot_deck %}
                   {% set card = cards_data.getCardInfo(plot.getCard()) %}
                   <div class="index-plot">
-<!-- DEBUG code={{ card.code }} imagesrc={{ card.imagesrc|e }} -->
 
                     <div class="plot-thumbnail card-thumbnail-2x card-thumbnail-plot" style="background-image:url('{{card.imagesrc}}')">
                       <div class="plot-icon">
