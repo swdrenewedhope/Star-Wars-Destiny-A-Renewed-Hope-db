@@ -28,7 +28,7 @@
         var str = text;
 		
 		// Look for fixed game icons
-		str = str.replace(new RegExp("\\[(blank|discard|disrupt|focus|melee|ranged|indirect|shield|resource|special|unique)\\]", "g"), '<span class="icon-$1"></span>');
+		str = str.replace(new RegExp("\\[(blank|discard|disrupt|focus|melee|ranged|indirect|shield|resource|special|unique|reroll)\\]", "g"), '<span class="icon-$1"></span>');
 		
 		// Automatically look for remaining icons as set icons
 		str = str.replace(new RegExp("\\[([A-Za-z]*)\\]", "g"), '<span class="icon-set-$1"></span>');
@@ -42,12 +42,13 @@
     });
 
     Handlebars.registerHelper('dieside', function(side) {
-    	var codes = {'-': 'blank', 'MD': 'melee', 'RD': 'ranged', 'ID': 'indirect', 'Dr': 'disrupt', 'Dc': 'discard', 'F': 'focus', 'R': 'resource', 'Sp': 'special', 'Sh': 'shield', '*': ''};
-    	var elems = /^([-+]?)(\d+|X)?([-*A-VYZ][a-zA-Z]?)(\d*?)$/.exec(side);
+    	var codes = {'-': 'blank', 'MD': 'melee', 'RD': 'ranged', 'ID': 'indirect', 'Dr': 'disrupt', 'Dc': 'discard', 'Re': 'reroll', 'F': 'focus', 'R': 'resource', 'Sp': 'special', 'Sh': 'shield', '*': ''};
+    	var elems = /^([-+]?)(\d+|X)?([-*A-VYZ][Drcphe]?)([i]?)(\d*?)$/.exec(side);
         var side = {
             code: elems[3],
             icon: codes[elems[3]],
-            cost: elems[4],
+            cost: elems[5],
+			indCostIndicator: elems[4] ? '1' : null,
             modifier: elems[1] ? '1' : null,
             value: elems[2]
         };

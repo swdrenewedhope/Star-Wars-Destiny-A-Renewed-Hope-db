@@ -37,7 +37,7 @@ class CardsData
 	{
 		if($text != '') {
 			// Look for fixed game icons
-			$text = preg_replace('/\\[(blank|discard|disrupt|focus|melee|ranged|indirect|shield|resource|special|unique)\\]/i', '<span class="icon-$1"></span>', $text);
+			$text = preg_replace('/\\[(blank|discard|disrupt|focus|melee|ranged|indirect|shield|resource|special|unique|reroll)\\]/i', '<span class="icon-$1"></span>', $text);
 			
 			// Look for set icons with as card number, and try to link to it
 			$text = preg_replace_callback('|\\(\\[([A-Za-z]*)\\][ ]*([0-9]*)([A-Z]*)\\)|', function($matches) {
@@ -219,6 +219,30 @@ class CardsData
 				{
 					switch($searchCode)
 					{
+					
+						case 'm':
+						{
+							$or = [];
+							
+							foreach($condition as $arg) {
+								$format = $this->doctrine->getRepository('AppBundle:Format')->findByCode($arg);
+								
+								if($format) {
+									$format_sets = $format->getData()["sets"];
+									foreach($format_sets as $set) {
+										switch($operator) {
+											case ':': $or[] = "(s.code = ?$i)"; break;
+											case '!': $or[] = "(s.code != ?$i)"; break;
+										}
+										$qb->setParameter($i++, $set);
+									}									
+								}
+								
+							}
+							$qb->andWhere(implode($operator == '!' ? " and " : " or ", $or));
+							break;
+						
+						}
 						case 's':
 						{
 							$or = [];
@@ -471,11 +495,36 @@ class CardsData
 		$setcode = str_pad($card->getSet()->getPosition(), 2, '0', STR_PAD_LEFT);
 		$imageurl = $this->assets_helper->getUrl("/bundles/cards/{$locale}/{$setcode}/{$card->getCode()}.jpg");
         $imagepath = $this->rootDir . '/../web' . preg_replace('/\?.*/', '', $imageurl);
+		
         if(file_exists($imagepath)) {
             $cardinfo['imagesrc'] = $this->ensureUrlIsAbsolute($imageurl);
             if($locale != 'en') {
 	        	$cardinfo['imagesrc_en'] = $this->ensureUrlIsAbsolute($this->assets_helper->getUrl("/bundles/cards/en/{$setcode}/{$card->getCode()}.jpg"));
 	        }
+		} elseif ($card->getReprintOf() != NULL) {
+			
+			// If we can't find the card image, dig through levels of reprints until we do
+			$foundbasecard = 0;
+			$cardlevel = $card->getReprintOf();
+			
+			while ($foundbasecard === 0) {
+				$imageurl = $this->assets_helper->getUrl("/bundles/cards/{$locale}/".str_pad($cardlevel->getSet()->getPosition(), 2, '0', STR_PAD_LEFT)."/{$cardlevel->getCode()}.jpg");
+				$imagepath = $this->rootDir . '/../web' . preg_replace('/\?.*/', '', $imageurl);
+				
+				if(file_exists($imagepath)) {
+					$cardinfo['imagesrc'] = $this->ensureUrlIsAbsolute($imageurl);
+					if($locale != 'en') {
+						$cardinfo['imagesrc_en'] = $this->ensureUrlIsAbsolute($this->assets_helper->getUrl("/bundles/cards/en/".str_pad($cardlevel->getSet()->getPosition(), 2, '0', STR_PAD_LEFT)."/{$card->getReprintOf()->getCode()}.jpg"));
+					}
+					$foundbasecard = 1;
+				} elseif ($cardlevel->getReprintOf() != NULL) {
+					$cardlevel = $cardlevel->getReprintOf();
+				} else {
+					$cardinfo['imagesrc'] = null;
+					$foundbasecard = 1;
+				}
+			}
+			
         } else {
             $cardinfo['imagesrc'] = null;
         }

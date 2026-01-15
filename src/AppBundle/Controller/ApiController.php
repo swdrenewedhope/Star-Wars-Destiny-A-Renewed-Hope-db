@@ -581,4 +581,66 @@ class ApiController extends Controller
 		return $response;
 		
 	}
+
+/**
+ * Get the description of a deck as a JSON object (only if the owner's sharing is enabled).
+ *
+ * @ApiDoc(
+ *  section="Deck",
+ *  resource=true,
+ *  description="One Deck (public)",
+ *  parameters={
+ *      {"name"="jsonp", "dataType"="string", "required"=false, "description"="JSONP callback"}
+ *  },
+ *  requirements={
+ *      {"name"="deck_id", "dataType"="integer", "requirement"="\d+", "description"="The numeric identifier of the deck"},
+ *      {"name"="_format", "dataType"="string", "requirement"="json", "description"="The format of the returned data. Only 'json' is supported at the moment."}
+ *  }
+ * )
+ * @param Request $request
+ */
+public function getDeckAction($deck_id, Request $request)
+{
+    $response = new Response();
+    $response->setPublic();
+    $response->setMaxAge($this->container->getParameter('cache_expiration'));
+    $response->headers->add(array('Access-Control-Allow-Origin' => '*'));
+
+    $jsonp  = $request->query->get('jsonp');
+    $format = $request->getRequestFormat();
+    if ($format !== 'json') {
+        $response->setContent($request->getRequestFormat() . ' format not supported. Only json is supported.');
+        return $response;
+    }
+
+    // Load deck
+    $deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($deck_id);
+    if (!$deck) die();
+
+    // Check the owner's share setting (User::getIsShareDecks)
+    $owner = method_exists($deck, 'getUser') ? $deck->getUser()
+           : (method_exists($deck, 'getOwner') ? $deck->getOwner() : null);
+    if (!$owner || !$owner->getIsShareDecks()) die();
+
+    // Cache headers (only if Deck exposes a date update)
+    if (method_exists($deck, 'getDateUpdate') && $deck->getDateUpdate()) {
+        $response->setLastModified($deck->getDateUpdate());
+        if ($response->isNotModified($request)) {
+            return $response;
+        }
+    }
+
+    // Build the response (same style as getDecklistAction)
+    $content = json_encode($deck);
+
+    if (isset($jsonp)) {
+        $content = "$jsonp($content)";
+        $response->headers->set('Content-Type', 'application/javascript');
+    } else {
+        $response->headers->set('Content-Type', 'application/json');
+    }
+
+    $response->setContent($content);
+    return $response;
+	}
 }

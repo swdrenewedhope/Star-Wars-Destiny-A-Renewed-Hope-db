@@ -24,7 +24,7 @@ AppBundle\Entity\Deckchange:
                     on: create
         variation:
             type: string
-            length: 1024
+            length: 20000
         isSaved:
             type: boolean
             column: is_saved

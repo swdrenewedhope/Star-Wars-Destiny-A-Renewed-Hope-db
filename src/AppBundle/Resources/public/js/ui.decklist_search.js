@@ -38,7 +38,7 @@
                 click: function(event) { line.remove(); }
             });
             line.insertBefore($('#card'));
-            $(event.target).typeahead('val', '');
+            //$(event.target).typeahead('val', '');
         });
 
     }

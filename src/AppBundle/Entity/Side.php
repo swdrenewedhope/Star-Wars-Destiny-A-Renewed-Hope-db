@@ -29,11 +29,17 @@ class Side
         }
 
         $s = $s.$type;
-
+		
+		if($this->indCostIndicator > 0)
+        {
+            $s = $s.'i';
+        }
+		
         if($this->cost > 0)
         {
             $s = $s.$this->cost;
         }
+		
 		return $s;
 	}
 	
@@ -51,7 +57,12 @@ class Side
      * @var integer
      */
     private $modifier;
-
+	
+	/**
+     * @var integer
+     */
+    private $indCostIndicator;
+	
     /**
      * @var integer
      */
@@ -182,7 +193,31 @@ class Side
     {
         return $this->modifier;
     }
+	
+	/**
+     * Set indirect cost indicator
+     *
+     * @param integer $ind
+     *
+     * @return Side
+     */
+    public function setIndCostIndicator($ind)
+    {
+        $this->indCostIndicator = $ind;
 
+        return $this;
+    }
+
+    /**
+     * Get indirect cost indicator
+     *
+     * @return integer
+     */
+    public function getIndCostIndicator()
+    {
+        return $this->indCostIndicator;
+    }
+	
     /**
      * Set cost
      *

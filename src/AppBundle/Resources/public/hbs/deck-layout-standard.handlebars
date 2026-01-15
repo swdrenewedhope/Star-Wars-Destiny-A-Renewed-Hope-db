@@ -98,8 +98,12 @@
 		                    	<span class="fa fa-exclamation" title="{{trans 'card.format.errata'}}" data-toggle="tooltip"></span>
 		                    {{/if}}
 						</div>
-						<div class="character-dice">
+						<div class="character-dice clementine">
+							{{#if has_die}}
 							{{indeck.dice}} <span class="icon-die"></span>
+							{{else}}
+							{{indeck.quantity}}
+							{{/if}}
 						</div>
 					</div>
 					{{/each}}

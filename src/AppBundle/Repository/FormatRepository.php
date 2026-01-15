@@ -11,14 +11,14 @@ class FormatRepository extends TranslatableRepository
 
 	public function findAll()
 	{
-		$qb = $this->createQueryBuilder('f');
+		$qb = $this->createQueryBuilder('m');
 		return $this->getResult($qb);
 	}
 
 	public function findByCode($code)
 	{
-		$qb = $this->createQueryBuilder('f')
-			->andWhere('f.code = ?1')
+		$qb = $this->createQueryBuilder('m')
+			->andWhere('m.code = ?1')
 			->setParameter(1, $code);
 
 		return $this->getOneOrNullResult($qb);

@@ -45,8 +45,9 @@ class SocialController extends Controller
 
         $yesterday = (new \DateTime())->modify('-24 hours');
         if($user->getDateCreation() > $yesterday) {
-            $this->get('session')->getFlashBag()->set('error', $translator->trans('decklist.publish.errors.antispam.newbie'));
-            return $this->redirect($this->generateUrl('deck_view', [ 'deck_id' => $deck->getId() ]));
+			// Ace Jon: turning this off for now
+            //$this->get('session')->getFlashBag()->set('error', $translator->trans('decklist.publish.errors.antispam.newbie'));
+            //return $this->redirect($this->generateUrl('deck_view', [ 'deck_id' => $deck->getId() ]));
         }
 
         $query = $em->createQuery("SELECT COUNT(d) FROM AppBundle:Decklist d WHERE d.dateCreation>:date AND d.user=:user");
@@ -111,10 +112,11 @@ class SocialController extends Controller
 
         $yesterday = (new \DateTime())->modify('-24 hours');
         if($user->getDateCreation() > $yesterday) {
-            return $this->render('AppBundle:Default:error.html.twig', [
-                'pagetitle' => $translator->trans('decklist.publish.errors.pagetitle.spam'),
-                'error' => $translator->trans('decklist.publish.errors.antispam.newbie'),
-            ]);
+			// Ace Jon: turning this off for now
+   //         return $this->render('AppBundle:Default:error.html.twig', [
+   //             'pagetitle' => $translator->trans('decklist.publish.errors.pagetitle.spam'),
+   //             'error' => $translator->trans('decklist.publish.errors.antispam.newbie'),
+   //         ]);
         }
 
         $query = $em->createQuery("SELECT COUNT(d) FROM AppBundle:Decklist d WHERE d.dateCreation>:date AND d.user=:user");
@@ -621,8 +623,8 @@ class SocialController extends Controller
             foreach($spool as $email => $data) {
                 $translator->setLocale($data['locale']);
                 $message = \Swift_Message::newInstance()
-                ->setSubject("[swdestinydb] ".$translator->trans('emails.newcomment.subject'))
-                ->setFrom(array("webmaster@swdestinydb.com" => $user->getUsername()))
+                ->setSubject("[SWD ARH Database] ".$translator->trans('emails.newcomment.subject'))
+                ->setFrom(array("db@swdrenewedhope.com" => $user->getUsername()))
                 ->setTo($email)
                 ->setBody($this->renderView($data['view'], $email_data), 'text/html');
                 $this->get('mailer')->send($message);

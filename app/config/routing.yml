@@ -46,3 +46,10 @@ oauth_server_auth_login_check:
 
 _bazinga_jstranslation:
     resource: "@BazingaJsTranslationBundle/Resources/config/routing/routing.yml"
+
+api_public_deck:
+    path: /api/public/deck/{deck_id}.{_format}
+    defaults: { _controller: AppBundle:Api:getDeck, _format: json }
+    requirements:
+        deck_id:  \d+
+        _format:  json

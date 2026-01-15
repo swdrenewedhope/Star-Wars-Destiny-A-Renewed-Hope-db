@@ -1,7 +1,8 @@
 /* fonts */
 body {
-	//background-image: url('background.png');
-	background-color: #ECF0F1;
+	background-image: url('/bundles/app/images/background.png');
+	backround-repeat: repeat;
+	background-color: #000000;
 }
 
 .card-content {
@@ -70,7 +71,7 @@ td.die-face {
   border: 2px solid black;
   border-radius: 15px;
   margin-right: 1px;
-  background-color: #f0f0f0;
+  background-color: #05121c;
 }
 
 .card-die-face-blank {
@@ -106,6 +107,16 @@ td.die-face {
   text-align: center;
   font-size: 12px;
   color: #daaa0b;
+}
+
+.card-die-face-indirect-cost {
+  position: absolute;
+  bottom: -2px;
+  left: 0px;
+  width: 39px;
+  text-align: center;
+  font-size: 12px;
+  color: #e61e26;
 }
 
 .card-amount {
@@ -174,7 +185,7 @@ td.die-face {
 	margin-bottom: 1em;
 }
 .display-spoiler-card h4 {
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #334459;
 }
 .deck-loading {
 	padding: 50px 0;
@@ -203,20 +214,21 @@ td.type, td.faction {
 	padding-bottom: 20px;
 }
 .container.main.white {
-	background-color: #fff;
+	background-color: #0b1822;
 }
 .container.main.admin {
-	background-color: #fff;
+	background-color: #0b1822;
 	border: 1px solid red;
 }
 #wrapper {
 	min-height: 100%;
-	border-bottom: 10px solid #c0392b;
+	border-bottom: 10px solid #0b1822;
 	padding-bottom: 100px;
 }
 footer {
 	padding-top: 20px;
-	background-color: #95a5a6;
+	background-color: #334459;
+	color: #eeeeee;
 }
 .navbar-default {
 	font-size: 16px;
@@ -238,7 +250,7 @@ div.tags span.tag:not(:first-child)::before {
 .social-icon-like{color:red}
 .social-icon-favorite{color:orange}
 .social-icon-comment{color:green}
-.social-icon-version{color:blue}
+.social-icon-version{color:#eee}
 
 /*** generic ****/
 
@@ -321,11 +333,11 @@ ol {
 
 @mixin collection-config($type, $spin) {
 	&.collection-#{$type}-not-owned [data-spin=#{$spin}] .btn-value {
-		background-color: lighten(red, 40%);
+		background-color: #522;
 	}
 
 	&.collection-#{$type}-not-playset [data-spin=#{$spin}] .btn-value {
-		background-color: lighten(orange, 30%);
+		background-color: #753;
 	}
 
 	&.collection-#{$type}-playset [data-spin=#{$spin}] .btn-value {
@@ -393,10 +405,10 @@ ol {
 
 /*********** TYPEAHEAD **************/
 
-.twitter-typeahead{width:100%;background-color:#fff}
+.twitter-typeahead{width:100%;background-color:#0b1822}
 .twitter-typeahead .tt-hint{color:#aaa;margin-left:11px;margin-top:4px;display:none}
 .twitter-typeahead .tt-query{margin-bottom:0}
-.tt-dropdown-menu{min-width:160px;margin-top:2px;padding:5px 0;background-color:#fff;border:1px solid #ccc;border:1px solid rgba(0,0,0,.2);*border-right-width:2px;*border-bottom-width:2px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;-webkit-box-shadow:0 5px 10px rgba(0,0,0,.2);-moz-box-shadow:0 5px 10px rgba(0,0,0,.2);box-shadow:0 5px 10px rgba(0,0,0,.2);-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box}
+.tt-dropdown-menu{min-width:160px;margin-top:2px;padding:5px 0;background-color:#0b1822;border:1px solid #ccc;border:1px solid rgba(0,0,0,.2);*border-right-width:2px;*border-bottom-width:2px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;-webkit-box-shadow:0 5px 10px rgba(0,0,0,.2);-moz-box-shadow:0 5px 10px rgba(0,0,0,.2);box-shadow:0 5px 10px rgba(0,0,0,.2);-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box}
 .tt-suggestion{display:block;padding:3px 20px}
 .tt-suggestion.tt-cursor{color:#fff;background-color:#0081c2;background-image:-moz-linear-gradient(top,#08c,#0077b3);background-image:-webkit-gradient(linear,0 0,0 100%,from(#08c),to(#0077b3));background-image:-webkit-linear-gradient(top,#08c,#0077b3);background-image:-o-linear-gradient(top,#08c,#0077b3);background-image:linear-gradient(to bottom,#08c,#0077b3);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc',endColorstr='#ff0077b3',GradientType=0)}
 .tt-suggestion.tt-cursor a{color:#fff}
@@ -640,11 +652,12 @@ ol {
 /************** INDEX PAGE ***************/
 
 h1.site-title {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Josefin Sans', sans-serif;
 	position:relative;
 	font-size:116px;
 	text-align:center;
 	margin-top: 0;
+	color:#eee;
 	//color: white;
 }
 div.site-slogan {
@@ -652,6 +665,7 @@ div.site-slogan {
 	position:relative;
 	font-size:40px;
 	text-align:center;
+	color:#eee;
 	//color: white;
 }
 
@@ -786,10 +800,10 @@ td.decklist-images {
 @include all-color(neutral, #979d9f);
 
 /************** FACTION COLORS **************/
-@include all-color(yellow, #dab032);
-@include all-color(gray, #979d9f);
-@include all-color(blue, #0b609e, #f0f0f0);
-@include all-color(red, #b22222, #f0f0f0);
+@include all-color(yellow, #f5bf17, #000000);
+@include all-color(gray, #979d9f, #000000);
+@include all-color(blue, #6cc1ff, #000000);
+@include all-color(red, #f5413f, #000000);
 
 /************** RARITY COLORS **************/
 @include all-color(rarity-S, #bcbcbc);
@@ -803,7 +817,7 @@ td.decklist-images {
 article.review {
 	margin-top: 2em;
 	padding-top: 2em;
-	border-top: 1px solid #ddd;
+	border-top: 1px solid #334459;
 }
 article.review:first-child {
 	margin-top: 0;
@@ -827,7 +841,7 @@ article.review .review-author {
 	text-align: right
 }
 article.review .review-comment {
-	border-top: 1px solid #ddd;
+	border-top: 1px solid #334459;
 	padding: 0.5em;
 }
 
@@ -835,6 +849,15 @@ article.review .review-comment {
 
 .md-editor.md-fullscreen-mode {
 	z-index: 99;
+}
+
+.md-editor {
+	border: 1px solid #334459;
+}
+
+.md-editor>.md-header,
+.md-editor>.md-footer {
+	background-color: #0b1822;
 }
 
 /* PRINT STYLESHEETS */

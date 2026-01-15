@@ -25,3 +25,6 @@ monolog:
             level: debug
         console:
             type:  console
+
+assetic:
+    node: /home/gxpvsxmy/.nvm/versions/node/v17.1.0/bin/node

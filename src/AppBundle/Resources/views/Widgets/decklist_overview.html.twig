@@ -33,7 +33,7 @@
       <div class="text-center character-card-list">
         {% for character in decklist.slots.characterDeck.slots %}
           {% set card = cards_data.getCardInfo(character.card) %}
-          <div class="index-character">
+          <div class="index-character thisisanupdatetest2">
             <div class="character-thumbnail card-thumbnail-2x card-thumbnail-character" style="background-image:url('{{card.imagesrc}}')">
               {% if card.is_unique %}
               <div class="character-unique"><span class="icon-unique"></span></div>
@@ -42,6 +42,13 @@
               {% for i in 1..character.dice %}
               <span class="icon-die"></span>
               {% endfor %}
+			  {% if card.has_die %}
+			  {% for i in 1..character.dice %}
+			  <span class="icon-die"></span>
+			  {% endfor %}
+			  {% elseif character.qty == 2 %}
+			  <strong>E</strong>
+			  {% endif %}
               </div>
             </div>
             <a href="{{absolute_url(path('cards_zoom', {card_code: card.code}))}}" class="fg-{{card.faction_code}} card" data-code="{{card.code}}" target="_blank">

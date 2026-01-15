@@ -85,7 +85,7 @@
 <fieldset>
 <legend>{{ 'search.attributes' | trans }}</legend>
 <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <div class="form-group">
 			<label for="e">{{ 'card.info.set' | trans }}</label>
 			<div>
@@ -98,7 +98,20 @@
 			</div>
 		</div>
     </div>
-    <div class="col-sm-4">
+	<div class="col-sm-3">
+        <div class="form-group">
+			<label for="m">Format</label>
+			<div>
+				<select class="form-control" name="m" id="m">
+					<option value="">{{ 'search.any' | trans }}</option>
+					{% for format in formats %}
+					<option value="{{ format.code }}">{{ format.name | raw }}</option>
+					{% endfor %}
+				</select>
+			</div>
+		</div>
+    </div>
+    <div class="col-sm-3">
         <div class="form-group">
 			<label for="t">{{ 'card.info.type' | trans }}</label>
 			<div>
@@ -111,7 +124,7 @@
 			</div>
 		</div>
 	</div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <div class="form-group">
 			<label for="b">{{ 'card.info.subtype' | trans }}</label>
 			<div>

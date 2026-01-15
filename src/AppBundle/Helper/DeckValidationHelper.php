@@ -119,6 +119,14 @@ class DeckValidationHelper
 		if($deck->getSlots()->getSlotByCode('11119') != NULL) {
 			return true;
 		}
+		if($deck->getSlots()->getSlotByCode('20128') != NULL) {
+			return true;
+		}
+		
+		// The Father (DoP #87) special case
+		if($deck->getSlots()->getSlotByCode('22087') != NULL) {
+			return true;
+		}
 
 		// Pong Krell (CM #3) special case
 		if($deck->getSlots()->getSlotByCode('12003') != NULL) {
@@ -129,7 +137,148 @@ class DeckValidationHelper
 				return true;
 			}
 		}
+		
+		// Cassian Andor (FA #40) special case
+		if($deck->getSlots()->getSlotByCode('14040') != NULL) {
+			if(    $this->hasSubtype($card, ['intel'])
+			    && $card->getType()->getCode()!=='character'
+				&& $card->getType()->getCode()!=='plot')
+			{
+				return true;
+			}
+		}
+		
+		// Merrin (FA #63) special case
+		if($deck->getSlots()->getSlotByCode('14063') != NULL) {
+			if(    $card->getAffiliation()->getCode()==='villain' 
+				&& $card->getFaction()->getCode()==='blue' 
+				&& $this->hasSubtype($card, ['curse']))
+			{
+				return true;
+			}
+		}
+		
+		// IG-11 (HS #28) special case
+		// Pt 1: Allow IG-11 with a hero engineer
+		foreach ($deck->getSlots()->getCharacterArray() as $character) {
+			if(    $character->getCard()->getAffiliation()->getCode()==='hero' 
+				&& $character->getCard()->getType()->getCode()==='character'
+				&& $this->hasSubtype($character->getCard(), ['engineer'])
+				&& $card->getCode() === '16027')
+			{
+				return true;
+			}
+		}
+		// Pt 2: Allow villain cards with IG-11
+		if($deck->getSlots()->getSlotByCode('16027') != NULL) {
+			if(    $card->getType()->getCode()!=='character'
+			    && $card->getAffiliation()->getCode()==='villain')
+			{
+				return true;
+			}
+		}
+		
+		// Iden Versio (UH #18) special case
+		// Pt 1: Allow Iden with a Red hero leader
+		foreach ($deck->getSlots()->getCharacterArray() as $character) {
+			if(    $character->getCard()->getAffiliation()->getCode()==='hero' 
+				&& $character->getCard()->getFaction()->getCode()==='red' 
+				&& $character->getCard()->getType()->getCode()==='character'
+				&& $this->hasSubtype($character->getCard(), ['leader'])
+				&& $card->getCode() === '18018')
+			{
+				return true;
+			}
+		}
+		// Pt 2: Allow villain cards with Iden
+		if($deck->getSlots()->getSlotByCode('18018') != NULL) {
+			if(    $card->getType()->getCode()!=='character'
+			    && $card->getAffiliation()->getCode()==='villain')
+			{
+				return true;
+			}
+		}
+		
 
+		// Insurgent Group (SA #82) special case
+		if($deck->getSlots()->getSlotByCode('21082') != NULL) {
+			if(    $card->getType()->getCode()!=='character'
+			    && $card->getType()->getCode()!=='plot')
+				return true;
+		}
+		
+		// Boba Fett (SA #95) special case
+		if($deck->getSlots()->getSlotByCode('21095') != NULL) {
+			if(    $card->getType()->getCode()!=='character'
+				&& $card->getType()->getCode()!=='plot'
+			    && $card->getFaction()->getCode()==='yellow')
+			{
+				return true;
+			}
+		}
+		
+		// Barriss Offee (RES #2)
+		if($deck->getSlots()->getSlotByCode('23002') != NULL) {
+			if(    $card->getType()->getCode()==='event'
+			    && $card->getFaction()->getCode()==='blue')
+			{
+				return true;
+			}
+		}
+	
+		// Mon Mothma (RES #60)
+		if($deck->getSlots()->getSlotByCode('23060') != NULL) {
+			if(    $card->getType()->getCode()==='support'
+			    && $card->getFaction()->getCode()==='yellow')
+			{
+				return true;
+			}
+		}
+		
+		// Bix Caleen (RES #70)
+		if($deck->getSlots()->getSlotByCode('23070') != NULL) {
+			if(    $card->getFaction()->getCode()==='red'
+				&& $this->hasSubtype($card, ['mod']))
+			{
+				return true;
+			}
+		}
+		
+		// Asajj Ventress (RES #87)
+		if($deck->getSlots()->getSlotByCode('23087') != NULL) {
+			if(    $card->getType()->getCode()==='downgrade')
+			{
+				return true;
+			}
+		}
+		
+		// Count Dooku (RES #88)
+		if($deck->getSlots()->getSlotByCode('23088') != NULL) {
+			if(    $card->getType()->getCode()==='upgrade'
+			    && $card->getFaction()->getCode()==='blue')
+			{
+				return true;
+			}
+		}
+		
+		// Morgan Elspeth (AF #18)
+		if($deck->getSlots()->getSlotByCode('24018') != NULL) {
+			if(    $card->getAffiliation()->getCode()==='villain' 
+				&& $card->getFaction()->getCode()==='blue')
+			{
+				return true;
+			}
+		}
+		
+		// Cal Kestis (AF #47)
+		if($deck->getSlots()->getSlotByCode('24047') != NULL) {
+			if(    $card->getType()->getCode()==='upgrade'
+			    && $card->getFaction()->getCode()==='yellow')
+			{
+				return true;
+			}
+		}
+		
 		return false;
 	}
 
@@ -165,6 +314,37 @@ class DeckValidationHelper
 			if(    $card->getAffiliation()->getCode()==='villain' 
 				&& $card->getFaction()->getCode()==='red' 
 				&& $this->hasSubtype($card, ['vehicle', 'weapon']))
+			{
+				return true;
+			}
+		}
+		
+		// Asajj Ventress (RES #87)
+		if($deck->getSlots()->getSlotByCode('23087') != NULL) {
+			if(    $card->getType()->getCode()==='downgrade')
+			{
+				return true;
+			}
+		}
+		
+		// Bix Caleen (RES #70)
+		if($deck->getSlots()->getSlotByCode('23070') != NULL) {
+			if(    $card->getFaction()->getCode()==='red'
+				&& $this->hasSubtype($card, ['mod']))
+			{
+				return true;
+			}
+		}
+		
+		// Insurgent Group (SA #82) special case
+		if($deck->getSlots()->getSlotByCode('21082') != NULL) {
+			return true; // Just allow anything. Not sure of a sensible way to limit that to 4 cards - Ace Jon
+		}
+		
+		// Mon Mothma (RES #60)
+		if($deck->getSlots()->getSlotByCode('23060') != NULL) {
+			if(    $card->getType()->getCode()==='support'
+			    && $card->getFaction()->getCode()==='yellow')
 			{
 				return true;
 			}
@@ -220,6 +400,16 @@ class DeckValidationHelper
 						return $slot->getCard()->getName() !== 'Rey' && $slot->getCard()->getName() !== 'Kylo Ren';
 					})) 
 			    		return false;
+				case '20128':
+			    	if(some($deck->getSlots()->getDrawDeck()->getSlots(), function($slot) {
+						return $slot->getCard()->getFaction()->getCode() == 'gray';
+					}))
+			    		return false;
+
+			    	if(some($deck->getSlots()->getCharacterDeck()->getSlots(), function($slot) {
+						return $slot->getCard()->getName() !== 'Rey' && $slot->getCard()->getName() !== 'Kylo Ren';
+					})) 
+			    		return false;
 
 			    	return true;
 			    //Spectre Cell (CM 104)
@@ -234,6 +424,29 @@ class DeckValidationHelper
 						}
 						return false;
 			    	});
+				//Insurgent Group (SA 82)
+			    case '21082': 
+			    	return every($deck->getSlots()->getCharacterDeck(), function($slot) {
+			    		foreach($slot->getCard()->getSubtypes() as $subtype)
+						{
+							if($subtype->getCode() == 'partisan')
+							{
+								return true;
+							}
+						}
+						return false;
+			    	});
+				
+				//The Father (DoP 87)
+			    case '22087':
+
+			    	if(some($deck->getSlots()->getCharacterDeck()->getSlots(), function($slot) {
+						return $slot->getCard()->getName() !== 'The Son' && $slot->getCard()->getName() !== 'The Daughter';
+					})) 
+			    		return false;
+
+			    	return true;
+					
 				default:
 					return true;
 			}
@@ -283,7 +496,8 @@ class DeckValidationHelper
 	
 	public function findProblem(SlotCollectionProviderInterface $deck)
 	{
-		$deckSize = $deck->getSlots()->isSlotIncluded("15101") ? 40 : 30;
+		$deckSize = $deck->getSlots()->isSlotIncluded("15101") ? 40 : 30; // CT-4040
+		$deckSize = $deck->getSlots()->isSlotIncluded("21091") ? ($deckSize+4) : $deckSize; // Strategic Discipline
 		if($this->getDeckSize($deck) != $deckSize) {
 			return 'incorrect_size';
 		}

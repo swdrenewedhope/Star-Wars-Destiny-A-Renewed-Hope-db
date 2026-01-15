@@ -94,7 +94,7 @@ ui.on_button_symbol = function ui_on_button_symbol(e)
 		$(button).off('click');
 	});
 	
-	var icons = 'unique battlefield character upgrade support event cards die melee ranged disrupt discard focus resource shield special blank'.split(' ');
+	var icons = 'unique battlefield character upgrade support event cards die melee ranged disrupt discard focus resource shield special blank reroll'.split(' ');
 	icons.forEach(function (icon) {
 		menu.append('<li data-icon="'+icon+'"><a href="#"><span style="display:inline-block;width:2em;text-align:center" class="icon-'+icon+'"></span> '+Translator.trans('icon.'+icon)+'</a></li>');
 	});

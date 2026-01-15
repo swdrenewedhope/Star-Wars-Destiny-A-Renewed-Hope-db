@@ -37,9 +37,15 @@
       <span class="card-die-face-value">{{#if modifier}}+{{/if}}{{int_or_x value}}</span>{{#if icon }}<span class="icon-{{icon}}">{{/if}}</span>
     </div>
     {{#if cost}}
+	{{#if indCostIndicator }}
+	<div class="card-die-face-indirect-cost">
+      {{cost}}<span class="icon-indirect"></span>
+    </div>
+	{{else}}
     <div class="card-die-face-cost">
       {{cost}}<span class="icon-resource"></span>
     </div>
+	{{/if}}
     {{/if}}
   </div>
   {{/with}}

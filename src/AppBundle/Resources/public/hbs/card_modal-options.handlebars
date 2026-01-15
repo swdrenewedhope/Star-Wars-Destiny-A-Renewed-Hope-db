@@ -1,7 +1,8 @@
+<!-- Echo-row -->
 {{#if multiple_copies}}
 
 	{{#each card.indeck.dices}}
-		<div class="btn-group" data-toggle="buttons">
+		<div class="btn-group banana" data-toggle="buttons">
 			<label class="btn btn-xs btn-default{{#compare 0 this}} active{{/compare}}">
 				<input type="radio" name="{{../prefix}}-qty-{{../card.code}}-{{@index}}" value="0" /> 0
 			</label>
@@ -14,8 +15,24 @@
 		</div>
 	{{/each}}
 
-{{else if unique_character}}
+{{else if non_dice_elite}}
 
+	{{#each card.indeck.tier}}
+		<div class="btn-group" data-toggle="buttons">
+			<label class="btn btn-xs btn-default{{#compare 0 this}} active{{/compare}}">
+				<input type="radio" name="{{../prefix}}-qty-{{../card.code}}-{{@index}}" value="0" /> 0
+			</label>
+			<label class="btn btn-xs btn-default{{#compare 1 this}} active{{/compare}}">
+				<input type="radio" name="{{../prefix}}-qty-{{../card.code}}-{{@index}}" value="1" /> 1
+			</label>
+			<label class="btn btn-xs btn-default{{#compare 2 this}} active{{/compare}}">
+				<input type="radio" name="{{../prefix}}-qty-{{../card.code}}-{{@index}}" value="2" /> Elite</span>
+			</label>
+		</div>
+	{{/each}}
+
+{{else if unique_character}}
+	<!-- test! -->
 	<div class="btn-group" data-toggle="buttons">
 		{{#range 0 card.maxqty.dice inclusive=false}}
 		<label class="btn btn-xs btn-default{{#compare this ../card.indeck.dice}} active{{/compare}}">

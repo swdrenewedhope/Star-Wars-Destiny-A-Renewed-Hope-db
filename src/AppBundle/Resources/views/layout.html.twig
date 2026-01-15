@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
   <head>
-    <title>{{ pagetitle|default('Deckbuilder') }} &middot; SWDestinyDB</title>
+    <title>{{ pagetitle|default('ARH Deckbuilder') }} &middot; SWD: ARH Database</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="mobile-web-app-capable" content="yes">
 
     <link rel="icon" sizes="192x192" href="/icon-192.png" />
-    <link rel="apple-touch-icon" sizes="120x120" href="/icon-120.png" />
+    <!--<link rel="apple-touch-icon" sizes="120x120" href="/icon-120.png" />-->
     {% if app.request.locale != "en" and app.request.attributes.get('_route') != "" %}
       {% set _route_params = app.request.attributes.get('_route_params')|default({}) %}
       {% set _get_params = app.request.query.all()|default({}) %}
@@ -15,10 +15,13 @@
     {% endif %}
     {% if pagedescription is defined %}<meta name="description" content="{{ pagedescription }}">{% endif %}
 
-    <link href='https://fonts.googleapis.com/css?family=Amiri:400,400i,700,700i|Open+Sans+Condensed:300|Open+Sans:400,400i,700,700i|Roboto|Abel' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Amiri:400,400i,700,700i|Open+Sans+Condensed:300|Open+Sans:400,400i,700,700i|Roboto|Abel|Josefin+Sans:wght@700' rel='stylesheet' type='text/css'>
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/2.1.1/jquery.qtip.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.9.0/css/bootstrap-markdown.min.css">
+	{% if app.request.cookies.get('lightmode') %}
+	<link rel="stylesheet" id="lightmodesheet" href="/css/app.css" />
+	{% else %}
     {% stylesheets filter="cssrewrite,scssphp" output="css/app.css"
       'bundles/app/css/bootstrap.css'
 	  'bundles/app/css/bootstrap-essentials.css'
@@ -26,8 +29,10 @@
       'bundles/app/css/icons.css'
       'bundles/app/css/languages.css'
     %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
+	<link rel="stylesheet" id="lightmodesheet" href="{{ asset_url }}" />
 	{% endstylesheets %}
+	{% endif %}
+
 	<!--[if lt IE 9]>
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
@@ -49,9 +54,10 @@
           <a class="navbar-brand" href="{{ path('index') }}">
             <span class="icon icon-link-half-top"></span>
             <span class="icon icon-link-half-bottom"></span>
-            SWDestinyDB
+            SWD: ARH Database
           </a>
         </div>
+
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="{{ path('decks_list') }}">{{ 'nav.mydecks' | trans}}</a></li>
@@ -62,8 +68,10 @@
               <ul class="dropdown-menu" role="menu">
                 <li><a href="{{ path('cards_search') }}">{{ 'nav.advancedsearch' | trans}}</a></li>
                 <li class="divider"></li>
+				<li><a style="font-weight:bold" href="https://www.fantasyflightgames.com/en/products/star-wars-destiny/" target="_blank">FFG Official</a></li>
 				{% set projectName = null %}
 	            {% for line in cards_data.allsetsdata() %}
+				  {% if line['projectName'] != 'Echoes of Destiny Archive' %}
 	              {% if projectName != line['projectName'] %}
 					{% if projectName != null %}
 	                  </ul>
@@ -71,30 +79,22 @@
 	                {% endif %}
 	                {% set projectName = line['projectName'] %}
 	                <li class="divider"></li>
-	                <li class="dropdown-submenu">
-	                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="nav-label">{{ projectName }}</span><span class="caret"></span></a>
-	                  <ul class="dropdown-menu">
                       
                       {% if projectName == 'A Renewed Hope' %}
-                        <li><a href="https://swdrenewedhope.com" target="_blank"><span class="fa fa-external-link fa-fw"></span> {{ projectName }}</a></li>
-                      {% elseif projectName == 'The Coruscant Initiative' %}
-                        <li><a href="https://www.coruscant-initiative.org"  target="_blank"><span class="fa fa-external-link fa-fw"></span> {{ projectName }}</a></li>
+                        <li><a style="font-weight:bold" href="https://swdrenewedhope.com" target="_blank">{{ projectName }}</a></li>
                       {% endif %}
                       
 	              {% endif %}
 	              	    <li><a href="{{ line['url'] }}">{{ line['label'] | raw }}</a></li>
+				{% endif %}
 	            {% endfor %}
-	            {% if projectName != null %}
-	                  </ul>
-	                </li>
-	            {% endif %}
               </ul>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'nav.rules' | trans}} <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="{{ path('rules') }}">{{ 'nav.rulesreference' | trans }}</a></li>
-                <li><a href="{{ path('faq') }}">{{ 'nav.faq' | trans }}</a></li>
+                <li><a href="https://swdrenewedhope.com/wp-content/uploads/2023/07/SWD_ARH_Rules_Reference_v1.07.01.pdf" target="_blank">{{ 'nav.rulesreference' | trans }}</a></li>
+                <li><a href="https://drive.google.com/file/d/1OV1hSG8rlmauSJUlE__YOg13EWSJRb6b/view?usp=sharing" target="_blank">ARH Standard Holocron</a></li>
               </ul>
             </li>
           </ul>
@@ -110,25 +110,15 @@
             <li id="login">
                 <a href="#" class="disabled"><span class="fa fa-user"></span></a>
             </li>
-            <!-- locale selection -->
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown">
-                <span class="lang-sm" lang="{{ app.request.locale | default(default_locale) }}"></span>
-                <span class="caret">
-              </a>
-              <ul class="dropdown-menu">
-                {% for supported_locale in supported_locales %}
-                  {% set _route = app.request.attributes.get('_route') %}
-                  {% set _route_params = app.request.attributes.get('_route_params')|default({})|merge(app.request.query.all) %}
-                  {% set _get_params = app.request.attributes.get('_get_params')|default({}) %}
-                  <li>
-                    <a href="{{ path(_route, _route_params|merge(_get_params)|merge({'_locale': supported_locale})) }}">
-                      <span lang="{{ supported_locale }}" class="lang-sm lang-lbl lang-lbl-full"></span>
-                    </a>
-                  </li>
-                {% endfor %}
-              </ul>
+			{% if app.request.cookies.get('lightmode') %}
+			<li id="lightmodetoggle">
+    i            <a id="lightmode" href="#" class="disabled"><span class="fa fa-moon-o"></span></a>
             </li>
+			{% else %}
+			<li id="lightmodetoggle">
+                <a id="lightmode" href="#" class="disabled"><span class="fa fa-moon-o"></span></a>
+            </li>
+			{% endif %}
           </ul>
           <form class="navbar-form navbar-right visible-lg-block visible-xs-block external" action="{{ path('cards_find') }}" target="_blank">
             <div class="form-group">
@@ -156,7 +146,7 @@
 
     <script src="{{ asset('/bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
-
+	
     {% javascripts
         'bundles/bazingajstranslation/js/translator.min.js'
         'js/translations/config.js'
@@ -203,8 +193,15 @@
     </script>
 
 	{% if app.environment == 'prod' %}
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		{% include 'AppBundle:Default:google-analytics.html.twig' %}
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNEPT3FZNL"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'G-NNEPT3FZNL');
+		</script>
 	{% endif %}
   
   {% javascripts filter="?jsqueeze" output="js/templates.js"
@@ -237,7 +234,7 @@
     '@AppBundle/Resources/public/js/app.deck_charts.js'
 	'@AppBundle/Resources/public/js/app.ui.js'
   %}
-	  <script src="{{ asset_url }}"></script>
+	  <script src="{{ asset_url }}"></script><!--app!-->
 	{% endjavascripts %}
 
   <script type="text/javascript">
@@ -247,6 +244,53 @@
   </script>
 
 	{% block javascripts %}{% endblock %}
+	<script src="{{ asset('/bundles/app/highcharts.theme.js') }}"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.dirtyforms/2.0.0/jquery.dirtyforms.min.js"></script>
+	<script type="text/javascript">
+	$( document ).ready(function() {
+	
+		function setCookie(name,value,days) {
+			var expires = "";
+			if (days) {
+				var date = new Date();
+				date.setTime(date.getTime() + (days*24*60*60*1000));
+				expires = "; expires=" + date.toUTCString();
+			}
+			document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+		}
+		function getCookie(name) {
+			var nameEQ = name + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0;i < ca.length;i++) {
+				var c = ca[i];
+				while (c.charAt(0)==' ') c = c.substring(1,c.length);
+				if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+			}
+			return null;
+		}
+		function eraseCookie(name) {   
+			document.cookie = name+'=; Max-Age=-99999999;';  
+		}
+	
+		$('ul').on('click', 'a#darkmode', function(e) {
+			e.preventDefault();
+			eraseCookie('lightmode');
+			$('#lightmodesheet').attr('href', '/css/app.css');
+			$('.lightflippy').css('background-color','#0b1822');
+			$('.fa-moon-o').toggleClass('fa-moon-o fa-moon-o');
+			$(this).attr('id', 'darkmode');
+		});
+		
+		$('ul').on('click', 'a#lightmode', function(e) {
+			e.preventDefault();
+			eraseCookie('lightmode');
+			$('#lightmodesheet').attr('href', '/css/app.css');
+			$('.lightflippy').css('background-color','#0b1822');
+			$('.fa-moon-o').toggleClass('fa-moon-o fa-moon-o');
+			$(this).attr('id', 'darkmode');
+		});
+		
+	});
+	</script>
     </body>
 </html>

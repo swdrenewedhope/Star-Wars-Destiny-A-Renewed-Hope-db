@@ -76,6 +76,7 @@ twig:
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
+    node: /home/gxpvsxmy/.nvm/versions/node/v17.1.0/bin/node
     use_controller: false
     bundles:        [ AppBundle ]
     #java: /usr/bin/java
@@ -92,8 +93,11 @@ assetic:
 doctrine:
     dbal:
         driver:   pdo_mysql
-        server_version: 5.6
-        url: "%database_url%"
+        server_version: 14.14
+        dbname: gxpvsxmy_swddb
+        host: 162.240.18.120
+        user: gxpvsxmy_tech
+        password: lanza f33t
         charset:  UTF8
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
@@ -136,15 +140,15 @@ jms_i18n_routing:
     strategy: custom
     hosts:
         en: "%website_url%"
-        de: "de.%website_url%" 
-        es: "es.%website_url%" 
-        fr: "fr.%website_url%" 
-        hu: "hu.%website_url%"
-        it: "it.%website_url%"
-        pl: "pl.%website_url%"
-        pt: "pt.%website_url%"
-        ru: "ru.%website_url%"
-        zh: "zh.%website_url%"
+        de: "de.db.%website_url%" 
+        es: "es.db.%website_url%" 
+        fr: "fr.db.%website_url%" 
+        hu: "hu.db.%website_url%"
+        it: "it.db.%website_url%"
+        pl: "pl.db.%website_url%"
+        pt: "pt.db.%website_url%"
+        ru: "ru.db.%website_url%"
+        zh: "zh.db.%website_url%"
     redirect_to_host: true
 
 # Swiftmailer Configuration
@@ -167,9 +171,9 @@ fos_user:
             type: app_user_registration
         confirmation:
             enabled: true
-            from_email:
-                address: webmaster@swdestinydb.com
-                sender_name: SW Destiny DB
+    from_email:
+        address: "%mailer_host%"
+        sender_name: "%mailer_user%"
 
 # FOSJsRoutingBundle Configuration
 fos_js_routing:
@@ -187,7 +191,7 @@ fos_oauth_server:
     refresh_token_class: AppBundle\Entity\RefreshToken
     auth_code_class:     AppBundle\Entity\AuthCode
     service:
-        user_provider: fos_user.user_manager
+        user_provider: fos_user.user_provider
 
 bazinga_js_translation:
     locale_fallback: %default_locale%
@@ -208,6 +212,8 @@ jms_translation:
             extractors: [extra_translation_extractor]
 
 happyr_translation:
+    httplug_client: 'httplug.client'
+    httplug_message_factory: 'httplug.message_factory'
     locales: %supported_locales%
     projects:
         messages:
