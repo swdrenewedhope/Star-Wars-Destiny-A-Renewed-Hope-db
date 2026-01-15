@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
   <head>
-	<title>Star Wars Destiny: ARH Database</title>
+    <title>{{ pagetitle|default('ARH Deckbuilder') }} &middot; SWD: ARH Database</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="mobile-web-app-capable" content="yes">
 
     <link rel="icon" sizes="192x192" href="/icon-192.png" />
-    <link rel="apple-touch-icon" sizes="120x120" href="/icon-120.png" />
+    <!--<link rel="apple-touch-icon" sizes="120x120" href="/icon-120.png" />-->
     {% if app.request.locale != "en" and app.request.attributes.get('_route') != "" %}
       {% set _route_params = app.request.attributes.get('_route_params')|default({}) %}
       {% set _get_params = app.request.query.all()|default({}) %}
@@ -37,7 +37,6 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
     <![endif]-->
-
 	{% block stylesheets %}{% endblock %}
     {% include 'AppBundle:Default:cookiesconsent.html.twig' %}
   </head>
@@ -69,7 +68,7 @@
               <ul class="dropdown-menu" role="menu">
                 <li><a href="{{ path('cards_search') }}">{{ 'nav.advancedsearch' | trans}}</a></li>
                 <li class="divider"></li>
-				<li><a style="font-weight:bold" href="https://www.fantasyflightgames.com/en/products/star-wars-destiny/" target="_blank">Fantasy Flight Games</a></li>
+				<li><a style="font-weight:bold" href="https://www.fantasyflightgames.com/en/products/star-wars-destiny/" target="_blank">FFG Official</a></li>
 				{% set projectName = null %}
 	            {% for line in cards_data.allsetsdata() %}
 				  {% if line['projectName'] != 'Echoes of Destiny Archive' %}
@@ -94,43 +93,33 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'nav.rules' | trans}} <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-  <li><a href="{{ path('cards_search') }}">{{ 'nav.advancedsearch' | trans }}</a></li>
-  <li class="divider"></li>
-
-  <li>
-    <a style="font-weight:bold" href="https://swdrenewedhope.com" target="_blank">A Renewed Hope</a>
-  </li>
-  {% for line in cards_data.allsetsdata() %}
-    {% if line['projectName'] == 'A Renewed Hope' %}
-      <li><a href="{{ line['url'] }}">{{ line['label'] | raw }}</a></li>
-    {% endif %}
-  {% endfor %}
-
-  <li class="divider"></li>
-
-  {% set projectName = null %}
-  {% for line in cards_data.allsetsdata() %}
-    {% if line['projectName'] != 'Echoes of Destiny Archive' and line['projectName'] != 'A Renewed Hope' %}
-
-      {% if projectName != line['projectName'] %}
-        {% set projectName = line['projectName'] %}
-        <li class="divider"></li>
-        <li><span style="font-weight:bold; padding: 3px 20px; display:block;">{{ projectName }}</span></li>
-      {% endif %}
-
-      <li><a href="{{ line['url'] }}">{{ line['label'] | raw }}</a></li>
-
-    {% endif %}
-  {% endfor %}
-
-
-  <li class="divider"></li>
-  <li>
-    <a style="font-weight:bold"
-       href="https://www.fantasyflightgames.com/en/products/star-wars-destiny/"
-       target="_blank">Fantasy Flight Games</a>
-  	</li>
-		</ul>
+                <li><a href="https://swdrenewedhope.com/wp-content/uploads/2023/07/SWD_ARH_Rules_Reference_v1.07.01.pdf" target="_blank">{{ 'nav.rulesreference' | trans }}</a></li>
+                <li><a href="https://drive.google.com/file/d/1OV1hSG8rlmauSJUlE__YOg13EWSJRb6b/view?usp=sharing" target="_blank">ARH Standard Holocron</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown hidden-xs hidden-lg">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fa fa-search"></span></a>
+                <div class="dropdown-menu">
+                  <form action="{{ path('cards_find') }}" target="_blank">
+                    <input type="text" placeholder="{{ 'nav.cardsearch' | trans }}" class="form-control" name="q">
+                  </form>
+              </div>
+            </li>
+            <li id="login">
+                <a href="#" class="disabled"><span class="fa fa-user"></span></a>
+            </li>
+			{% if app.request.cookies.get('lightmode') %}
+			<li id="lightmodetoggle">
+    i            <a id="lightmode" href="#" class="disabled"><span class="fa fa-moon-o"></span></a>
+            </li>
+			{% else %}
+			<li id="lightmodetoggle">
+                <a id="lightmode" href="#" class="disabled"><span class="fa fa-moon-o"></span></a>
+            </li>
+			{% endif %}
+          </ul>
           <form class="navbar-form navbar-right visible-lg-block visible-xs-block external" action="{{ path('cards_find') }}" target="_blank">
             <div class="form-group">
               <input type="text" placeholder="{{ 'nav.cardsearch' | trans }}" class="form-control" name="q">
