@@ -67,30 +67,48 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'nav.cards' | trans}} <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="{{ path('cards_search') }}">{{ 'nav.advancedsearch' | trans}}</a></li>
-                <li class="divider"></li>
-				{% set projectName = null %}
-	            {% for line in cards_data.allsetsdata() %}
-				  {% if line['projectName'] != 'Echoes of Destiny Archive' %}
-	              {% if projectName != line['projectName'] %}
-					{% if projectName != null %}
-	                  </ul>
-	                </li>
-	                {% endif %}
-	                {% set projectName = line['projectName'] %}
+  <li><a href="{{ path('cards_search') }}">{{ 'nav.advancedsearch' | trans }}</a></li>
+  <li class="divider"></li>
 
-				{% if projectName == 'A Renewed Hope' %}
-                        <li><a style="font-weight:bold" href="https://swdrenewedhope.com" target="_blank">{{ projectName }}</a></li>
-                      {% endif %}
+  <li>
+    <a style="font-weight:bold" href="https://swdrenewedhope.com" target="_blank">A Renewed Hope</a>
+  </li>
 
-			   <li class="divider"></li>
-				<li><a style="font-weight:bold" href="https://www.fantasyflightgames.com/en/products/star-wars-destiny/" target="_blank">Fantasy Flight Games</a></li>
-                      
-	              {% endif %}
-	              	    <li><a href="{{ line['url'] }}">{{ line['label'] | raw }}</a></li>
-				{% endif %}
-	            {% endfor %}
-              </ul>
+  {% for line in cards_data.allsetsdata() %}
+    {% if line['projectName'] == 'A Renewed Hope' %}
+      <li><a href="{{ line['url'] }}">{{ line['label'] | raw }}</a></li>
+    {% endif %}
+  {% endfor %}
+
+  <li class="divider"></li>
+
+  {% set projectName = null %}
+  {% for line in cards_data.allsetsdata() %}
+    {% if line['projectName'] != 'Echoes of Destiny Archive' and line['projectName'] != 'A Renewed Hope' %}
+
+      {% if projectName != line['projectName'] %}
+        {% set projectName = line['projectName'] %}
+        <li class="divider"></li>
+        <li>
+          <span style="font-weight:bold; padding: 3px 20px; display:block;">
+            {{ projectName }}
+          </span>
+        </li>
+      {% endif %}
+
+      <li><a href="{{ line['url'] }}">{{ line['label'] | raw }}</a></li>
+
+    {% endif %}
+  {% endfor %}
+
+  <li class="divider"></li>
+  <li>
+    <a style="font-weight:bold"
+       href="https://www.fantasyflightgames.com/en/products/star-wars-destiny/"
+       target="_blank">Fantasy Flight Games</a>
+  </li>
+</ul>
+
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'nav.rules' | trans}} <span class="caret"></span></a>
