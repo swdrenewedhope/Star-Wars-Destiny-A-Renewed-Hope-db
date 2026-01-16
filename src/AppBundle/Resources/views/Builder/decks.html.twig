@@ -65,7 +65,7 @@
 		{{ 'decks.slotcount' | trans({'%max%': nbmax, '%current%': nbdecks}) }}
 	</small> -->
 </h1>
-
+{% include 'AppBundle:Default:pagination.html.twig' %}
 <table class="table table-expanded list-decks">
 <tbody id="decks">
 {% for deck in decks %}
@@ -134,7 +134,7 @@
 {% endfor %}
 </tbody>
 </table>
-
+{% include 'AppBundle:Default:pagination.html.twig' %}
 <div id="deck"></div>
 
 </div>
@@ -146,7 +146,7 @@
 <div id="tts-deprecated-toast"
      class="alert alert-warning"
      style="display:none; position:fixed; right:16px; bottom:16px; z-index:99999; max-width:420px; box-shadow:0 6px 18px rgba(0,0,0,.2);">
-  <strong>Notice:</strong> Export to TTS is deprecated and may be removed in a future update. Please contact Draiqil with any concerns about this.
+  <strong>Notice:</strong> Export to TTS is deprecated and will be removed in a future update. Please contact the ARH Team with any concerns about this.
 </div>
 
 <script>
