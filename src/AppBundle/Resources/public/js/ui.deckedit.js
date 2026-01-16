@@ -194,22 +194,22 @@ ui.build_rarity_selector = function build_rarity_selector() {
  * @memberOf ui
  */
 ui.build_set_selector = function build_set_selector() {
-	$('[data-filter=set_code]').empty();
-	app.data.sets.find({
-		name: {
-			'$exists': true
-		}
-	}, {
-	    $orderBy: {
-	        position: 1
-	    }
-	}).forEach(function(record) {
-		// checked or unchecked ? checked by default
-		// var checked = !!record.available;
-		// ... Give priority to the sets belonging to the format you are editing ?
-		var checked = _.includes(app.deck.get_format_data().data.sets, record.code);
-		$('<li><a href="#"><label><input type="checkbox" name="' + record.code + '"' + (checked ? ' checked="checked"' : '') + '>' + record.name + '</label></a></li>').appendTo('[data-filter=set_code]');
-	});
+  var $setFilter = $('[data-filter=set_code]').empty();
+
+  app.data.sets.find(
+    { name: { '$exists': true } },
+    { $orderBy: { position: 1 } }
+  ).forEach(function (record) {
+
+    // Use this to hide the unreleased set from being includablel in deck building.
+    if (record.code === 'UA') return;
+
+    var checked = _.includes(app.deck.get_format_data().data.sets, record.code);
+
+    $('<li><a href="#"><label><input type="checkbox" name="' + record.code + '"' +
+      (checked ? ' checked="checked"' : '') + '>' + record.name +
+      '</label></a></li>').appendTo($setFilter);
+  });
 }
 
 /**
