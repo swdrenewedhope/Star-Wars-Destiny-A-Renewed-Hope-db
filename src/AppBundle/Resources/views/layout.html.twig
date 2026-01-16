@@ -53,6 +53,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="{{ path('index') }}">
+		   <img src="{{ asset('/icon-192.png') }}">
             <span class="icon icon-link-half-top"></span>
             <span class="icon icon-link-half-bottom"></span>
             Star Wars Destiny: ARH Database
@@ -67,8 +68,8 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'nav.cards' | trans}} <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-  <li><a href="{{ path('cards_search') }}">{{ 'nav.advancedsearch' | trans }}</a></li>
-  <li class="divider"></li>
+  			<li><a href="{{ path('cards_search') }}">{{ 'nav.advancedsearch' | trans }}</a></li>
+ 			 <li class="divider"></li>
 
   <li>
     <a style="font-weight:bold" href="https://swdrenewedhope.com" target="_blank">A Renewed Hope</a>
