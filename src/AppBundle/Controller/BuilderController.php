@@ -626,70 +626,108 @@ class BuilderController extends Controller
     	]);
     }
     
-    public function listAction ()
-    {
-        /* @var $user \AppBundle\Entity\User */
-        $user = $this->getUser();
-        $em = $this->getDoctrine()->getManager();
+    use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
-        $decks = $this->get('decks')->getByUser($user, FALSE);
-
-        if(count($decks))
-        {
-			$tags = [];
-			foreach($decks as &$deck) {
-				$tags[] = $deck['tags'];
-
-                /* @var $characterDeck \AppBundle\Entity\Deckslot[] */
-                $characterDeck = $em->getRepository('AppBundle:Deck')->find($deck['id'])->getSlots()->getCharacterRow();
-                $characters = [];
-
-                foreach ($characterDeck as $character) {
-                    $info = $this->get('cards_data')->getCardInfo($character->getCard(), false);
-                    $info['qty'] = $character->getQuantity();
-                    $info['dice'] = $character->getDice();
-                    $info['dices'] = $character->getDices();
-                    $characters[] = $info;
-                }
-
-                $deck['characters'] = $characters;
-
-                /* @var $plotDeck \AppBundle\Entity\Deckslot[] */
-                $plotDeck = $em->getRepository('AppBundle:Deck')->find($deck['id'])->getSlots()->getPlotDeck();
-                $plots = [];
-
-                foreach ($plotDeck as $plot) {
-                    $info = $this->get('cards_data')->getCardInfo($plot->getCard(), false);
-                    $info['qty'] = $plot->getQuantity();
-                    $info['dice'] = $plot->getDice();
-                    $plots[] = $info;
-                }
-
-                $deck['plots'] = $plots;
-			}
-			$tags = array_unique($tags);
-        	return $this->render('AppBundle:Builder:decks.html.twig',
-        			array(
-        					'pagetitle' => $this->get("translator")->trans('nav.mydecks'),
-        					'pagedescription' => "Create custom decks with the help of a powerful deckbuilder.",
-        					'decks' => $decks,
-							'tags' => $tags,
-        					'nbmax' => $user->getMaxNbDecks(),
-        					'nbdecks' => count($decks),
-        					'cannotcreate' => $user->getMaxNbDecks() <= count($decks)
-        			));
-
-        }
-        else
-        {
-        	return $this->render('AppBundle:Builder:no-decks.html.twig',
-        			array(
-        					'pagetitle' => $this->get("translator")->trans('nav.mydecks'),
-        					'pagedescription' => "Create custom decks with the help of a powerful deckbuilder.",
-        					'nbmax' => $user->getMaxNbDecks()
-        			));
-        }
+public function listAction($page = 1, Request $request)
+{
+    $user = $this->getUser();
+    if (!$user) {
+        throw new UnauthorizedHttpException('', "You must be logged in.");
     }
+
+    $limit = 10;
+    $page  = max(1, (int) $page);
+
+    $response = new Response();
+    $response->setPrivate();
+    $response->setMaxAge(0);
+
+    $em = $this->getDoctrine()->getManager();
+
+    // This still loads the list of decks, but we only build plots/chars for the current page
+    $allDecks = $this->get('decks')->getByUser($user, false);
+
+    $total = count($allDecks);
+    $lastPage = max(1, (int) ceil($total / $limit));
+    if ($page > $lastPage) $page = $lastPage;
+
+    // keep tag toggles across ALL decks
+    $tags = array_unique(array_filter(array_map(function ($d) { return $d['tags'] ?? null; }, $allDecks)));
+
+    // slice to current page
+    $decks = array_slice($allDecks, ($page - 1) * $limit, $limit);
+
+    // build plots/chars only for the page decks
+    foreach ($decks as &$deck) {
+        $deckEntity = $em->getRepository('AppBundle:Deck')->find($deck['id']);
+        if (!$deckEntity) continue;
+
+        $characters = [];
+        foreach ($deckEntity->getSlots()->getCharacterRow() as $character) {
+            $info = $this->get('cards_data')->getCardInfo($character->getCard(), false);
+            $info['qty']  = $character->getQuantity();
+            $info['dice'] = $character->getDice();
+            $info['dices'] = $character->getDices();
+            $characters[] = $info;
+        }
+        $deck['characters'] = $characters;
+
+        $plots = [];
+        foreach ($deckEntity->getSlots()->getPlotDeck() as $plot) {
+            $info = $this->get('cards_data')->getCardInfo($plot->getCard(), false);
+            $info['qty']  = $plot->getQuantity();
+            $info['dice'] = $plot->getDice();
+            $plots[] = $info;
+        }
+        $deck['plots'] = $plots;
+    }
+    unset($deck);
+
+    // build prev/next/pages for pagination.html.twig
+    $makeUrl = function (int $p) use ($request) {
+        return $this->generateUrl('decks_list', array_merge($request->query->all(), ['page' => $p]));
+    };
+
+    $prevurl = ($page > 1) ? $makeUrl($page - 1) : null;
+    $nexturl = ($page < $lastPage) ? $makeUrl($page + 1) : null;
+
+    $window = 2;
+    $start = max(1, $page - $window);
+    $end   = min($lastPage, $page + $window);
+
+    $pages = [];
+    for ($p = $start; $p <= $end; $p++) {
+        $pages[] = ['numero' => $p, 'url' => $makeUrl($p), 'current' => ($p === $page)];
+    }
+
+    if ($total) {
+        return $this->render('AppBundle:Builder:decks.html.twig', [
+            'pagetitle' => $this->get("translator")->trans('nav.mydecks'),
+            'pagedescription' => "Create custom decks with the help of a powerful deckbuilder.",
+            'decks' => $decks,
+            'tags' => $tags,
+
+            
+            'nbmax' => $user->getMaxNbDecks(),
+            'nbdecks' => $total,
+            'cannotcreate' => $user->getMaxNbDecks() <= $total,
+
+            // paginator vars
+            'pages' => $pages,
+            'prevurl' => $prevurl,
+            'nexturl' => $nexturl,
+        ], $response);
+    }
+
+    return $this->render('AppBundle:Builder:no-decks.html.twig', [
+        'pagetitle' => $this->get("translator")->trans('nav.mydecks'),
+        'pagedescription' => "Create custom decks with the help of a powerful deckbuilder.",
+        'nbmax' => $user->getMaxNbDecks(),
+    ], $response);
+}
+
 
     public function copyAction ($decklist_id)
     {

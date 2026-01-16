@@ -72,6 +72,13 @@ decklists_list:
     requirements:
         page: \d+
 
+decks_list:
+    path: /decks/{page}
+    methods: [GET]
+    defaults: { _controller: AppBundle:Builder:list, page: 1 }
+    requirements: { page: \d+ }
+
+
 card_reviews_list:
     path: /reviews/{page}
     defaults:
