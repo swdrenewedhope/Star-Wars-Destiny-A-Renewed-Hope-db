@@ -28,15 +28,6 @@ body {
   animation: donator-ring 4s ease-out infinite;
 }
 
-.navbar-brand .brand-logo{
-  height: 24px;
-  width: auto;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 8px;
-  margin-top: -2px;
-}
-
 @keyframes donator-wiggle{
   0%, 80%, 100% { transform: rotate(0) translateY(0); filter:none; }
   82% { transform: rotate(-14deg) translateY(-2px); filter: drop-shadow(0 0 8px rgba(255,215,0,.65)); }
