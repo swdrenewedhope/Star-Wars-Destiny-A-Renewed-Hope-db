@@ -65,7 +65,6 @@
 		{{ 'decks.slotcount' | trans({'%max%': nbmax, '%current%': nbdecks}) }}
 	</small> -->
 </h1>
-{% include 'AppBundle:Default:pagination.html.twig' %}
 <table class="table table-expanded list-decks">
 <tbody id="decks">
 {% for deck in decks %}
