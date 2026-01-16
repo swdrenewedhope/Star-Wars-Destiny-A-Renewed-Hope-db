@@ -202,7 +202,8 @@ ui.build_set_selector = function build_set_selector() {
   ).forEach(function (record) {
 
     // Use this to hide the unreleased set from being includablel in deck building.
-    if (record.code === 'UA') return;
+    console.log(record.code)
+	if (record.code === 'UA') return;
 
     var checked = _.includes(app.deck.get_format_data().data.sets, record.code);
 
