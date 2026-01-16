@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Deckchange;
 
+
 class BuilderController extends Controller
 {
 
@@ -625,10 +626,6 @@ class BuilderController extends Controller
 			'draw_deck' => $drawIntersection
     	]);
     }
-    
-    use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 public function listAction(Request $request)
 {
