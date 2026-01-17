@@ -10,33 +10,6 @@
 	app.deck_history && app.deck_history.init({{ deck.history|json_encode|raw }});
 	app.collection && app.collection.init({{ collection|json_encode|raw }});
 	</script>
-
-	<script>
-(function () {
-  function rmUA() {
-    var ul = document.querySelector('ul[data-filter="set_code"]');
-    if (!ul) return;
-
-    Array.prototype.slice.call(ul.querySelectorAll('li')).forEach(function (li) {
-      var inp = li.querySelector('input');
-      var code = inp ? (inp.getAttribute('name') || inp.value || '') : '';
-      var text = (li.textContent || '').trim();
-
-      if (String(code).trim().toUpperCase() === 'UA' || text === 'Uncharted Alliances') {
-        li.parentNode && li.parentNode.removeChild(li);
-      }
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    rmUA();
-    var ul = document.querySelector('ul[data-filter="set_code"]');
-    if (ul) new MutationObserver(rmUA).observe(ul, { childList: true, subtree: true });
-    document.addEventListener('shown.bs.dropdown', rmUA);
-    setInterval(rmUA, 500);
-  });
-})();
-</script>
 {% endblock %}
 
 {% block body %}
