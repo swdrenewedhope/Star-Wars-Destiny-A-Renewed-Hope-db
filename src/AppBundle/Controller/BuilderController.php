@@ -16,6 +16,51 @@ use AppBundle\Entity\Deckchange;
 
 class BuilderController extends Controller
 {
+	private function getCardSetCode(Card $card)
+{
+
+    // Card -> set
+    if (method_exists($card, 'getSet') && $card->getSet() && method_exists($card->getSet(), 'getCode')) {
+        return strtoupper(trim((string) $card->getSet()->getCode()));
+    }
+    if (method_exists($card, 'getSetCode')) {
+        return strtoupper(trim((string) $card->getSetCode()));
+    }
+
+    // Card -> pack -> set/cycle/code
+    if (method_exists($card, 'getPack') && $card->getPack()) {
+        $pack = $card->getPack();
+
+        if (method_exists($pack, 'getSet') && $pack->getSet() && method_exists($pack->getSet(), 'getCode')) {
+            return strtoupper(trim((string) $pack->getSet()->getCode()));
+        }
+        if (method_exists($pack, 'getCycle') && $pack->getCycle() && method_exists($pack->getCycle(), 'getCode')) {
+            return strtoupper(trim((string) $pack->getCycle()->getCode()));
+        }
+        if (method_exists($pack, 'getCode')) {
+            return strtoupper(trim((string) $pack->getCode()));
+        }
+    }
+
+    return null;
+}
+
+private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCode)
+{
+    $blockedSetCode = strtoupper(trim((string) $blockedSetCode));
+    $cardCodes = array_keys($content);
+    if (!count($cardCodes)) return false;
+
+    $cards = $em->getRepository('AppBundle:Card')->findBy(['code' => $cardCodes]);
+
+    foreach ($cards as $card) {
+        $setCode = $this->getCardSetCode($card);
+        if ($setCode === $blockedSetCode) {
+            return true;
+        }
+    }
+    return false;
+}
 
 	public function buildformAction (Request $request)
 	{
@@ -440,6 +485,23 @@ class BuilderController extends Controller
         if (! count($content)) {
             return new Response('Cannot import empty deck');
         }
+
+		$content = (array) json_decode($request->get('content'), true);
+			if (! count($content)) {
+    		return new Response('Cannot import empty deck');
+		}
+
+		if ($this->deckHasSetCode($em, $content, 'UA')) {
+    $msg = 'Deck contains UA cards and cannot be saved.';
+
+    if (!empty($id)) {
+        $this->get('session')->getFlashBag()->set('error', $msg);
+        return $this->redirect($this->generateUrl('deck_edit', ['deck_id' => $id]));
+    }
+
+    return new Response($msg, 400);
+}
+
 
         $name = filter_var($request->get('name'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
         $decklist_id = filter_var($request->get('decklist_id'), FILTER_SANITIZE_NUMBER_INT);
