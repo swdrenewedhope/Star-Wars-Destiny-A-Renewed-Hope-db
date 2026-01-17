@@ -28,3 +28,10 @@ monolog:
 
 assetic:
     node: /home/gxpvsxmy/.nvm/versions/node/v17.1.0/bin/node
+
+fos_js_routing:
+  routes_to_expose:
+    - user_info
+    - api_formats
+    - '^api_'
+
