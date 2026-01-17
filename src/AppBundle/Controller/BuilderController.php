@@ -492,7 +492,7 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
 		}
 
 		if ($this->deckHasSetCode($em, $content, 'UA')) {
-    $msg = 'Deck contains UA cards and cannot be saved.';
+    $msg = 'Deckbuilding with Uncharted Alliances is currently disabled!';
 
     if (!empty($id)) {
         $this->get('session')->getFlashBag()->set('error', $msg);
