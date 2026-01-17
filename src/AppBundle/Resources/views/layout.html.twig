@@ -165,8 +165,7 @@
     {% include 'AppBundle:Modale:card.html.twig' %}
 
     <script src="{{ asset('/bundles/fosjsrouting/js/router.js') }}"></script>
-    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
-	
+	<script src="{{ asset('js/fos_js_routes.js') }}"></script>	
     {% javascripts
         'bundles/bazingajstranslation/js/translator.min.js'
         'js/translations/config.js'
