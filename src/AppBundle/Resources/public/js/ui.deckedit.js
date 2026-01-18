@@ -201,6 +201,8 @@ ui.build_set_selector = function build_set_selector() {
     { $orderBy: { position: 1 } }
   ).forEach(function (record) {
 
+	if(record.project_name === 'Echoes of Destiny Archive') return;
+
     var checked = _.includes(app.deck.get_format_data().data.sets, record.code);
 
     $('<li><a href="#"><label><input type="checkbox" name="' + record.code + '"' +
