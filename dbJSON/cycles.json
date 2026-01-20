@@ -1,0 +1,32 @@
+[
+    {
+        "code": "AW",
+        "date_release": "2016-12-01",
+        "name": "Awakenings",
+        "position": 1
+    },
+    {
+        "code": "LEG",
+        "date_release": "2017-09-01",
+        "name": "Legacies",
+        "position": 2
+    },
+    {
+        "code": "CONV",
+        "date_release": null,
+        "name": "Convergence",
+        "position": 3
+    },
+    {
+        "code": "FA",
+        "date_release": null,
+        "name": "Faltering Allegiances",
+        "position": 4
+    },
+    {
+        "code": "EoDA",
+        "date_release": null,
+        "name": "Echoes of Destiny Archive",
+        "position": 5
+    }
+]

@@ -1,0 +1,194 @@
+[
+    {
+        "code": "ability",
+        "name": "Képesség"
+    },
+    {
+        "code": "advisor",
+        "name": "Tanácsadó"
+    },
+    {
+        "code": "apprentice",
+        "name": "Tanítvány"
+    },
+    {
+        "code": "artillery",
+        "name": "Tüzérség"
+    },
+    {
+        "code": "bomb",
+        "name": "Bomba"
+    },
+    {
+        "code": "bounty",
+        "name": "Vérdíj"
+    },
+    {
+        "code": "bounty-hunter",
+        "name": "Fejvadász"
+    },
+    {
+        "code": "creature",
+        "name": "Creature"
+    },
+    {
+        "code": "cultist",
+        "name": "Cultist"
+    },
+    {
+        "code": "curse",
+        "name": "Átok"
+    },
+    {
+        "code": "death-star",
+        "name": "Halálcsillag"
+    },
+    {
+        "code": "droid",
+        "name": "Droid"
+    },
+    {
+        "code": "engineer",
+        "name": "Mérnök"
+    },
+    {
+        "code": "equipment",
+        "name": "Felszerelés"
+    },
+    {
+        "code": "ewok",
+        "name": "Ewok"
+    },
+    {
+        "code": "form",
+        "name": "Alak"
+    },
+    {
+        "code": "format",
+        "name": "Format"
+    },
+    {
+        "code": "guard",
+        "name": "Őrző"
+    },
+    {
+        "code": "gungan",
+        "name": "Gungan"
+    },
+    {
+        "code": "injury",
+        "name": "Sérülés"
+    },
+    {
+        "code": "inquisitor",
+        "name": "Inkvizitor"
+    },
+    {
+        "code": "intel",
+        "name": "Info"
+    },
+    {
+        "code": "jawa",
+        "name": "Jawa"
+    },
+    {
+        "code": "jedi",
+        "name": "Jedi"
+    },
+    {
+        "code": "leader",
+        "name": "Vezető"
+    },
+    {
+        "code": "location",
+        "name": "Helyszín"
+    },
+    {
+        "code": "mission",
+        "name": "Küldetés"
+    },
+    {
+        "code": "mod",
+        "name": "Mod"
+    },
+    {
+        "code": "move",
+        "name": "Mozdulat"
+    },
+    {
+        "code": "nightbrother",
+        "name": "Éjfívér"
+    },
+    {
+        "code": "partisan",
+        "name": "Partizán"
+    },
+    {
+        "code": "pilot",
+        "name": "Pilóta"
+    },
+    {
+        "code": "pirate",
+        "name": "Kalóz"
+    },
+    {
+        "code": "podracer",
+        "name": "Fogat"
+    },
+    {
+        "code": "scavenger",
+        "name": "Gyűjtögető"
+    },
+    {
+        "code": "scoundrel",
+        "name": "Gazfickó"
+    },
+    {
+        "code": "shapeshifter",
+        "name": "Alakváltó"
+    },
+    {
+        "code": "sith",
+        "name": "Sith"
+    },
+    {
+        "code": "spectre",
+        "name": "Lidérc"
+    },
+    {
+        "code": "spell",
+        "name": "Átok"
+    },
+    {
+        "code": "spy",
+        "name": "Kém"
+    },
+    {
+        "code": "title",
+        "name": "Titulus"
+    },
+    {
+        "code": "trap",
+        "name": "Csapda"
+    },
+    {
+        "code": "trooper",
+        "name": "Gyalogos"
+    },
+    {
+        "code": "vehicle",
+        "name": "Jármű"
+    },
+    {
+        "code": "weapon",
+        "name": "Fegyver"
+    },
+    {
+        "code": "witch",
+        "name": "Boszorkány"
+    },
+    {
+        "code": "wookiee",
+        "name": "Vuki"
+    }
+]

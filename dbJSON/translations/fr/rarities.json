@@ -1,0 +1,22 @@
+[
+    {
+        "code": "C",
+        "name": "Commune"
+    },
+    {
+        "code": "L",
+        "name": "Légendaire"
+    },
+    {
+        "code": "R",
+        "name": "Rare"
+    },
+    {
+        "code": "S",
+        "name": "Fixe"
+    },
+    {
+        "code": "U",
+        "name": "Peu commune"
+    }
+]

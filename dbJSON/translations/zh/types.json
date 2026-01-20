@@ -1,0 +1,26 @@
+[
+    {
+        "code": "battlefield",
+        "name": "战场"
+    },
+    {
+        "code": "character",
+        "name": "角色"
+    },
+    {
+        "code": "event",
+        "name": "事件"
+    },
+    {
+        "code": "plot",
+        "name": "战略"
+    },
+    {
+        "code": "support",
+        "name": "支援"
+    },
+    {
+        "code": "upgrade",
+        "name": "强化"
+    }
+]

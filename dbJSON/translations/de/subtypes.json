@@ -1,0 +1,78 @@
+[
+    {
+        "code": "ability",
+        "name": "Fähigkeit"
+    },
+    {
+        "code": "artillery",
+        "name": "Artillerie"
+    },
+    {
+        "code": "bounty-hunter",
+        "name": "Bounty Hunter"
+    },
+    {
+        "code": "droid",
+        "name": "Droide"
+    },
+    {
+        "code": "equipment",
+        "name": "Ausrüstung"
+    },
+    {
+        "code": "gungan",
+        "name": "Gungan"
+    },
+    {
+        "code": "jawa",
+        "name": "Jawa"
+    },
+    {
+        "code": "jedi",
+        "name": "Jedi"
+    },
+    {
+        "code": "leader",
+        "name": "Leader"
+    },
+    {
+        "code": "location",
+        "name": "Location"
+    },
+    {
+        "code": "pilot",
+        "name": "Pilot"
+    },
+    {
+        "code": "scoundrel",
+        "name": "Scoundrel"
+    },
+    {
+        "code": "sith",
+        "name": "Sith"
+    },
+    {
+        "code": "spectre",
+        "name": "Spectre"
+    },
+    {
+        "code": "title",
+        "name": "Titel"
+    },
+    {
+        "code": "trooper",
+        "name": "Trooper"
+    },
+    {
+        "code": "vehicle",
+        "name": "Fahrzeug"
+    },
+    {
+        "code": "weapon",
+        "name": "Waffen"
+    },
+    {
+        "code": "witch",
+        "name": "Hexe"
+    }
+]

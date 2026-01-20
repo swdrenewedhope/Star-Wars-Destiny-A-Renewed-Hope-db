@@ -1,0 +1,42 @@
+[
+    {
+        "code": "-",
+        "name": "Leerseite"
+    },
+    {
+        "code": "Dc",
+        "name": "Ablegen"
+    },
+    {
+        "code": "Dr",
+        "name": "Störung"
+    },
+    {
+        "code": "F",
+        "name": "Fokussieren"
+    },
+    {
+        "code": "ID",
+        "name": "Indirekter Schaden"
+    },
+    {
+        "code": "MD",
+        "name": "Nahkampfschaden"
+    },
+    {
+        "code": "R",
+        "name": "Ressourcen"
+    },
+    {
+        "code": "RD",
+        "name": "Fernkampfschaden"
+    },
+    {
+        "code": "Sh",
+        "name": "Schild"
+    },
+    {
+        "code": "Sp",
+        "name": "Spezial"
+    }
+]

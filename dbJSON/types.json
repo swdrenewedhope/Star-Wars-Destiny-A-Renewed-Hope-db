@@ -1,0 +1,30 @@
+[
+    {
+        "code": "battlefield",
+        "name": "Battlefield"
+    },
+    {
+        "code": "character",
+        "name": "Character"
+    },
+    {
+        "code": "event",
+        "name": "Event"
+    },
+    {
+        "code": "support",
+        "name": "Support"
+    },
+    {
+        "code": "upgrade",
+        "name": "Upgrade"
+    },
+    {
+        "code": "plot",
+        "name": "Plot"
+    },
+    {
+        "code": "downgrade",
+        "name": "Downgrade"
+    }
+]

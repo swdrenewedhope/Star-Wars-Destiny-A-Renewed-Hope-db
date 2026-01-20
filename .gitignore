@@ -23,5 +23,5 @@ tags
 .idea/
 .DS_Store
 .error_log
-/Images
 .user.ini
+/src/AppBundle/Resources/public/images/cards/

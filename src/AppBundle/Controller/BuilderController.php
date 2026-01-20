@@ -491,18 +491,6 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
     		return new Response('Cannot import empty deck');
 		}
 
-		if ($this->deckHasSetCode($em, $content, 'UA')) {
-    $msg = 'Deckbuilding with Uncharted Alliances is currently disabled!';
-
-    if (!empty($id)) {
-        $this->get('session')->getFlashBag()->set('error', $msg);
-        return $this->redirect($this->generateUrl('deck_edit', ['deck_id' => $id]));
-    }
-
-    return new Response($msg, 400);
-}
-
-
         $name = filter_var($request->get('name'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
         $decklist_id = filter_var($request->get('decklist_id'), FILTER_SANITIZE_NUMBER_INT);
         $description = trim($request->get('description'));

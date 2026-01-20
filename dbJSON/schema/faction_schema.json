@@ -1,0 +1,22 @@
+{
+    "additionalProperties": false,
+    "properties": {
+        "code": {
+            "minLength": 1,
+            "type": "string"
+        },
+        "is_primary": {
+            "type": "boolean"
+        },
+        "name": {
+            "minLength": 1,
+            "type": "string"
+        }
+    },
+    "required": [
+        "code",
+        "is_primary",
+        "name"
+    ],
+    "type": "object"
+}

@@ -1,0 +1,569 @@
+[
+    {
+        "code": "15001",
+        "name": "Darth Zannah",
+        "subtitle": "Sith Tanítvány",
+        "text": "Miután aktiváltad ezt a karaktert, okozz egy sebzést egy másik, általad irányított <i>Sith</i>nek, hogy bedobj egy rajta lévő karakterkockát a kockakészketedbe.\nMiután egy általad irányított <i>Sith</i> karakter legyőzötté válik, ez a karakter megkapja annak a karakternek a karakterkockáit és <i>Sith</i> lesz."
+    },
+    {
+        "code": "15002",
+        "name": "Kylo Ren",
+        "subtitle": "Félelemtől hajtott",
+        "text": "Mielőtt felhúzod a kezdő kezedet, belekeverhetsz 2-2 példányt az Engedj a dühödnek! ([AW]82) és a Harag ([SoR]71) lapokból a paklidba.\nMiután aktiváltad ezt a karaktert, okozz 2 közvetett sebzést egy ellenfelednek. Ennek az ellenfelednek át kell fordítania ennek a karakternek a karakterkockáit általa választott oldalaira."
+    },
+    {
+        "code": "15003A",
+        "name": "Maul",
+        "subtitle": "Bosszútól felemésztve",
+        "text": "Miután kijátszottál egy eseményt, helyezz 1 erőforrást erre a lapra. Ha 7 vagy több erőforrás van ezen a karakteren, elkölthetsz 2 erőforrást, hogy megfordítsd."
+    },
+    {
+        "code": "15003B",
+        "name": "Maul",
+        "subtitle": "Mandalore meghódítója",
+        "text": "Miután kijátszottál egy eseményt, helyezz 1 erőforrást erre a lapra.\n<b>Erőteljes Akció</b> - Játssz ki egy páros költségű Kék eseményt a kezedből, csökkentve a költségét 1-gyel.\n[special] - Kapsz 2 erőforrást vagy használj fel egy kockát (lehet a sajátod vagy egy ellenfélé is). Ha ezen a karakteren 7 vagy több erőforrás van, tetszőleges sorrendben mindkettőt megteheted."
+    },
+    {
+        "code": "15004A",
+        "name": "Savage Opress",
+        "subtitle": "Hűséges testvér",
+        "text": "Összefogás 1: Maul.\nŐrző.\n<b>Erőteljes Akció</b> - Dobj el egy lapot a kezedből és költs el 3 erőforrást. Ezután fordítsd meg ezt a karaktert."
+    },
+    {
+        "code": "15004B",
+        "flavor": "\"Testvér, hiába tanítottál engem.\"",
+        "name": "Savage Opress",
+        "subtitle": "Sötét Tanonc",
+        "text": "Őrző.\n[special] - Okozz 2 sebzést egy karakternek vagy fordíts egy kockát 0 értéket mutató oldalára. Ha ezen a karakteren 6 vagy több sebzés van, tetszőleges sorrendben mindkettőt megteheted."
+    },
+    {
+        "code": "15005",
+        "name": "Tenth Brother",
+        "subtitle": "Próbára téve az Erő által",
+        "text": "[special] - Használd egy másik, játékban lévő lap speciális képességét <i>(lehet a sajátod vagy egy ellenfelé is)</i>."
+    },
+    {
+        "code": "15006",
+        "name": "Kísértetjárta",
+        "text": "Csak akkor játszhatod ki, ha ki tudsz jelölni egy <i>boszorkány</i>t.\nMiután a csatolt karakter legyőzötté válik, adj egy félretett Éjnővér Zombit ([SoH]4) a csapatodhoz."
+    },
+    {
+        "code": "15007",
+        "name": "A Feltámadás Igéje",
+        "text": "Merítsd ki egy <i>boszorkány</i> karakteredet, hogy hozzáadj 3 félretett Éjnővér Zombit ([SoH]4) a csapatodhoz.  Miután az akciók fázisa véget ért, tedd legyőzötté azokat az Éjnővér Zombikat."
+    },
+    {
+        "code": "15008",
+        "name": "Erő Elszívás",
+        "text": "Mielőtt kijátszod ezt az eseményt, csökkentsd a költségét 1-gyel, ha egy ellenfél karakterén van gyengítés.\nMerítsd ki egy Kék karakteredet, hogy okozz 3 sebzést egy karakternek. Ha az a karakter legyőzötté válik, gyógyíts meg 5 sebzést egy Kék karakteren."
+    },
+    {
+        "code": "15009",
+        "name": "Elhagyott az Erőd",
+        "text": "Jelölj ki egy <i>Inkvizítor</i>t vagy egy <i>Sith</i>et, hogy válassz egy szimbólumot. Dobd újra egy ellenfeled legfeljebb 3 kockáját. Ezek közül, amelyik a választott szimbólumot mutatja, távolítsd el. Máskülönben fordítsd üres oldalára."
+    },
+    {
+        "code": "15010A",
+        "name": "Figyelemmel Kísérjük A Pályafutásodat",
+        "text": "Miután forgattál vagy eltávolítottál egy kockát, helyezz 1 erőforrást erre a tervre.\n<b>Akció</b> - Tedd legyőzötté egy <i>Sith</i> vagy <i>tanítvány</i> karakteredet és távolíts el 6 erőforrást erről a tervről. Ezután, ha a legyőzötté vált karakter elit volt, ez a terv is elit lesz. Fordítsd meg ezt a tervet."
+    },
+    {
+        "code": "15010B",
+        "name": "Darth Vader",
+        "subtitle": "Hajthatatlan Tanítvány",
+        "text": "[special] - Játssz ki egy képességet a kezedből vagy a dobott lapjaid közül, csökkentve a költségét 2-vel. Ezután dobd be annak a képességnek a kockáját a kockakészletedbe."
+    },
+    {
+        "code": "15011",
+        "name": "Kihallgató Szék",
+        "text": "<b>Akció</b> - Jelölj ki egy <i>Inkvizítor</i>t és merítsd ki ezt a támogatást, hogy kiválaszd egy ellenfél karakterkockáját. Ezután okozz 2 közvetett sebzést annak az ellenfélnek, kivéve, ha felhasználja azt a kockát."
+    },
+    {
+        "code": "15012",
+        "name": "Éjnővér Bérgyilkosok",
+        "text": "Csak akkor játszhatod ki, ha ki tudsz jelölni egy <i>boszorkány</i>t.\nMiután kijátszottad ezt a lapot, okozhatsz 1 sebzést egy karakternek, akin van <i>átok</i>."
+    },
+    {
+        "code": "15013",
+        "flavor": "\"Készítse föl a csapatait felszíni támadásra, tábornok!\" <cite>Darth Vader</cite>",
+        "name": "Veers Tábornok",
+        "subtitle": "A Halálosztag Tábornoka",
+        "text": "Miután a játék első fordulója kezdetét vette, elkölthetsz 2 erőforrást, hogy a csapatodhoz adj egy félretett Hókatonát ([RM]15).\n<b>Erőteljes Akció</b> - Vedd át a csatatér irányítását."
+    },
+    {
+        "code": "15014",
+        "flavor": "\"Ostoba elhatározás volt.\" <cite>Darth Vader</cite>",
+        "name": "Kendal Ozzel",
+        "subtitle": "Ügyetlen Stratéga",
+        "text": "Mielőtt elvégzitek a kezdődobást, minden ellenfeled dönthet a dobás elvesztése és a 2 pajzs szétosztása mellett."
+    },
+    {
+        "code": "15015",
+        "flavor": "A Galaktikus Birodalom elit hókatonáit arra képezték és szerelték fel, hogy rideg körülmények között is bevethetőek legyenek.",
+        "name": "Hókatona",
+        "text": "Amíg Hoth-on harcoltok, ennek a karakternek +1 életereje van."
+    },
+    {
+        "code": "15016",
+        "name": "Tseebo",
+        "subtitle": "Lidérc Szimpatizáns",
+        "text": "Kémkedés.\nMiután ennek a karakternek a kémkedés képessége egy hős lapot kémlelt, adj 2 pajzsot egy ellenfél karakterének."
+    },
+    {
+        "code": "15017",
+        "name": "Oldaltűz",
+        "text": "Költs el legfeljebb 2 erőforrást, hogy felhasználd ugyanennyi nem egyedi, sebzést mutató Piros karakterkockádat egy ellenfeled összes karaktere ellen."
+    },
+    {
+        "code": "15018",
+        "name": "Támadó Pozíció",
+        "text": "Ha egy ellenfeled ennek a fordulónak az előző körében eltávolította egy Piros kockádat, dobd be azt a készletedbe. Vedd át a csatatér irányítását."
+    },
+    {
+        "code": "15019",
+        "name": "Vakmerő Roham",
+        "text": "Válaszd ki tetszőleges számú, nem egyedi Piros karakteredet és okozz mindegyiknek 3 sebzést. Frissítsd fel ezeket a karaktereket."
+    },
+    {
+        "code": "15020",
+        "name": "A Zsákmány Kimentése",
+        "text": "Merítsd ki 2 nem egyedi Piros karakteredet. Ezután kapsz 2 erőforrást."
+    },
+    {
+        "code": "15021",
+        "name": "Könyörtelen Menet",
+        "text": "Összefogás 1: Minden <i>gyalogos</i>, Veers Tábornok.\nA kör végén vagy amikor megszerzed a csatatér irányítását, helyezz 1 sebzést erre a tervre.\n<b>Akció</b> - Távolíts el tetszőleges számú sebzést erről a tervről, hogy ugyanennyi közvetett sebzést okozz egy ellenfélnek."
+    },
+    {
+        "code": "15022",
+        "name": "501-es Támadó Osztag",
+        "text": "Ez a támogatás aktiválható.\nMiután aktiváltad ezt a támogatást, ingyen kijátszhatsz egy félretett Nehéz Sugárlöveget ([SoR]5). Átveheted a csatatér irányítását vagy átadhatod a csatatér iránytását egy ellenfélnek."
+    },
+    {
+        "code": "15023",
+        "name": "Hóvihar 1",
+        "text": "Ennek a lapnak a kijátszási költségét nem lehet csökkenteni.\nMiután aktiváltad ezt a támogatást, bedodhatod ennek a kockának egy félretett példányát a kockakészletedbe. Tedd félre azt a kockát, miután felhasználásra vagy eltávolításra került."
+    },
+    {
+        "code": "15024",
+        "name": "XJ9-CS14",
+        "text": "[special] - Cseréld ki a csatateret egy félretett csatatérrel és add át az irányítását egy ellenfélnek."
+    },
+    {
+        "code": "15025",
+        "name": "Elektropöröly",
+        "text": "Miután ez a kocka sebzést okozott egy karakternek, eltávolíthatod annak a karakternek egy karakter- vagy fejlesztéskockáját."
+    },
+    {
+        "code": "15026",
+        "name": "Garindan",
+        "subtitle": "Besúgó",
+        "text": "Kémkedés.\nMiután egy kémlelt lap kikerül egy játékos kezéből, húzhatsz egy lapot.\n[special] - Válassz egy lapot egy játékos dobott lapjai közül és dobd be a kockáját a kockakészletedbe. Tedd félre azt a kockát, miután felhasználásra vagy eltávolításra került."
+    },
+    {
+        "code": "15027",
+        "name": "Lojális Kalóz",
+        "text": "<b>Erőteljes Akció</b> - Ha ez a karakter felfrissült, jelölj ki egy másik <i>kalóz</i>t, hogy átadd ennek a karakternek az irányítását egy ellenfelednek az akciók fázisa végéig. Ezután vegyél el 1 erőforrást egy ellenféltől."
+    },
+    {
+        "code": "15028",
+        "name": "Skreek",
+        "subtitle": "Harcimadár Végrehajtó",
+        "text": "Járművezetés.\nMiután aktiváltad ezt a karaktert, ha egy vagy több karakterkockája sebzést mutat, elkölthetsz 1 erőforrást, hogy eltávolítsd egy ellenfél sebzést mutató kockáját."
+    },
+    {
+        "code": "15029",
+        "name": "Ziro a Hutt",
+        "subtitle": "Alvilági Vezér",
+        "text": "<b>Erőteljes Akció</b> - Nézd meg a paklid legfelső 4 lapját és játssz ki egy gyengítést közülük. A többi lapot helyezd a paklid aljára tetszőleges sorrendben. Ezután okozz 1 sebzést egy ellenfél karakterének, akin van gyengítés."
+    },
+    {
+        "code": "15030",
+        "name": "Mindenki Nyer",
+        "text": "Adj 1 erőforrást egy ellenfelednek, hogy okozz neki 3 közvetett sebzést."
+    },
+    {
+        "code": "15031",
+        "name": "Roncsvadászat",
+        "text": "Vegyél el 1 erőforrást egy ellenféltől. Jelölj ki egy <i>gazfickó</i>t vagy <i>kalóz</i>t, hogy eltávolítsd egy ellenfél 2 vagy kisebb értéket mutató kockáját."
+    },
+    {
+        "code": "15032",
+        "name": "Tripla Sötét Támadás",
+        "text": "Rajtaütés.\nEgy ellenfelednek aktiválnia kell egy általad választott karakterét. Ezután aktiválhatod egy <i>kalóz</i> karakteredet."
+    },
+    {
+        "code": "15033",
+        "name": "Tolvajok Odúja",
+        "text": "Dobd el ezt a fejlesztést, ha 3 vagy több erőforrás van rajta.\nMielőtt egy Sárga karakter sebződne, helyette rátehetsz a sebzéssel megegyező számú erőforrást erre a lapra.\nMiután egy ellenfeled 1 vagy több erőforrást veszített, távolíts el 1 erőforrást erről a támogatásról."
+    },
+    {
+        "code": "15034",
+        "name": "Fájdalmas Veszteségek",
+        "text": "Miután egy hatásod következtében egy ellenfeled 1 vagy több erőforrást veszített, kimerítheted ezt a támogatást. Ezután okozz fele annyi sebzést egy ellenfél karakterének, amennyi <i>kalóz</i>t vagy <i>guberáló</i>t ki tudsz jelölni, lefelé kerekítve."
+    },
+    {
+        "code": "15035",
+        "name": "Kalóz Csapattag",
+        "text": "Mielőtt felhasználod ezt a sebzést mutató kockát, megnövelheted az értékét 1-gyel, ha a csapatodban minden karakter azonos színű."
+    },
+    {
+        "code": "15036",
+        "name": "Burryaga Agaburry",
+        "subtitle": "Hetzal Megmentője",
+        "text": "Erőteljes Akció - Távolítsd el ennek a karakternek egy sebzést mutató karakterkockáját, hogy kijátsz egy eseményt a kezedből, csökkentve a költségét 1-gyel."
+    },
+    {
+        "code": "15037",
+        "name": "Jaro Tapal",
+        "subtitle": "Önzetlen Mester",
+        "text": "Összefogás 1: Cal Kestis.\nŐrző.\nMielőtt ez a karakter sebződik, felhasználhatod egy sebzést mutató karakterkockáját."
+    },
+    {
+        "code": "15038",
+        "flavor": "\"Ne feledd, amit tanultál. Az megmenthet.\" <cite>Yoda</cite>",
+        "name": "Jedi Tanítvány",
+        "text": "Csak akkor használhatod, ha a csapatodban van <i>Jedi</i>.\nA <i>fegyverek</i> ezen a karakteren megkapják az áthelyezés kulcsszót."
+    },
+    {
+        "code": "15039",
+        "flavor": "\"Van egy... másik.\" <cite>Yoda</cite>",
+        "name": "Leia Organa",
+        "subtitle": "Született Tehetség",
+        "text": "Őrző.\nMiután aktiváltad ezt a karaktert, fedd fel a paklid legfelső lapját. Adj annyi pajzsot egy karakternek, amennyi ennek a lapnak a kijátszási költsége."
+    },
+    {
+        "code": "15040",
+        "name": "Luminara Unduli",
+        "subtitle": "Türelmes Mester",
+        "text": "Az összes többi általad irányított <i>tanítvány</i> karakternek +1 életereje van.\n[special] - Válassz és hajts végre kettőt az alábbiak közül:\n Dobj el egy véletlenszerűen választott lapot egy ellenfél kezéből.\n Adj 1 pajzsot egy karakternek.\n Dobj be egy játékban lévő, másik lapodhoz tartozó <i>tanítvány</i>kockát a kockakészletedbe."
+    },
+    {
+        "code": "15041",
+        "flavor": "\"Mindig van remény, barátom...\"",
+        "name": "Qui-Gon Jinn",
+        "subtitle": "Tiszteletreméltó Különc",
+        "text": "Ennek a karakternek +1 pajzs- és +1 fejlesztéslimitje van.\n<b>Erőteljes Akció</b> - Távolíts el 1 pajzsot egy karakteredről, akin 3 vagy több pajzs van, hogy kapj 1 erőforrást."
+    },
+    {
+        "code": "15042",
+        "name": "Erő Káprázat",
+        "text": "Jelölj ki 2 Kék karaktert, hogy felhasználd egy pajzsot mutató kockádat, mintha más szimbólumot mutatna."
+    },
+    {
+        "code": "15043",
+        "name": "Erő Reflexek",
+        "text": "Válassz egy Kék kockát a kockakészletedből, hogy eltávolíts legfeljebb 2 kockát, melyek összesített értéke kisebb vagy egyenlő, mint a kiválasztott kocka értéke 1-gyel megnövelve."
+    },
+    {
+        "code": "15044",
+        "name": "Move Along",
+        "text": "Spot a Blue character that is 17 or more points to either exhaust a non-unique card or remove a non-unique die."
+    },
+    {
+        "code": "15045",
+        "name": "Most Elmész A Dagobah Rendszerbe",
+        "text": "Adj 3 pajzsot egy <i>tanítvány</i> karakterednek. Adj a csapatodhoz egy félretett Jedi próba ([CM]65) tervet."
+    },
+    {
+        "code": "15046",
+        "name": "A Jedi Kódex",
+        "text": "Csak akkor használhatod, ha a csapatodban minden karaktered <i>Jedi</i> vagy <i>tanítvány</i>.\n<b>Akció</b> - Merítsd ki ezt a tervet és távolítsd el egy pajzsot mutató kockádat, hogy eltávolítsd egy ellenfeled sebzést mutató kockáját."
+    },
+    {
+        "code": "15047",
+        "name": "Erő Átirányítás",
+        "text": "Csak Kék karakternek.\n[special] - Okozz 1 sebzést egy karakterednek, hogy meggyógyíts 2 sebzést egy másik karakteren."
+    },
+    {
+        "code": "15048",
+        "name": "Leia Organa Fénykardja",
+        "text": "Mielőtt felhasználod ezt a kockát, növeld meg az értékét a csatolt karakteren lévő pajzsok számával.\nAmíg ez a fejlesztés Leia Organán van, megkapja az Áthelyezés kulcsszót."
+    },
+    {
+        "code": "15049",
+        "name": "Ackbar Admirális",
+        "subtitle": "Ragyogó Stratéga",
+        "text": "Járművezetés.\nAz előkészületek után, ha ez a karakter elit, játékba hozhatsz egy félretett X-Winget ([AtG]86) <i>((nem kell kifizetni a költségét).)</i>.\nA fenntartási fázis elején játékba hozhatsz egy félretett X-Winget ([AtG]86) <i>(nem kell kifizetni a költségét)</i>."
+    },
+    {
+        "code": "15050",
+        "flavor": "\"Nem egy Bothan halt meg ezekért a hírekért.\" <cite>Mon Mothma</cite>",
+        "name": "Bothan Kém",
+        "text": "Kémkedés.\nMiután ennek a karakternek a kémkedés képessége egy támogatást vagy fejlesztést kémlelt, ingyen kijátszhatsz egy félretett A Halálcsillag tervrajza ([CM]126) lapot erre a karakterre."
+    },
+    {
+        "code": "15051",
+        "name": "Csubakka",
+        "subtitle": "Letaglózó Erő",
+        "text": "Guardian.\nMiután egy Örző képesség eltávolítja egy ellenfél karakterkockáját, okozz 1 sebzést a kockához tartozó karakternek.\n<b>Erőteljes Akció</b> - Mozgass két sebzést tetszőlegesen a karaktereid között."
+    },
+    {
+        "code": "15052",
+        "name": "Dak Ralter",
+        "subtitle": "Zsivány Tüzér",
+        "text": "Járművezetés.\nMiután aktiváltad ezt a karaktert, mozgass át 1 pajzsot egy általad irányított kártyáról egy másik, szintén általad irányított kártyára vagy adj 1 pajzsot egy karakterednek."
+    },
+    {
+        "code": "15053",
+        "name": "Rieekan Tábornok",
+        "subtitle": "Lángész",
+        "text": "<b>Erőteljes Akció</b> - Húzz annyi lapot, amennyi pajzsot mutató karakterkockája van ennek a karakternek."
+    },
+    {
+        "code": "15054",
+        "name": "Lázadó Orvlövész",
+        "text": "<b>Erőteljes Akció</b> - Dobj el egy lapot a kezedből, hogy felhasználd ennek a karkternek egy karakterkockáját, megnövelve az értékét 1-gyel."
+    },
+    {
+        "code": "15055",
+        "name": "Hősies Védelmező",
+        "text": "Aktiváld egy Őrző karakteredet. Ebben a körben, miután annak a karakternek az Őrző képessége eltávolított egy kockát, okozz annyi sebzést egy karakternek, amekkora az eltávolított kocka értéke."
+    },
+    {
+        "code": "15056",
+        "name": "K-3PO",
+        "text": "Miután egy ellenfél uralta a csatateret, kijátszhatod ezt a lapot a dobott lapjaid közül.\n<b>Erőteljes Akció</b> - Dobd el ezt a lapot a játékból, hogy használd a csatatér uralom vagy erőteljes akció képességét akkor is, ha ebben a körben már használták."
+    },
+    {
+        "code": "15057",
+        "name": "Megváltás",
+        "text": "Miután aktiváltad ezt a támogatást, dobj be 2 félretett Orvosi Droid ([TP]26) kockát a készletedbe. Tedd félre azokat a kockákat miután felhasználásra vagy eltávolításra kerültek."
+    },
+    {
+        "code": "15058",
+        "name": "Zsivány Egyes",
+        "text": "Miután aktiváltad ezt a támogatást, jelölj ki egy egyedi Piros karaktert, hogy egy kockát újradobj."
+    },
+    {
+        "code": "15059",
+        "name": "Zsivány Kettes",
+        "text": "Miután aktiváltad ezt a támogatást, eltávolíthatsz 1 pajzsot egy lapról, vagy ha Luke Skywalker vagy Dak Ralter vezeti ezt a járművet, eltávolíthatsz egy 0 értéket mutató kockát."
+    },
+    {
+        "code": "15060",
+        "name": "Wasaka Bogyó",
+        "text": "<b>Akció</b> - Ha a csapatod minden karaktere egyezik egy altípusban, merítsd ki ezt a támogatást, hogy meggyógyíts 2 sebzést egy karakteren."
+    },
+    {
+        "code": "15061",
+        "name": "Vuki Szárnyashajó",
+        "text": "Miután aktiváltad ezt a támogatást, ha nincs rajta sebzés, áthelyezhetsz egy sebzést egy Őrző karakterről erre a lapra."
+    },
+    {
+        "code": "15062",
+        "name": "Háborús Veterán",
+        "text": "Csak egyedi Piros karakternek.\nMiután kijátszottad ezt a fejlesztést, elkölthetsz 1 erőforrást, hogy meggyógyíts 2 sebzést a csatolt karakteren.\n[special] - Használd fel egy Piros kockádat, megnövelve az értékét 1-gyel. Távolítsd el egy ellenfél kockáját."
+    },
+    {
+        "code": "15063",
+        "name": "Benthic",
+        "subtitle": "\"Kétcsöves\"",
+        "text": "Járművezetés.\nMiután egy ellenfeled uralta a csatateret, okozz 2 sebzést egy karakternek.\n<b>Erőteljes Akció</b> - Okozz 1 közvetett sebzést magadnak, hogy eltávolíts egy sebzést mutató kockát."
+    },
+    {
+        "code": "15064",
+        "flavor": "\"Han Solo, ha. Ha én a közelben vagyok, nincs szükségetek arra a fickóra.\"",
+        "name": "Dash Rendar",
+        "subtitle": "Peremvidéki Nagymenő",
+        "text": "Járművezetés.\n<b>Erőteljes Akció</b> - Játsz ki egy Sárga lapot a kezedből, megkapja a Rajtaütés kulcsszót."
+    },
+    {
+        "code": "15065",
+        "name": "Lumpawaroo",
+        "subtitle": "Csubakka Büszkesége",
+        "text": "Őrző.\nMiután ennek a karakternek sebzést okoztak az akciók fázisában, okozz feleannyi sebzést egy karakternek, lefele kerekítve.\nMielőtt felhasználod ennek a karakternek egy karakterkockáját, növeld meg az értékét 1-gyel, ha ezen a karakteren 6 vagy több sebzés van."
+    },
+    {
+        "code": "15066",
+        "name": "Obi-Wan Kenobi",
+        "subtitle": "\"Rako Hardeen\"",
+        "text": "Kijátszhatsz Kék fejlesztéseket erre a karakterre, figyelmen kívül hagyva a kijátszási megkötéseket.\nKémkedés 2.\nMiután aktiváltad ezt a karaktert, ha az ellenfélnek van kémlelt eseménye, kapsz 1 erőforrást."
+    },
+    {
+        "code": "15067",
+        "name": "Wullffwarro",
+        "text": "Az előkészületek után kijelölhetsz egy másik  <i>vuki</i>t, hogy hozzáadj egy félretett <i>vuki</i>t a csapatodhoz, elit vagy nem elit formában. Okozz annyi közvetett sebzést magadnak, amennyi a hozzáadott karakter pontértéke."
+    },
+    {
+        "code": "15068",
+        "name": "A Nagy Siklólopás",
+        "text": "Ellenfeled <i>jármű</i>támogatásának módosítója (ez a gyengítés csak egy ellenfeled járműtámogatására játszható ki).\nMiután a csatolt támogatást aktiválták, eldobhatod ezt a gyengítést, hogy felhasználd egy támogatás- vagy fejlesztéskockáját."
+    },
+    {
+        "code": "15069",
+        "name": "Kössünk üzletet",
+        "text": "Csak akkor játszhatod ki, ha a csapatodban minden karakter azonos színű.\nAdj 1 erőforrást egy ellenfélnek, hogy eltávolítsd legfeljebb 3 sebzést mutató kockáját."
+    },
+    {
+        "code": "15070",
+        "name": "Csatakiáltás",
+        "text": "Csak akkor játszhatod ki, ha egy ellenfeled az előző körében sebzést okozott egy karakterednek.\nJelölj ki egy Sárga karaktert, hogy eltávolítsd egy ellenfeled 2 vagy kisebb értéket mutató kockáját."
+    },
+    {
+        "code": "15071",
+        "name": "Kürtszó",
+        "text": "Csak akkor használhatod, ha a csapatodban van <i>Ewok</i> karakter.\nMiután kijátszottál egy <i>csapdá</i>t, helyezz egy erőforrást erre a tervre.\nHa ezen a terven 3 vagy több erőforrás van, elkölthetsz 3 erőforrást és félreteheted ezt a tervet, hogy hozzáadj 4 félretett Ewok Harcost ([SoH]95) a csapatodhoz. Helyezz mindegyikükre 3 sebzést."
+    },
+    {
+        "code": "15072",
+        "name": "Útonálló",
+        "text": "Miután aktiváltad ezt a támogatást, megnézheted a paklid legfelső 2 lapját, tedd az egyiket a paklid aljára, ezután a másikat vedd a kezedbe.\n[special] -  Játszd ki ingyen a paklid legalsó lapját vagy használd fel egy másik kockádat anélkül, hogy eltávolítanád a kockakészletedből."
+    },
+    {
+        "code": "15073",
+        "name": "Védelmi Vonal",
+        "subtitle": "Hoth",
+        "text": "<b>Erőteljes Akció</b> - Távolítsd el egy kockádat, hogy adj 2 pajzsot egy karakternek."
+    },
+    {
+        "code": "15074",
+        "name": "Aknázd Ki Az Erőt",
+        "text": "Jelölj ki egy Kék karaktert, hogy az egyik kockádat ([special]) különleges oldalára fordítsd. Ezután felhasználhatod azt a kockát."
+    },
+    {
+        "code": "15075",
+        "name": "Feltámadó Forgószél",
+        "text": "Jelölj ki egy Kék karaktert, melyre 2 <i>fegyver</i> van csatolva, hogy újradobj 2 kockát. Ezután távolítsd el közülük a kisebb értéket mutató kockát <i>(döntetlen esetén te választasz)</i>."
+    },
+    {
+        "code": "15076",
+        "name": "Erő Bátorság",
+        "text": "Csak akkor játszhatod ki, ha ki tudsz jelölni egy Kék karaktert.\n[special] - Válassz és hajts végre kettőt az alábbiak közül:\n Okozz 1 sebzést egy karakternek.\n Gyógyíts meg 1 sebzést egy karakteren.\n Forgass egy kockát nem ([special]) oldalára."
+    },
+    {
+        "code": "15077",
+        "name": "Jar'Kai",
+        "text": "Csak Kék karakternek. Egy karakteren csak 1 <i>alak</i> lehet.\nA csatolt karakter fejlesztéslimitje 2-vel nő.\nMielőtt felhasználod a csatolt karakter egy <i>fegyver</i>kockáját, ha a csatolt karakteren 2 vagy több <i>fegyver</i> van, növeld meg az értékét 1-gyel."
+    },
+    {
+        "code": "15078",
+        "name": "Tonfa Fénykard",
+        "text": "Miután kijátszottad ezt a fejlesztést, elkölthetsz 1 erőforrást, hogy 1 erőforrást helyezz erre a fejlesztésre.\nNöveld meg ennek a kockának az értékét az ezen a fejlesztésen lévő erőforrások számával."
+    },
+    {
+        "code": "15079",
+        "name": "Keresztszárú Fénykard",
+        "text": "Áthelyezés.\nMiután kijátszottad ezt a fejlesztést vagy áthelyeződött egy karakterre, ha ez a fejlesztés egy hős karakteren van, gyógyíts meg rajta 1 sebzést. Ha ez a fejlesztés egy gonosz karakteren van, okozz 1 sebzést egy ellenfél karakterének."
+    },
+    {
+        "code": "15080",
+        "name": "A Törzs Ereje",
+        "text": "Távolíts el egy kockát. Ezután, ha a csapatod minden karaktere egyezik egy altípusban, eltávolíthatsz még egy kockát, amely más szimbólumot és értéket mutat."
+    },
+    {
+        "code": "15081",
+        "name": "Kis Győzelmek",
+        "text": "Használd fel egy 1 értékű Piros kockádat anélkül, hogy eltávolítanád a készletedből."
+    },
+    {
+        "code": "15082",
+        "name": "Taktikai Visszavonulás",
+        "text": "Add át a csatatér irányítását egy ellenfelednek, hogy szétossz annyi pajzsot tetszőlegesen a karaktereid között, ahány Piros karaktert ki tudsz jelölni."
+    },
+    {
+        "code": "15083",
+        "name": "Extra Tűzerő",
+        "text": "<b>Akció</b> - Tedd félre ezt a tervet, hogy felhasználd legfeljebb 2 kockádat, megnövelve mindegyik értékét 1-gyel."
+    },
+    {
+        "code": "15084",
+        "name": "Taktikai Fölény",
+        "text": "Mielőtt kijátszod egy ellenfél lapját, merítsd ki ezt a támogatást, hogy csökkentsd a költségét 1-gyel."
+    },
+    {
+        "code": "15085",
+        "name": "DC-17 Kézi Sugárvető",
+        "text": "Egy nehéz sugárvető pisztoly, melyet a Galaktikus Köztársaság Nagy Hadseregének klónkatonái használtak a Klónháborúk alatt."
+    },
+    {
+        "code": "15086",
+        "name": "Gumibot",
+        "text": "Áthelyezés.\nMiután bedobtad ezt a kockát a kockakészletedbe, újradobhatod.\nMielőtt felhasználod ezt a kockát, eltávolíthatsz 1 pajzsot egy ellenfél karakteréről."
+    },
+    {
+        "code": "15087",
+        "name": "Doctor Aphra",
+        "subtitle": "Régész",
+        "text": "Az előkészületek után belekeverhetsz 6 félretett, nem karakter <i>droid</i>ot a paklidba <i>(a pakliépítési szabályokat figyelmen kívül hagyva)</i>.\nMiután kijátszottál egy <i>droid</i>ot, okozhatsz 1 indirekt sebzést egy ellenfelednek."
+    },
+    {
+        "code": "15088",
+        "name": "Hondo Ohnaka",
+        "subtitle": "Végletekig Gyakorlatias",
+        "text": "Miután aktiváltad ezt a karaktert, bedobhatsz 2 félretett Lojális Kalóz ([RM]27) kockát a kockakészletedbe.\n[special] - Okozz 2 sebzést egy ellenfél karakterének, vagy 3 sebzést, ha egy hatásod következtében egy ellenfeled 1 vagy több erőforrást veszített ebben a fordulóban."
+    },
+    {
+        "code": "15089",
+        "name": "Sötét Emlékek",
+        "text": "Áthelyezés.\nMiután a csatolt karaktert aktiválták, okozz 1 sebzést neki."
+    },
+    {
+        "code": "15090",
+        "name": "Keményfejű",
+        "text": "Jelölj ki egy Sárga karaktert, hogy eltávolíts 2 kockát, amelyek az előző körben lettek bedobva a kockakészletbe."
+    },
+    {
+        "code": "15091",
+        "name": "Tisztességtelen Üzlet",
+        "text": "Használd fel egy megszakítást mutató kockádat. Ezután cseréld ki az erőforrásaitokat azzal az ellenféllel, aki ellen azt a kockát felhasználtad."
+    },
+    {
+        "code": "15092A",
+        "name": "A Nagy Rablás",
+        "text": "Összefogás 1: Minden <i>kalóz</i>.\nMiután egy hatásod következtében egy ellenfeled 1 vagy több erőforrást veszített, helyezz annyi erőforrást erre a tervre, amennyit ténylegesen elvesztett. Ha ezen a terven 6 vagy több erőforrás van, jelölj ki egy <i>kalóz</i> karaktert, hogy megfordítsd ezt a lapot és arra a karakterre csatold."
+    },
+    {
+        "code": "15092B",
+        "name": "Kalózvezér",
+        "text": "<b>Erőteljes Akció</b> - Vegyél el 1 erőforrást egy ellenféltől.\n[special] - Adj egy erőforrást egy ellenfélnek. Ezután használj fel egy kockát <i>(lehet a sajátod vagy egy ellenfélé is)</i> és kapsz 1 akciót."
+    },
+    {
+        "code": "15093",
+        "name": "Feketepiaci Műkar",
+        "text": "A csatolt karakternek +1 életereje van, vagy +2, ha a csatolt karakter <i>kalóz</i> vagy <i>fejvadász</i>."
+    },
+    {
+        "code": "15094",
+        "name": "Ügyeskedés",
+        "text": "[special] - Kapsz 1 erőforrást vagy távolíts el egy erőforrást egy nem terv lapról."
+    },
+    {
+        "code": "15095",
+        "name": "Szindikátusi Villámbot",
+        "text": "Csak akkor játszhatod ki, ha a csapatod minden karaktere egyezik egy altípusban.\nCsökkentsd az erőforrásköltségét 1-gyel a csatolt karakter karakter- vagy fejlesztéskockáinak."
+    },
+    {
+        "code": "15096",
+        "name": "Düh",
+        "text": "Jelölj ki egy 17 vagy nagyobb pontértékű karaktert, hogy eltávolítsd egy ellenfeled kockáját."
+    },
+    {
+        "code": "15097",
+        "name": "Mandalori Hóhér Vibrofejsze",
+        "text": "Csak 13 vagy több életerővel rendelkező karakternek.\nÁthelyezés.\n[special] - Okozz 2 védhetetlen sebzést egy karakternek."
+    },
+    {
+        "code": "15098",
+        "name": "Felhőváros",
+        "subtitle": "Bespin",
+        "text": "<b>Erőteljes Akció</b> - Nézd meg egy ellenfeled kézben tartott lapjait, és ha kijelölsz egy <i>pilótá</i>t, eldobhatsz egy 0 költségűt közülük. Ezután ez az ellenfeled húzhat egy lapot."
+    },
+    {
+        "code": "15099",
+        "name": "Kiberközpont",
+        "subtitle": "Anexes",
+        "text": "<b>Uralom</b> - A kézlimited 1-gyel nő ennek a fordulónak a végéig (húzz még egy lapot a fenntartási fázis során). Gyógyíts meg 1 sebzést egy karakteren."
+    },
+    {
+        "code": "15100",
+        "name": "Előörs",
+        "subtitle": "Hoth",
+        "text": "Csak akkor használhatod, ha 2 vagy több Piros karakter van a csapatodban.\n<b>Erőteljes Akció</b> - Kapsz 2 akciót. Add át a csatatér irányítását egy ellenfelednek."
+    },
+    {
+        "code": "15101",
+        "name": "CT-4040 Halála",
+        "text": "Csak 40/40 formátumban használható. Még egy további tervet hozzáadhatsz a csapatodhoz. A játék kezdetén 10 további lapot bekeverhetsz a paklidba a szokásos pakliépítési szabályok figyelembe vételével. Ezután tedd félre ezt a tervet."
+    }
+]

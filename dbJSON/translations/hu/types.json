@@ -1,0 +1,30 @@
+[
+    {
+        "code": "battlefield",
+        "name": "Csatatér"
+    },
+    {
+        "code": "character",
+        "name": "Karakter"
+    },
+    {
+        "code": "downgrade",
+        "name": "Gyengítés"
+    },
+    {
+        "code": "event",
+        "name": "Esemény"
+    },
+    {
+        "code": "plot",
+        "name": "Terv"
+    },
+    {
+        "code": "support",
+        "name": "Támogatás"
+    },
+    {
+        "code": "upgrade",
+        "name": "Fejlesztés"
+    }
+]

@@ -1,0 +1,42 @@
+[
+    {
+        "code": "-",
+        "name": "Vierge"
+    },
+    {
+        "code": "Dc",
+        "name": "Défausse"
+    },
+    {
+        "code": "Dr",
+        "name": "Disruption"
+    },
+    {
+        "code": "F",
+        "name": "Concentration"
+    },
+    {
+        "code": "MD",
+        "name": "Dégâts de mêlée"
+    },
+    {
+        "code": "R",
+        "name": "Ressource"
+    },
+    {
+        "code": "RD",
+        "name": "Dégâts à distance"
+    },
+    {
+        "code": "Sh",
+        "name": "Bouclier"
+    },
+    {
+        "code": "Sp",
+        "name": "Spécial"
+    },
+    {
+        "code": "ID",
+        "name": "Dégâts indirects"
+    }
+]

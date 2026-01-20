@@ -1,0 +1,966 @@
+[
+    {
+        "code": "05001",
+        "name": "Consejero oscuro",
+        "text": "[special] - Roba 3 cartas. Luego coloca una carta de tu mano en la parte superior o inferior de tu mazo."
+    },
+    {
+        "code": "05002",
+        "flavor": "\"Antes Darth, ahora sólo Maul.\"",
+        "name": "Maul",
+        "subtitle": "Buscador de venganza",
+        "text": "Después de que uno o más de los dados de Personaje o Mejora de este Personaje sean retirados por el efecto de la carta de un adversario, puedes retirar uno de los dados de ese adversario."
+    },
+    {
+        "code": "05003",
+        "flavor": "\"Obtengo mi poder mediante la magia negra.\"",
+        "name": "Madre Talzin",
+        "subtitle": "Matriarca de las hermanas nocturnas",
+        "text": "Después de que actives este Personaje, puedes revelar la primera carta del mazo de un jugador. Si el coste de esa carta es un número impar, gira a cualquier cara uno de los dados de ese jugador."
+    },
+    {
+        "code": "05004",
+        "flavor": "\"No hay compasión.\"",
+        "name": "Palpatine",
+        "subtitle": "Darth Sidious",
+        "text": "<b>Acción potenciada</b> - Juega un Evento de tu mano, reduciendo su coste en una cantidad igual al número de distintos símbolos de daño ([ranged], [melee] o [indirect]) que muestren tus dados."
+    },
+    {
+        "code": "05005",
+        "name": "Caza esteler de Kylo Ren",
+        "text": "[special] - Elige un color. Luego revela la mano de un adversario e inflígele tantos puntos de daño indirecto ([indirect]) como la cantidad de cartas que hay en su mano cuyo color coincide con el que has elegido."
+    },
+    {
+        "code": "05006",
+        "name": "Bola de cristal",
+        "text": "Después de que actives al Personaje vinculado, puedes mirar la primera carta de un mazo."
+    },
+    {
+        "code": "05007",
+        "name": "Desgarrar con la Fuerza",
+        "text": "Sólo Personaje de color Azul.\n[special] - Gasta tantos recursos como el coste de un Apoyo o Mejora que esté en juego para descartar dicho Apoyo o Mejora."
+    },
+    {
+        "code": "05008",
+        "name": "Sable de luz de Maul",
+        "text": "Sólo Personaje de color Azul.\n<b>Acción potenciada</b> - Si un adversario no tiene ningún escudo en ninguno de sus Personajes, tira este dado en tu reserva."
+    },
+    {
+        "code": "05009",
+        "flavor": "\"Roger, Roger.\"",
+        "name": "Droide de combate",
+        "text": "Después de que actives este Personaje, si este dado acaba de obtener un resultado de daño indirecto ([indirect]), puedes activar uno de tus otros Droides de combate ([LEG]9)."
+    },
+    {
+        "code": "05010",
+        "flavor": "\"¡Enfréntate a mí!\"",
+        "name": "Kallus",
+        "subtitle": "Agente del Imperio",
+        "text": "<b>Acción potenciada</b> - Giara este dado de una cara que muestre daño a distancia ([ranged]) a una que muestre daño cuerpo a cuerpo ([melee]) o viceversa."
+    },
+    {
+        "code": "05011",
+        "flavor": "\"¡Ah, victoria!\"",
+        "name": "Nute Gunray",
+        "subtitle": "Virrey separatista",
+        "text": "Cada adversario recibe 1 recurso menos durante la fase de Mantenimiento, hasta un mínimo de 1, a menos que ese adversario descarte las 2 primeras cartas de su mazo."
+    },
+    {
+        "code": "05012",
+        "flavor": "\"El miedo mantendrá en orden los sistemas locales.\"",
+        "name": "Tarkin",
+        "subtitle": "Grand Moff",
+        "text": "<b>Acción potenciada</b> - Retira 2 de tus dados que muestren el mismo símbolo para infligir 4 puntos de daño indirecto ([indirect]) a un adversario."
+    },
+    {
+        "code": "05013",
+        "flavor": "El soldado de élite de las fuerzas armadas imperiales, entrenado para mostrar una obediencia inquebrantable a la cadena de mando, así como al emperador galáctico Palpatine.",
+        "name": "Soldado de asalto veterano"
+    },
+    {
+        "code": "05014",
+        "flavor": "Una pesada nave estelar de transporte por la Federación de Comercio para llevar batallones de droides hasta la superficie de un planeta y desembarcarlos en ella.",
+        "name": "Nave de desembarco separatista",
+        "text": "[special] - Gasta 2 recursos para añadir un Droide de combate ([LEG]9) a tu equipo. Descarta este Apoyo del juego."
+    },
+    {
+        "code": "05015",
+        "flavor": "Usadas habitualmente por los soldados de la muerte y las tropas de asalto de defensa costera del Imperio Galáctico.",
+        "name": "Granada de fragmentación",
+        "text": "Después de resolver este dado, descarta esta Mejora del juego a menos que gastes 1 recurso."
+    },
+    {
+        "code": "05016",
+        "name": "Grand Moff",
+        "text": "Sólo Personaje único de color Rojo.\n<b>Acción potenciada</b> - Utiliza la capacidad \"Reclamar\" del campo de batalla o intercambia el campo de batalla actual por un campo de batalla que no esté siendo usado <em>(pero que ha sido traído a la partida)</em>."
+    },
+    {
+        "code": "05017",
+        "name": "Fusil bo de Kallus",
+        "text": "Emboscada."
+    },
+    {
+        "code": "05018",
+        "flavor": "\"Nudd Chaa.\"",
+        "name": "Bib Fortuna",
+        "subtitle": "Mayordomo",
+        "text": "[special] - Tira en tu reserva un dado de Personaje que esté sobre uno de tus otros Personajes."
+    },
+    {
+        "code": "05019",
+        "flavor": "\"No te cruces en mi camino.\"",
+        "name": "Boba Fett",
+        "subtitle": "Mercenario mortífero",
+        "text": "[special] - Inflige tantos puntos de daño a un Personaje como el valor de resultado que muestre un dado <em>(tuyo o de un adversario)</em>."
+    },
+    {
+        "code": "05020",
+        "name": "Doctora Aphra",
+        "subtitle": "Cazatesoros",
+        "text": "El coste del primero <i>droide</i> que juegues en cada ronda se reduce en 1.\nDespués de que inflijas daño indirecto ([indirect]) a ti mismo, puedes robar una carta."
+    },
+    {
+        "code": "05021",
+        "flavor": "\"¿Vas a alguna parte, Solo?\"",
+        "name": "Greedo",
+        "subtitle": "Mercenario desafortunado",
+        "text": "Antes de que este Personaje sea derrotado, tira cualquier cantidad de sus dados de Personaje en tu reserva. Luego resuelve cualquier cantidad de sus dados de Personaje en el orden que prefieras."
+    },
+    {
+        "code": "05022",
+        "name": "Traidor a la Rebelión",
+        "text": "Después de que actives este Personaje, puedes obligar a un adversario a elegir y activar uno de sus Personajes como su siguiente acción de esta ronda, si le es posible."
+    },
+    {
+        "code": "05023",
+        "flavor": "\"Bienvenido a bordo del Arcángel, señor Darth Vader. Soy una gran admiradora suya. ¡Grandísima!\" <cite>Doctora Aphra</cite>",
+        "name": "Arcángel",
+        "text": "Después de que actives este Apoyo, activa hasta 2 de tus otros Apoyos en el orden que prefieras."
+    },
+    {
+        "code": "05024",
+        "name": "BT-1",
+        "text": "Después de que actives este Apoyo, inflige 1 punto de daño indirecto ([indirect]) a ti mismo. Luego inflige 1 punto de daño indirecto ([indirect]) a un adversario."
+    },
+    {
+        "code": "05025",
+        "name": "Esclavo I",
+        "text": "<b>Acción potenciada</b> - Vuelve a tirar uno de tus dados de color Amarillo. Luego puedes retirar un dado de un adversario que muestre un valor de resultado igual al valor que muestra el dado que acabas de volver a tirar."
+    },
+    {
+        "code": "05026",
+        "name": "Instinto de cazador",
+        "text": "[special] - Inflige 1 punto de daño a un Personaje, o 2 puntos de daño si ese Personaje tiene 3 o más puntos de daño asignados."
+    },
+    {
+        "code": "05027",
+        "name": "Lanzacohetes de muñeca",
+        "text": "Sólo Personaje de color Amarillo.\n[special] - Inflige 2 puntos de daño a un Personaje. Puedes gastar 1 recurso para infligir 2 puntos de daño a un Personaje."
+    },
+    {
+        "code": "05028",
+        "name": "BB-9E",
+        "text": "[special] - Vuelve a tirar un dado de un adversario. Vuelve a tirar este dado en vez de retirarlo de tu reserva."
+    },
+    {
+        "code": "05029",
+        "flavor": "\"Hace falta coraje para ser fiel a unos ideales.\"",
+        "name": "Aayla Secura",
+        "subtitle": "General jedi",
+        "text": "[special] - Gira uno de tus dados de color Azul o Rojo a cualquier cara. Gira un dado de un adversario a cualquier cara."
+    },
+    {
+        "code": "05030",
+        "name": "Guardia del templo jedi",
+        "text": "Guardián."
+    },
+    {
+        "code": "05031",
+        "flavor": "\"Quiero aprender los caminos de la Fuerza y ser un jedi como mi padre.\"",
+        "name": "Luke Skywalker",
+        "subtitle": "Héroe improbable",
+        "text": "<b>Acción potenciada</b> - Gasta 2 recursos para resolver uno de los dados de Personaje o de Mejora de este Personaje, incrementando en 2 su valor de resultado."
+    },
+    {
+        "code": "05032",
+        "flavor": "\"Comience.\"",
+        "name": "Obi-Wan Kenobi",
+        "subtitle": "Maestro jedi",
+        "text": "Después de que actives este Personaje, puedes entregar 1 escudo a un Personaje."
+    },
+    {
+        "code": "05033",
+        "flavor": "\"Hazlo. O no lo hagas. Pero no lo intentes.\"",
+        "name": "Yoda",
+        "subtitle": "Maestro venerable",
+        "text": "[special] - Elige y lleva a cabo dos de las siguientes opciones: recibir 1 recurso, entregar 1 escudo a un Personaje, girar uno de tus dados a cualquier cara, o descartar la primera carta de un mazo."
+    },
+    {
+        "code": "05034",
+        "flavor": "El interceptor Eta-2 fue el caza estelar predilecto de los jedi durante las Guerras Clon.",
+        "name": "Interceptor ETA-2",
+        "text": "<b>Acción</b> - Retira este dado o uno de tus dados que muestre un escudo ([shield]) para agotar un Apoyo."
+    },
+    {
+        "code": "05035",
+        "flavor": "\"Te aseguro que R2 es capaz de salir de cualquier embrollo.\" <cite>Leia Organa</cite>",
+        "name": "R2-D2",
+        "text": "[special] - Roba una carta. Puedes girar uno de tus dados a cualquier cara."
+    },
+    {
+        "code": "05036",
+        "name": "Meditar con la Fuerza",
+        "text": "Para jugar esta carta, señala un Personaje de color Azul.\n[special] - Descarta las 2 primeras cartas de un mazo."
+    },
+    {
+        "code": "05037",
+        "name": "Sable de luz de Obi-Wan Kenobi",
+        "text": "Sólo Personaje de color Azul.\n[special] - Entrega 1 escudo al Personaje vinculado. Inflige tantos puntos de daño no anulable a un Personaje como la cantidad de escudos que tiene el Personaje vinculado."
+    },
+    {
+        "code": "05038",
+        "flavor": "\"Alguien se propone iniciar una guerra.\" <cite>Mace Windu</cite>",
+        "name": "Soldado clon",
+        "text": "Después de que actives este Personaje, puedes volver a tirar este dado o, si controlas el campo de batalla, puedes volver a tirar uno de tus dados de Personaje."
+    },
+    {
+        "code": "05039",
+        "name": "Finn",
+        "subtitle": "Soldado por necesidad",
+        "text": "[special] - Transfiere 1 punto de daño de una carta a otra carta que esté en juego <em>(esta transferencia ignora escudos)</em>."
+    },
+    {
+        "code": "05040",
+        "flavor": "\"Me paso todo el día trabajando entre tuberías.\"",
+        "name": "Rose",
+        "subtitle": "Mecánica talentosa",
+        "text": "[special] - Recibes 1 recurso. Puedes retirar 1 punto de daño de un Apoyo."
+    },
+    {
+        "code": "05041",
+        "flavor": "\"Inicio mi ataque.\"",
+        "name": "Wedge Antilles",
+        "subtitle": "Jefe de escuadrón",
+        "text": "<b>Acción potenciada</b> - Gira uno de tus dados de <i>vehículo</i> a cualquier cara."
+    },
+    {
+        "code": "05042",
+        "name": "Dotación de mortero",
+        "text": "Mientras controles el campo de batalla, puedes resolver las caras de daño indireco ([indirect]) de este dado como si fueran daño a distancia ([ranged])."
+    },
+    {
+        "code": "05043",
+        "name": "Bombardero de la resistencia",
+        "text": "Después de que este dado sea resuelto, coloca 1 punto de daño sobre este Apoyo.\nDescarta este apoyo si hay 3 o más puntos de daño sobre él."
+    },
+    {
+        "code": "05044",
+        "name": "Fusil camuflado",
+        "text": "[special] - Inflige 2 puntos de daño a un Personaje, o 3 puntos de daño si controlas el campo de batalla."
+    },
+    {
+        "code": "05045",
+        "name": "Líder de la Rebelión",
+        "text": "Sólo Personaje único de color Rojo.\n<b>Acción potenciada</b> - Retira un dado de un adversario que muestre el mismo símbolo que uno de tus dados."
+    },
+    {
+        "code": "05046",
+        "flavor": "\"Las religiones y las armas antiguas no valen nada comparadas con un buen bláster.\"",
+        "name": "Han Solo",
+        "subtitle": "Contrabandista avispado",
+        "text": "Después de que actives este Personaje, puedes volver a tirar un dado <em>(tuyo o de un adversario)</em>."
+    },
+    {
+        "code": "05047",
+        "flavor": "\"¡Oh, eston serán desastre!\"",
+        "name": "Jar Jar Binks",
+        "subtitle": "Exiliado patoso",
+        "text": "Todo jugador puede realizar una acción para obligarte a activar este Personaje.\nDespués de que actives este Personaje, vuelve a tirar todos los dados que muestren un símbolo que los dados de este Personaje no muestren también."
+    },
+    {
+        "code": "05048",
+        "name": "Partisano de Jedha",
+        "text": "Después de que inflijas daño indirecto ([indirect]) a un adversario por primera vez en cada ronda, puedes descartar la primera carta de un mazo."
+    },
+    {
+        "code": "05049",
+        "flavor": "\"¡Salvad la Rebelión! Salvad el sueño.\"",
+        "name": "Saw Gerrera",
+        "subtitle": "Líder extremista",
+        "text": "[special] - Descarta una carta escogida al azar de la mano de un jugador. Luego inflige a un adversario tantos puntos de daño indirecto ([indirect]) como el coste de esa carta."
+    },
+    {
+        "code": "05050",
+        "flavor": "\"Me encanta el tacto de sus cascos en mis puños.\"",
+        "name": "Zeb Orrelios",
+        "subtitle": "El último lasat",
+        "text": "Puedes resolver las caras de daño cuerpo a cuerpo ([melee]) de este dado como si fueran daño a distancia ([ranged])."
+    },
+    {
+        "code": "05051",
+        "name": "Bumas sueltas",
+        "text": "<b>Acción potenciada</b> - Gasta 1 recurso para tirar un dado de Bumas sueltas ([LEG]51) en tu reserva. Deja aparte ese dado después de que sea resuelto o retirado."
+    },
+    {
+        "code": "05052",
+        "flavor": "\"Chewie… estamos en casa.\" <cite>Han Solo</cite>",
+        "name": "Halcón Milenario",
+        "text": "Después de que actives este Apoyo, puedes activar uno de tus Personajes."
+    },
+    {
+        "code": "05053",
+        "name": "Encanto de granuja",
+        "text": "Sólo Personajes de color Amarillo.\n[special] - Retira un dado que muestre daño ([ranged], [melee] o [indirect]). Recibes tantos recursos como el coste en recursos que mostraba ese dado <em>(no su valor de resultado)</em>."
+    },
+    {
+        "code": "05054",
+        "flavor": "\"¡Sólo la Guardia de Honor de Lasan puede llevar un fusil bo!\" <cite>Zeb Orrelios</cite>",
+        "name": "Fusil bo de Zeb Orrelios",
+        "text": "<b>Acción</b> - Gasta 1 recurso para, si este dado está mostrando un modificador <em>(una cara con un +)</em>, resolverlo como si no lo tuviera."
+    },
+    {
+        "code": "05055",
+        "flavor": "Cuando estas naves se empleaban para transportar diplomáticos, su fuselaje se pintaba de color rojo como señal de advertencia de que no debían ser atacadas.",
+        "name": "Crucero de la República",
+        "text": "[special] - Entrega 2 escudos a un Personaje único o entrega 1 escudo a cada uno de tus Personajes únicos."
+    },
+    {
+        "code": "05056",
+        "name": "Concentrarse con la Fuerza",
+        "text": "Para jugar esta carta, señala un Personaje de color Azul.\n[special] - Gira uno de tus dados a cualquier cara. Puedes revelar una carta de color Azul que tengas en tu mano para girar a cualquier cara un dado de un adversario."
+    },
+    {
+        "code": "05057",
+        "name": "Oleada de Fuerza",
+        "text": "Sólo Personaje de color Azul.\n[special] - Inflige 3 puntos de daño a un Personaje. Inflige 2 puntos de daño a otro Personaje. Inflige 1 punto de daño a un tercer Personaje."
+    },
+    {
+        "code": "05058",
+        "name": "Sable de luz heredado",
+        "text": "Esta Mejora posee la palabra clave Redesplegar mientras esté vinculada a un Personaje de color Azul."
+    },
+    {
+        "code": "05059",
+        "name": "Comunicador Silente-98",
+        "text": "<b>Acción</b> - Retira este dado para activar cualquier cantidad de tus Personajes y/o Apoyos en el orden que prefieras."
+    },
+    {
+        "code": "05060",
+        "name": "Batallón terrestre",
+        "text": "Después de que actives este Apoyo, puedes tomar el control del campo de batalla. <em>(Esto no reclama el campo de batalla.)</em>"
+    },
+    {
+        "code": "05061",
+        "name": "Puesto de vigía",
+        "text": "Juega esta carta sólo si controlas el campo de batalla."
+    },
+    {
+        "code": "05062",
+        "flavor": "Algunas veces, la mejor táctica a seguir consiste en no apuntar.",
+        "name": "Cañón automático"
+    },
+    {
+        "code": "05063",
+        "flavor": "A pesar de tratarse del arma reglamentaria de las tropas de asalto imperiales, el bláster E-11 también era de uso habitual entre las fuerzas rebeldes.",
+        "name": "Bláster E-11",
+        "text": "Redesplegar."
+    },
+    {
+        "code": "05064",
+        "name": "Moto deslizadora 74-Z",
+        "text": "<b>Acción</b> - Resuelve este dado y uno de los dados de Personaje del Personaje vinculado en el orden que prefieras."
+    },
+    {
+        "code": "05065",
+        "flavor": "\"Bueno, eso ya es todo un negocio.\"",
+        "name": "Hondo Ohnaka",
+        "subtitle": "Empresario respetable",
+        "text": "[special] - Inflige 3 puntos de daño a un Personaje de un adversario a menos que ese adversario te entregue 1 recurso."
+    },
+    {
+        "code": "05066",
+        "flavor": "\"Pero ya conocéis mi lema: habla con dulzura encima de un tanque bien armado.\" <cite>Hondo Ohnaka</cite>",
+        "name": "Tanque repulsor pirata",
+        "text": "[special] - Inflige 2 puntos de daño a un Personaje, entrega 2 escudos a un Personaje y realiza una acción adicional."
+    },
+    {
+        "code": "05067",
+        "name": "Trueque",
+        "text": "[special] - Recibes 1 recurso. Puedes obligar a cada jugador a robar 1 carta."
+    },
+    {
+        "code": "05068",
+        "name": "Unir fuerzas",
+        "text": "El valor X es igual a la cantidad de Personajes de color Amarillo que tienes en juego."
+    },
+    {
+        "code": "05069",
+        "name": "Vibroalfanje",
+        "text": "Redesplegar.\nMientras esta mejora esté sobre un Personaje de color Amarillo, reduce en 1 el coste en recursos de este dado."
+    },
+    {
+        "code": "05070",
+        "name": "HWK-290 modificado",
+        "text": "Después de que juegues este Apoyo, coloca 2 puntos de daño sobre él.\nDespués de que actives este Apoyo, inflige tantos puntos de daño indirecto ([indirect]) a ti mismo como la cantidad de puntos de daño que hay sobre él."
+    },
+    {
+        "code": "05071",
+        "name": "Pistola de Canto Bight",
+        "text": "Redesplegar.\n[special] - Inflige 2 puntos de daño a un Personaje, o 3 puntos de daño si se trata de un villano."
+    },
+    {
+        "code": "05072",
+        "name": "Bláster oculto",
+        "text": "Emboscada.\nDespués de que juegues esta Mejora, puedes retirar 1 escudo de un Personaje."
+    },
+    {
+        "code": "05073",
+        "flavor": "Las armas que disparaban proyectiles sólidos, como el fusil 6-2Aug2, era abundantes en planetas atrasados como Tatooine.",
+        "name": "Fusil de caza",
+        "text": " "
+    },
+    {
+        "code": "05074",
+        "name": "Porra aturdidora",
+        "text": "Después de que un Personaje sufra daño procedente de este dado, puedes gastar 1 recurso para retirar unos de los dados de Personaje de ese Personaje."
+    },
+    {
+        "code": "05075",
+        "name": "Consumido por el lado oscuro",
+        "text": "Inflige 1 punto de daño a uno de tus Personajes de color Azul para girar un dado a una cara que muestre una cara vacía ([blank])."
+    },
+    {
+        "code": "05076",
+        "name": "Maquinaciones siniestras",
+        "text": "Mira las 5 primeras cartas del mazo de un adversario. Descarta una de ellas y coloca el resto en la parte superior de su mazo en el orden que prefieras."
+    },
+    {
+        "code": "05077",
+        "name": "Golpe doble",
+        "text": "Resuelve uno de tus dados que muestre daño cuerpo a cuerpo ([melee]) sin retirarlo de tu reserva."
+    },
+    {
+        "code": "05078",
+        "name": "Atemorizar",
+        "text": "Emboscada.\nRetira un total de hasta 3 escudos de cualquier cantidad de Personajes."
+    },
+    {
+        "code": "05079",
+        "name": "Yo soy tu padre",
+        "text": "Resuelve un dado de Personaje de un adversario como si ese dado fuera tuyo a menos que ese adversario descarte todas las cartas de su mano."
+    },
+    {
+        "code": "05080",
+        "name": "Atrapar",
+        "text": "Juega esta carta sólo si tienes uno o más Personajes agotados.\nAgota un Personaje."
+    },
+    {
+        "code": "05081",
+        "name": "Hechizo de erradicación",
+        "text": "Señala un Personaje de color Azul para descartar la primera carta de un mazo. Si el coste de esa carta es un número impar, retira un dado."
+    },
+    {
+        "code": "05082",
+        "name": "Brujería",
+        "text": "Revela las 3 primeras cartas de tu mazo <em>(no alteres su orden)</em>. Cura tantos puntos de daño a un Personaje como la cantidad de cartas que acabas de revelar cuyo coste sea un número impar."
+    },
+    {
+        "code": "05083",
+        "name": "Cofradía de hermanas nocturas",
+        "text": "Después de que un dado de Personaje obtenga un resultado de cara vacía ([blank]), puedes agotar este Apoyo para revelar la primera carta de un mazo. Si el coste de esa carta es un número impar, inflige 1 punto de daño a ese Personaje."
+    },
+    {
+        "code": "05084",
+        "name": "Fatiga de combate",
+        "text": "Juega esta carta sólo si cada uno de los Personajes de un adversario tiene 1 o más puntos de daño asignados.\nRetira uno de los dados de ese adversario."
+    },
+    {
+        "code": "05085",
+        "name": "Aplastar a la Rebelión",
+        "text": "Retira un dado que muestre daño ([ranged], [melee] o [indirect]). Luego inflige tantos puntos de daño indirecto ([indirect]) a un adversario como la mitad del valor de resultado que mostraba ese dado, redondeando hacia arriba."
+    },
+    {
+        "code": "05086",
+        "name": "Poderío imperial",
+        "text": "Resuelve uno de tus dados, incrementando en 2 su valor de resultado."
+    },
+    {
+        "code": "05087",
+        "name": "Tierra quemada",
+        "text": "Juega esta carta sólo si controlas el campo de batalla.\nInflige tantos puntos de daño indirecto ([indirect]) a un adversario como la cantidad de dados que hay en su reserva."
+    },
+    {
+        "code": "05088",
+        "name": "Estallido de metralla",
+        "text": "Inflige 1 punto de daño indirecto ([indirect]) a un adversario. Luego puedes retirar un dado de Personaje que pertenezca al Personaje al que acabas de infligir daño indirecto ([indirect])."
+    },
+    {
+        "code": "05089",
+        "name": "Prácticas de tiro",
+        "text": "Vuelve a tirar cualquier cantidad de tus dados de color Rojo. Luego vuelve a tirar cualquier cantidad de tus dados de color Rojo."
+    },
+    {
+        "code": "05090",
+        "name": "Tres paso por delante",
+        "text": "Realiza hasta 3 acciones adicionales."
+    },
+    {
+        "code": "05091",
+        "name": "Puente de mando",
+        "text": "<b>Acción</b> - Agota este Apoyo para activar 2 de tus Personajes que no sean únicos en el orden que prefieras."
+    },
+    {
+        "code": "05092",
+        "flavor": "\"Por divertido que haya sido… no lo hagamos nunca más.\" <cite>Doctora Aphra</cite>",
+        "name": "Fisgonear",
+        "text": "Inflige 1 punto de daño indirecto ([indirect]) a ti mismo para jugar un Apoyo o Mejora de tu mano sin pagar coste alguno."
+    },
+    {
+        "code": "05093",
+        "name": "Todos contra todos",
+        "text": "Retira cualquier cantidad de tus dados. Luego inflige tantos puntos de daño indirecto ([indirect]) a un adversario como la cantidad de dados que acabas de retirar."
+    },
+    {
+        "code": "05094",
+        "name": "Perseguidores pertinaces",
+        "text": "Juega esta carta sólo si un adversario activó uno o más Personajes durante su último turno de esta ronda.\nActiva cualquier cantidad de tus Personajes de color Amarillo en el orden que prefieras."
+    },
+    {
+        "code": "05095",
+        "name": "Muerto no me sirve",
+        "text": "Cuara hasta 2 puntos de daño del Personaje de un adversario. Recibes tantos recursos como la cantidad de daño que acabas de curar."
+    },
+    {
+        "code": "05096",
+        "name": "Rumores",
+        "text": "Obliga a un adversario a elegir una carta de su mano. Luego mira todas las demás cartas que tiene un su mano y descarta una de ellas."
+    },
+    {
+        "code": "05097",
+        "name": "Someter",
+        "text": "Elige un Personaje que tenga asignados 3 o más puntos de daño. Retira uno de sus dados de Personaje o de Mejora."
+    },
+    {
+        "code": "05098",
+        "name": "Alzar el vuelo",
+        "text": "Emboscada.\nVuelve a tirar hasta 2 de tus dados de color Amarillo."
+    },
+    {
+        "code": "05099",
+        "name": "Superar en número",
+        "text": "Juega esta carta sólo si un adversario tiene menos Personajes en juego que tú.\nRetira uno de los dados de ese adversario."
+    },
+    {
+        "code": "05100",
+        "name": "Adaptarse",
+        "text": "Retira 1 escudo de uno de tus Personajes para recibir 1 recurso."
+    },
+    {
+        "code": "05101",
+        "name": "Golpe de Ataru",
+        "text": "Resuelve uno de tus dados de Personaje de color Azul que muestre daño cuerpo a cuerpo ([melee]), incrementando su valor de resultado en la cantidad de escudos que hay sobre ese Personaje."
+    },
+    {
+        "code": "05102",
+        "name": "Percepción agudizada",
+        "text": "Emboscada.\nEntrega 3 escudos a un Personaje."
+    },
+    {
+        "code": "05103",
+        "name": "Investigar",
+        "text": "Mira las 5 primeras cartas de tu mazo. Añade una de ellas a tu mano y coloca el resto en la parte superior de tu mazo en el orden que prefieras."
+    },
+    {
+        "code": "05104",
+        "name": "Sacar fuerzas de flaqueza",
+        "text": "Descarta las 4 primeras cartas de un mazo."
+    },
+    {
+        "code": "05105",
+        "name": "Inasequible al desánimo",
+        "text": "Retira un dado que muestre un valor de resultado igual o inferior a la cantidad de escudos que hay en tus Personajes."
+    },
+    {
+        "code": "05106",
+        "name": "Instrucción defensiva",
+        "text": "Cada uno de tus Personajes de color Azul puede poseer 1 escudo adicional."
+    },
+    {
+        "code": "05107",
+        "name": "Choza de Yoda",
+        "text": "<b>Acción</b> - Agota este Apoyo para entregar 1 escudo a un Personaje. Recibes 1 recurso si ese Personaje posee 3 o más escudos."
+    },
+    {
+        "code": "05108",
+        "name": "Pasada de ataque",
+        "text": "Emboscada.\nActiva uno de tus apoyos."
+    },
+    {
+        "code": "05109",
+        "name": "Pertrecharse",
+        "text": "Transfiere un <i>arma</i> de uno de tus Personajes a otro Personaje <em>(devuelve el dado de esa <i>arma</i> a su correspondiente carta)</em>."
+    },
+    {
+        "code": "05110",
+        "name": "Momento final",
+        "text": "Prepara cada uno de tus Personajes. Después de que finalice la fase de Acciones, pierdes la partida."
+    },
+    {
+        "code": "05111",
+        "name": "Arrasarlo todo",
+        "text": "Vuelve a tirar uno de tus dados. Si en ese dado acabas de obtener un resultado de daño a distancia ([ranged]), puedes resolver ese dado y uno de tus otros dados que muestre daño a distancia, incrementando en 2 uno de sus valores de resultado."
+    },
+    {
+        "code": "05112",
+        "name": "Recomponer",
+        "text": "Cura 3 puntos de daño de un Personaje o retira 3 puntos de daño de un Apoyo."
+    },
+    {
+        "code": "05113",
+        "name": "Reequipar",
+        "text": "Juega un <i>vehículo</i> de tu mano, reduciendo en 1 su coste. Luego coloca 1 punto de daño sobre él."
+    },
+    {
+        "code": "05114",
+        "name": "Modificación especial",
+        "text": "Retira 3 puntos de daño de un Apoyo o gira un dado de Apoyo a cualquier cara."
+    },
+    {
+        "code": "05115",
+        "name": "Campo de contención",
+        "text": "Descarta este Apoyo si hay 3 o más puntos de daño sobre él.\n<b>Acción</b> - Agota este Apoyo para retirar un dado que muestre daño ([ranged], [melee] o [indirect]). Coloca sobre este Apoyo tantos puntos de daño como el valor de resultado que mostraba ese dado."
+    },
+    {
+        "code": "05116",
+        "name": "Alarde de valor",
+        "text": "Señala un Personaje de color Amarillo para retirar un dado de un adversario. Luego inflige 2 puntos de daño a un Personaje."
+    },
+    {
+        "code": "05117",
+        "name": "Esto será fácil",
+        "text": "Señala un Personaje de color Amarillo para retirar 2 dados que muestren el mismo símbolo y valor de resultado <em>(los modificadores y costes en recursos se ignoran)</em>."
+    },
+    {
+        "code": "05118",
+        "name": "Tácticas explosivas",
+        "text": "Descarta la primera carta de un mazo. Luego infige tantos puntos de daño indirect ([indirect]) a un adversario como el coste que tenía esa carta."
+    },
+    {
+        "code": "05119",
+        "name": "Talante impulsivo",
+        "text": "Emboscada.\nResuelve uno de tus dados."
+    },
+    {
+        "code": "05120",
+        "name": "Pastor de nerfs piojosos",
+        "text": "Elige uno de los siguientes tipos de carta: Evento, Apoyo o Mejora. Luego mira la mano de un adversario y descarta de ella una carta que sea del tipo que has elegido."
+    },
+    {
+        "code": "05121",
+        "name": "Viaje de contrabando",
+        "text": "Activa uno de tus Personajes de color Amarillo. Si en uno o más de sus dados de Personaje o de Mejora que acabas de tirar has obtenido un resultado de recurso ([resource]), recibes 1 recurso."
+    },
+    {
+        "code": "05122",
+        "flavor": "Maz Kanata acumuló una vasta colección de objetos curiosos obtenidos durante sus muchos viajes por la galaxia.",
+        "name": "Sótano de Maz",
+        "text": "Cada jugador recibe 1 recurso adicional durante la fase de Mantenimiento."
+    },
+    {
+        "code": "05123",
+        "name": "Protección diplomática",
+        "text": "Antes de que el Personaje vinculado sea derrotado, puedes descartar esta Mejora para entregar 2 escudos a cada uno de tus otros Personajes."
+    },
+    {
+        "code": "05124",
+        "name": "Al vertedero de desperdicios",
+        "text": "Agota uno de tus Personajes para retirar hasta 2 dados que muestren daño ([ranged], [melee] o [indirect])."
+    },
+    {
+        "code": "05125",
+        "name": "Alterar",
+        "text": "Giara hasta 2 dados a cartas de tu elección <em>(tuyos y/o de tus adversarios)</em>."
+    },
+    {
+        "code": "05126",
+        "name": "Sabiduría ancestral",
+        "text": "Roba 2 cartas."
+    },
+    {
+        "code": "05127",
+        "name": "Sentir la Fuerza",
+        "text": "Gira un dado de color Azul a cualquier cara."
+    },
+    {
+        "code": "05128",
+        "name": "Vigorizar",
+        "text": "Señala a un Personaje de color Azul para curar 1 punto de daño a cada uno de tus Personajes."
+    },
+    {
+        "code": "05129",
+        "name": "Legados",
+        "text": "Señala a un Personaje de color Azul para resolver uno de tus dados que muestre un modificador <em>(una cara con un +)</em> como si no lo tuviera,"
+    },
+    {
+        "code": "05130",
+        "name": "Despistar",
+        "text": "Retira un dado de Personaje que muestre un valor de resultado de 2 o menos."
+    },
+    {
+        "code": "05131",
+        "name": "Respiro",
+        "text": "Agota uno de tus Personajes para recibir 1 recurso y robar una carta."
+    },
+    {
+        "code": "05132",
+        "name": "Más fuerte te has vuelto",
+        "text": "Cuenta el número de Mejoras que tienes en juego. Vuelve a tirar hasta esa misma cantidad de dados <em>(tuyos y/o de tus adversarios)</em>."
+    },
+    {
+        "code": "05133",
+        "name": "La Fuerza está conmigo",
+        "text": "Retira un dado que muestre daño a distancia ([ranged]) o daño indirecto ([indirect])."
+    },
+    {
+        "code": "05134",
+        "name": "Perserverancia",
+        "text": "<b>Acción</b> - Agota este Apoyo para volver a tirar uno de tus dados. Luego puedes volver a tirar ese dado."
+    },
+    {
+        "code": "05135",
+        "name": "Incansable",
+        "text": "Después de que un efecto de una carta de un adversario retire uno de los dados de Personaje del Personaje vinculado, puedes agotar esta Mejora para tirar ese dado en tu reserva."
+    },
+    {
+        "code": "05136",
+        "name": "Redada",
+        "text": "Juega esta carta sólo si cada uno de los Personajes de un adversario tiene 1 o más puntos de daño asignados.\nRecibes 1 recurso."
+    },
+    {
+        "code": "05137",
+        "name": "Aterrizaje forzoso",
+        "text": "Retira un dado que muestre daño ([ranged], [melee] o [indirect]). Luego inflige tantos puntos de daño indirecto ([indirect]) a ti mismo como el valor de resultado que mostraba ese dado."
+    },
+    {
+        "code": "05138",
+        "name": "Ley y orden",
+        "text": "Señala un Personaje de color Rojo para descartar una Mejora del juego."
+    },
+    {
+        "code": "05139",
+        "name": "A punto para el combate",
+        "text": "Señala un Personaje de color Rojo para girar hasta 2 de tus dados a caras que muestren daño indirecto ([indirect])."
+    },
+    {
+        "code": "05140",
+        "name": "Traer refuerzos",
+        "text": "Tira en tu reserva un dado de Personaje que esté sobre uno de tus Personajes, si tienes en juego otra copia de ese Personaje."
+    },
+    {
+        "code": "05141",
+        "name": "Superioridad numérica",
+        "text": "Inflige tantos puntos de daño indirecto ([indirect]) a un adversario como la cantidad de Personajes agotados que tienes."
+    },
+    {
+        "code": "05142",
+        "name": "Impacto repentino",
+        "text": "Retira uno de tus dados que muestre daño ([ranged], [melee] o [indirect]). Luego inflige tantos puntos de daño a cada  uno de los Personajes de un adversario como la mitad del valor de resultado que mostraba ese dado, redondeando hacia arriba."
+    },
+    {
+        "code": "05143",
+        "name": "Posición inasaltable",
+        "text": "Juega esta carta sólo si controlas el campo de batalla.\nRetira un dado."
+    },
+    {
+        "code": "05144",
+        "name": "Datos sobre el objetivo",
+        "text": "Resuelve uno de tus dados que muestre daño indirecto ([indirect]) como si fuera daño a distancia ([ranged])."
+    },
+    {
+        "code": "05145",
+        "name": "Escudo de burbuja",
+        "text": "Puedes asignar daño indirecto ([indirect]) a este Apoyo como si se tratara de un Personaje con Salud 3.\nDescarta este Apoyo si tiene 3 o más puntos de daño sobre él."
+    },
+    {
+        "code": "05146",
+        "name": "Equipo de cobertura",
+        "text": "<b>Acción</b> – Agota este Apoyo para resolver uno de tus dados que muestre daño indirecto ([indirect]), incrementando en 1 su valor de resultado."
+    },
+    {
+        "code": "05147",
+        "name": "Embaucar",
+        "text": "Vuelve a tirar un dado de un adversario. Si en ese dado acabas de obtener un resultado de cara vacía ([blank]), coge 1 recurso de ese adversario."
+    },
+    {
+        "code": "05148",
+        "name": "Reyerta de cantina",
+        "text": "Inflige 1 punto de daño a un Personaje de un adversario. Luego ese adversario puede descartar una carta de su mano para repetir este efecto."
+    },
+    {
+        "code": "05149",
+        "name": "Contraofensiva",
+        "text": "Resuelve uno de tus dados que muestre daño ([ranged], [melee] o [indirect]), incrementando en 2 su valor de resultado si un adversario resolvió uno o más dados que mostraban ese mismo símbolo de daño durante su último turno de esta ronda."
+    },
+    {
+        "code": "05150",
+        "name": "Maniobra peligrosa",
+        "text": "Cura 2 puntos de daño de uno de tus Personajes. Inflige 2 puntos de daño indirecto ([indirect]) a ti mismo."
+    },
+    {
+        "code": "05151",
+        "name": "Enredar",
+        "text": "Señala un Personaje de color Amarillo para retirar hasta 2 dados que muestren un valor de resultado combinado de 3 o menos."
+    },
+    {
+        "code": "05152",
+        "name": "Enfrentamiento",
+        "text": "Vuelve a tirar uno de tus dados de Personaje y uno de los dados de Personaje de un adversario <em>(tú eliges cuál)</em>. Luego inflige 2 puntos de daño al Personaje cuyo dado que acabas de tirar ha obtenido el menor valor de resultado <em>(en caso de empate, inflige 2 puntos de daño a cada uno de ambos Personajes)</em>."
+    },
+    {
+        "code": "05153",
+        "name": "Partida apresurada",
+        "text": "Entrega el control del campo de batalla a un adversario para retirar un dado que muestre daño ([ranged], [melee] o [indirect])."
+    },
+    {
+        "code": "05154",
+        "name": "Atraer a una trampa",
+        "text": "Emboscada.\nElige un Personaje o Apoyo de un adversario y oblígale a activarlo, si le es posible."
+    },
+    {
+        "code": "05155",
+        "name": "Desenfundado rápido",
+        "text": "Juega un <i>arma</i> de tu mano sobre uno de tus Personajes <em>(pagando su coste)</em>. Puedes activar ese Personaje."
+    },
+    {
+        "code": "05156",
+        "name": "Vandalizar",
+        "text": "Retira tantos de tus dados de Personaje como el coste de un Apoyo o Mejora que esté en juego para descartar dicho Apoyo o Mejora."
+    },
+    {
+        "code": "05157",
+        "name": "Contactos influyentes",
+        "text": "Señala un Personaje de color Amarillo para recibir 1 recurso. Cada adversario puede robar una carta."
+    },
+    {
+        "code": "05158",
+        "name": "Defenderse",
+        "text": "Emboscada.\nRetira hasta 3 dados que muestren daño cuerpo a cuerpo ([melee])."
+    },
+    {
+        "code": "05159",
+        "name": "Tirarse al suelo",
+        "text": "Emboscada.\nRetira hasta 3 dados que muestren daño a distancia ([ranged])."
+    },
+    {
+        "code": "05160",
+        "name": "Tormenta de hielo",
+        "text": "Retira 1 escudo de cada Personaje."
+    },
+    {
+        "code": "05161",
+        "name": "Nada de trampas",
+        "text": "Inflige tantos puntos de daño a un Personaje de un adversario como la cantidad de acciones adicionales que ese adversario llevó a cabo durante su último turno de esta ronda."
+    },
+    {
+        "code": "05162",
+        "name": "Cobijo",
+        "text": "Retir aun dado que muestre daño indirecto ([indirect])."
+    },
+    {
+        "code": "05163",
+        "name": "Especialista de respaldo",
+        "text": "<b>Acción</b> - Agota este Apoyo para volver a tirar hasta 2 de tus dados."
+    },
+    {
+        "code": "05164",
+        "name": "Almacén apartado",
+        "text": "<b>Acción</b> - Agota este Apoyo para colocar 1 recurso sobre él o para coger todos los recursos que hay sobre él."
+    },
+    {
+        "code": "05165",
+        "name": "Depósito de chatarra",
+        "text": "Después de que descartes una o más cartas del mazo de un adversario, puedes agotar este Apoyo para recibir 1 recurso."
+    },
+    {
+        "code": "05166",
+        "name": "Guardaespaldas",
+        "text": "Sólo Personaje que no sea único.\nEl Personaje vinculado posee la palabra clave Guardián."
+    },
+    {
+        "code": "05167",
+        "name": "Pistolera de desenfundado rápido",
+        "text": "Después de que actives al Personaje vinculado, puedes volver a tirar cualquier cantidad de sus dados de <i>arma</i>."
+    },
+    {
+        "code": "05168",
+        "name": "Espionaje",
+        "text": "Después de la preparación de la partida, descarta la primera carta de cada mazo."
+    },
+    {
+        "code": "05169",
+        "name": "Fortificar",
+        "text": "Después de la preparación de la partida, entrega 1 escudo a un Personaje."
+    },
+    {
+        "code": "05170",
+        "name": "Ataque preventivo",
+        "text": "Después de la preparación de la partida, inflige 2 puntos de daño indirecto ([indirect]) a un adversario."
+    },
+    {
+        "code": "05171",
+        "name": "Acuerdo beneficioso",
+        "text": "Empiezas la partida con 1 recurso adicional."
+    },
+    {
+        "code": "05172",
+        "name": "Datos robados",
+        "text": "Después de la preparación de la partida, roba una carta."
+    },
+    {
+        "code": "05173",
+        "name": "Tomar posiciones",
+        "text": "Añade 2 al resultado de tu tirada efectuada durante la preparación de la partida para determinar quien elegirá el campo de batalla."
+    },
+    {
+        "code": "05174",
+        "name": "Yermo desértico",
+        "subtitle": "Geonosis",
+        "text": "<b>Reclamar</b> - Obliga a un adversario a perder 1 recurso."
+    },
+    {
+        "code": "05175",
+        "name": "Zona de aterrizaje de la ciudadela",
+        "subtitle": "Scarif",
+        "text": "<b>Reclamar</b> - Vuelve a tirar cualquier cantidad de tus dados. Luego puedes resolver uno de tus dados."
+    },
+    {
+        "code": "05176",
+        "name": "Palacio imperial",
+        "subtitle": "Coruscant",
+        "text": "<b>Reclamar</b> - Mira la mano de un adversario y descarta una carta de ella."
+    },
+    {
+        "code": "05177",
+        "name": "Cubierta de vuelo",
+        "subtitle": "Hogar Uno",
+        "text": "<b>Reclamar</b> - Retira uno de tus dados para infligir tantos puntos de daño indirecto ([indirect]) a un adversario como la mitad de valor de resultado que mostraba ese dado, redondeando hacia arriba."
+    },
+    {
+        "code": "05178",
+        "name": "Asentamiento en el borde exterior",
+        "subtitle": "Nal Hutta",
+        "text": "<b>Reclamar</b> - Recibe 1 recurso y roba una carta."
+    },
+    {
+        "code": "05179",
+        "name": "Coliseo Petranaki",
+        "subtitle": "Geonosis",
+        "text": "<b>Reclamar</b> - Inflige punto de daño indirecto ([indirect]) a ti mismo para infligir 1 punto de daño no alunable a un Personaje."
+    },
+    {
+        "code": "05180",
+        "name": "Pozo del generador de energía",
+        "subtitle": "Estrella de la Muerte",
+        "text": "<b>Reclamar</b> - Gira un dado a cualquier cara."
+    }
+]

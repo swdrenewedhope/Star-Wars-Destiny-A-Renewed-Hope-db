@@ -1,0 +1,38 @@
+[
+    {
+        "code": "-",
+        "name": "Pusta ścianka"
+    },
+    {
+        "code": "Dc",
+        "name": "Odrzucenie"
+    },
+    {
+        "code": "Dr",
+        "name": "Zakłócenie"
+    },
+    {
+        "code": "F",
+        "name": "Skupienie"
+    },
+    {
+        "code": "MD",
+        "name": "Obrażenia wręcz"
+    },
+    {
+        "code": "R",
+        "name": "Zasoby"
+    },
+    {
+        "code": "RD",
+        "name": "Obrażenia dystansowe"
+    },
+    {
+        "code": "Sh",
+        "name": "Osłona"
+    },
+    {
+        "code": "Sp",
+        "name": "Specjalny"
+    }
+]

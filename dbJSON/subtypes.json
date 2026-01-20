@@ -1,0 +1,206 @@
+[
+    {
+        "code": "ability",
+        "name": "Ability"
+    },
+    {
+        "code": "advisor",
+        "name": "Advisor"
+    },
+    {
+        "code": "apprentice",
+        "name": "Apprentice"
+    },
+    {
+        "code": "artillery",
+        "name": "Artillery"
+    },
+    {
+        "code": "bomb",
+        "name": "Bomb"
+    },
+    {
+        "code": "bounty",
+        "name": "Bounty"
+    },
+    {
+        "code": "bounty-hunter",
+        "name": "Bounty Hunter"
+    },
+    {
+        "code": "creature",
+        "name": "Creature"
+    },
+    {
+        "code": "cultist",
+        "name": "Cultist"
+    },
+    {
+        "code": "curse",
+        "name": "Curse"
+    },
+    {
+        "code": "death-star",
+        "name": "Death Star"
+    },
+    {
+        "code": "droid",
+        "name": "Droid"
+    },
+    {
+        "code": "engineer",
+        "name": "Engineer"
+    },
+    {
+        "code": "equipment",
+        "name": "Equipment"
+    },
+    {
+        "code": "ewok",
+        "name": "Ewok"
+    },
+    {
+        "code": "form",
+        "name": "Form"
+    },
+    {
+        "code": "format",
+        "name": "Format"
+    },
+    {
+        "code": "guard",
+        "name": "Guard"
+    },
+    {
+        "code": "gungan",
+        "name": "Gungan"
+    },
+    {
+        "code": "injury",
+        "name": "Injury"
+    },
+    {
+        "code": "inquisitor",
+        "name": "Inquisitor"
+    },
+    {
+        "code": "intel",
+        "name": "Intel"
+    },
+    {
+        "code": "jawa",
+        "name": "Jawa"
+    },
+    {
+        "code": "jedi",
+        "name": "Jedi"
+    },
+    {
+        "code": "leader",
+        "name": "Leader"
+    },
+    {
+        "code": "location",
+        "name": "Location"
+    },
+    {
+        "code": "mission",
+        "name": "Mission"
+    },
+    {
+        "code": "mod",
+        "name": "Mod"
+    },
+    {
+        "code": "move",
+        "name": "Move"
+    },
+    {
+        "code": "nightbrother",
+        "name": "Nightbrother"
+    },
+    {
+        "code": "partisan",
+        "name": "Partisan"
+    },
+    {
+        "code": "pilot",
+        "name": "Pilot"
+    },
+    {
+        "code": "pirate",
+        "name": "Pirate"
+    },
+    {
+        "code": "podracer",
+        "name": "Podracer"
+    },
+    {
+        "code": "scavenger",
+        "name": "Scavenger"
+    },
+    {
+        "code": "scoundrel",
+        "name": "Scoundrel"
+    },
+    {
+        "code": "shapeshifter",
+        "name": "Shapeshifter"
+    },
+    {
+        "code": "sith",
+        "name": "Sith"
+    },
+    {
+        "code": "spectre",
+        "name": "Spectre"
+    },
+    {
+        "code": "spell",
+        "name": "Spell"
+    },
+    {
+        "code": "spy",
+        "name": "Spy"
+    },
+    {
+        "code": "title",
+        "name": "Title"
+    },
+    {
+        "code": "trap",
+        "name": "Trap"
+    },
+    {
+        "code": "trooper",
+        "name": "Trooper"
+    },
+    {
+        "code": "vehicle",
+        "name": "Vehicle"
+    },
+    {
+        "code": "weapon",
+        "name": "Weapon"
+    },
+    {
+        "code": "witch",
+        "name": "Witch"
+    },
+    {
+        "code": "wookiee",
+        "name": "Wookiee"
+    },
+    {
+        "code": "musician",
+        "name": "Musician"
+    },
+    {
+        "code": "capital-ship",
+        "name": "Capital Ship"
+    },
+    {
+        "code": "twilek",
+        "name": "Twi'lek"
+    }
+]
