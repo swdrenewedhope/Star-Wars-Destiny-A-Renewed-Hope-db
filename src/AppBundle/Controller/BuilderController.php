@@ -479,7 +479,8 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
 		}
 
         $format_code = filter_var($request->get('format_code'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-        if(!$format_code) {
+        $format_code = $format_code ?: 'INF';
+		if(!$format_code) {
             return new Response('Cannot import deck without format');
         }
         $format = $em->getRepository('AppBundle:Format')->findOneBy(['code' => $format_code]);
