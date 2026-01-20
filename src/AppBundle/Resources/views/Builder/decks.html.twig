@@ -19,13 +19,9 @@
 <div class="col-md-12">
 	<a href="{{ path('deck_buildform') }}" class="btn btn-default btn-sm"{% if cannotcreate %} disabled="disabled"{% endif %}><span class="fa fa-plus"></span> {{ 'decks.form.new' | trans}}</a>
 	<div class="btn-group">
-		<!--<button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown"{% if cannotcreate %} disabled="disabled"{% endif %}>
-			<span class="fa fa-upload"></span> {{ 'decks.form.import.label' | trans}} <span class="caret"></span>
+		<button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown"{% if cannotcreate %} disabled="disabled"{% endif %}>
+			<span class="fa fa-upload"></span> Import Deck <span class="caret"></span>
 		</button>
-		<ul class="dropdown-menu" role="menu">
-			<li><a href="{{ path('deck_import') }}" id="btn-import-paste">{{ 'decks.form.import.copypaste' | trans}}</a></li>
-			<li><a href="#" onclick="$('#fileModal').modal('show')" id="btn-import-file">{{ 'decks.form.import.file' | trans}}</a></li>
-		</ul>-->
 	</div>
 </div>
 </div>
