@@ -186,54 +186,71 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
             $parse = $this->parseTextImport(file_get_contents($filename));
         }
 
-		$properties = array(
-				'name' => str_replace(".$origext", '', $origname),
-				'affiliation_code' => $parse['affiliation_code'],
-				'content' => json_encode($parse['content']),
-				'description' => $parse['description']
-		);
+		$properties = [
+    		'name' => str_replace(".$origext", '', $origname),
+    		'affiliation_code' => $parse['affiliation_code'] ?? '',
+    		'format_code' => $request->get('format_code'),
+    		'content' => json_encode($parse['content']),
+    		'description' => $parse['description'] ?? ''
+			];
+
+return $this->forward('AppBundle:Builder:save', $properties);
+
 
         return $this->forward('AppBundle:Builder:save', $properties);
     }
 
     public function parseTextImport ($text)
-    {
-        /* @var $em \Doctrine\ORM\EntityManager */
-        $em = $this->getDoctrine()->getManager();
+{
+    /* @var $em \Doctrine\ORM\EntityManager */
+    $em = $this->getDoctrine()->getManager();
 
-        $content = [];
-        $lines = explode("\n", $text);
-        $identity = null;
-        foreach ($lines as $line) {
-            $matches = [];
-            if (preg_match('/^\s*(\d)x?([\pLl\pLu\pN\-\.\'\!\: ]+)/u', $line, $matches)) {
-                $quantity = intval($matches[1]);
-                $name = trim($matches[2]);
-            } else
-                if (preg_match('/^([^\(]+).*x(\d)/', $line, $matches)) {
-                    $quantity = intval($matches[2]);
-                    $name = trim($matches[1]);
-                } else
-                    if (empty($identity) && preg_match('/([^\(]+):([^\(]+)/', $line, $matches)) {
-                        $quantity = 1;
-                        $name = trim($matches[1] . ":" . $matches[2]);
-                        $identity = $name;
-                    } else {
-                        continue;
-                    }
-            $card = $em->getRepository('AppBundle:Card')->findOneBy(array(
-                    'name' => $name
-            ));
+    $content = [];
+    $affiliation_code = '';
+    $description = '';
+
+    $lines = preg_split("/\r\n|\n|\r/", $text);
+
+    foreach ($lines as $line) {
+        $line = trim($line);
+        if ($line === '') continue;
+
+        if (!$affiliation_code) {
+            if (preg_match('/^(hero|villain|villian)$/i', $line, $m)) {
+                $word = strtolower($m[1]);
+                if ($word === 'villian') $word = 'villain';
+
+                $aff = $em->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $word]);
+
+                if (!$aff) {
+                    $aff = $em->getRepository('AppBundle:Affiliation')->findOneBy(['name' => ucfirst($word)]);
+                }
+
+                if ($aff) {
+                    $affiliation_code = $aff->getCode();
+                    continue;
+                }
+            }
+        }
+
+		if (preg_match('/^\s*(\d+)\s*x?\s*(.+?)(?:\s*\(|$)/u', $line, $m)) {
+            $quantity = (int) $m[1];
+            $name = trim($m[2]);
+
+            $card = $em->getRepository('AppBundle:Card')->findOneBy(['name' => $name]);
             if ($card) {
                 $content[$card->getCode()] = $quantity;
             }
         }
-        return array(
-                "content" => $content,
-                "description" => ""
-        );
-
     }
+
+    return [
+        'affiliation_code' => $affiliation_code,
+        'content' => $content,
+        'description' => $description
+    ];
+}
+
 
     public function parseOctgnImport ($octgn)
     {
