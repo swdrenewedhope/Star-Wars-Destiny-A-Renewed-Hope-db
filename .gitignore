@@ -22,6 +22,6 @@ tags
 .tags_swap
 .idea/
 .DS_Store
-.error_log
+error_log
 .user.ini
 /src/AppBundle/Resources/public/images/cards/
