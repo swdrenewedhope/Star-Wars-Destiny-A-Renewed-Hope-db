@@ -160,51 +160,45 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
     }
 
     public function fileimportAction (Request $request)
-    {
-
-        $filetype = filter_var($request->get('type'), FILTER_SANITIZE_STRING);
-        $uploadedFile = $request->files->get('upfile');
-        if (! isset($uploadedFile))
-            return new Response('No file');
-        $origname = $uploadedFile->getClientOriginalName();
-        $origext = $uploadedFile->getClientOriginalExtension();
-        $filename = $uploadedFile->getPathname();
-
-        if (function_exists("finfo_open")) {
-            // return mime type ala mimetype extension
-            $finfo = finfo_open(FILEINFO_MIME);
-
-            // check to see if the mime-type starts with 'text'
-            $is_text = substr(finfo_file($finfo, $filename), 0, 4) == 'text' || substr(finfo_file($finfo, $filename), 0, 15) == "application/xml";
-            if (! $is_text)
-                return new Response('Bad file');
-        }
-
-        if ($filetype == "octgn" || ($filetype == "auto" && $origext == "o8d")) {
-            $parse = $this->parseOctgnImport(file_get_contents($filename));
-        } else {
-            $parse = $this->parseTextImport(file_get_contents($filename));
-        }
-
-		$properties = [
-    		'name' => str_replace(".$origext", '', $origname),
-    		'affiliation_code' => $parse['affiliation_code'] ?? '',
-    		'format_code' => $format_code,
-    		'content' => json_encode($parse['content']),
-    		'description' => $parse['description'] ?? ''
-			];
-
-			$format_code = filter_var($request->get('format_code'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if (!$format_code) {
-   			 $format_code = 'INF'; 
-			}
-
-
-return $this->forward('AppBundle:Builder:save', $properties);
-
-
-        return $this->forward('AppBundle:Builder:save', $properties);
+{
+    $filetype = filter_var($request->get('type'), FILTER_SANITIZE_STRING);
+    $uploadedFile = $request->files->get('upfile');
+    if (!isset($uploadedFile)) {
+        return new Response('No file');
     }
+
+    $origname = $uploadedFile->getClientOriginalName();
+    $origext  = $uploadedFile->getClientOriginalExtension();
+    $filename = $uploadedFile->getPathname();
+
+    if (function_exists("finfo_open")) {
+        $finfo = finfo_open(FILEINFO_MIME);
+        $mime  = finfo_file($finfo, $filename);
+        $is_text = (substr($mime, 0, 4) === 'text') || (substr($mime, 0, 15) === 'application/xml');
+        if (!$is_text) {
+            return new Response('Bad file');
+        }
+    }
+
+    if ($filetype === "octgn" || ($filetype === "auto" && strtolower($origext) === "o8d")) {
+        $parse = $this->parseOctgnImport(file_get_contents($filename));
+    } else {
+        $parse = $this->parseTextImport(file_get_contents($filename));
+    }
+
+    $format_code = 'INF';
+
+    $properties = [
+        'name'             => preg_replace('/\.' . preg_quote($origext, '/') . '$/i', '', $origname),
+        'affiliation_code' => $parse['affiliation_code'] ?? '',
+        'format_code'      => $format_code,
+        'content'          => json_encode($parse['content'] ?? []),
+        'description'      => $parse['description'] ?? ''
+    ];
+
+    return $this->forward('AppBundle:Builder:save', $properties);
+}
+
 
     public function parseTextImport ($text)
 {
