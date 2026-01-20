@@ -533,8 +533,9 @@ var OptionsTemplate = Handlebars.templates['card_modal-options'];
 
 ui.build_quantity_options = function build_quantity_options(card, prefix) {
 	
+	var multiple_copies = (card.type_code == 'character' && !card.is_unique && card.maxqty.dice > 1);	
 	var non_dice_elite = (!card.has_die && card.points && card.points.includes("/"));
-	
+
 	if(multiple_copies) {
 		if(!card.indeck.dices) {
 			card.indeck.dices = [];
@@ -548,20 +549,20 @@ ui.build_quantity_options = function build_quantity_options(card, prefix) {
 			}
 		}
 	}
-	
+
 	if(non_dice_elite) {
-		if(!card.indeck.tier) {
-			card.indeck.tier = [];
-			for(var i = 0; i < card.points.split("/").length; i++) {
-				// Will provide some kind of retro-compatibility
-				card.indeck.tier.push(i < card.indeck.cards ? 1 : 0);
-			}
-		} else {
-			for(var i = card.indeck.tier.length; i < card.points.split("/").length; i++) {
-				card.indeck.tier.push(0);
-			}
-		}
-	}
+    if(!card.indeck.tier) {
+        card.indeck.tier = [];
+        for(var i = 0; i < card.points.split("/").length; i++) {
+            // Will provide some kind of retro-compatibility
+            card.indeck.tier.push(i < card.indeck.cards ? 1 : 0);
+        }
+    } else {
+        for(var i = card.indeck.tier.length; i < card.points.split("/").length; i++) {
+            card.indeck.tier.push(0);
+        }
+    }
+}
 
 	return OptionsTemplate({
 		card: card,

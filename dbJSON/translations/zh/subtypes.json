@@ -1,0 +1,66 @@
+[
+    {
+        "code": "ability",
+        "name": "能力"
+    },
+    {
+        "code": "artillery",
+        "name": "炮台"
+    },
+    {
+        "code": "bounty-hunter",
+        "name": "赏金猎人"
+    },
+    {
+        "code": "droid",
+        "name": "机器人"
+    },
+    {
+        "code": "equipment",
+        "name": "装备"
+    },
+    {
+        "code": "jawa",
+        "name": "贾瓦"
+    },
+    {
+        "code": "jedi",
+        "name": "绝地"
+    },
+    {
+        "code": "location",
+        "name": "地区"
+    },
+    {
+        "code": "pilot",
+        "name": "驾驶员"
+    },
+    {
+        "code": "scoundrel",
+        "name": "侠盗"
+    },
+    {
+        "code": "sith",
+        "name": "西斯"
+    },
+    {
+        "code": "title",
+        "name": "头衔"
+    },
+    {
+        "code": "trooper",
+        "name": "士兵"
+    },
+    {
+        "code": "vehicle",
+        "name": "载具"
+    },
+    {
+        "code": "weapon",
+        "name": "武器"
+    },
+    {
+        "code": "witch",
+        "name": "女巫"
+    }
+]

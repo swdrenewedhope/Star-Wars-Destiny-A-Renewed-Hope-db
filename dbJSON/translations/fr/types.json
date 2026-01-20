@@ -1,0 +1,30 @@
+[
+    {
+        "code": "battlefield",
+        "name": "Champ de bataille"
+    },
+    {
+        "code": "character",
+        "name": "Personnage"
+    },
+    {
+        "code": "event",
+        "name": "Événement"
+    },
+    {
+        "code": "support",
+        "name": "Soutien"
+    },
+    {
+        "code": "upgrade",
+        "name": "Amélioration"
+    },
+    {
+        "code": "plot",
+        "name": "Intrigue"
+    },
+    {
+        "code": "downgrade",
+        "name": "Régression"
+    }
+]

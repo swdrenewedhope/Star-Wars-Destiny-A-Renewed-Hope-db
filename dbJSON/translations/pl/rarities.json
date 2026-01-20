@@ -1,0 +1,22 @@
+[
+    {
+        "code": "C",
+        "name": "Powszechna"
+    },
+    {
+        "code": "L",
+        "name": "Legendarna"
+    },
+    {
+        "code": "R",
+        "name": "Rzadka"
+    },
+    {
+        "code": "S",
+        "name": "Stała"
+    },
+    {
+        "code": "U",
+        "name": "Częsta"
+    }
+]

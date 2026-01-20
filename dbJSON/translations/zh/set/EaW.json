@@ -1,0 +1,871 @@
+[
+    {
+        "code": "03001",
+        "flavor": "A veteran of the battles over Endor and Jakku, Captain Ree was an accomplished pilot and commander.",
+        "name": "塞恩娜·雷",
+        "subtitle": "驾驶老手",
+        "text": "<b>行动</b> - 花费2个资源来准备一个<i>载具</i>。"
+    },
+    {
+        "code": "03002",
+        "flavor": "\"All remaining systems will bow to the First Order!",
+        "name": "哈克斯将军",
+        "subtitle": "指挥家的野心",
+        "text": "[special] - 从手牌中打出一张红色事件，你每有一名角色，其费用下降1点。"
+    },
+    {
+        "code": "03003",
+        "flavor": "The IG-100 MagnaGuard droid could withstand massive damage before total system failure.",
+        "name": "磁卫机器人",
+        "text": "在该角色由于受到过多伤害将要被击败前，变为在该轮结束时将该角色击败。"
+    },
+    {
+        "code": "03004",
+        "flavor": "\"I study the art of war.\"",
+        "name": "索龙",
+        "subtitle": "高级策略家",
+        "text": "在你启动该角色后，你可以宣告一个数字，然后查看对手手牌，并选择其中一张费用为该数字的卡牌丢弃。"
+    },
+    {
+        "code": "03005",
+        "flavor": "The All Terrain Defense Pod was a heavily armed walker used to protect Imperial assets on occupied worlds.",
+        "name": "AT-DP",
+        "text": "[special] - 丢弃场上一张费用小于等于2的支援卡。"
+    },
+    {
+        "code": "03006",
+        "flavor": "\"We have thousands of probe droids searching the galaxy.\" <cite>Admiral Ozzel</cite>",
+        "name": "探索机器人",
+        "text": "伏击.\n[special] - 查看一位对手随机2张手牌，并丢弃其中任意数量的事件卡。"
+    },
+    {
+        "code": "03007",
+        "name": "T-7 离子干扰步枪",
+        "text": "你必须与一名红色角色保持联络才能打出此牌。\n<b>行动</b> - 丢弃一张手牌，将该骰子转到比当前显示数量多1点的那一面。"
+    },
+    {
+        "code": "03008",
+        "flavor": "\"Are you finished messing around?\"",
+        "name": "昆兰·沃斯",
+        "subtitle": "黑暗门徒",
+        "text": "[special] - 如果你的手牌比一位对手多，对其一名角色造成双方手牌差值的伤害。"
+    },
+    {
+        "code": "03009",
+        "name": "黑暗面的仆人",
+        "text": "在你的另一名蓝色角色被击败前，你可以将其持有的一张强化卡移动到该角色上<em>(将那张强化卡的骰子放回到卡牌上)</em>。"
+    },
+    {
+        "code": "03010",
+        "name": "七妹",
+        "subtitle": "灵巧的裁判官",
+        "text": "在你启动该角色后，你可以透支一个ID9搜索机器人 ([EaW]13) 骰并放入你的牌池中 <em>(其X值等于你骰池中ID9搜索机器人骰的数量)</em>. 在结算或移除那个骰子后将其放在一边。"
+    },
+    {
+        "code": "03011",
+        "flavor": "\"At last, a fight that might be worthy of my time.\"",
+        "name": "大裁判官",
+        "subtitle": "西斯忠诚的手下",
+        "text": "[special] - 移除一个显示空白面([blank])的角色骰. 然后对那名角色造成2点伤害。"
+    },
+    {
+        "code": "03012",
+        "flavor": "The TIE/x1 was an advanced prototype flown by Darth Vader at the Battle of Yavin",
+        "name": "达斯·维德的强化TIE",
+        "text": "[special] - 花费2个资源，对一名角色造成X点伤害，X为该角色持有的伤害标记数量。"
+    },
+    {
+        "code": "03013",
+        "name": "ID9 搜索机器人",
+        "text": "该骰子的X数值等于你骰池中ID9搜索机器人骰子数<em>(在结算骰子时，请一个一个地结算该支援骰)。</em>"
+    },
+    {
+        "code": "03014",
+        "flavor": "\"You want this, don't you?\" <cite>Emperor Palpatine</cite>",
+        "name": "诱惑",
+        "text": "[special] - 选择一位对手。该对手可以抽取2张卡牌。如果他选择抽牌，你获得2个资源。如果他拒绝抽牌，你抽取2张卡牌。"
+    },
+    {
+        "code": "03015",
+        "name": "大裁判官的光剑",
+        "text": "蓝色角色专用。\n[special] - -将一个角色骰转到空白面 ([blank])。 重掷该武器骰而不是将其移除。"
+    },
+    {
+        "code": "03016",
+        "flavor": "\"Inform the First Order… I've found the droid.\"",
+        "name": "贝津·内塔尔",
+        "subtitle": "操纵大师",
+        "text": "[special] - 对一名角色造成1点伤害，如果那名角色没有受到过任何伤害，则改为对其造成3点伤害。"
+    },
+    {
+        "code": "03017",
+        "name": "博斯克",
+        "subtitle": "伍基屠杀者",
+        "text": "在你启动这名角色后，你可以选择一位对手的一名角色，将其1点伤害移动到另一名角色上 <em>(无视护盾)</em>."
+    },
+    {
+        "code": "03018",
+        "flavor": "\"I'll take on any job… for the right price.\"",
+        "name": "凯德·贝恩",
+        "subtitle": "恶毒的佣兵",
+        "text": "<b>行动</b> - 从手中打出一张强化卡到该角色上 <em>(依然需要支付卡牌费用)</em>. 然后你可以启动该角色。"
+    },
+    {
+        "code": "03019",
+        "name": "加莫人守卫",
+        "text": "守卫者(在你启动这名角色之前，你可以移除一名对手的一个带有伤害值的骰子，并对该角色造成骰子数值的伤害)。"
+    },
+    {
+        "code": "03020",
+        "flavor": "Bossk's ship was a YV-666 light freighter modified to serve the bounty hunter's needs.",
+        "name": "犬牙号",
+        "text": "在你启动该支援卡后，你可以移除你的一个黄色角色骰，来获得1个资源。"
+    },
+    {
+        "code": "03021",
+        "name": "绳索发射器",
+        "text": "黄色角色专用。\n[special] - 选择一名角色。移除其一个角色骰，或者花费1个资源来移除其2个角色骰。"
+    },
+    {
+        "code": "03022",
+        "name": "LL-30 爆能手枪",
+        "text": "伏击。\n调配。\n[special] - 将你另一个骰子转到远程伤害面 ([ranged])."
+    },
+    {
+        "code": "03023",
+        "name": "雷比-V10喷射枪",
+        "text": "<b>行动</b> - 花费2个资源，并移除显示远程伤害面 ([ranged]) 的该骰子，并对一位对手的所有角色各造成该骰子所示数值的伤害。"
+    },
+    {
+        "code": "03024",
+        "name": "里肯将军",
+        "subtitle": "防御首脑",
+        "text": "在你启动这名角色后，你场上每有一名至少带有一枚护盾的角色，丢弃一位对手牌堆顶部1张卡牌。各造成该骰子所示数值的伤害。"
+    },
+    {
+        "code": "03025",
+        "flavor": "\"If all you do is fight for your own life, then your life is worth nothing!\"",
+        "name": "赫拉·辛杜拉",
+        "subtitle": "凤凰领袖",
+        "text": "[special] -从手中免费打出一张 <i>载具</i> 卡。 在本轮的行动阶段结束后，如果那张载具卡依然在场，将其放回你的手中。"
+    },
+    {
+        "code": "03026",
+        "flavor": "\"Why does she get a blaster and I don't?\"",
+        "name": "K-2SO",
+        "subtitle": "重新编程的机器人",
+        "text": "为该角色打出的 <i>武器</i> 卡，费用上升2点。\n每场游戏中，在你第一次打出或转移 <i>武器</i> 卡到该角色上后，准备该角色。"
+    },
+    {
+        "code": "03027",
+        "flavor": "The first time in the cockpit was always thrilling… even if it was the last.",
+        "name": "菜鸟驾驶员",
+        "text": "你启动这名角色后，你可以重掷一个你 <i>载具</i> 骰。"
+    },
+    {
+        "code": "03028",
+        "flavor": "The Ghost was a specialized VCX-100 light freighter that served as the base of operations for Hera Syndulla's rebel cell.",
+        "name": "幽灵号",
+        "text": "[special] - 结算该骰子另外一面。"
+    },
+    {
+        "code": "03029",
+        "name": "Y-翼战机",
+        "text": "[special] - 强制一位对手对其角色造成伤害，或者丢弃资源，直到造成的伤害和丢弃的资源总数为4为止。"
+    },
+    {
+        "code": "03030",
+        "name": "A280 爆能步枪",
+        "text": "调配。\n[special] - 给你的角色2枚护盾，你可以自由分配。"
+    },
+    {
+        "code": "03031",
+        "flavor": "\"I am no Jedi.\"",
+        "name": "阿索卡·塔诺",
+        "subtitle": "原力执行者",
+        "text": "每一轮中，在你第一次启动该角色后，你可以支付等同于所投掷骰子数量的资源，来立刻准备该角色。"
+    },
+    {
+        "code": "03032",
+        "flavor": "That Jedi passed down their wisdom and craft from Master to Padawan.",
+        "name": "绝地导师",
+        "text": "在你启动这名角色后，你可以将你的一个角色骰转到与该骰子显示面图标相同的面。"
+    },
+    {
+        "code": "03033",
+        "flavor": "\"There's a lot more at stake than you realize.\"",
+        "name": "卡南·贾勒斯",
+        "subtitle": "绝地反叛军",
+        "text": "在你执行一个行动前，你可以结算一个该卡的角色骰。"
+    },
+    {
+        "code": "03034",
+        "flavor": "\"This party's over.\"",
+        "name": "梅斯·温杜",
+        "subtitle": "绝地冠军",
+        "text": "<b>行动</b> - 移除一个该角色骰，击败场上一名剩余生命值小于等于2的角色。"
+    },
+    {
+        "code": "03035",
+        "flavor": "\"Look, good against remotes is one thing. Good against the living? That's something else.\" <cite>Han Solo</cite>",
+        "name": "训练遥控球",
+        "text": "该支援骰的修正值面，可以与任意一个蓝色角色骰进行搭配。"
+    },
+    {
+        "code": "03036",
+        "flavor": "\"The council has assembled.\" <cite>Mace Windu</cite>",
+        "name": "委员会会长",
+        "text": "蓝色角色专用。\n[special] - 消耗该强化卡，并支付2个资源，来准备一名角色。"
+    },
+    {
+        "code": "03037",
+        "name": "协调",
+        "text": "[special] -给你每名角色一枚护盾。"
+    },
+    {
+        "code": "03038",
+        "flavor": "\"Hey, a kid's gotta eat.\"",
+        "name": "埃兹拉·包力格",
+        "subtitle": "原力盗贼",
+        "text": "你可以为该角色打出蓝色强化卡，无视其打出限制。\n[special] - 从一位对手处拿取1个资源。"
+    },
+    {
+        "code": "03039",
+        "flavor": "\"Yeah. I'm responsible these days. It's the price you pay for being successful.\"",
+        "name": "兰多·卡瑞辛",
+        "subtitle": "银河企业家",
+        "text": "游戏开始时，你额外获得1个资源。"
+    },
+    {
+        "code": "03040",
+        "flavor": "\"I'll damage you if you don't shut up.\"",
+        "name": "萨宾·雷恩",
+        "subtitle": "爆炸专家",
+        "text": "在你启动这名角色前，你可以从弃牌堆中为该角色打出一张 <i>武器</i> 卡。如果该卡名称带有 \"热能\" 一词，其费用降低1点。"
+    },
+    {
+        "code": "03041",
+        "flavor": "\"It's not wise to upset a wookiee.\" <cite>Han Solo</cite>",
+        "name": "伍基人战士"
+    },
+    {
+        "code": "03042",
+        "flavor": "C1-10P was a temperamental astromech better known to the members of its rebel cell as \"Chopper\".",
+        "name": "切宝",
+        "text": "[special] - 移除一个显示点数小于等于2的骰"
+    },
+    {
+        "code": "03043",
+        "name": "能量弹弓",
+        "text": "在你结算该骰子后，你可以花费1个资源来重掷该骰子，而不是将其移除。"
+    },
+    {
+        "code": "03044",
+        "name": "砍价大师",
+        "text": "[special] - 查看一位对手的手牌，并从中选择2张牌。对手可以选择花费2个资源，否则将所选牌丢弃。"
+    },
+    {
+        "code": "03045",
+        "flavor": "The Incom Corporation T-47 airspeeder was a rugged low-altitude vehicle prized by the Alliance for its durability.",
+        "name": "T-47 飞行艇",
+        "text": "[special] - 消耗一张支援卡，或者抽取2张卡牌。"
+    },
+    {
+        "code": "03046",
+        "flavor": "Developed by the Geonosians, the LR1K generated deadly sonic blasts.",
+        "name": "LR1K 声波炮",
+        "text": "在你结算该骰子前，你可以消耗你的一个角色。如果你这么做，就无需支付骰子的费用。"
+    },
+    {
+        "code": "03047",
+        "name": "电杖",
+        "text": "当使用该强化骰修正强化角色的角色骰时，那个骰子的费用降低1点。"
+    },
+    {
+        "code": "03048",
+        "name": "驾驶天赋",
+        "text": "在你启动强化角色后，你可以准备一张 <i>载具</i>卡。"
+    },
+    {
+        "code": "03049",
+        "name": "古老的光剑",
+        "text": "<b>行动</b> - 治愈强化角色2点伤害。将该强化卡放置在你牌堆底部。"
+    },
+    {
+        "code": "03050",
+        "name": "记忆读取",
+        "text": "蓝色角色专用。\n[special] - 抽取X张卡牌，X等于一个 <i>装备</i> or <i>武器</i> 骰所显示的数值。然后你可以移除那个骰子。"
+    },
+    {
+        "code": "03051",
+        "name": "双持光剑",
+        "text": "你启动强化角色后，如果其持有另一个蓝色 <i>武器</i>, 你可以给该角色一枚护盾，或者选择一名角色移除其一枚护盾。"
+    },
+    {
+        "code": "03052",
+        "name": "武器舱",
+        "text": "[special] - 从手中打出一张 <i>武器</i> 卡，其费用降低2点。"
+    },
+    {
+        "code": "03053",
+        "name": "BD-1 切割者 振动斧",
+        "text": "在该骰子对一名角色造成伤害前，你可以移除那名角色所有的护盾。"
+    },
+    {
+        "code": "03054",
+        "name": "要挟",
+        "text": "黄色角色专用。\n[special] - 选择一名对手。如果你持有显示远程伤害面 ([ranged]) 的骰子数量比对手多，从该对手处拿取1个资源。"
+    },
+    {
+        "code": "03055",
+        "flavor": "The X-8 Night Sniper's computerized scope and built-in silencer made it a weapon of choice for Lando Calrissian.",
+        "name": "X-8 夜用狙击枪",
+        "text": "伏击。\n<b>行动</b> - 花费1个资源，将该骰子转移到任意面。"
+    },
+    {
+        "code": "03056",
+        "flavor": "Developed by Incom Corporation and Subpro, the Z-95 Headhunter was a versatile snub-fighter that continued to see use long after it was surpassed by the T-65 X-Wing.",
+        "name": "Z-95 猎头者 "
+    },
+    {
+        "code": "03057",
+        "flavor": "\"We'll let fate decide.\" <cite>Watto</cite>",
+        "name": "机会之骰",
+        "text": "在你启动强化角色前，你必须支付1个资源，否则将该卡放回你的手中。"
+    },
+    {
+        "code": "03058",
+        "flavor": "Electromagnetic pulse grenades were extremely effective against weapon platforms with electronic systems.",
+        "name": "EMP 手雷",
+        "text": "[special] - 丢弃场上一张 <i>机器人</i> 或 <i>载具</i> 卡。然后将该强化卡丢弃。"
+    },
+    {
+        "code": "03059",
+        "name": "榜样的力量",
+        "text": "在你启动强化角色后，你可以启动你的一张支援卡。"
+    },
+    {
+        "code": "03060",
+        "name": "散射爆能枪",
+        "text": "[special] - 对最多4名角色各造成1点伤害。\n<b>行动</b> - 移除强化角色的一个角色骰，将该武器骰转到任意一面。"
+    },
+    {
+        "code": "03061",
+        "name": "征用",
+        "text": "结算一位对手的一张 <i>载具</i> 卡，视为你是骰子的控制者。你无须支付那个载具骰的费用。"
+    },
+    {
+        "code": "03062",
+        "flavor": "\"Watch that crossfire, boys.\" <cite>Luke Skywalker</cite>",
+        "name": "交叉开火",
+        "text": "移除一个显示有费用值的骰子，或者花费1个资源来移除2个显示有费用值的骰子。"
+    },
+    {
+        "code": "03063",
+        "name": "放下武器!",
+        "text": "如果你与2名红色角色保持联络，丢弃一名准备状态角色的一张 <i>武器</i> 卡。"
+    },
+    {
+        "code": "03064",
+        "name": "帝国的支援",
+        "text": "伏击。\n从你手中打出一张支援卡，你每有一名角色，那张卡费用降低1点。"
+    },
+    {
+        "code": "03065",
+        "name": "准备战争",
+        "text": "只有这是本轮第一个行动时 <em>(其他玩家都没有执行行动)</em>，才能打出此卡。\n获得1个资源。"
+    },
+    {
+        "code": "03066",
+        "name": "红色警戒",
+        "text": "准备一名非独特红色角色。"
+    },
+    {
+        "code": "03067",
+        "name": "无谋的策略",
+        "text": "结算你的一个骰子，其数值上升X点，X为该骰子面的费用值。"
+    },
+    {
+        "code": "03068",
+        "name": "收押囚犯",
+        "text": "选择一位对手。该对手每有一名被击败的角色，必须随机丢弃2张手牌。"
+    },
+    {
+        "code": "03069",
+        "name": "帝国总部",
+        "text": "在你结算一个带有费用值的骰子前，你可以消耗该支援卡，令其费用降低1点。"
+    },
+    {
+        "code": "03070",
+        "name": "如你所说",
+        "text": "结算你的一个角色骰，其图标视为集中 ([focus]) <em>(其数值不变)</em>。"
+    },
+    {
+        "code": "03071",
+        "name": "迫至一隅",
+        "text": "对一名角色造成X点伤害，X为一位对手骰池中显示空白面 ([blank])的骰子数。"
+    },
+    {
+        "code": "03072",
+        "flavor": "\"Your feeble skills are no match for the power of the dark side.\" <cite>Emperor Palpatine</cite>",
+        "name": "不屈不挠",
+        "text": "你只有正好一名角色时，才能打出此卡。\n给一名蓝色角色3枚护盾。"
+    },
+    {
+        "code": "03073",
+        "name": "这些都会是我的",
+        "text": "将一位对手所有显示空白面 ([blank]) 的骰子转到任意面。然后以你喜欢的顺序结算这些骰子，视为你是骰子的控制者。"
+    },
+    {
+        "code": "03074",
+        "flavor": "The First Order executed every member of the village on Jakku rather than leave any witnesses.",
+        "name": "屠杀干净",
+        "text": "对所有对手全部非独特角色各造成1点伤害。"
+    },
+    {
+        "code": "03075",
+        "name": "强硬",
+        "text": "结算你任意数量的蓝色并显示伤害面 ([ranged] 或 [melee]) 的骰子，顺序任意，将这些伤害视为不可阻挡。"
+    },
+    {
+        "code": "03076",
+        "name": "阴险",
+        "text": "<b>行动</b> - 消耗该支援卡，如果有一位对手的一个角色骰显示空白面 ([blank])，你获得一个资源。"
+    },
+    {
+        "code": "03077",
+        "name": "憎恶",
+        "text": "调配。\n在你启动强化角色后，你可以对其造成1点伤害，然后对另一名角色造成1点伤害。"
+    },
+    {
+        "code": "03078",
+        "name": "无序",
+        "text": "移除你的一个黄色骰子。然后对一位对手所有角色各造成那个骰子数值的伤害。"
+    },
+    {
+        "code": "03079",
+        "name": "追杀令",
+        "text": "抽取X张卡牌，X为一位对手当前的角色数量。"
+    },
+    {
+        "code": "03080",
+        "name": "大量购买",
+        "text": "花费任意数量的资源。然后丢弃一位对手牌堆顶部X张牌，X等于你花费的资源量。"
+    },
+    {
+        "code": "03081",
+        "name": "强迫",
+        "text": "如果你与一名黄色角色保持联络，展示一位对手的手牌，并从中选择一张事件卡。如果可以的话，该玩家下一个行动必须打出该事件。"
+    },
+    {
+        "code": "03082",
+        "name": "生意为上",
+        "text": "移除你任意数量的黄色骰子。每移除一个骰子，获得1个资源。"
+    },
+    {
+        "code": "03083",
+        "flavor": "The best gear is hard to come by legality.",
+        "name": "盗窃货物",
+        "text": "你每有一名黄色角色，可以从手中免费为那名角色打出一张强化卡。"
+    },
+    {
+        "code": "03084",
+        "name": "二重阴影",
+        "text": "如果你与两名同名角色保持联络，移除最多2个骰子。"
+    },
+    {
+        "code": "03085",
+        "flavor": "The Hutts were powerful gangsters with an interplanetary criminal empire.",
+        "name": "赫特的人脉",
+        "text": "<b>行动</b> - 消耗该支援卡，强制一位对手选择失去1个资源，或者选择其一个骰子丢弃。"
+    },
+    {
+        "code": "03086",
+        "name": "致命打击",
+        "text": "<b>行动</b> - 消耗该强化卡，并移除强化角色的一个角色骰，对一名角色造成2点不可阻挡的伤害。"
+    },
+    {
+        "code": "03087",
+        "name": "无人生还",
+        "text": "对一位对手每名已经受过伤害的角色，各造成1点伤害。"
+    },
+    {
+        "code": "03088",
+        "name": "拘留中心",
+        "text": "<b>行动</b> - 行动 - 消耗该支援卡，移除一个角色骰。然后任意玩家可以移除其一个角色骰来丢弃该支援卡。"
+    },
+    {
+        "code": "03089",
+        "name": "前线无战事",
+        "text": "从你的角色中移除任意数量的护盾。然后丢弃一位手牌堆顶部X张牌，X等于你移除的护盾数。"
+    },
+    {
+        "code": "03090",
+        "name": "保卫战",
+        "text": "给你的角色5枚护盾，你可以任意分配。"
+    },
+    {
+        "code": "03091",
+        "name": "随缘攻击",
+        "text": "如果你与一名红色角色保持联络，重掷你任意数量的骰子。然后对一名角色造成X点伤害，X你重掷骰子中显示远程伤害面 ([ranged])骰子的数量。"
+    },
+    {
+        "code": "03092",
+        "flavor": "\"It's risky, but we can't hold out much longer.\" <cite>Leia Organa</cite>",
+        "name": "后方防卫",
+        "text": "移除最多X个骰子，X为你骰池中显示护盾面 ([shield])的红色骰子数。"
+    },
+    {
+        "code": "03093",
+        "name": "鲁莽的冲锋",
+        "text": "选择你场上一张 <i>载具</i> 卡上的骰子，将其投掷后放入你的骰池。如果投掷结果为空白([blank]) ，将该<i>载具</i> 丢弃。"
+    },
+    {
+        "code": "03094",
+        "name": "紧急报告",
+        "text": "查看一位对手牌堆顶部3张卡牌，并以你喜欢的顺序放回。然后你可以丢弃那个牌堆顶部的1张卡牌。"
+    },
+    {
+        "code": "03095",
+        "name": "迅击",
+        "text": "移除一个显示修正值 <em>(带有+的数值)</em>的骰子。"
+    },
+    {
+        "code": "03096",
+        "name": "激励",
+        "text": "<b>行动</b> - 消耗该支援卡，随机展示你的一张手牌。你可以打出展示的牌，其费用降低1点；如果展示的是一张载具<i>vehicle</i>卡，则其费用降低2点。"
+    },
+    {
+        "code": "03097",
+        "name": "护盾生成器",
+        "text": "在你的一张支援卡由于对手的卡牌或骰子效果将要被丢弃前，你可以丢弃该支援卡作为替代。"
+    },
+    {
+        "code": "03098",
+        "name": "内心安宁",
+        "text": "将所有带有至少一个空白面的骰子转到空白面 ([blank])。"
+    },
+    {
+        "code": "03099",
+        "flavor": "\"This is your father's lightsaber.\" <cite>Obi-Wan Kenobi</cite>",
+        "name": "赠与",
+        "text": "一名你的蓝色角色的一张非<i>技能 </i> 强化卡，转移给另一名角色 <em>(将该强化卡的骰子放回卡上)</em>。"
+    },
+    {
+        "code": "03100",
+        "name": "创造平衡",
+        "text": "选择一位手牌比你多的对手。你持续抽牌，直到你与那位对手手牌数一致。"
+    },
+    {
+        "code": "03101",
+        "name": "收获水晶",
+        "text": "从手中打出一张费用大于等于3的蓝色卡牌，其费用降低1点。"
+    },
+    {
+        "code": "03102",
+        "name": "秘密任务",
+        "text": "选择一个颜色 <em>(蓝、红、黄、灰)</em>。然后丢弃一位对手牌堆顶部1张卡牌。如果那张卡牌是你所选的颜色，获得1个资源。"
+    },
+    {
+        "code": "03103",
+        "name": "相信原力",
+        "text": "重掷任意数量的蓝色骰子。"
+    },
+    {
+        "code": "03104",
+        "name": "火葬",
+        "text": "在你的一名蓝色角色被击败前，你可以将该角色的一张强化卡，转移给你的另一名角色 <em>(将该强化卡的骰子放回卡牌上)</em>。"
+    },
+    {
+        "code": "03105",
+        "name": "尤达的房间",
+        "text": "<b>行动</b> - 消耗该支援卡，并移除一个你的角色骰，治愈那名角色2点伤害。"
+    },
+    {
+        "code": "03106",
+        "name": "无所畏惧",
+        "text": "在你启动强化角色后，你可以给其1枚护盾，并抽取1张卡牌。"
+    },
+    {
+        "code": "03107",
+        "name": "对抗命运",
+        "text": "重掷你的一个骰子。然后，如果投掷前后的图标一致，你可以立刻结算该骰子，并且骰子数值上升2点。"
+    },
+    {
+        "code": "03108",
+        "name": "评价",
+        "text": "移除你的一个显示资源面 ([resource]) 的骰子，然后从手中打出一张支援卡，其费用降低2点。"
+    },
+    {
+        "code": "03109",
+        "name": "不好的预感",
+        "text": "移除你的一个骰子，重掷任意数量的骰子。"
+    },
+    {
+        "code": "03110",
+        "name": "无间道",
+        "text": "移除你的一个黄色角色骰，结算一位对手的一个骰子，视为你是骰子的控制者。"
+    },
+    {
+        "code": "03111",
+        "name": "模仿",
+        "text": "在你的角色之间任意移动伤害 <em>(无视护盾，但你不能令一名角色持有的伤害超过其生命值)</em>。"
+    },
+    {
+        "code": "03112",
+        "name": "本地巡逻队",
+        "text": "强制一位对手选择失去1个资源，或者丢弃牌堆顶部2张卡牌。"
+    },
+    {
+        "code": "03113",
+        "name": "快速逃脱",
+        "text": "移除最多2个显示伤害面 ([ranged] or [melee])的骰子。然后你本轮中，必须跳过所有剩余的行动。"
+    },
+    {
+        "code": "03114",
+        "name": "韧劲",
+        "text": "只有一位对手的角色数量比你多时，才能打出此卡。\n消耗那位对手的一名角色。"
+    },
+    {
+        "code": "03115",
+        "name": "暗中干扰",
+        "text": "在你执行一个行动后，你可以消耗该支援卡，并选择一位对手。该对手下一个回合中，不能执行跟你一样的行动。"
+    },
+    {
+        "code": "03116",
+        "name": "热能涂料",
+        "text": "在你启动强化角色后，强制一位对手选择其一名角色造成1点伤害。然后你可以丢弃该强化卡，对那名角色再造成1点伤害。"
+    },
+    {
+        "code": "03117",
+        "name": "展开防御",
+        "text": "重掷你的一个角色骰。然后治愈该角色X点伤害，X为骰子掷出的数值。"
+    },
+    {
+        "code": "03118",
+        "name": "火力掩盖",
+        "text": "重掷一位对手最多X个骰子，X为你骰池中显示远程伤害面 ([ranged])的骰子数。"
+    },
+    {
+        "code": "03119",
+        "name": "部署战队",
+        "text": "按照你喜欢的顺序，启动任意数量张你的支援卡。"
+    },
+    {
+        "code": "03120",
+        "name": "落后",
+        "text": "从你开始，每位玩家可以选择1张强化卡。丢弃场上所有未被选择的强化卡。"
+    },
+    {
+        "code": "03121",
+        "name": "假动作",
+        "text": "启动你的一名角色。然后你可以移除该角色所有的角色骰和强化骰，并准备该角色。"
+    },
+    {
+        "code": "03122",
+        "name": "侧面转移",
+        "text": "对一名角色造成X点伤害，X为你骰池中支援骰的数量。"
+    },
+    {
+        "code": "03123",
+        "name": "战斗升温",
+        "text": "选择一位对手。该对手将其任意数量的骰子转到伤害面([ranged] or [melee])。你可以将你任意数量的骰子转到伤害面 ([ranged] or [melee])。"
+    },
+    {
+        "code": "03124",
+        "name": "受困",
+        "text": "如果你与一架 <i>载具</i> 保持联络，移除一个骰子。"
+    },
+    {
+        "code": "03125",
+        "name": "胜利将属于我们",
+        "text": "宣告战场，即使对手在本轮已经宣告过战场。"
+    },
+    {
+        "code": "03126",
+        "name": "降落区域",
+        "text": "在你宣告战场后，你可以再该支援卡上放置1个伤害标记。\n<b>行动</b> - 消耗该支援卡，将该卡上任意数量的伤害转移给1名角色 <em>(无视护盾)</em>."
+    },
+    {
+        "code": "03127",
+        "name": "技术小队",
+        "text": "在你打出一张支援卡前，你可以消耗该支援卡，令其费用降低1点。"
+    },
+    {
+        "code": "03128",
+        "name": "意志对决",
+        "text": "从你开始，每位玩家启动其一名角色。然后每位玩家计算所选角色的角色骰点数之和，最低的玩家必须移除其选择角色的角色骰。"
+    },
+    {
+        "code": "03129",
+        "name": "原力幻视",
+        "text": "伏击。\n查看一位玩家牌堆顶部5张卡牌 <em>(不能改变其顺序)</em>。"
+    },
+    {
+        "code": "03130",
+        "name": "拔出光剑",
+        "text": "如果你与一名蓝色角色保持联络，在你的牌堆中查找一张蓝色 <i>武器</i>，将其展示后加入手牌。然后混洗你的牌堆。"
+    },
+    {
+        "code": "03131",
+        "name": "光剑训练",
+        "text": "将你最多2个蓝色 <i>武器</i> 骰转到任意面。"
+    },
+    {
+        "code": "03132",
+        "name": "绝不投降",
+        "text": "重掷你的一个显示空白面 ([blank])的蓝色角色骰。然后可以立刻结算该骰子。"
+    },
+    {
+        "code": "03133",
+        "name": "熟悉的事物",
+        "text": "如果你与2名蓝色角色保持联络，随机展示一位对手的1张手牌。然后你可以将最多X个骰子转移到任意面，X为展示卡牌的费用。"
+    },
+    {
+        "code": "03134",
+        "flavor": "\"I felt a great disturbance in the Force…\" <cite>Obi-Wan Kenobi</cite>",
+        "name": "大声呼喊",
+        "text": "重掷所有点数大于等于2的骰子。"
+    },
+    {
+        "code": "03135",
+        "name": "敏锐的直觉",
+        "text": "蓝色角色专用。\n<b>行动</b> - 移除强化角色的一个角色骰，给其1枚护盾。"
+    },
+    {
+        "code": "03136",
+        "name": "战怒",
+        "text": "如果你与一名持有至少6点伤害的角色保持联络，结算该角色的一个显示伤害面 ([ranged] or [melee])的骰子，其数值上升2点。"
+    },
+    {
+        "code": "03137",
+        "name": "禁用",
+        "text": "消耗一张支援卡。"
+    },
+    {
+        "code": "03138",
+        "name": "说服",
+        "text": "选择一位持有资源数少于你的对手，将其一个骰子转到任意面。"
+    },
+    {
+        "code": "03139",
+        "name": "扒窃",
+        "text": "每位对手随机丢弃一张手牌。每丢弃一张卡牌，你抽取1张牌。"
+    },
+    {
+        "code": "03140",
+        "name": "恫吓",
+        "text": "如果你与1名黄色角色保持联络，移除一位对手一个角色骰，除非该对手选择对该角色造成骰子点数的伤害。"
+    },
+    {
+        "code": "03141",
+        "name": "骗局",
+        "text": "丢弃你的手牌。你每丢弃一张卡牌，可以移除一个所示数值等于卡牌费用的骰子。"
+    },
+    {
+        "code": "03142",
+        "name": "休战",
+        "text": "伏击。\n每位玩家获得1个资源。"
+    },
+    {
+        "code": "03143",
+        "name": "盗取补给",
+        "text": "在你打出该支援卡后，消耗本卡。\n<b>行动</b> - 消耗该支援卡来获得1个资源。然后丢弃该支援卡。"
+    },
+    {
+        "code": "03144",
+        "name": "秘密行动",
+        "text": "从你手中打出1张事件卡，其费用降低2点。然后丢弃该强化卡。"
+    },
+    {
+        "code": "03145",
+        "flavor": "Mandalorian armor was renowned for its durability.",
+        "name": "曼达洛盔甲",
+        "text": "在你打出该强化卡后，给予强化角色1枚护盾。\n强化角色可以持有额外1枚护盾。"
+    },
+    {
+        "code": "03146",
+        "name": "危险任务",
+        "text": "将一个骰子转移到有费用值的一面。"
+    },
+    {
+        "code": "03147",
+        "name": "忍受",
+        "text": "只有本轮上一个对手的回合中，你有至少一个骰子被移除时，才能打出此卡。\n将其中一个被移除的骰子投掷后放入骰池。"
+    },
+    {
+        "code": "03148",
+        "name": "好伙伴",
+        "text": "启动你的一名角色和一张支援卡。然后你可以花费1个资源再执行一个行动。"
+    },
+    {
+        "code": "03149",
+        "name": "回收",
+        "text": "丢弃你场上一张支援卡。然后获得等同于其费用的资源。"
+    },
+    {
+        "code": "03150",
+        "flavor": "When facing an overpowered adversary, precision often prevails over brute strength.",
+        "name": "撕裂",
+        "text": "丢弃场上一张费用为0的支援或强化卡。"
+    },
+    {
+        "code": "03151",
+        "flavor": "\"Come on, BB-8! Hurry!\" <cite>Poe Dameron</cite>",
+        "name": "滚动",
+        "text": "重掷你的一个骰子。你可以重掷那个骰子。你可以再重掷那个骰子。"
+    },
+    {
+        "code": "03152",
+        "name": "紧身盔甲",
+        "text": "强化角色生命值上升1点。"
+    },
+    {
+        "code": "03153",
+        "name": "布奥马修道院",
+        "subtitle": "泰思",
+        "text": "<b>宣告</b> -立刻结算你的一个显示修正值 <em>(带有+号数值)</em> 的骰子，将其视为普通数值。"
+    },
+    {
+        "code": "03154",
+        "name": "安那克斯要塞",
+        "subtitle": "安那克斯",
+        "text": "只要你控制该战场，你所有角色都带有守卫者关键词。"
+    },
+    {
+        "code": "03155",
+        "name": "加雷尔太空港",
+        "subtitle": "加雷尔",
+        "text": "<b>宣告</b> - 移除你的一个骰子，获得X个资源，X等于移除骰子数值的一半(向上取整)。"
+    },
+    {
+        "code": "03156",
+        "name": "帝国学院",
+        "subtitle": "洛塔",
+        "text": "只要你控制该战场，在你启动一张支援卡后，你可以重掷那张卡牌的支援骰。"
+    },
+    {
+        "code": "03157",
+        "name": "主广场",
+        "subtitle": "瓦什卡",
+        "text": "<b>宣告</b> - 将一名角色的1点伤害移动到该战场卡上，或将该战场卡上所有伤害移动到一名角色上 <em>(无视护盾)</em>."
+    },
+    {
+        "code": "03158",
+        "name": "医疗中心",
+        "subtitle": "卡利达暗沙",
+        "text": "<b>宣告</b> - 选择最多2名不同的角色，各治愈1点伤害。然后将该战场交给对方控制。"
+    },
+    {
+        "code": "03159",
+        "name": "港口区",
+        "subtitle": "贝斯平",
+        "text": "只要你控制该战场，你打出的费用大于等于3的卡牌，带有伏击关键词。"
+    },
+    {
+        "code": "03160",
+        "name": "武器工厂阿尔法",
+        "subtitle": "赛穆1号",
+        "text": "只要你控制该战场，你每轮打出的第一张载具费用降低1点。"
+    }
+]

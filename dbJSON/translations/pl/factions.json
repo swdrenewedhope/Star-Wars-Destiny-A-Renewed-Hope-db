@@ -1,0 +1,18 @@
+[
+    {
+        "code": "blue",
+        "name": "Moc"
+    },
+    {
+        "code": "gray",
+        "name": "Ogólny"
+    },
+    {
+        "code": "red",
+        "name": "Dowództwo"
+    },
+    {
+        "code": "yellow",
+        "name": "Łotrzy"
+    }
+]

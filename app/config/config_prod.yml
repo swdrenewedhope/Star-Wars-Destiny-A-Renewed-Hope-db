@@ -27,7 +27,11 @@ monolog:
             type:  console
 
 assetic:
-    node: /home/gxpvsxmy/.nvm/versions/node/v17.1.0/bin/node
+    node: /opt/cpanel/ea-nodejs16/bin/node
+    filters:
+      handlebars:
+        bin: /opt/cpanel/ea-nodejs16/bin/handlebars
+        node: /opt/cpanel/ea-nodejs16/bin/node
 
 fos_js_routing:
   routes_to_expose:
@@ -35,3 +39,7 @@ fos_js_routing:
     - api_formats
     - '^api_'
 
+parameters:
+  assetic.node.bin: /opt/cpanel/ea-nodejs16/bin/node
+  assetic.filter.handlebars.node: /opt/cpanel/ea-nodejs16/bin/handlebars
+  assetic.filter.handlebars.bin: /home/gxpvsxmy/Servers/swdestinydb/node_modules/.bin/handlebars

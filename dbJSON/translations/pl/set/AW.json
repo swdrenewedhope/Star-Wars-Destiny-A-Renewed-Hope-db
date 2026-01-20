@@ -1,0 +1,927 @@
+[
+    {
+        "code": "01001",
+        "flavor": "\"Cokolwiek planujecie, to się nie uda.\"",
+        "name": "Kapitan Phasma",
+        "subtitle": "Elitarny żołnierz",
+        "text": "Twoje nie-unikatowe postacie posiadają słowo kluczowe Strażnik."
+    },
+    {
+        "code": "01002",
+        "flavor": "Członkowie tej najnowszej generacji szturmowców są od małego szkoleni i bezustannie karmieni propagandą Najwyższego Porządku. Gwarantuje to, że będą ślepo posłuszni.",
+        "name": "Szturmowiec Najwyższego Porządku"
+    },
+    {
+        "code": "01003",
+        "name": "Generał Grievous",
+        "subtitle": "Łowca Jedi",
+        "text": "Przed tym, jak postać dowolnego przeciwnika zostanie pokonana, możesz poruszyć na tę postać jedno z jej ulepszeń nie-<b>zdolności</b>."
+    },
+    {
+        "code": "01004",
+        "flavor": "\"Generale, przygotuj wojska do ataku naziemnego.\" <cite>Darth Vader</cite>",
+        "name": "Generał Veers",
+        "subtitle": "Dowódca polowy",
+        "text": "<b>Akcja</b> - Usuń tę kość, aby obrócić jedną z twoich kości wsparcia na dowolną ścankę."
+    },
+    {
+        "code": "01005",
+        "flavor": "Uniwersalne maszyny kroczące AT-ST pełniły w machinie wojennej Imperium Galaktycznego rolę zarówno pojazdów wsparcia, jak i zwiadu.",
+        "name": "AT-ST",
+        "text": "[special] - Odrzuć z gry dowolne wsparcie."
+    },
+    {
+        "code": "01006",
+        "name": "Myśliwiec Tie Najwyższego Porządku",
+        "text": "[special] - Usuń wszystkie żetony osłon ze wszystkich postaci dowolnego przeciwnika."
+    },
+    {
+        "code": "01007",
+        "name": "Onieśmielająca obecność",
+        "text": "Tylko czerwona postać.\n[special] - Wybierz czerwoną kość. Jeśli to twoja kość, rozpatrz ją,zwiększając jej wartość o 2. Jeśli to kość przeciwnika, usuń ją."
+    },
+    {
+        "code": "01008",
+        "name": "Karabin F-11D",
+        "text": "Przepisanie.\n[special] - Zmuś dowolnego przeciwnika, aby zadał 2 obrażenia swoim postaciom (sam decyduje, jak je rozdzieli)."
+    },
+    {
+        "code": "01009",
+        "name": "Hrabia Dooku",
+        "subtitle": "Przebiegły strateg",
+        "text": "Przed tym, jak ta postać otrzyma 1 lub więcej obrażeń, możesz odrzucić kartę z twojej ręki, aby dać jej 1 żeton osłony."
+    },
+    {
+        "code": "01010",
+        "flavor": "\"Skoro nie chcesz walczyć, spotkasz swoje przeznaczenie\"",
+        "name": "Darth Vader",
+        "subtitle": "Lord Sithów",
+        "text": "Po tym, jak aktywujesz tą postać, możesz zmusić dowolnego przeciwnika, aby wybrał i odrzucił kartę ze swojej ręki"
+    },
+    {
+        "code": "01011",
+        "name": "Kylo Ren",
+        "subtitle": "Spadkobierca Vadera",
+        "text": "[special] - Wybierz postać dowolnego przeciwnika. Następnie podejrzyj losową kartę z ręki danego przeciwnika i zadaj wybranej postaci obrażenia w liczbie równej kosztowi właśnie podejrzanej karty."
+    },
+    {
+        "code": "01012",
+        "flavor": "Siostry Nocy brylują w wykorzystywaniu Mocy dla własnych celów.",
+        "name": "Siostra Nocy",
+        "text": "<b>Akcja</b> - Przerzuć dowolną kość.\nZadaj 1 obrażenie tej postaci."
+    },
+    {
+        "code": "01013",
+        "name": "Duszenie mocą",
+        "text": "Tylko niebieska postać.\n[special] - Zadaj 1 nieblokowane obrażenie innej postaci. Następnie możesz obrócić na dowolną stronę jedną z kości postaci lub ulepszeń danej postaci."
+    },
+    {
+        "code": "01014",
+        "name": "Unieruchomienie",
+        "text": "Tylko niebieska postać.\n<b>Akcja</b> - Usuń tę kość, aby obrócić dowolną kość na pustą ściankę ([blank])."
+    },
+    {
+        "code": "01015",
+        "name": "Miecz świetlny Kylo Rena",
+        "text": "Tylko niebieska postać.\n[special] - Zadaj 2 obrażenia dowolnej postaci. Jeśli którekolwiek z tych obrażeń zostanie zablokowane przez osłonę, przerzuć tę kość, zamiast usuwać ją z twojej puli."
+    },
+    {
+        "code": "01016",
+        "name": "Holokron Sithów",
+        "text": "[special] - Zamień to ulepszenie na niebieskie ulepszenie <b>zdolność</b> z twojej ręki, ignorując jego ograniczenie zagrania. Następnie możesz wydać 1 żeton zasobu, aby rzucić jego kością do twojej puli, jeśli to możliwe."
+    },
+    {
+        "code": "01017",
+        "name": "Granaty przeciwpiechotne",
+        "text": "[special] - Zadaj po 2 obrażenia każdej postaci dowolnego przeciwnika.\nOdrzuć to ulepszenie z gry."
+    },
+    {
+        "code": "01018",
+        "name": "Zwiadowca na skuterze",
+        "text": "[special] - Usuń dowolną kość. Możesz wykonać jedną dodatkową akcję."
+    },
+    {
+        "code": "01019",
+        "name": "Bala-Tik",
+        "subtitle": "Herszt Gangu",
+        "text": "Po tym, jak postać dowolnego przeciwnika zostanie pokonana, możesz przygotować tę postać."
+    },
+    {
+        "code": "01020",
+        "flavor": "\"Chętnie popatrzę, jak umierasz.\"",
+        "name": "Hutt Jabba",
+        "subtitle": "Wielki i potężny",
+        "text": "Po tym, jak aktywujesz tę postać, możesz przerzucić dowolną żółtą kość."
+    },
+    {
+        "code": "01021",
+        "flavor": "\"Tym razem nie możesz się pomylić.\"",
+        "name": "Jango Fett",
+        "subtitle": "Śmiertelnie groźny najemnik",
+        "text": "Po tym, jak dowolny przeciwnik aktywuje postać, możesz aktywować tę postać."
+    },
+    {
+        "code": "01022",
+        "name": "Człowiek pustyni",
+        "text": "Po tym, jak aktywujesz tę postać, możesz odrzucić dowolną kartę z twojej ręki, aby rozpatrzyć jedną z jej kości postaci lub ulepszenia."
+    },
+    {
+        "code": "01023",
+        "name": "Szef gangsterów",
+        "text": "Tylko żólta postać.\n[special] - Wydaj 5 żetonów zasobów, aby wybrać dowolną postać. Wybrana postać zostaje pokonana po zakończeniu aktualnej rundy."
+    },
+    {
+        "code": "01024",
+        "name": "Miotacz ognia",
+        "text": "[special] - Zadaj po 1 obrażeniu maksymalnie 3 różnym postaciom."
+    },
+    {
+        "code": "01025",
+        "name": "Kij Gaffi",
+        "text": "Przepisanie.\n[special] - Usuń jedną z twoich kości przedstawiających obrażenia wręcz ([melee]), aby zadać 3 obrażenia dowolnej postaci."
+    },
+    {
+        "code": "01026",
+        "name": "Łowy",
+        "text": "[special] - Usuń wszystkie żetony osłon z dowolnej postaci. Możesz wydać 1 żeton zasobu, aby usunąć jedną z kości postaci lub ulepszenia danej postaći."
+    },
+    {
+        "code": "01027",
+        "name": "Admirał Ackbar",
+        "subtitle": "Biegły taktyk",
+        "text": "Po tym, jak dowolny przeciwnik zagra lub odrzuci ostatnią kartę ze swojej ręki, musi wybrać jedną ze swoich postaci i zadać jej 2 obrażenia."
+    },
+    {
+        "code": "01028",
+        "flavor": "\"Ktoś musi nas ratować.\"",
+        "name": "Leia Organa",
+        "subtitle": "Urodzona przywódczyni",
+        "text": "<b>Akcja</b> - Usuń tę kość, aby przerzucić maksymalnie 2 z twoich kości."
+    },
+    {
+        "code": "01029",
+        "name": "Poe Dameron",
+        "subtitle": "As Przestworzy",
+        "text": "[special] - Odrzuć kartę z twojej ręki, aby rozpatrzyć jedną ze ścianek jej kości, jeśli to możliwe. Następnie, jeśli odrzuconą kartą był  <b>pojazd</b>, możesz zapłacić jego koszt, aby zagrać go z twojego stosu kart odrzuconych."
+    },
+    {
+        "code": "01030",
+        "name": "Rebeliancki Żołnierz",
+        "text": "Strażnik."
+    },
+    {
+        "code": "01031",
+        "name": "Hangar lotniczy",
+        "text": "X na tej kości jest równy liczbie kart na twojej ręce."
+    },
+    {
+        "code": "01032",
+        "flavor": "X-Wing Poego Damerona został zmodyfikowany, dzięki czemu był jeszcze zwrotniejszy niż standardowe T-70.",
+        "name": "Czarny",
+        "text": "[special] - Zadaj 1 obrażenie dowolnej postaci. Przerzuć tę kość, zamiast usuwać ją z puli."
+    },
+    {
+        "code": "01033",
+        "name": "Zwiadowca ",
+        "text": "[special] - Podejrzyj karty na ręce dowolnego przeciwnika i odrzuć najtańszą z nich <i>(w przypadku remisu ty wybierasz).</i>"
+    },
+    {
+        "code": "01034",
+        "flavor": "Aby ukryć się przed Imperium, rebelianci często są zmuszeni znosić ekstremalne warunki.",
+        "name": "Zestaw przetrwania"
+    },
+    {
+        "code": "01035",
+        "flavor": "\"Jestem Jedi, jak kiedyś mój ojciec.\"",
+        "name": "Luke Skywalker",
+        "subtitle": "Rycerz Jedi",
+        "text": "Po tym, jak aktywujesz tę postać, dobierz kartę."
+    },
+    {
+        "code": "01036",
+        "name": "Padawan",
+        "text": "Dopóki ta postać nie posiada żadnego ulepszenia, koszt dołączenia do niej <b>broni</b> jest zmniejszony o 1."
+    },
+    {
+        "code": "01037",
+        "flavor": "\"Twoje skupienie określa twoją rzeczywistość.\"",
+        "name": "Qui-Gon Jinn",
+        "subtitle": "Mistrz Ataru",
+        "text": "Przed tym, jak ta postać zyska 1 lub więcej żetonów osłon, możesz usunąć z niej 1 z jej żetonów osłon, aby zadać 1 obrażenie dowolnej postaci."
+    },
+    {
+        "code": "01038",
+        "flavor": "\"Wiem, co robię\"",
+        "name": "Rey",
+        "subtitle": "Dziecko Mocy",
+        "text": "Po tym, jak zagrasz na tę postać dowolne ulepszenie, możesz wykonać jedną dodatkową akcję."
+    },
+    {
+        "code": "01039",
+        "name": "Ochrona mocy",
+        "text": "Tylko niebieska postać.\n[special] - Daj 3 żetony osłony twoim postaciom (sam decydujesz, jak je rozdzielić)."
+    },
+    {
+        "code": "01040",
+        "name": "Szaty Jedi",
+        "text": "Po tym, jak zagrasz to ulepszenie, daj postaci, do której dołączono tę kartę, 1 żeton osłony lub zamiast tego 2 żetony osłon, jeśli jest to pierwsza runda gry."
+    },
+    {
+        "code": "01041",
+        "name": "Miecz świetlny Luke'a Skywalkera",
+        "text": "Tylko niebieska postać.\n[special] - Daj dowolnej postaci 2 żetony osłon lub zadaj 2 nieblokowalne obrażenia dowolnej postaci."
+    },
+    {
+        "code": "01042",
+        "name": "Jedność z mocą",
+        "text": "Tylko niebieska postać.\nPrzed tym, jak postać, do której dołączono tę kartę, zostanie pokonana, do końca gry to ulepszenie staje się wsparciem<i>(zaczyna przygotowane)</i>."
+    },
+    {
+        "code": "01043",
+        "flavor": "\"Pomarańczowo-biały. Jedyny w swoim rodzaju.\"<cite>Poe Dameron</cite>",
+        "name": "BB-8",
+        "text": "[special] - Przerzuć tę kość i jedną inną twoją kość. Nie usuwaj tej kości ze swojej puli po tym, jak rozpatrzysz tę zdolność."
+    },
+    {
+        "code": "01044",
+        "name": "Kij Rey",
+        "text": "[special] - Usuń dowolną kość przedstawiającą obrażenia ([melee] lub [ranged])."
+    },
+    {
+        "code": "01045",
+        "flavor": "\"Nie wrócę tam.\"",
+        "name": "Finn",
+        "subtitle": "Dezerter z Najwyższego Porządku",
+        "text": "Do tej postaci możesz dołączyć dowolną <b>broń</b>, ignorując ograniczenia zagrania.\nW swojej talii możesz zawrzeć czerwone <b>bronie</b> złoczyńców oraz czerwone <b>pojazdy</b> złoczyńców."
+    },
+    {
+        "code": "01046",
+        "flavor": "\"Wiesz, czasami sam siebie zadziwiam.\"",
+        "name": "Han Solo",
+        "subtitle": "Łajdak",
+        "text": "Po tym, jak zagrasz kartę ze słowem kluczowym Zasadzka, możesz dać tej postaci 1 żeton osołony."
+    },
+    {
+        "code": "01047",
+        "flavor": "\"Nie martw się o nagrodę. Jeśli tak kochasz pieniądze, dostaniesz je.\" <cite>Leia Organa</cite>",
+        "name": "Strzelec do wynajęcia"
+    },
+    {
+        "code": "01048",
+        "flavor": "\"Będę dzieliła los mojego ludu.\"",
+        "name": "Padme Amidala",
+        "subtitle": "Królowa Naboo",
+        "text": "[special] - Odrzuć wierzchnią kartę z talii dowolnego przeciwnika lub wydaj 1 żeton zasobu, aby odrzucić 2 wierzchnie karty z talii dowolnego przeciwnika."
+    },
+    {
+        "code": "01049",
+        "flavor": "\"Może nie wygląda imponująco, ale nie to się liczy.\" <cite>Han Solo</cite>",
+        "name": "Sokół Millennium",
+        "text": "[special] - Zagraj za darmo żółte wydarzenie z twojego stosu kart odrzuconych lub z twojej ręki."
+    },
+    {
+        "code": "01050",
+        "name": "Immunitet dyplomatyczny",
+        "text": "Zetony osłon z tej kości mogą być dawane dowolnym twoim postaciom (sam decydujesz, jak je rozdzielić)."
+    },
+    {
+        "code": "01051",
+        "name": "Ciężki pistolet blasterowy DL-44",
+        "text": "Zasadzka.\nPo tym, jak zagrasz to ulepszenie, zmuś dowolnego przeciwnika, aby wybrał i usunął jedną ze swoich kości."
+    },
+    {
+        "code": "01052",
+        "name": "Infiltracja",
+        "text": "[special] - Przerzuć maksymalnie 2 kości dowolnego przeciwnika."
+    },
+    {
+        "code": "01053",
+        "name": "Placówka",
+        "text": "[special] - Rozpatrz zdolność pola bitwy tak, jakbyś je właśnie zajął."
+    },
+    {
+        "code": "01054",
+        "flavor": "Broń chętnie wykorzystywana podczas galaktycznej wojny domowej zarówno przez oficerów Imperium, jak i rebelianckich żołnierzy.",
+        "name": "Pistolet Blasterowy DH-17"
+    },
+    {
+        "code": "01055",
+        "name": "Karabin blasterowy IQA-11",
+        "text": "[special] - Zadaj 2 nieblokowalne obrażenia dowolnej postaci."
+    },
+    {
+        "code": "01056",
+        "name": "Awans",
+        "text": "Tylko czerwona postać.\nPo tym, jak zagrasz to ulepszenie, możesz dobrać kartę."
+    },
+    {
+        "code": "01057",
+        "name": "Rzut mocą",
+        "text": "Tylko niebieska postać.\n[special] - Usuń dowolną kość, aby zadać dowolnej postaci obrażenia równe wartości przedstawionej na danej kości (ścianki specjalne oraz puste to zera)."
+    },
+    {
+        "code": "01058",
+        "name": "Szkolenie mocy",
+        "text": "Aby zagrać, wyznacz niebieską postać.\n[special] - Wybierz i wykonaj dwie z następujących opcji: zadaj 1 obrażenie dowolnej postaci, zyskaj 1 żeton zasobu lub daj dowolnej postaci 1 żeton osłony."
+    },
+    {
+        "code": "01059",
+        "flavor": "\"Elegancka broń na bardziej cywilizowane czasy.\" <cite>Obi-Wan Kenobi</cite>",
+        "name": "Miecz świetlny",
+        "text": "Przepisanie.\n[special] - Zadaj 2 nieblokowalne obrażenia dowolnej postaci."
+    },
+    {
+        "code": "01060",
+        "name": "Sondowanie umysłu",
+        "text": "Tylko niebieska postać.\n[special] - Zadaj postaci dowolnego przeciwnika 1 obrażenie za każdą kartę na ręce danego przeciwnika."
+    },
+    {
+        "code": "01061",
+        "name": "Komunikator",
+        "text": "Po tym, jak zagrasz to ulepszenie, możesz przerzucić dowolną liczbę swoich kości lub dowolną liczbę kości dowolnego przeciwnika."
+    },
+    {
+        "code": "01062",
+        "name": "Datapad",
+        "text": "[special] - Obróć jedną z twoich kości na ściankę nieprzedstawiającą obrażeń ([ranged] ani [melee])."
+    },
+    {
+        "code": "01063",
+        "name": "Podręczny pistolet blasterowy",
+        "text": "Zasadzka.\nPrzepisanie."
+    },
+    {
+        "code": "01064",
+        "name": "Czarny rynek",
+        "text": "[special] - Dobierz 2 karty. Możesz zagrać ze swojej ręki dowolne ulepszenie, zmniejszając jego koszt o 1."
+    },
+    {
+        "code": "01065",
+        "name": "Spryt",
+        "text": "Tylko żółta postać.\n[special] - Rozpatrz dowolną specjalną zdolność ([special]) innej karty w grze tak, jakby to była twoja karta. "
+    },
+    {
+        "code": "01066",
+        "name": "Plecak odrzutowy",
+        "text": "[special] - Usuń dowolną kość przedstawiającą obrażenia wręcz ([melee]) i daj postaci, do której dołączono tę kartę, 1 żeton osłony."
+    },
+    {
+        "code": "01067",
+        "name": "Detonator termiczny",
+        "text": "Aby zagrać, wyznacz żółtą postać.\n[special] - Zadaj po 3 obrażenia każdej postaci dowolnego przeciwnika. Odrzuć to ulepszenie z gry."
+    },
+    {
+        "code": "01068",
+        "name": "Mięso armatnie",
+        "text": "Zadaj jednej z twoich nie-unikatowych postaci obrażenia równe wartości jednej, przedstawiającej obrażenia([ranged] lub [melee]) kości dowolnego przeciwnika. Następnie usuń daną kość."
+    },
+    {
+        "code": "01069",
+        "name": "Pętla się zaciska",
+        "text": "Zmuś dowolnego przeciwnika, aby wybrał i usunął jedną ze swoich kości. Zamiast odrzucać to wydarzenie, możesz umieścić je na spodzie swojej talii."
+    },
+    {
+        "code": "01070",
+        "flavor": "Droidy bojowe są mniej skuteczne niż żołnierze z krwi i kości, jednak znacznie łatwiej zastąpić je nowymi.",
+        "name": "Nieprzebrane zastępy",
+        "text": "Cofnij do gry, bez żetonów obrażeń, jedną z twoich pokonanych, nie-unikatowych, czerwonych postaci."
+    },
+    {
+        "code": "01071",
+        "name": "Okupacja",
+        "text": "Zagraj tylko, jeśli kontrolujesz pole bitwy.\nZmuś dowolnego przeciwnika, aby stracił wszystkie swoje żetony zasobów."
+    },
+    {
+        "code": "01072",
+        "name": "Sonda",
+        "text": "Podejrzyj 2 losowe karty z ręki dowolnego przeciwnika i odrzuć te z nich, które są wydarzeniami."
+    },
+    {
+        "code": "01073",
+        "name": "Przeczesać teren",
+        "text": "Ustal liczbę twoich przygotowanych czerwonych postaci. Przerzuć taką samą liczbę kości dowolnego przeciwnika."
+    },
+    {
+        "code": "01074",
+        "name": "Biegłość taktyczna",
+        "text": "Wyznacz czerwoną postać, aby wykonać maksymalnie 2 dodatkowe akcje."
+    },
+    {
+        "code": "01075",
+        "flavor": "\"Tam są! Zastrzelić ich.\"",
+        "name": "Najlepszą obroną...",
+        "text": "Zadaj 3 obrażenia jednej z twoich czerwonych postaci, aby usunąć maksymalnie 2 kości dowolnego przeciwnika."
+    },
+    {
+        "code": "01076",
+        "name": "Ciężka praca",
+        "text": "<b>Akcja</b> - Wyczerp to wsparcie oraz jedną z twoich postaci, aby zyskać 1 żeton zasobu."
+    },
+    {
+        "code": "01077",
+        "name": "Lokalny garnizon",
+        "text": "Każdy przeciwnik, w każdej fazie utrzymania, zyskuje 1 żeton zasobów mniej (wciąż zyskuje minimum 1)."
+    },
+    {
+        "code": "01078",
+        "name": "Osobista eskorta",
+        "text": "Postać, do której dołączono tę kartę, posiada słowo kluczowe Strażnik."
+    },
+    {
+        "code": "01079",
+        "name": "Porzuć wszelką nadzieję",
+        "text": "Zmuś dowolnego przeciwnika, aby wybrał, czy traci wszystkie swoje żetony zasobów, czy odrzuca wszystkie karty ze swojej ręki."
+    },
+    {
+        "code": "01080",
+        "name": "Wybujała ambicja",
+        "text": "Dobierz karty, aby mieć na ręce karty w liczbie równej twojemu limitowi ręki."
+    },
+    {
+        "code": "01081",
+        "name": "Wściekłość",
+        "text": "Zadaj 1 obrażenie jednej z twoich niebieskich postaci, aby zyskać 1 żeton zasobu."
+    },
+    {
+        "code": "01082",
+        "flavor": "\"Daj upust nienawiści.\" <cite>Imperator Palpatine</cite>",
+        "name": "Posłuchaj swojego gniewu",
+        "text": "Ustal liczbę pustych ścianek ([blank]) widocznych na kościach dowolnego przeciwnika. Usuń taką samą liczbę jego kości."
+    },
+    {
+        "code": "01083",
+        "name": "Atak Mocą",
+        "text": "Obróć jedną z twoich niebieskich kości na stronę przedstawiającą obrażenia wręcz ([melee]).\nNastępnie możesz rozpatrzyć daną kość."
+    },
+    {
+        "code": "01084",
+        "name": "Zastraszenie",
+        "text": "Usuń wszystkie żetony osłon z dowolnej postaci."
+    },
+    {
+        "code": "01085",
+        "name": "Odosobnienie",
+        "text": "Wyznacz niebieską postać, aby usunąć jedną kość dowolnej postaci."
+    },
+    {
+        "code": "01086",
+        "name": "Bez litości",
+        "text": "Odrzuć dowolną liczbę niebieskich kart z twojej ręki. Nastepnie rozpatrz jedną z twoich kości przedstawiających obrażenia ([melee] lub [ranged]), zwiększając jej wartość o 1 za każdą właśnie odrzuconą kartę."
+    },
+    {
+        "code": "01087",
+        "name": "Pociągając za sznurki",
+        "text": "Podejrzyj 3 karty z wierzchu dowolnej talii. Następnie odłóż te karty na wierzch i/lub spód danej talii, w dowolnej kolejności."
+    },
+    {
+        "code": "01088",
+        "name": "Przychylność Imperatora",
+        "text": "Twój limit kart na ręcie zostaje zwiększony o 1."
+    },
+    {
+        "code": "01089",
+        "flavor": "\"Gdybyś tylko znał potęgę Ciemnej Strony.\" <cite>Darth Vader</cite>",
+        "name": "Potęga Ciemnej Strony",
+        "text": "<b>Akcja</b> - Wyczerp to wsparcie, aby przerzucić jedną z twoich kości. Jeśli na danej kości wypadnie pusta ścianka ([blank]), zadaj 2 nieblokowalne obrażenia dowolnej postaci."
+    },
+    {
+        "code": "01090",
+        "name": "Przyczajony w cieniu",
+        "text": "<b>Akcja</b> - Jeśli postać, do której dołączono tę kartę, nie posiada żadnych żetonów osłon, wyczerp to ulepszenie, aby dać jej 1 żeton osłony."
+    },
+    {
+        "code": "01091",
+        "name": "Bez odwrotu",
+        "text": "Obróć na dowolną ściankę każdą z twoich kości przedstawiających pustą ściankę ([blank])."
+    },
+    {
+        "code": "01092",
+        "name": "As w rękawie",
+        "text": "Odrzuć z twojej ręki żółtą kartę ulepszenia, aby rzucić jej kością do twojej puli, jeśli to możliwe. Odłóż tę kość na bok po tym, jak zostanie rozpatrzona lub usunięta."
+    },
+    {
+        "code": "01093",
+        "name": "Uzbrojony po zęby",
+        "text": "Odrzuć dowolną liczbę ulepszeń z jednej z twoich żółtych postaci. Następnie zadaj dowolnej postaci obrażenia w liczbie odrzuconych właśnie ulepszeń."
+    },
+    {
+        "code": "01094",
+        "name": "Konfiskata",
+        "text": "Wydaj żetony zasobów w liczbie równej kosztowi ulepszenia, które dowolny przeciwnik ma w grze, aby cofnąć dane ulepszenie na jego rękę."
+    },
+    {
+        "code": "01095",
+        "name": "Nieczysta walka",
+        "text": "Usuń dowolną liczbę z twoich żółtych kości. Następnie zadaj dowolnej postaci obrażenia w liczbie usuniętych właśnie kości."
+    },
+    {
+        "code": "01096",
+        "name": "Ostateczny cios",
+        "text": "Rozpatrz jedną z twoich kości przedstawiających obrażenia dystansowe([ranged]), traktując te obrażenia jako nieblokowalne."
+    },
+    {
+        "code": "01097",
+        "flavor": "\"Mi też nie\"",
+        "name": "Nie podobasz mu się",
+        "text": "Usuń jedną z twoich kości, aby usunąć jedną kość dowolnego przeciwnika."
+    },
+    {
+        "code": "01098",
+        "name": "Czekając w ukryciu",
+        "text": "Zmuś dowolnego przeciwnika, aby wybrał i odrzucił ze swojej ręki tyle kart, aby miał na ręce tyle samo kart co ty."
+    },
+    {
+        "code": "01099",
+        "name": "Wsparcie awaryjne",
+        "text": "Po tym, jak zagrasz to wsparcie, umieść na nim 3 żetony obrażeń.\n<b>Akcja</b> - Wyczerp to wsparcie, aby przesunąć z niego 1 żeton obrażenia na dowolną postać <i>(ta zdolność ignoruje osłony)</i>."
+    },
+    {
+        "code": "01100",
+        "name": "Swój człowiek",
+        "text": "Po tym, jak rozpatrzysz kość przedstawiającą zakłócenie ([disrupt]), możesz wyczerpać to wsparcie, aby zyskać żetony zasobów w liczbie żetonów zasobów utraconych właśnie przez przeciwnika."
+    },
+    {
+        "code": "01101",
+        "name": "Kontakty w podziemiu",
+        "text": "<b>Akcja</b> - Wyczerp to ulepszenie, aby zyskać 1 żeton zasobu."
+    },
+    {
+        "code": "01102",
+        "name": "Cenna zdobycz",
+        "text": "Po tym, jak zagrasz to ulepszenie, możesz usunąć jedną kość postaci dowolnego przeciwnika i umieścić ją tutaj. Nie rzuca nią żadna postać i nie wraca ona na odpowiednią postać, dopóki to ulepszenie nie opuści gry."
+    },
+    {
+        "code": "01103",
+        "name": "Atak komandosów",
+        "text": "Rozpatrz jedną z twoich czerwonych kości przedstawiających odrzucenie ([discard]), zwiększając jego wartość o 2. Następnie dobierz kartę."
+    },
+    {
+        "code": "01104",
+        "name": "Pozycja obronna",
+        "text": "Zagraj tylko jeśli kontrolujesz pole bitwy.\nUsuń wszystkie kości dowolnego przeciwnika przedstawiające wartość 2 lub wyższą."
+    },
+    {
+        "code": "01105",
+        "name": "Sanitariusz",
+        "text": "Ulecz 2 obrażenia z dowolnej postaci."
+    },
+    {
+        "code": "01106",
+        "name": "Szybki atak i odwrót",
+        "text": "Zasadzka.\nAktywuj jedną z twoich czerwonych postaci."
+    },
+    {
+        "code": "01107",
+        "name": "To pułapka!",
+        "text": "Zasadzka.\nWybierz symbol przedstawiony na kości dowolnego przeciwnika. Następnie obróć dowolną liczbę twoich dowolnych czerwonych kości na ścianki przedstawiające dany symbol."
+    },
+    {
+        "code": "01108",
+        "name": "Wrodzony talent",
+        "text": "Rozpatrz jedną z twoich kości, zwiększając jej wartość o 1."
+    },
+    {
+        "code": "01109",
+        "name": "Ponowne uzbrojenie",
+        "text": "Zagraj ze swojego stosu kart odrzuconych czerwoną kartę ulepszenia, zmniejszając jej koszt o 1."
+    },
+    {
+        "code": "01110",
+        "name": "Odwrót",
+        "text": "Twój przeciwnik może wykonać 1 akcję.\nNastępnie zakończ fazę akcji."
+    },
+    {
+        "code": "01111",
+        "name": "Planowanie strategiczne",
+        "text": "Przygotuj lub wyczerp dowolne wsparcie."
+    },
+    {
+        "code": "01112",
+        "name": "Chirurgiczny cios",
+        "text": "Usuń dowolną liczbę twoich czerwonych kości przedstawiających obrażenia dystansowe ([ranged]), zwiększając wartość każdej z nich o 1, aby odrzucić z gry wsparcie, które kosztuje tyle samo lub mniej niż łączna wartość usuniętych kości."
+    },
+    {
+        "code": "01113",
+        "name": "Dowództwo Ruchu Oporu",
+        "text": "<b>Akcja</b> - Wyczerp to wsparcie i odrzuć kartę z twojej ręki, aby dać dowolnej postaci 1 żeton osłony. Następnie przygotuj to wsparcie, chyba że przeciwnik wyda 1 żeton zasobu."
+    },
+    {
+        "code": "01114",
+        "name": "Przewidywanie",
+        "text": "Zmuś dowolnego przeciwnika, aby wybrał i rozpatrzył dowolną liczbę swoich kości w wybranej przez niego kolejności. Następnie usuń wszystkie kości, których nie rozpatrzył."
+    },
+    {
+        "code": "01115",
+        "name": "Postawa obronna",
+        "text": "Daj dowolnej postaci 2 żetony osłon."
+    },
+    {
+        "code": "01116",
+        "name": "Zmylenie Mocą",
+        "text": "Wybierz symbol przedstawiony na jednej z twoich niebieskich kości. Następnie usuń wszystkie kości dowolnego przeciwnika przedstawiające dany symbol."
+    },
+    {
+        "code": "01117",
+        "name": "Bohaterstwo",
+        "text": "Zadaj jednej z twoich unikatowych postaci obrażenia równe wartości obrażeń ([ranged] lub [melee]) przedstawionych na kości dowolnego przeciwnika. Następnie usuń daną kość."
+    },
+    {
+        "code": "01118",
+        "name": "Szlachetne poświęcenie",
+        "text": "Pokonaj jedną z twoich niebieskich postaci, aby wyczerpać dowolną postać."
+    },
+    {
+        "code": "01119",
+        "name": "Cierpliwość",
+        "text": "Usuń dowolną liczbę twoich kości.\nNastępnie odrzuć z wierzchu talii dowolnego przeciwnika karty w liczbie usuniętych właśnie kości."
+    },
+    {
+        "code": "01120",
+        "flavor": "\"Przekaż to, czego się nauczyłes\" <cite>Yoda</cite>",
+        "name": "Powrót Jedi",
+        "text": "Dodaj do twojej ręki niebieską kartę wydarzenia z twojego stosu kart odrzuconych."
+    },
+    {
+        "code": "01121",
+        "name": "Odpowiedź",
+        "text": "Usuń dowolną liczbę żetonów osłon z jednej z twoich postaci. Następnie zadaj dowolnej postaci obrażenia w liczbie usuniętych właśnie osłon."
+    },
+    {
+        "code": "01122",
+        "name": "Siła woli",
+        "text": "Przesuń 1 żeton obrażenia z jednej z twoich wyczerpanych postaci na wyczerpaną postać dowolnego przeciwnika (ta zdolność ignoruje osłony)."
+    },
+    {
+        "code": "01123",
+        "name": "Rada Jedi",
+        "text": "<b>Akcja</b> - Wyczerp to wsparcie, aby podejrzeć 2 wierzchnie karty z talii dowolnego gracza. Następnie możesz odrzucić jedną z nich i sprawić, aby dany gracz dobrał drugą."
+    },
+    {
+        "code": "01124",
+        "name": "Przebudzenie",
+        "text": "<b>Akcja</b> - Wyczerp to wsparcie, aby rozpatrzyć jedną z twoich kości przedstawiającą ściankę z modyfikatorem <i>(ściankę z +)</i> tak, jakby nie była modyfikatorem <i>(nie miała +)</i>."
+    },
+    {
+        "code": "01125",
+        "name": "Moc jest silna",
+        "text": "<b>Akcja</b> - Wyczerp to wsparcie i odrzuć ze swojej ręki niebieską kartę, aby za darmo zagrać ze swojej ręki inną kopię danej karty."
+    },
+    {
+        "code": "01126",
+        "name": "Śmiała ucieczka",
+        "text": "Zasadzka.\nPrzerzuć dowolną liczbę kości dowolnego przeciwnika. Następnie usuń wszystkie jego kości przedstawiające puste ścianki ([blank])."
+    },
+    {
+        "code": "01127",
+        "flavor": "\"Trafiłem go! Trafiłem!\" <cite>Luke Skywalker</cite>",
+        "name": "Nie szarżuj",
+        "text": "Każdy gracz dobiera po 2 karty."
+    },
+    {
+        "code": "01128",
+        "name": "Ściągnięcie uwagi",
+        "text": "Przesuń maksymalnie 2 żetony obrażeń z jednej z twoich postaci na inną twoją postać (ta zdolność ignoruje osłony)."
+    },
+    {
+        "code": "01129",
+        "name": "Skok w nadprzestrzeń",
+        "text": "Zakończ fazę akcji. Możesz zamienić pole bitwy na pole bitwy, które nie jest wykorzystywane."
+    },
+    {
+        "code": "01130",
+        "name": "Pozwól Wookiemu wygrać",
+        "text": "Zmuś dowolnego przeciwnika, aby wybrał, czy zadaje 2 obrażenia jednaj ze swoich wyczerpanych postaci, czy wybiera i usuwa 2 ze swoich kości."
+    },
+    {
+        "code": "01131",
+        "name": "Negocjacje",
+        "text": "Usuń jedną z twoich kości postaci, aby zmusić dowolnego przeciwnika, aby wybrał i usunął 2 ze swoich kości."
+    },
+    {
+        "code": "01132",
+        "name": "Przeszukiwanie",
+        "text": "Odrzuć 3 wierzchnie karty z twojej talii. Następnie możesz dodać do twojej ręki dowolne ulepszenie lub wsparcie z twojego stosu kart odrzuconych."
+    },
+    {
+        "code": "01133",
+        "name": "Strzel pierwszy",
+        "text": "Zasadzka\nrozpatrz jednąz twoich żóltych kości przedstawiających obrażenia dystansowe ([ranged]). Nastepnie usuń jedną, przedstawiająca obrażenia dystansowe ([ranged]) kośc dowolnego przeciwnika. "
+    },
+    {
+        "code": "01134",
+        "name": "Przemyt",
+        "text": "Wyznacz żółtą postać i odrzuć kartę z twojej ręki, aby zyskać 1 żeton zasobu."
+    },
+    {
+        "code": "01135",
+        "name": "Zdaj się na los",
+        "text": "<b>Akcja</b> - Wyczerp to wsparcie, aby przerzucić jedną z twoich żółtych kości. Jeśli wypadnie na niej symbol zasobów ([resource]), zyskujesz 1 żeton zasobu."
+    },
+    {
+        "code": "01136",
+        "name": "Uliczni informatorzy",
+        "text": "Zasadzka\n<b>Akcja<b> - Wyczerp to wsparcie, aby podejrzeć karty na ręce dowolnego przeciwnika."
+    },
+    {
+        "code": "01137",
+        "name": "Druga szansa",
+        "text": "Tylko żółta postać.\nPrzed tym, jak postać do której dołączono tę kartę, miałaby zostać pokonana, zamiast tego ulecz z niej 5 obrażeń i odrzuć z gry to ulepszenie."
+    },
+    {
+        "code": "01138",
+        "name": "Ceremonia odznaczenia",
+        "text": "Wyznacz czerwoną postać, aby dobrać karty w liczbie równej posiadanych przez ciebie wyczerpanych postaci."
+    },
+    {
+        "code": "01139",
+        "name": "Okopać się",
+        "text": "Zagraj tylko, jeśli kontrolujesz pole bitwy. Daj 3 żetony osłon twoim postaciom (sam decydujesz, jak je rozdzielić)."
+    },
+    {
+        "code": "01140",
+        "name": "Siła ognia",
+        "text": "Rozpatrz jedną z twoich czerwonych kości przedstawiających obrażenia dystansowe ([ranged]), zwiększając jej wartość o 1 lub zamiast tego o 2, jeśli rozpatrujesz kość <b>pojazdu</b>."
+    },
+    {
+        "code": "01141",
+        "name": "Przywództwo",
+        "text": "Wyczerp jedną z twoich unikatowych czerwonych postaci, aby przygotować inną postać."
+    },
+    {
+        "code": "01142",
+        "name": "Logistyka",
+        "text": "Wyznacz czerwoną postać, aby rozpatrzyć jedną z twoich kości przedstawiających zasoby ([resource]), zwiększając jej wartość o 1."
+    },
+    {
+        "code": "01143",
+        "name": "Taktyka oddziału",
+        "text": "Aktywuj jednocześnie dowolną liczbę twoich nie-unikatowych postaci."
+    },
+    {
+        "code": "01144",
+        "name": "Ogień wspierający",
+        "text": "<b>Akcja</b> - Wyczerp to wsparcie, aby rozpatrzyć jedną z twoich kości przedstawiających obrażenia dystansowe ([ranged]), zwiększając jej wartości o 1."
+    },
+    {
+        "code": "01145",
+        "name": "Odbicie",
+        "text": "Wyznacz niebieską postać, aby usunąć dowolną kość przedstawiającą obrażenia dystansowe ([ranged]) i zadać dowolnej postaci połowę z danych obrażeń (zaokrąglając w górę)."
+    },
+    {
+        "code": "01146",
+        "flavor": "\"Obawiam się, że zdarzyło się coś strasznego. Całkiem jakby miliony głosów krzyknęły w trwodze i nagle ucichły.\" <cite>Obi-Wan Kenobi</cite>",
+        "name": "Zakłócenie mocy",
+        "text": "Przerzuć wszystkie kości"
+    },
+    {
+        "code": "01147",
+        "name": "Sztuczka z wpływaniem na umysł",
+        "text": "Wyznacz niebieską postać, aby zmusić dowolnego przeciwnika, aby podzielił swoją pulę kości na 2 grupy dowolnej wielkości. Wybierz 1 z grup i usuń wszystkie kości znajdujące się w niej."
+    },
+    {
+        "code": "01148",
+        "name": "Potęga mocy",
+        "text": "Rozpatrz jedną z twoich kości, traktując jej wartość tak, jakby była równa liczbie niebieskich ulepszeń, które masz w grze."
+    },
+    {
+        "code": "01149",
+        "flavor": "\"Moc będzie z tobą. Zawsze.\" <cite>Obi-Wan Kenobi</cite>",
+        "name": "Użyj mocy",
+        "text": "Wyznacz niebieską postać, aby obrócić dowolną kość na dowolną ściankę."
+    },
+    {
+        "code": "01150",
+        "name": "Spaja wszystkie rzeczy",
+        "text": "Przed tym, jak zagrasz niebieskie ulepszenie, możesz wyczerpać to wsparcie, aby zmniejszyć o 1 koszt zagrywanego ulepszenia."
+    },
+    {
+        "code": "01151",
+        "name": "Celowanie",
+        "text": "Obróć jedną z twoich kości na ściankę przedstawiającą obrażenia dystansowe ([ranged])."
+    },
+    {
+        "code": "01152",
+        "name": "Zmasowany atak",
+        "text": "Rozpatrz dowolną liczbę twoich kości w wybranej przez ciebie kolejności."
+    },
+    {
+        "code": "01153",
+        "name": "Blok",
+        "text": "Usuń wszystkie kości dowolnego przeciwnika przedstawiające obrażenia wręcz ([melee])."
+    },
+    {
+        "code": "01154",
+        "name": "Walka na bliskim dystansie",
+        "text": "Ustal liczbę twoich kości przedstawiających obrażenia wręcz ([melee]). Odrzuć z ręki dowolnego przeciwnika taką samę liczbę losowych kart."
+    },
+    {
+        "code": "01155",
+        "name": "Unik",
+        "text": "Usuń wszystkie kości dowolnego przeciwnika przedstawiające obrażenia dystansowe ([ranged])."
+    },
+    {
+        "code": "01156",
+        "name": "Flankowanie",
+        "text": "Zagraj tylko, jeśli masz więcej przygotowanych postaci niż dowolny przeciwnik.\nUsuń jedną z kości danego przeciwnika."
+    },
+    {
+        "code": "01157",
+        "name": "Kryć się!",
+        "text": "Daj dowolnej postaci 1 żeton osłony."
+    },
+    {
+        "code": "01158",
+        "name": "Rozbrojenie",
+        "text": "Usuń jedną z twoich kości przedstawiających obrażenia ([melee] lub [ranged]), aby odrzucić z gry dowolną <b>broń</b> lub <b>ekwipunek</b>, którego koszt jest równy lub niższy od wartości danej kości."
+    },
+    {
+        "code": "01159",
+        "name": "Elektrowstrząsy",
+        "text": "Wyznacz żółtą postać, aby usunąć dowolną kość przedstawiającą wartość 2 lub niższą."
+    },
+    {
+        "code": "01160",
+        "name": "Zamiana ról",
+        "text": "Wyznacz żółtą postać, aby usunąć dowolną kość przedstawiającą obrażenia ([ranged] lub [melee]) i zadać dane obrażenia dowolnej postaci."
+    },
+    {
+        "code": "01161",
+        "name": "Zakłócanie",
+        "text": "Wyznacz żółtą postać, aby przerzucić wszystkie kości dowolnego przeciwnika."
+    },
+    {
+        "code": "01162",
+        "name": "Nieprzewidywalny",
+        "text": "Zasadzka.\nPrzerzuć dowolną kość <i>(swoją lub przeciwnika)</i>."
+    },
+    {
+        "code": "01163",
+        "name": "Niesławny",
+        "text": "Przed tym, jak zagrasz żółtą kartę, możesz wyczerpać to wsparcie, aby dać danej karcie słowo kluczowe Zasadzka."
+    },
+    {
+        "code": "01164",
+        "name": "Padnij!",
+        "text": "Jeśli postać, do której dołączono tę kartę, otrzyma obrażenia wręcz ([melee]), odrzuć to ulepszenie.\n<b>Akcja</b> - Wyczerp to ulepszenie, aby dać 1 żeton osłony postaci, do której dołączono tę kartę."
+    },
+    {
+        "code": "01165",
+        "name": "Centrum Dowodzenia",
+        "subtitle": "Lothal",
+        "text": "<b>Zajęcie</b> - Każdy przeciwnik odrzuca 2 wierzchnie karty ze swojej talii."
+    },
+    {
+        "code": "01166",
+        "name": "Baza Echo",
+        "subtitle": "Hoth",
+        "text": "<b>Zajęcie</b> - Daj dowolnej postaci 1 żeton osłony."
+    },
+    {
+        "code": "01167",
+        "name": "Sala tronowa Imperatora",
+        "subtitle": "Druga Gwiazda Śmierci",
+        "text": "<b>Zajęcie</b> - Obróć jedną z twoich kości na stronę przedstawiającą specjalną zdolność ([special]). Następnie możesz rozpatrzyć daną kość."
+    },
+    {
+        "code": "01168",
+        "name": "Zmarznięte Pustkowia",
+        "subtitle": "Baza Starkiller",
+        "text": "<b>Zajęcie</b> - Usuń kość dowolnej postaci."
+    },
+    {
+        "code": "01169",
+        "name": "Imperialna Zbrojownia",
+        "subtitle": "Gwiazda Śmierci",
+        "text": "<b>Zajęcie</b> - Zagraj z ręki ulepszenie, zmniejszając jego koszt o 1."
+    },
+    {
+        "code": "01170",
+        "name": "Świątynia Jedi",
+        "subtitle": "Coruscant",
+        "text": "<b>Zajęcie</b> - Podejrzyj karty na ręce dowolnego przeciwnika i odrzuć z nich maksymalnie 2, wybrane przez ciebie wydarzenia."
+    },
+    {
+        "code": "01171",
+        "name": "Rebeliancka sala narad",
+        "subtitle": "Yavin IV",
+        "text": "<b>Zajęcie</b> - Rozpatrz jedną z twoich kości. Jeśli posiada ona koszt w zasobach, nie musisz go płacić."
+    },
+    {
+        "code": "01172",
+        "name": "Kosmoport Mos Eisley",
+        "subtitle": "Tatooine",
+        "text": "<b>Zajęcie</b> - Cofnij na twoją rękę jedno z ulepszeń, które masz w grze, aby zyskać 1 żeton zasobu."
+    },
+    {
+        "code": "01173",
+        "name": "Baza Separatystów",
+        "subtitle": "Mustafar",
+        "text": "<b>Zajęcie</b> - Każdy przeciwnik wybiera jedną ze swoich postaci i zadaje jej 1 nieblokowalne obrażenie."
+    },
+    {
+        "code": "01174",
+        "name": "Cmentarzysko statków",
+        "subtitle": "Jakku",
+        "text": "<b>Zajęcie</b> - Wybierz dowolne wsparcie lub ulepszenie z twojego stosu kart odrzuconych i umieśc je na wierzchu twojej talii."
+    }
+]

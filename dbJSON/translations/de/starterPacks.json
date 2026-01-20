@@ -1,0 +1,27 @@
+[
+    {
+        "code": "AW-V",
+        "name": "Kylo Ren Starter-Set",
+        "set_code": "AW",
+    },
+    {
+        "code": "AW-H",
+        "name": "Rey Starter-Set",
+        "set_code": "AW",
+    },
+    {
+        "code": "TPG",
+        "name": "Starter-Set für 2 Spieler",
+        "set_code": "TPG",
+    },
+    {
+        "code": "LEG-H",
+        "name": "Luke Skywalker Starter-Set",
+        "set_code": "LEG",
+    },
+    {
+        "code": "LEG-V",
+        "name": "Boba Fett Starter-Set",
+        "set_code": "LEG",
+    }
+]

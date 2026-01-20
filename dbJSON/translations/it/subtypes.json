@@ -1,0 +1,90 @@
+[
+    {
+        "code": "ability",
+        "name": "Capacità"
+    },
+    {
+        "code": "artillery",
+        "name": "Artiglieria"
+    },
+    {
+        "code": "bounty-hunter",
+        "name": "Cacciatore di Taglie"
+    },
+    {
+        "code": "droid",
+        "name": "Droide"
+    },
+    {
+        "code": "equipment",
+        "name": "Equipaggiamento"
+    },
+    {
+        "code": "gungan",
+        "name": "Gungan"
+    },
+    {
+        "code": "inquisitor",
+        "name": "Inquisitore"
+    },
+    {
+        "code": "jawa",
+        "name": "Jawa"
+    },
+    {
+        "code": "jedi",
+        "name": "Jedi"
+    },
+    {
+        "code": "leader",
+        "name": "Leader"
+    },
+    {
+        "code": "location",
+        "name": "Luogo"
+    },
+    {
+        "code": "mod",
+        "name": "Mod"
+    },
+    {
+        "code": "pilot",
+        "name": "Pilota"
+    },
+    {
+        "code": "podracer",
+        "name": "Sguscio"
+    },
+    {
+        "code": "scoundrel",
+        "name": "Canaglia"
+    },
+    {
+        "code": "sith",
+        "name": "Sith"
+    },
+    {
+        "code": "spectre",
+        "name": "Spectre"
+    },
+    {
+        "code": "title",
+        "name": "Titolo"
+    },
+    {
+        "code": "trooper",
+        "name": "Soldato"
+    },
+    {
+        "code": "vehicle",
+        "name": "Veicolo"
+    },
+    {
+        "code": "weapon",
+        "name": "Arma"
+    },
+    {
+        "code": "witch",
+        "name": "Strega"
+    }
+]

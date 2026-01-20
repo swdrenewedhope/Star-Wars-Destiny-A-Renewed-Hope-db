@@ -1,0 +1,78 @@
+{
+    "additionalProperties": false,
+    "properties": {
+        "cgdb_id_end": {
+            "oneOf": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        },
+        "cgdb_id_start": {
+            "oneOf": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        },
+        "code": {
+            "minLength": 1,
+            "type": "string"
+        },
+        "cycle_code": {
+            "minLength": 1,
+            "type": "string"
+        },
+        "date_release": {
+            "oneOf": [
+                {
+                    "maxLength": 10,
+                    "minLength": 10,
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        },
+        "name": {
+            "minLength": 1,
+            "type": "string"
+        },
+        "position": {
+            "minimum": 1,
+            "type": "integer"
+        },
+        "project_name": {
+            "maxLength": 30,
+            "minLength": 1,
+            "type": "string"
+        },
+        "size": {
+            "oneOf": [
+                {
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        }
+    },
+    "required": [
+        "date_release",
+        "code",
+        "cycle_code",
+        "name",
+        "position",
+        "size"
+    ],
+    "type": "object"
+}

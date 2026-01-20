@@ -1,0 +1,14 @@
+[
+    {
+        "code": "hero",
+        "name": "英雄"
+    },
+    {
+        "code": "neutral",
+        "name": "中立"
+    },
+    {
+        "code": "villain",
+        "name": "反派"
+    }
+]

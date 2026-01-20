@@ -1,0 +1,30 @@
+[
+    {
+        "code": "AW",
+        "name": "觉醒"
+    },
+    {
+        "code": "EaW",
+        "name": "战争帝国"
+    },
+    {
+        "code": "LEG",
+        "name": "Legacies"
+    },
+    {
+        "code": "RIV",
+        "name": "棋逢对手"
+    },
+    {
+        "code": "SoR",
+        "name": "义军之魂"
+    },
+    {
+        "code": "TPG",
+        "name": "双人对战"
+    },
+    {
+        "code": "WotF",
+        "name": "原力之路"
+    }
+]
