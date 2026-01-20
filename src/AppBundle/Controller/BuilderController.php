@@ -189,7 +189,7 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
 		$properties = [
     		'name' => str_replace(".$origext", '', $origname),
     		'affiliation_code' => $parse['affiliation_code'] ?? '',
-    		'format_code' => $request->get('format_code'),
+    		'format_code' => $format_code,
     		'content' => json_encode($parse['content']),
     		'description' => $parse['description'] ?? ''
 			];
