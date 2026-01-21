@@ -1,7 +1,4 @@
-ARH DestinyDB cards JSON data
-=========
-
-This folder stores [SWD ARH DB](https://db.swdrenewedhope.com/) card data in a format that can be easily updated and reviewed by multiple people.
+This folder stores database-related data in a format that can be easily updated and reviewed by multiple people.
 
 ## Validating
 
@@ -13,8 +10,6 @@ Using python >=2.6, type in command line:
 
 The above script requires python package `jsonschema` which can be installed using `pip` via `pip install -U jsonschema`.
 
-You can also just try to follow the style existing files use when editing entries. They are all formatted and checked using the script above.
-
 ## Description of Properties in Schemas
 
 Required properties are in **bold**.
@@ -25,24 +20,53 @@ Required properties are in **bold**.
 * **name** - Properly formatted name of the set. Examples: `"Awakenings"`.
 * **position** - Number of the set. Examples: `1` for Awakenings.
 * **released** - Date when the set was officially released. Format of the date is YYYY-MM-DD. May be `null` - will show up in the db as unreleased.
-* **size** - number of different cards in the set. May be `null` - this value is used when the pack is just an organizational entity, not a physical set.  Examples: `174` for Awakenings, `null` for assorted draft cards.
+* **size** - Number of different cards in the set. May be `null`. Examples: `174` for Awakenings, `null` for assorted draft cards.
 
-#### Card Schema - NEW
+#### Card Schema
 
-* **set_code** - Acronym of set code. Example: `"AW"` for Awakenings.
-* **type_code** - Type of card. Possible values: `"battlefield"`, `"character"`, `"event"`, `"support"`, `"upgrade"`, `"plot"`, `"downgrade"`.
-* **faction_code** - Faction (or colour) of the card. Possible values: `"blue"`, `"gray"`, `"red"`, `"yellow"`.
-* **affiliation_code** - Affiliation / Alignment. Possible values: `"hero"`, `"neutral"`, `"villain"`.
-* **rarity_code** - Initial of rarity: (S)tarter, (C)ommon, (U)ncommon, (R)are or (L)egendary. ARH Cards are entered with the rarity S.
-* reprint_of - Takes the **code** of an existing card. Other details are still expected to be filled out.
-* parallel_die - Takes the **code** of an existing card.
-* **position** - Position of the card in the set / card number.
-* **code** - 5 digit card identifier. First two digits are the set position, last three are position of the card within the set (printed on the card).
-* **ttscardid** - [**DEPRECIATED**] - Put 00000 until it is removed completely.
-* **name** - Name of the card.
-
-
-
+* **set_code (string)** - Acronym of set code. Example: `"AW"` for Awakenings.
+* **type_code (string)** - Type of card. Possible values: `"battlefield"`, `"character"`, `"event"`, `"support"`, `"upgrade"`, `"plot"`, `"downgrade"`.
+* **faction_code (string)** - Faction (or colour) of the card. Possible values: `"blue"`, `"gray"`, `"red"`, `"yellow"`.
+* **affiliation_code (string)** - Affiliation / Alignment. Possible values: `"hero"`, `"neutral"`, `"villain"`.
+* **rarity_code (string)** - Initial of rarity: (S)tarter, (C)ommon, (U)ncommon, (R)are or (L)egendary. ARH Cards are entered with the rarity S.
+* reprint_of (int) - Takes the **code** of an existing card. Other details are still expected to be filled out.
+* parallel_die (int) - Takes the **code** of an existing card.
+* **position (int)** - Position of the card in the set / card number.
+* **code (int)** - 5 digit card identifier. First two digits are the set position, last three are position of the card within the set (printed on the card).
+* **ttscardid (int)** - [**DEPRECIATED**] - Put 00000 until it is removed completely.
+* **name (string)** - Name of the card.
+* subtitle (string) - Subtitle of (usually) a character card. Example: Captain Phasma --> Elite Trooper <--
+* cost (string) - Play cost of the card. May be `null` - this value is used when the card has a variable cost (i.e. `X` values).
+* health (int) - The health value of the card. Example: Captain Phasma (Elite Trooper) has 11 health.
+* points (string) - The points cost of the card. Example: Captain Phasma (Elite Trooper) has 12/15.
+* text (string) - The text of the card. Example: Captain Phasma (Elite Trooper) is: `"Your non-unique characters have the Guardian keyword"`.
+* **deck_limit** (int) - The amount of copies of the card that is legal to include.
+* flavor (string) - Flavor text of the card. Example: Captain Phasma (Elite Trooper) is: `"Whatever you're planning, it won't work"`.
+* illustrator (string) - Artist who created the art for the card.
+* **is_unique (bool)** - Is the card unique? true/false. Example: Captain Phasma (Elite Trooper) is unique.
+* **has_die (bool)** - Does the card itself have a die panel? true/false. Example: Captain Phasma (Elite Trooper) does.
+* has_errata (bool) - Was the printed text of the card legally changed? true/false. Example: Captain Phasma (Elite Trooper) has been errata'd.
+* flip_card - Unknown, do not use yet.
+* sides - If the card has a die, this represents the die faces. It is an array of six elements.
+  <details>
+<summary>These are valid signs</summary>	
+* `-` - Blank
+* * `Dc` - Discard
+* `Dr` - Disrupt
+* * `F` - Focus
+* `MD` - Melee Damage
+* * `R` - Resource
+* `RD` - Ranged Damage
+* * `Sh` - Shield
+* `Sp` - Special
+* `ID` - Indirect Damage
+* `Fr` - Feral
+* `Re` - Reroll
+* `X` - Variable Cost
+  </details>
+        
+* A Plus (`+`) sign can be used for sides that are modified (blue) values. Example: +2MD
+* A die with a cost should have the cost after the entire side is written out. Example: +2MD1 = +2 Melee Damage side (blue) costing 1 resource to resolve.
 
 
 
