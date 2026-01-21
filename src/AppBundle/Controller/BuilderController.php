@@ -18,7 +18,6 @@ class BuilderController extends Controller
 {
 	private function getCardSetCode(Card $card)
 {
-
     // Card -> set
     if (method_exists($card, 'getSet') && $card->getSet() && method_exists($card->getSet(), 'getCode')) {
         return strtoupper(trim((string) $card->getSet()->getCode()));
@@ -41,7 +40,6 @@ class BuilderController extends Controller
             return strtoupper(trim((string) $pack->getCode()));
         }
     }
-
     return null;
 }
 
