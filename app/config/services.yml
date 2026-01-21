@@ -4,6 +4,15 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+  doctrine_cache.metadata:
+    class: Doctrine\Common\Cache\FilesystemCache
+    arguments: ["%kernel.cache_dir%/doctrine/metadata"]
+
+  doctrine_cache.query:
+    class: Doctrine\Common\Cache\FilesystemCache
+    arguments: ["%kernel.cache_dir%/doctrine/query"]
+
+  doctrine_cache.result:
+    class: Doctrine\Common\Cache\FilesystemCache
+    arguments: ["%kernel.cache_dir%/doctrine/result"]
+
