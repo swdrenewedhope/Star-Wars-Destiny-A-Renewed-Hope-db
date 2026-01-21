@@ -1,9 +1,9 @@
 ARH DestinyDB cards JSON data
 =========
 
-The goal of this repository is to store [SWDestinyDB](https://swdestinydb.com) card data in a format that can be easily updated by multiple people and their changes reviewed.
+This folder stores [SWD ARH DB](https://db.swdrenewedhope.com/) card data in a format that can be easily updated and reviewed by multiple people.
 
-## Validating and formatting JSON
+## Validating
 
 Using python >=2.6, type in command line:
 
@@ -15,24 +15,40 @@ The above script requires python package `jsonschema` which can be installed usi
 
 You can also just try to follow the style existing files use when editing entries. They are all formatted and checked using the script above.
 
-## Description of properties in schemas
+## Description of Properties in Schemas
 
 Required properties are in **bold**.
 
-#### Set schema
+#### Set Schema
 
-* **code** - identifier of the set. The acronym of the set name, with matching case. Examples: `"AW"` for Awakenings.
-* **name** - properly formatted name of the set. Examples: `"Awakenings"`.
-* **position** - number of the set. Examples: `1` for Awakenings.
-* **released** - date when the set was officially released. Format of the date is YYYY-MM-DD. May be `null` - this value is used when the date is unknown, will show up in the db as unreleased.
+* **code** - Identifier of the set. The acronym of the set name, with matching case. Examples: `"AW"` for Awakenings.
+* **name** - Properly formatted name of the set. Examples: `"Awakenings"`.
+* **position** - Number of the set. Examples: `1` for Awakenings.
+* **released** - Date when the set was officially released. Format of the date is YYYY-MM-DD. May be `null` - will show up in the db as unreleased.
 * **size** - number of different cards in the set. May be `null` - this value is used when the pack is just an organizational entity, not a physical set.  Examples: `174` for Awakenings, `null` for assorted draft cards.
 
-#### Card schema
+#### Card Schema - NEW
 
-* **affiliation_code**
+* **set_code** - Acronym of set code. Example: `"AW"` for Awakenings.
+* **type_code** - Type of card. Possible values: `"battlefield"`, `"character"`, `"event"`, `"support"`, `"upgrade"`, `"plot"`, `"downgrade"`.
+* **faction_code** - Faction (or colour) of the card. Possible values: `"blue"`, `"gray"`, `"red"`, `"yellow"`.
+* **affiliation_code** - Affiliation / Alignment. Possible values: `"hero"`, `"neutral"`, `"villain"`.
+* **rarity_code** - Initial of rarity: (S)tarter, (C)ommon, (U)ncommon, (R)are or (L)egendary. ARH Cards are entered with the rarity S.
+* reprint_of - Takes the **code** of an existing card. Other details are still expected to be filled out.
+
+
+
+
+
+
+
+#### Card Schema - OLD
+
+* **affiliation_code** - Must be 'villain' or 'hero'.
 * **code** - 5 digit card identifier. Consists of two zero-padded numbers: first two digits are the set position, last three are position of the card within the set (printed on the card).
+Examples: 01001 = Captain Phasma, Elite Trooper (Awakenings Card 1) 01 - Awakenings 001 - Card 1.
 * cost - Play cost of the card. Relevant for all cards except characters and battlefields. May be `null` - this value is used when the card has a special, possibly variable, cost (i.e. `X` values).
-* **deck_limit**
+* **deck_limit** - The amount of copies of the card that is legal to include.
 * **faction_code**
 * flavor
 * **has_die** - whether the card has a die (true) or not (false)
