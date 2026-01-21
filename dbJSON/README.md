@@ -35,7 +35,11 @@ Required properties are in **bold**.
 * **affiliation_code** - Affiliation / Alignment. Possible values: `"hero"`, `"neutral"`, `"villain"`.
 * **rarity_code** - Initial of rarity: (S)tarter, (C)ommon, (U)ncommon, (R)are or (L)egendary. ARH Cards are entered with the rarity S.
 * reprint_of - Takes the **code** of an existing card. Other details are still expected to be filled out.
-
+* parallel_die - Takes the **code** of an existing card.
+* **position** - Position of the card in the set / card number.
+* **code** - 5 digit card identifier. First two digits are the set position, last three are position of the card within the set (printed on the card).
+* **ttscardid** - [**DEPRECIATED**] - Put 00000 until it is removed completely.
+* **name** - Name of the card.
 
 
 
