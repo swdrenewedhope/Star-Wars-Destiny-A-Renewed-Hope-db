@@ -273,9 +273,9 @@
             var amount = card.is_unique ? 1 : card.indeck.dice;
             var symbolsDie = {};
             card.sides.forEach(function(side) {
+				if (side[0] === 'X') side = side.slice(1); // Ignore X side
                 var elems = /^([-+]?)([0-9X]*?)([-A-Z][a-zA-Z]?)(\d*?)$/.exec(side);
                 if(elems && elems.length > 2) {
-	                if(elems && elems[3][0] === 'X') elems[3] = elems[3].slice(1);  // Ignore X
 					var symbol = elems[3];
 					if (symbol === 'Ri') symbol = 'R';
 
