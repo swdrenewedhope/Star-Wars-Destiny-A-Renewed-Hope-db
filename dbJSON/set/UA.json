@@ -946,6 +946,7 @@
         "position": 36,
         "rarity_code": "S",
         "set_code": "UA",
+		"subtypes": ["bounty"],
         "text": "After attached character is activated, you may give a <b>bounty hunter</b> 1 shield or remove a shield from a character.",
         "ttscardid": "00000",
 		"type_code": "downgrade"
