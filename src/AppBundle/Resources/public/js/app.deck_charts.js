@@ -275,8 +275,10 @@
             card.sides.forEach(function(side) {
                 var elems = /^([-+]?)([0-9X]*?)([-A-Z][a-zA-Z]?)(\d*?)$/.exec(side);
                 if(elems && elems.length > 2) {
-	                var symbol = elems[3];
+	                if(elems && elems[3][0] === 'X') elems[3] = elems[3].slice(1);  // Ignore X
+					var symbol = elems[3];
 					if (symbol === 'Ri') symbol = 'R';
+
 	                var category = _.find(categories, {code: symbol});
 	                category.faces = category.faces + amount;
 	                if(elems[1]!='+') category.directFaces += amount;
