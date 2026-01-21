@@ -7,11 +7,22 @@ imports:
 #    serializer:
 #        cache: serializer.mapping.cache.apc
 
-#doctrine:
-#    orm:
-#        metadata_cache_driver: apc
-#        result_cache_driver: apc
-#        query_cache_driver: apc
+doctrine:
+  orm:
+    auto_generate_proxy_classes: false
+    metadata_cache_driver:
+      type: service
+      id: doctrine_cache.metadata
+    query_cache_driver:
+      type: service
+      id: doctrine_cache.query
+    result_cache_driver:
+      type: service
+      id: doctrine_cache.result
+
+  dbal:
+    logging: false
+    profiling: false
 
 monolog:
     handlers:
@@ -30,7 +41,7 @@ assetic:
     node: /opt/cpanel/ea-nodejs16/bin/node
     filters:
       handlebars:
-        bin: /opt/cpanel/ea-nodejs16/bin/handlebars
+        bin: /home/gxpvsxmy/Servers/swdestinydb/node_modules/handlebars/bin/handlebars
         node: /opt/cpanel/ea-nodejs16/bin/node
 
 fos_js_routing:
@@ -38,8 +49,3 @@ fos_js_routing:
     - user_info
     - api_formats
     - '^api_'
-
-parameters:
-  assetic.node.bin: /opt/cpanel/ea-nodejs16/bin/node
-  assetic.filter.handlebars.node: /opt/cpanel/ea-nodejs16/bin/handlebars
-  assetic.filter.handlebars.bin: /home/gxpvsxmy/Servers/swdestinydb/node_modules/.bin/handlebars

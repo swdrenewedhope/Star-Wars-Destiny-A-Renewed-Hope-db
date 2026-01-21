@@ -14,6 +14,7 @@ tags
 /web/assets/
 /web/js/
 /web/css/
+/web/app_dev.php
 /node_modules
 .externalToolBuilders/
 .settings/
