@@ -38,11 +38,11 @@ monolog:
             type:  console
 
 assetic:
-    node: /opt/cpanel/ea-nodejs16/bin/node
+    node: "%node_bin%"
     filters:
       handlebars:
-        bin: /home/gxpvsxmy/Servers/swdestinydb/node_modules/handlebars/bin/handlebars
-        node: /opt/cpanel/ea-nodejs16/bin/node
+        bin: "%handlebars_bin%"
+        node: "%node_bin%"
 
 fos_js_routing:
   routes_to_expose:
