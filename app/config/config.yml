@@ -74,8 +74,8 @@ twig:
 
 # Assetic Configuration
 assetic:
-    debug:          "%kernel.debug%"
-    node: /home/gxpvsxmy/.nvm/versions/node/v17.1.0/bin/node
+    debug: "%kernel.debug%"
+    node: "%node_bin%"
     use_controller: false
     bundles:        [ AppBundle ]
     #java: /usr/bin/java
@@ -86,17 +86,16 @@ assetic:
         jsqueeze: ~
         handlebars:
             apply_to: "\.handlebars$"
-            bin: node_modules/handlebars/bin/handlebars
+            bin: "%handlebars_bin%"
 
 # Doctrine Configuration
 doctrine:
     dbal:
         driver:   pdo_mysql
-        server_version: 14.14
-        dbname: gxpvsxmy_swddb
-        host: 162.240.18.120
-        user: gxpvsxmy_tech
-        password: lanza f33t
+        dbname: "%db_name%"
+        host: "%db_host%"
+        user: "%db_username%"
+        password: "%db_password%"
         charset:  UTF8
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
@@ -216,9 +215,9 @@ happyr_translation:
     locales: %supported_locales%
     projects:
         messages:
-            api_key: -GeNAIp8XIzwIZCFZL3ZsP9k5vWBxo4F
+            api_key: "%happyr_messages_api_key%"
         validators:
-            api_key: CWow0Q-lOtg1QdZaV5UsrhpKrd2fYz9z
+            api_key: "%happyr_validators_api_key%"
 
 services:
     fos_user.doctrine_registry:
