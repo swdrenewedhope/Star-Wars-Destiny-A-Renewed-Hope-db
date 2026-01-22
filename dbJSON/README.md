@@ -24,32 +24,81 @@ Required properties are in **bold**.
 
 #### Card Schema
 
-* **set_code (string)** - Acronym of set code. Example: `"AW"` for Awakenings.
-* **type_code (string)** - Type of card. Possible values: `"battlefield"`, `"character"`, `"event"`, `"support"`, `"upgrade"`, `"plot"`, `"downgrade"`.
-* **faction_code (string)** - Faction (or colour) of the card. Possible values: `"blue"`, `"gray"`, `"red"`, `"yellow"`.
-* **affiliation_code (string)** - Affiliation / Alignment. Possible values: `"hero"`, `"neutral"`, `"villain"`.
-* **rarity_code (string)** - Initial of rarity: (S)tarter, (C)ommon, (U)ncommon, (R)are or (L)egendary. ARH Cards are entered with the rarity S.
-* reprint_of (int) - Takes the **code** of an existing card. Other details are still expected to be filled out.
-* parallel_die (int) - Takes the **code** of an existing card.
-* **position (int)** - Position of the card in the set / card number.
-* **code (int)** - 5 digit card identifier. First two digits are the set position, last three are position of the card within the set (printed on the card).
-* **ttscardid (int)** - [**DEPRECIATED**] - Put 00000 until it is removed completely.
-* **name (string)** - Name of the card.
-* subtitle (string) - Subtitle of (usually) a character card. Example: Captain Phasma --> Elite Trooper <--
-* cost (string) - Play cost of the card. May be `null` - this value is used when the card has a variable cost (i.e. `X` values).
-* health (int) - The health value of the card. Example: Captain Phasma (Elite Trooper) has 11 health.
-* points (string) - The points cost of the card. Example: Captain Phasma (Elite Trooper) has 12/15.
-* text (string) - The text of the card. Example: Captain Phasma (Elite Trooper) is: `"Your non-unique characters have the Guardian keyword"`.
-* **deck_limit** (int) - The amount of copies of the card that is legal to include.
-* flavor (string) - Flavor text of the card. Example: Captain Phasma (Elite Trooper) is: `"Whatever you're planning, it won't work"`.
-* illustrator (string) - Artist who created the art for the card.
-* **is_unique (bool)** - Is the card unique? true/false. Example: Captain Phasma (Elite Trooper) is unique.
-* **has_die (bool)** - Does the card itself have a die panel? true/false. Example: Captain Phasma (Elite Trooper) does.
-* has_errata (bool) - Was the printed text of the card legally changed? true/false. Example: Captain Phasma (Elite Trooper) has been errata'd.
-* flip_card - Unknown, do not use yet.
-* sides - If the card has a die, this represents the die faces. It is an array of six elements.
- <details>
-  <summary>These are valid signs</summary>
+- **set_code** (string)  
+  Acronym of set code. Example: `"AW"` for Awakenings.
+
+- **type_code** (string)  
+  Type of card. Possible values: `"battlefield"`, `"character"`, `"event"`, `"support"`, `"upgrade"`, `"plot"`, `"downgrade"`.
+
+- **faction_code** (string)  
+  Faction (or colour) of the card. Possible values: `"blue"`, `"gray"`, `"red"`, `"yellow"`.
+
+- **affiliation_code** (string)  
+  Affiliation / Alignment. Possible values: `"hero"`, `"neutral"`, `"villain"`.
+
+- **rarity_code** (string)  
+  Initial of rarity: (S)tarter, (C)ommon, (U)ncommon, (R)are or (L)egendary.  
+  Note: ARH cards are entered with rarity `S`.
+
+- `reprint_of` (int)  
+  Takes the **code** of an existing card. Other details are still expected to be filled out.
+
+- `parallel_die` (int)  
+  Takes the **code** of an existing card.
+
+- **position** (int)  
+  Position of the card in the set / card number.
+
+- **code** (int)  
+  5 digit card identifier. First two digits are the set position, last three are position of the card within the set (printed on the card).
+
+- **ttscardid** (int)  
+  **Deprecated** — Put `00000` until it is removed completely.
+
+- **name** (string)  
+  Name of the card.
+
+- `subtitle` (string)  
+  Subtitle of (usually) a character card. Example: Captain Phasma → Elite Trooper.
+
+- `cost` (string \| null)  
+  Play cost of the card. Use `null` when the card has a variable cost (i.e. `X` values).
+
+- `health` (int)  
+  The health value of the card. Example: Captain Phasma (Elite Trooper) has 11 health.
+
+- `points` (string)  
+  The points cost of the card. Example: Captain Phasma (Elite Trooper) has 12/15.
+
+- `text` (string)  
+  The text of the card. Example: `"Your non-unique characters have the Guardian keyword"`.
+
+- **deck_limit** (int)  
+  The amount of copies of the card that is legal to include.
+
+- `flavor` (string)  
+  Flavor text. Example: `"Whatever you're planning, it won't work"`.
+
+- `illustrator` (string)  
+  Artist who created the art for the card.
+
+- **is_unique** (bool)  
+  Is the card unique? `true`/`false`.
+
+- **has_die** (bool)  
+  Does the card itself have a die panel? `true`/`false`.
+
+- `has_errata` (bool)  
+  Was the printed text of the card legally changed? `true`/`false`.
+
+- `flip_card`  
+  Unknown, do not use yet.
+
+- `sides` (string[6])  
+  If the card has a die, this represents the die faces. It is an array of six elements.
+
+  <details>
+  <summary>Valid symbols</summary>
 
   - `-` — Blank
   - `Dc` — Discard
@@ -64,13 +113,12 @@ Required properties are in **bold**.
   - `Fr` — Feral
   - `Re` — Reroll
   - `X` — Variable Cost
-</details>
 
-        
-* A Plus (`+`) sign can be used for sides that are modified (blue) values. Example: +2MD
-* A die with a cost should have the cost after the entire side is written out. Example: +2MD1 = +2 Melee Damage side (blue) costing 1 resource to resolve.
+  </details>
 
-
+  Notes:  
+  - A plus (`+`) sign can be used for sides that are modified (blue) values. Example: `+2MD`  
+  - A die with a cost should have the cost after the entire side is written out. Example: `+2MD1`
 
 #### Card Schema - OLD
 
