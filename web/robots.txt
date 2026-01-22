@@ -1,5 +1,4 @@
 User-agent: *
 Disallow: /login
-Disallow: /card/
-Disallow: /deck/
-Disallow: /decklist/
+Disallow: /collection
+Disallow: /decks
