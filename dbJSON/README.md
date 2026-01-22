@@ -94,11 +94,11 @@ Required properties are in **bold**.
 - `flip_card`  
   Unknown, do not use yet.
 
-- `sides` (string[6])  
+- `sides` (string)  
   If the card has a die, this represents the die faces. It is an array of six elements.
 
   <details>
-  <summary>Valid symbols</summary>
+  <summary>Valid Symbols</summary>
 
   - `-` — Blank
   - `Dc` — Discard
@@ -116,48 +116,69 @@ Required properties are in **bold**.
 
   </details>
 
-  Notes:  
+  Notes (sides):  
   - A plus (`+`) sign can be used for sides that are modified (blue) values. Example: `+2MD`  
   - A die with a cost should have the cost after the entire side is written out. Example: `+2MD1`
 
-#### Card Schema - OLD
+  - `subtypes` (string | array)
+    The subtypes of a card. Example: Captain Phasma (Elite Trooper) has the subtypes: Trooper. Leader.
 
-* **affiliation_code** - Must be 'villain' or 'hero'.
-* **code** - 5 digit card identifier. Consists of two zero-padded numbers: first two digits are the set position, last three are position of the card within the set (printed on the card).
-Examples: 01001 = Captain Phasma, Elite Trooper (Awakenings Card 1) 01 - Awakenings 001 - Card 1.
-* cost - Play cost of the card. Relevant for all cards except characters and battlefields. May be `null` - this value is used when the card has a special, possibly variable, cost (i.e. `X` values).
-* **deck_limit** - The amount of copies of the card that is legal to include.
-* **faction_code**
-* flavor
-* **has_die** - whether the card has a die (true) or not (false)
-* health - Characters only
-* illustrator
-* **is_unique**
-* **name**
-* points - Characters only
-* **position**
-* **rarity_code** - Initial of rarity: (S)tarter, (C)ommon, (U)ncommon, (R)are or (L)egendary
-* **set_code** - Acronym of set code. For example, `"AW"` for Awakenings
-* sides - If the card has a die, this represents the die faces. It is an array of exactly six elements, each of them comprised of (in order):
-	* An optional plus (`+`) sign for sides that are modified values
-	* An integer value for all of all side signs except Special and Blank. IF the sign is neither special nor blank, a value of 0 indicate a variable value (i.e., an `X` value)
-	* The sign acronym. With:
-		* `MD` - Melee damage
-		* `RD` - Ranged damage
-		* `F` - Focus
-		* `Dr` - Disrupt
-		* `Dc` - Discard
-		* `Sh` - Shield
-		* `R` - Resource
-		* `Sp` - Special
-		* '-' - Blank side
-	* An optional resource cost
-	So, for example, a side with a modified 2 ranged damage with 1 resource cost would be `+2RD1`.
-* subtitle - Characters only (optional)
-* subtype_code - Upgraded and Support. Usually, the lowercase of what is in printed on the card. For further reference, see `subtypes.json` file.
-* text
-* **ttscardid** [DEPRECIATED] - 4 digit card identifier for TableTop Simulator MOD created by IceKobra. Consists of two zero-padded numbers: first two digits are the `CustomDeck` identifier which is tied to the graphic for the face of the card, last two are position of the card within the on the graphic. 
-* **type_code** - Type of the card. Possible values: `"character"`, `"upgrade"`, `"support"`, `"event"`, `"battlefield"`
+  <details>
+  <summary>Valid Subtypes</summary>
+
+  - ability
+  - advisor
+  - apprentice
+  - artillery
+  - bomb
+  - bounty
+  - bounty-hunter
+  - creature
+  - cultist
+  - curse
+  - death-star
+  - droid
+  - engineer
+  - equipment
+  - ewok
+  - form
+  - format
+  - guard
+  - gungan
+  - injury
+  - inquisitor
+  - intel
+  - jawa
+  - jedi
+  - leader
+  - location
+  - mission
+  - mod
+  - move
+  - nightbrother
+  - partisan
+  - pilot
+  - pirate
+  - podracer
+  - scavenger
+  - scoundrel
+  - shapeshifter
+  - sith
+  - spectre
+  - spell
+  - spy
+  - title
+  - trap
+  - trooper
+  - vehicle
+  - weapon
+  - witch
+  - wookie
+  - musician
+  - capital-ship
+  - twilek
+
+  </details>
 
 ## JSON text editing tips
 
@@ -169,7 +190,7 @@ When symbols outside the regular [ASCII range](https://en.wikipedia.org/wiki/ASC
 
 To get the 4-letter hexcode of a UTF-8 symbol (or look up what a particular hexcode represents), you can use a UTF-8 converter, such as [this online tool](http://www.ltg.ed.ac.uk/~richard/utf-8.cgi).
 
-#### Quotes and breaking text into multiple lines
+#### Quotes and Multiple Lines
 
 To have text spanning multiple lines, use `\n` to separate them. To have quotes as part of the text, use `\"`.  For example, `"\"Orange and white: one of a kind.\" <cite>Poe Dameron</cite>"` results in following flavor text:
 
