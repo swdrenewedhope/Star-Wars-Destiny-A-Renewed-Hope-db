@@ -92,11 +92,11 @@
         "rarity_code": "S",
         "set_code": "UA",
         "sides": [
-            "0MD",
-            "0F",
-            "0Dr",
-            "0Dc",
-            "0Sh",
+            "XMD",
+            "XF",
+            "XDr",
+            "XDc",
+            "XSh",
             "-"
         ],
         "subtypes": [
@@ -627,7 +627,7 @@
 			"partisan",
 			"trooper"
         ],
-        "text": "After you activate a <b>partisan</b>, you may place 1 resource on this card.\n<b>Special</b> - Deal indirect damage to an opponent equal to the number of resources on this card, to a maximum of 4. Then you may remove 2 resources from this card to roll another of your <b>partisan</b> dice into your pool.",
+        "text": "After you activate a <b>partisan</b>, you may place 1 resource on this card.\n[special] - Deal indirect damage to an opponent equal to the number of resources on this card, to a maximum of 4. Then you may remove 2 resources from this card to roll another of your <b>partisan</b> dice into your pool.",
         "ttscardid": "00000",
 		"type_code": "character"
     },
@@ -697,7 +697,7 @@
             "creature",
 			"partisan"
         ],
-        "text": "After an opponent claims the battlefield, you may discard this support from play to deal 2 indirect damage to that opponent.\n<b>Special</b>: - Spot any number of <b>partisans</b> to deal that much indrect damage to an opponent.",
+        "text": "After an opponent claims the battlefield, you may discard this support from play to deal 2 indirect damage to that opponent.\n[special] - Spot any number of <b>partisans</b> to deal that much indrect damage to an opponent.",
         "ttscardid": "00000",
 		"type_code": "support"
     },
@@ -747,7 +747,7 @@
         "subtypes": [
             "vehicle"
         ],
-        "text": "After a die rolls a value of 1, you may activate this support.\n<b>Special</b> - Deal indirect damage to an opponent equal to the number of dice in any pool showing a value of 1, to a maximum of 5.",
+        "text": "After a die rolls a value of 1, you may activate this support.\n[special] - Deal indirect damage to an opponent equal to the number of dice in any pool showing a value of 1, to a maximum of 5.",
         "ttscardid": "00000",
 		"type_code": "support"
     },
@@ -805,7 +805,7 @@
         "subtypes": [
             "creature"
         ],
-        "text": "Ambush.\n<b>Special</b> - Resolve each other side of this die in the order of your choice.",
+        "text": "Ambush.\n[special] - Resolve each other side of this die in the order of your choice.",
         "ttscardid": "00000",
 		"type_code": "support"
     },
