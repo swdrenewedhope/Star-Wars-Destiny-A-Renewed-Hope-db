@@ -181,7 +181,7 @@
             "artillery",
 			"vehicle"
         ],
-        "text": "This support enters play with 2 damage on it.\n[special] - Place 1 damaghe on a support. Deal damage to each of an opponent's characters equal to the damage on this support.",
+        "text": "This support enters play with 2 damage on it.\n[special] - Place 1 damage on a support. Deal damage to each of an opponent's characters equal to the damage on this support.",
         "ttscardid": "00000",
 		"type_code": "support"
     },
