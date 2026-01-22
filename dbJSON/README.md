@@ -48,22 +48,24 @@ Required properties are in **bold**.
 * has_errata (bool) - Was the printed text of the card legally changed? true/false. Example: Captain Phasma (Elite Trooper) has been errata'd.
 * flip_card - Unknown, do not use yet.
 * sides - If the card has a die, this represents the die faces. It is an array of six elements.
-  <details>
-<summary>These are valid signs</summary>	
-- `-` - Blank
-- `Dc` - Discard
-- `Dr` - Disrupt
-- `F` - Focus
--`MD` - Melee Damage
-- `R` - Resource
-- `RD` - Ranged Damage
-- `Sh` - Shield
-- `Sp` - Special
-- `ID` - Indirect Damage
-- `Fr` - Feral
-- `Re` - Reroll
-- `X` - Variable Cost
-  </details>
+ <details>
+  <summary>These are valid signs</summary>
+
+  - `-` — Blank
+  - `Dc` — Discard
+  - `Dr` — Disrupt
+  - `F` — Focus
+  - `MD` — Melee Damage
+  - `R` — Resource
+  - `RD` — Ranged Damage
+  - `Sh` — Shield
+  - `Sp` — Special
+  - `ID` — Indirect Damage
+  - `Fr` — Feral
+  - `Re` — Reroll
+  - `X` — Variable Cost
+</details>
+
         
 * A Plus (`+`) sign can be used for sides that are modified (blue) values. Example: +2MD
 * A die with a cost should have the cost after the entire side is written out. Example: +2MD1 = +2 Melee Damage side (blue) costing 1 resource to resolve.
