@@ -120,8 +120,8 @@ Required properties are in **bold**.
   - A plus (`+`) sign can be used for sides that are modified (blue) values. Example: `+2MD`  
   - A die with a cost should have the cost after the entire side is written out. Example: `+2MD1`
 
-  - `subtypes` (string | array)
-    The subtypes of a card. Example: Captain Phasma (Elite Trooper) has the subtypes: Trooper. Leader.
+- `subtypes` (string | array)
+  The subtypes of a card. Example: Captain Phasma (Elite Trooper) has the subtypes: Trooper. Leader.
 
   <details>
   <summary>Valid Subtypes</summary>
