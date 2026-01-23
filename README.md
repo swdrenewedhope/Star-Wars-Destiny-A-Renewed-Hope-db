@@ -20,6 +20,10 @@ An admin user is automatically created with the following credentials:
 Username: dev
 Password: dev
 
+You can hard reset the container with:
+``docker compose down -v --remove-orphans``
+``docker compose up --build``
+
 ## Known issues
 
 Sets after Echoes of Destiny (as listed in sets.json) fail to import due to the position/id of a dependency set (Echoes of Destiny 2021) not being imported before-hand. I will fix this at some point, meanwhile you can ignore it or manually change the set positions in sets.json so that Echoes of Destiny 2021 imports before Echoes of Destiny. **Do not** push these changes.
