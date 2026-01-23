@@ -37,7 +37,7 @@
     <div class="clearfix">
       <label class="pull-left">
         <input type="radio" name="format" value="{{ format.code }}">
-        {{ format.name }} -
+        {{ format.name|replace({'ARH ': ''}) }} -
       </label>
 
       <span class="pull-left hidden-xs" style="margin-left:4px; margin-top:5px; margin-bottom:3px;">
@@ -57,7 +57,7 @@
     <div class="clearfix">
       <label class="pull-left">
         <input type="radio" name="format" value="{{ format.code }}">
-        {{ format.name }} -
+        {{ format.name|replace({'FFG ': ''}) }} -
       </label>
 
       <span class="pull-left hidden-xs" style="margin-left:4px; margin-top:5px; margin-bottom:3px;">
