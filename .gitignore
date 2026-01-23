@@ -27,6 +27,3 @@ error_log
 .user.ini
 /src/AppBundle/Resources/public/images/cards/
 /web/robots.txt
-
-# local runtime
-var/
