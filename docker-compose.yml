@@ -1,0 +1,137 @@
+services:
+  app:
+    user: "0:0"
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      SYMFONY_ENV: "prod"
+      SYMFONY_DEBUG: "0"
+
+      DB_HOST: "db"
+      DB_PORT: "3306"
+      DB_NAME: "swddb"
+      DB_USER: "swddb"
+      DB_PASSWORD: "swddbpass"
+
+      CREATE_DEV_ADMIN: "1"
+      DEV_ADMIN_USER: "dev"
+      DEV_ADMIN_EMAIL: "devadmin@localhost"
+      DEV_ADMIN_PASS: "dev"
+
+      NODE_BIN: "/usr/local/bin/node"
+      HANDLEBARS_BIN: "/var/www/html/node_modules/handlebars/bin/handlebars"
+
+      SKIP_IMPORT: "0"
+
+      WEBSITE_URL: "localhost"
+      WEBSITE_NAME: "Dev"
+      GAME_NAME: "Dev"
+      PUBLISHER_NAME: "Dev"
+      EMAIL_SENDER_ADDRESS: "noreply@localhost"
+      EMAIL_SENDER_NAME: "Dev"
+      SECRET: "dev-secret-change-me"
+
+      HAPPYR_MESSAGES_API_KEY: ""
+      HAPPYR_VALIDATORS_API_KEY: ""
+
+    volumes:
+      - ./:/var/www/html
+      - vendor:/var/www/html/vendor
+      - node_modules:/var/www/html/node_modules
+      - symfony_cache:/var/www/html/app/cache
+      - symfony_logs:/var/www/html/app/logs
+      - symfony_var:/var/www/html/var
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    command: --character-set-server=utf8 --collation-server=utf8_general_ci
+    environment:
+      MYSQL_DATABASE: "swddb"
+      MYSQL_USER: "swddb"
+      MYSQL_PASSWORD: "swddbpass"
+      MYSQL_ROOT_PASSWORD: "rootpass"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  vendor:
+  node_modules:
+  mysql_data:
+  composer_cache:
+  symfony_cache:
+  symfony_logs:
+  symfony_var:
+
+services:
+  app:
+    user: "0:0"
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      SYMFONY_ENV: "prod"
+      SYMFONY_DEBUG: "0"
+
+      DB_HOST: "db"
+      DB_PORT: "3306"
+      DB_NAME: "swddb"
+      DB_USER: "swddb"
+      DB_PASSWORD: "swddbpass"
+
+      CREATE_DEV_ADMIN: "1"
+      DEV_ADMIN_USER: "dev"
+      DEV_ADMIN_EMAIL: "devadmin@localhost"
+      DEV_ADMIN_PASS: "dev"
+
+      NODE_BIN: "/usr/local/bin/node"
+      HANDLEBARS_BIN: "/var/www/html/node_modules/handlebars/bin/handlebars"
+
+      SKIP_IMPORT: "0"
+
+      WEBSITE_URL: "localhost"
+      WEBSITE_NAME: "Dev"
+      GAME_NAME: "Dev"
+      PUBLISHER_NAME: "Dev"
+      EMAIL_SENDER_ADDRESS: "noreply@localhost"
+      EMAIL_SENDER_NAME: "Dev"
+      SECRET: "dev-secret-change-me"
+
+      HAPPYR_MESSAGES_API_KEY: ""
+      HAPPYR_VALIDATORS_API_KEY: ""
+
+    volumes:
+      - ./:/var/www/html
+      - vendor:/var/www/html/vendor
+      - node_modules:/var/www/html/node_modules
+      - symfony_cache:/var/www/html/app/cache
+      - symfony_logs:/var/www/html/app/logs
+      - symfony_var:/var/www/html/var
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    command: --character-set-server=utf8 --collation-server=utf8_general_ci
+    environment:
+      MYSQL_DATABASE: "swddb"
+      MYSQL_USER: "swddb"
+      MYSQL_PASSWORD: "swddbpass"
+      MYSQL_ROOT_PASSWORD: "rootpass"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  vendor:
+  node_modules:
+  mysql_data:
+  composer_cache:
+  symfony_cache:
+  symfony_logs:
+  symfony_var:
