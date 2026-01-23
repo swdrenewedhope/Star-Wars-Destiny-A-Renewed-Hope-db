@@ -21,7 +21,7 @@ Username: dev
 Password: dev
 
 You can hard reset the container with:
-``docker compose down -v --remove-orphans``
+``docker compose down -v --remove-orphans``,
 ``docker compose up --build``
 
 ## Known issues
