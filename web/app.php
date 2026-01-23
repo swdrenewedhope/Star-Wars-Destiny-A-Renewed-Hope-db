@@ -5,10 +5,7 @@ use Symfony\Component\HttpFoundation\Request;
 $root = realpath(__DIR__ . '/..');
 
 if (!is_file($root . '/vendor/autoload.php')) {
-    $envRoot = getenv('APP_ROOT');
-    if ($envRoot) {
-        $root = rtrim($envRoot, '/');
-    }
+        $root = '/home/gxpvsxmy/Servers/swdestinydb/';
 }
 
 $loader = require $root . '/vendor/autoload.php';
