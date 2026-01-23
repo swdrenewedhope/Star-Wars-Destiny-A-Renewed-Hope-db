@@ -24,23 +24,71 @@
 	</div>
 	<div class="col-md-6">
 		<h1>{{ 'decks.build.choose.format' | trans }}</h1>
-		<p><small>{{ 'decks.build.canbechanged' | trans }}</small>
-		{% for format in formats %}
-		<div class="row">
-			<div class="col-sm-3">
-				<label>
-					<input type="radio" name="format" value="{{ format.code }}">
-					{{format.name}}
-				</label>
-			</div>
-			<div class="col-sm-9 hidden-xs">
-				{% for set_code in format.data.sets %}
-					{% if not loop.first %}·{% endif %}
-					<span class="icon-set-{{set_code}}" title="{{sets[set_code]}}" data-toggle="tooltip"></span>
-				{% endfor %}
-			</div>
-		</div>
-		{% endfor %}
+		<div class="alert alert-warning" role="alert">
+  <strong>Note:</strong> This page is undergoing a redesign. Please report bugs in the ARH Discord!
+</div>
+		<p><small>{{ 'decks.build.canbechanged' | trans }}</small></p>
+
+<div class="well well-sm">
+  <strong>A Renewed Hope</strong>
+  <hr style="margin:3px">
+
+  {% for format in formats if ('ARHS' in format.code) %}
+    <div class="clearfix">
+      <label class="pull-left">
+        <input type="radio" name="format" value="{{ format.code }}">
+        {{ format.name }} -
+      </label>
+
+      <span class="pull-left hidden-xs" style="margin-left:4px; margin-top:5px; margin-bottom:3px;">
+        {% for set_code in format.data.sets %}
+          <span class="icon-set-{{ set_code }}" title="{{ sets[set_code] }}" data-toggle="tooltip"></span>
+        {% endfor %}
+      </span>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="well well-sm">
+  <strong>Fantasy Flight Games</strong>
+  <hr style="margin:3px">
+
+  {% for format in formats if ('STD' in format.code) or ('TRI' in format.code) %}
+    <div class="clearfix">
+      <label class="pull-left">
+        <input type="radio" name="format" value="{{ format.code }}">
+        {{ format.name }} -
+      </label>
+
+      <span class="pull-left hidden-xs" style="margin-left:4px; margin-top:5px; margin-bottom:3px;">
+        {% for set_code in format.data.sets %}
+          <span class="icon-set-{{ set_code }}" title="{{ sets[set_code] }}" data-toggle="tooltip"></span>
+        {% endfor %}
+      </span>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="well well-sm">
+  <strong>Extras</strong>
+  <hr style="margin:3px;">
+
+  {% for format in formats if ('INF' in format.code) %}
+    <div class="clearfix">
+      <label class="pull-left">
+        <input type="radio" name="format" value="{{ format.code }}">
+        {{ format.name }} -
+      </label>
+
+      <span class="pull-left hidden-xs" style="margin-left:4px; margin-top:5px; margin-bottom:3px;">
+        {% for set_code in format.data.sets %}
+          <span class="icon-set-{{ set_code }}" title="{{ sets[set_code] }}" data-toggle="tooltip"></span>
+        {% endfor %}
+      </span>
+    </div>
+  {% endfor %}
+</div>
+
 	</div>
 </div>
 <div class="row">
