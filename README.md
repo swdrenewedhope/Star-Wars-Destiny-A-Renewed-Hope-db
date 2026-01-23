@@ -15,7 +15,7 @@ After the commands above have been run, the entire dev enviornment will be setup
 
 You can visit the server @ http://localhost:8080 in browser.
 
-An admin user is automatically created with the following credientials:
+An admin user is automatically created with the following credentials:
 
 Username: dev
 Password: dev
