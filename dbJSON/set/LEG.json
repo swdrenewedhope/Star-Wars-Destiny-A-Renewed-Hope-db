@@ -1936,7 +1936,7 @@
         "faction_code": "yellow",
         "flavor": "\"Well that's just good business.\"",
         "has_die": true,
-        "has_errata": false,
+        "has_errata": true,
         "health": 10,
         "illustrator": "Andreia Ugrai",
         "is_unique": true,
@@ -1954,9 +1954,7 @@
             "-"
         ],
         "subtitle": "Respected Businessman",
-        "subtypes": [
-            "scoundrel"
-        ],
+        "subtypes": ["scoundrel", "pirate"],
         "text": "[special] - Deal 3 damage to an opponent's character unless that opponent gives you 1 resource.",
         "ttscardid": "47164",
         "type_code": "character"
