@@ -3115,7 +3115,7 @@
         "faction_code": "red",
         "flavor": "\"We're not murderers! We got what we needed, the mission was over.\" <cite>Iden Versio</cite>",
         "has_die": false,
-        "has_errata": false,
+        "has_errata": true,
         "illustrator": " ",
         "is_unique": false,
         "name": "Aftermath",
@@ -3123,7 +3123,7 @@
         "rarity_code": "C",
         "reprint_of": "02123",
         "set_code": "SoH",
-        "text": "After a character is defeated, you may exhaust this to gain 1 resource.",
+        "text": "After a character is defeated, you may exhaust this support to gain 1 resource.",
         "ttscardid": "52962",
         "type_code": "support"
     },

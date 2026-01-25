@@ -571,10 +571,8 @@
             "-"
         ],
         "subtitle": "Techno Union Foreman",
-        "subtypes": [
-            "leader"
-        ],
-        "text": "<b>Power Action</b> - Play a <i>Red</i> support from your hand <em>(paying its cost)</em>. Then roll that support's die into your pool.",
+        "subtypes": ["leader"],
+        "text": "<b>Power Action</b> - Play a Red support from your hand <em>(paying its cost)</em>. Then roll that support's die into your pool.",
         "ttscardid": "49921",
         "type_code": "character"
     },

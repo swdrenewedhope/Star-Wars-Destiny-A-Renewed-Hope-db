@@ -99,7 +99,7 @@
         "code": "06004",
         "deck_limit": 6,
         "faction_code": "gray",
-        "flavor": "\"I can't abide those Jawas. Disgusting creatures!\" <cite>C-3PO</cite>",
+        "flavor": "\"I can't abide those Jawas. Disgusting creatures!\" <cite> C-3PO</cite>",
         "has_die": true,
         "has_errata": true,
         "health": 6,
@@ -118,9 +118,7 @@
             "-",
             "-"
         ],
-        "subtypes": [
-            "jawa"
-        ],
+        "subtypes": ["jawa", "scavenger"],
         "text": "After you activate this character, you may discard one of your supports or upgrades that costs 2 or more from play to gain 1 resource.",
         "ttscardid": "47003",
         "type_code": "character"

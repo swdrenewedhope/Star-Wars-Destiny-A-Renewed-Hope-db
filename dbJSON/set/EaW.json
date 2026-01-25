@@ -1228,7 +1228,7 @@
         "code": "03041",
         "deck_limit": 4,
         "faction_code": "yellow",
-        "flavor": "\"It's not wise to upset a wookiee.\" <cite>Han Solo</cite>",
+        "flavor": "\"It's not wise to upset a wookiee.\" <cite> Han Solo</cite>",
         "has_die": true,
         "has_errata": true,
         "health": 10,
@@ -1247,9 +1247,7 @@
             "1R",
             "-"
         ],
-        "subtypes": [
-            "wookiee"
-        ],
+        "subtypes": ["wookiee", "trooper"],
         "ttscardid": "2540",
         "type_code": "character"
     },
