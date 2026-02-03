@@ -14,6 +14,17 @@ The above script requires python package `jsonschema` which can be installed usi
 
 Required properties are in **bold**.
 
+#### Formatting
+
+The correct formatting for cards should be:
+**Bold** for:
+  - The word **Action** and **Power Action**
+  - Card types e.g. **trooper** and **creature**
+
+*Italic* for reminder text e.g. *(paying its cost)*
+
+Card types (e.g. character), faction (e.g. Blue), and affiliation (e.g. hero) have never been formatted differently (though faction needs a capital letter).
+
 #### Set Schema
 
 * **code** - Identifier of the set. The acronym of the set name, with matching case. Examples: `"AW"` for Awakenings.
