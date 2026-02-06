@@ -14,7 +14,7 @@ The above script requires python package `jsonschema` which can be installed usi
 
 Required properties are in **bold**.
 
-#### Formatting
+### Formatting
 
 The correct formatting for cards should be:
 **Bold** for:
@@ -25,7 +25,7 @@ The correct formatting for cards should be:
 
 Card types (e.g. character), faction (e.g. Blue), and affiliation (e.g. hero) have never been formatted differently (though faction needs a capital letter).
 
-#### Set Schema
+### Set Schema
 
 * **code** - Identifier of the set. The acronym of the set name, with matching case. Examples: `"AW"` for Awakenings.
 * **name** - Properly formatted name of the set. Examples: `"Awakenings"`.
@@ -33,7 +33,7 @@ Card types (e.g. character), faction (e.g. Blue), and affiliation (e.g. hero) ha
 * **released** - Date when the set was officially released. Format of the date is YYYY-MM-DD. May be `null` - will show up in the db as unreleased.
 * **size** - Number of different cards in the set. May be `null`. Examples: `174` for Awakenings, `null` for assorted draft cards.
 
-#### Card Schema
+### Card Schema
 
 - **set_code** (string)  
   Acronym of set code. Example: `"AW"` for Awakenings.
