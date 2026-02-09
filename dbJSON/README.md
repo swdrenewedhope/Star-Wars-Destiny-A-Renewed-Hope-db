@@ -27,10 +27,14 @@ Card types (e.g. character), faction (e.g. Blue), and affiliation (e.g. hero) ha
 
 ### Set Schema
 
-* **code** - Identifier of the set. The acronym of the set name, with matching case. Examples: `"AW"` for Awakenings.
+* **code** - The acronym of the set name, with matching case. Example: `"AW"` for Awakenings.
+* **cycle_code** - The cycle that the set belongs too, though this is legacy it needs to be set. Will be deprecated moving forward.
 * **name** - Properly formatted name of the set. Examples: `"Awakenings"`.
+* `project_name` - Name of the project the set belongs too. Example: A Renewed Hope.
+* **cgdb_id_start** - The purpose of this is not yet known. Set to null.
+* **cgdb_id_end** - The purpose of this is not yet known. Set to null.
 * **position** - Number of the set. Examples: `1` for Awakenings.
-* **released** - Date when the set was officially released. Format of the date is YYYY-MM-DD. May be `null` - will show up in the db as unreleased.
+* **date_released** - Date when the set is released. Format of the date is YYYY-MM-DD. May be `null` - will show up as unreleased.
 * **size** - Number of different cards in the set. May be `null`. Examples: `174` for Awakenings, `null` for assorted draft cards.
 
 ### Card Schema
