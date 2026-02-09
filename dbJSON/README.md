@@ -16,14 +16,13 @@ Required properties are in **bold**.
 
 ### Formatting
 
-The correct formatting for cards should be:
-**Bold** for:
+**Bold** ``<b>`` for:
   - The word **Action** and **Power Action**
-  - Card types e.g. **trooper** and **creature**
+  - Card subtypes e.g. **trooper** and **creature**
 
-*Italic* for reminder text e.g. *(paying its cost)*
+*Italic* ``<em>`` for reminder text e.g. *(paying its cost)*
 
-Card types (e.g. character), faction (e.g. Blue), and affiliation (e.g. hero) have never been formatted differently (though faction needs a capital letter).
+Card types (e.g. character), faction (e.g. Blue), and affiliation (e.g. hero) are not formatted differently (though faction needs a capital letter).
 
 ### Set Schema
 
