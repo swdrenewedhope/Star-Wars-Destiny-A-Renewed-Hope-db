@@ -213,20 +213,6 @@
         },
         "name": "FFG Infinite"
     },
-	{
-        "code": "ARHInf",
-        "data": {
-            "balance": {
-            },
-            "banned": [
-            ],
-            "restricted": [
-            ],
-            "sets": [
-            ]
-        },
-        "name": "ARH Infinite"
-    },
     {
         "code": "ARHS",
         "data": {
