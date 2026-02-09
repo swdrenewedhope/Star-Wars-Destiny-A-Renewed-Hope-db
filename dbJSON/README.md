@@ -24,6 +24,8 @@ Required properties are in **bold**.
 
 Card types (e.g. character), faction (e.g. Blue), and affiliation (e.g. hero) are not formatted differently (though faction needs a capital letter).
 
+Though the convention throughout the history of the database has been not to highlight the errata in any way, exceptions exist where formatting rules in this section are matched.
+
 ### Set Schema
 
 * **code** - The acronym of the set name, with matching case. Example: `"AW"` for Awakenings.
