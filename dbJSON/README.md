@@ -8,7 +8,7 @@ Using python >=2.6, type in command line:
 ./validate.py --verbose --fix_formatting
 ```
 
-The above script requires python package `jsonschema` which can be installed using `pip` via `pip install -U jsonschema`.
+The above script requires python package `jsonschema` which can be installed via `pip install -U jsonschema`.
 
 ## Description of Properties in Schemas
 
@@ -191,11 +191,11 @@ Card types (e.g. character), faction (e.g. Blue), and affiliation (e.g. hero) ha
 
   </details>
 
-## JSON text editing tips
+### JSON text editing tips
 
 Full description of (very simple) JSON format can be found [here](http://www.json.org/), below there are a few tips most relevant to editing this repository.
 
-#### Non-ASCII symbols
+### Non-ASCII symbols
 
 When symbols outside the regular [ASCII range](https://en.wikipedia.org/wiki/ASCII#ASCII_printable_code_chart) are needed, UTF-8 symbols come in play. These need to be escaped using `\u<4 letter hexcode>`.
 
@@ -221,7 +221,7 @@ These can be used in a card's `text` section.
  * `[special]`
  * `[blank]`
 
-#### Translations
+### Translations
 
 To merge new changes in default language in all locales, run the CoffeeScript script `update_locales`.
 
