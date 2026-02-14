@@ -3241,7 +3241,7 @@
         "position": 141,
         "rarity_code": "C",
         "set_code": "SoR",
-        "text": "Before a <i>weapon</i> upgrade on attached character would be discarded by a card effect, you may discard this upgrade instead.",
+        "text": "Before a <b>weapon</b> upgrade on attached character would be discarded by a card effect, you may discard this upgrade instead.",
         "ttscardid": "2400",
         "type_code": "upgrade"
     },
