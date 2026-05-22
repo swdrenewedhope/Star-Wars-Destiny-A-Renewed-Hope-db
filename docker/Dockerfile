@@ -1,9 +1,4 @@
-FROM php:7.2-apache
-
-# php 7.2 is so ancient need to point to archive repos
-
-RUN echo "deb http://archive.debian.org/debian buster main" > /etc/apt/sources.list && \
-    echo "deb http://archive.debian.org/debian-security buster/updates main" >> /etc/apt/sources.list
+FROM php:7.3-apache
 
 RUN apt-get update && apt-get install -y \
     git \
