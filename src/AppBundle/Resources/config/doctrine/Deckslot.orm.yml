@@ -28,3 +28,6 @@ AppBundle\Entity\Deckslot:
         dices:
             type: string
             length: 20
+            nullable: false
+            options:
+              default: "0"

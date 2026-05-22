@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+trap 'echo "[entrypoint] DIED on line $LINENO (exit code $?)"' ERR
 cd /var/www/html
 
 log(){ echo "[entrypoint] $*"; }
@@ -11,7 +12,7 @@ DB_HOST="${DB_HOST:-db}"
 DB_PORT="${DB_PORT:-3306}"
 DB_NAME="${DB_NAME:-swddb}"
 DB_USER="${DB_USER:-swddb}"
-DB_PASSWORD="${DB_PASSWORD:-swddbpass}"
+DB_PASSWORD="${DB_PASSWORD:-swddb}"
 
 NODE_BIN="${NODE_BIN:-/usr/local/bin/node}"
 HANDLEBARS_BIN="${HANDLEBARS_BIN:-/var/www/html/node_modules/handlebars/bin/handlebars}"
@@ -25,7 +26,6 @@ chmod -R ug+rwX app/cache app/logs var || true
 find app/cache app/logs var -type d -exec chmod 2775 {} \; || true
 
 if [ ! -f app/config/parameters.yml ]; then
-  log "Generating app/config/parameters.yml"
   cat > app/config/parameters.yml <<EOF
 parameters:
   db_host: "${DB_HOST}"
@@ -62,16 +62,16 @@ parameters:
   moneytizer_site_id: "${MONEYTIZER_SITE_ID:-}"
   moneytizer_ad_types: ${MONEYTIZER_AD_TYPES:-"[]"}
   cache_expiration: ${CACHE_EXPIRATION:-600}
-  secret: "${SECRET:-dev-secret-change-me}"
+  secret: "${SECRET:-dev}"
 EOF
   chown www-data:www-data app/config/parameters.yml || true
 fi
 
-log "Waiting for MySQL at ${DB_HOST}:${DB_PORT}..."
 until mysqladmin ping -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" --silent; do
+  log "Waiting for db..."
   sleep 1
 done
-log "MySQL is up."
+log "db is up."
 
 export COMPOSER_CACHE_DIR=/tmp/composer-cache
 export COMPOSER_ALLOW_SUPERUSER=1
@@ -82,7 +82,7 @@ chown -R www-data:www-data vendor node_modules app/cache app/logs var || true
 chmod -R ug+rwX vendor node_modules app/cache app/logs var || true
 
 if [ ! -f vendor/autoload.php ]; then
-  log "Installing PHP deps (vendor missing)"
+  log "Installing PHP dependencies..."
   as_www "composer install --no-interaction --no-progress --prefer-dist --no-scripts"
 fi
 
@@ -103,14 +103,14 @@ if [ -f package-lock.json ]; then
 fi
 
 if [ ! -d node_modules ] || [ -z "$(ls -A node_modules 2>/dev/null)" ]; then
-  echo "[entrypoint] Installing Node deps…"
+  echo "[entrypoint] Installing Node dependencies..."
   if [ -f package-lock.json ]; then
-    as_www "npm ci --no-fund --no-audit --cache '${NPM_CONFIG_CACHE}'"
+    npm ci --no-fund --no-audit --cache "${NPM_CONFIG_CACHE}"
   else
-    as_www "npm install --no-fund --no-audit --cache '${NPM_CONFIG_CACHE}' --package-lock=false"
+    npm install --no-fund --no-audit --cache "${NPM_CONFIG_CACHE}" --package-lock=false
   fi
+  chown -R www-data:www-data node_modules
 fi
-
 
 mkdir -p app/cache/${SYMFONY_ENV}/annotations
 chown -R www-data:www-data app/cache app/logs var || true
@@ -118,28 +118,30 @@ chmod -R ug+rwX app/cache app/logs var || true
 
 as_www "php app/console doctrine:database:create --if-not-exists --env=${SYMFONY_ENV} --no-debug"
 
-log "Updating schema (idempotent)"
+if ! as_www "php app/console doctrine:schema:validate --env=${SYMFONY_ENV} --no-debug" > /dev/null 2>&1; then
+    as_www "php app/console doctrine:schema:create --env=${SYMFONY_ENV} --no-debug"
+fi
+
+log "Updating schema..."
+
+mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -e "UPDATE user SET notif_locale = 'en' WHERE notif_locale IS NULL OR notif_locale = '';" || true
 as_www "php app/console doctrine:schema:update --force --env=${SYMFONY_ENV} --no-debug"
 
-as_www "php app/console doctrine:query:sql \"ALTER TABLE \\\`user\\\` MODIFY \\\`notif_locale\\\` VARCHAR(10) NULL DEFAULT 'en'\" --env=${SYMFONY_ENV} --no-debug || true"
-as_www "php app/console doctrine:query:sql \"UPDATE \\\`user\\\` SET \\\`notif_locale\\\`='en' WHERE \\\`notif_locale\\\` IS NULL\" --env=${SYMFONY_ENV} --no-debug || true"
-
-if [ "${SKIP_IMPORT}" = "0" ] && [ -d "dbJSON" ]; then
   CARD_COUNT="$(mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -Nse "SELECT COUNT(*) FROM card;" 2>/dev/null || echo 0)"
-  if [ "${CARD_COUNT}" = "0" ]; then
+  if [ "${CARD_COUNT}" = "0" ]; then 
     log "Importing dbJSON (cards empty)"
     as_www "php -d memory_limit=-1 app/console app:import:std /var/www/html/dbJSON --env=${SYMFONY_ENV} --no-debug || true"
   else
     log "Skipping import (cards=${CARD_COUNT})"
   fi
-fi
 
 if [ "${FORCE_ASSETS:-0}" = "1" ] || [ ! -f web/css/app.css ]; then
   log "Dumping assetic assets"
   as_www "php -d memory_limit=-1 app/console assetic:dump --env=${SYMFONY_ENV} --no-debug || true"
 fi
 
-log "Clearing cache"
+log "Clearing cache...
+"
 as_www "php app/console cache:clear --env=${SYMFONY_ENV} --no-debug || true"
 as_www "php app/console cache:warmup --env=${SYMFONY_ENV} --no-debug || true"
 
@@ -159,7 +161,6 @@ if [ "${CREATE_DEV_ADMIN:-1}" = "1" ]; then
   fi
 fi
 
-# Final perms
 chown -R www-data:www-data app/cache app/logs var || true
 
 exec "$@"

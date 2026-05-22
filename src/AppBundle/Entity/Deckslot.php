@@ -141,7 +141,7 @@ class Deckslot implements \AppBundle\Model\SlotInterface
 	/**
 	 * @var string
 	 */
-	private $dices;
+	private $dices = 0;
 
 	/**
 	 * Set dices

@@ -45,7 +45,8 @@ class CollectionController extends Controller
                 $collection->addSlot($slot);
             }
             $slot->setQuantity($change->owned->cards);
-            $slot->setDice($change->owned->dice);
+	    $slot->setDice($change->owned->dice);
+	    $slot->setDices($change->owned->dices);
         }
 
         $em->persist($collection);
