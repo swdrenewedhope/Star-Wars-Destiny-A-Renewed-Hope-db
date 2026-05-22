@@ -126,10 +126,9 @@ class Decks
 		}
 
 		foreach ($content as $card_code => $qtys) {
-			$qty = $qtys['quantity'];
-			$dice = $qtys['dice'];
-			$dices = $qtys['dices'];
-			
+			$qty = $qtys['quantity'] ?? 0;
+			$dice = $qtys['dice'] ?? 0;
+			$dices = $qtys['dices'] ?? 0;	
 			$card = $cards[$card_code];
 			$slot = new Deckslot();
 			$slot->setQuantity($qty);

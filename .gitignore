@@ -11,6 +11,7 @@
 /vendor/
 /web/bundles/
 tags
+/build.log
 /web/assets/
 /web/js/
 /web/css/

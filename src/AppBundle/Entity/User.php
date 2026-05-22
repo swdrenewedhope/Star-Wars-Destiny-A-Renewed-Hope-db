@@ -762,7 +762,7 @@ class User extends BaseUser
     /**
      * @var string
      */
-    private $notificationLocale;
+    private $notificationLocale = 'en';
 
 
     /**
