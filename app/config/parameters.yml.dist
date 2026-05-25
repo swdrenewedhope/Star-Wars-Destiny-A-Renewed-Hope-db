@@ -1,29 +1,28 @@
 parameters:
-    database_url:     ~
+    database_url:     localhost
 
     mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_port:       ~
-    mailer_user:       ~
+    mailer_host:       localhost
+    mailer_port:       999
+    mailer_user:       dev@dev.dev
     mailer_password:   ~
     mailer_encryption: ~
     mailer_auth_mode:  ~
 
-    # A secret key that's used to generate certain security-related tokens
+    # A secret key that's used to generate security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
     
-    # units: seconds
-    cache_expiration:  600
+    cache_expiration:  600 #seconds
     
     # Email sender
-    email_sender_address: ~
-    email_sender_name: ~
+    email_sender_address: noreply@localhost
+    email_sender_name: dev
     
     # Branding
-    website_name: ~
-    website_url: ~
-    game_name: ~
-    publisher_name: ~
+    website_name: dev
+    website_url: localhost
+    game_name: dev
+    publisher_name: dev
     
     # Analytics & AdSense
     google_analytics_tracking_code: UA-00000000-1
@@ -33,3 +32,17 @@ parameters:
     # The Moneytizer
     moneytizer_site_id: ~
     moneytizer_ad_types: ~
+
+    # Doctrine Config
+    db_name: swddb
+    db_username: swddb
+    db_password: swddbpass
+    db_host: db
+
+    # Happyr Config
+    happyr_messages_api_key: ~
+    happyr_validators_api_key: ~
+
+    # Assetic Config
+    node_bin: /usr/bin/nodejs
+    handlebars_bin: ./node_modules/handlebars/bin/handlebars
