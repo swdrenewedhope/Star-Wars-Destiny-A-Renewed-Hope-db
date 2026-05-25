@@ -55,9 +55,9 @@ fi
 
 if [ ! -d node_modules ] || [ -z "$(ls -A node_modules 2>/dev/null)" ]; then
   if [ -f package-lock.json ]; then
-    npm ci --no-fund --no-audit --cache "${NPM_CONFIG_CACHE}"
+    as_www "npm ci --no-fund --no-audit --cache '${NPM_CONFIG_CACHE}'"
   else
-    npm install --no-fund --no-audit --cache "${NPM_CONFIG_CACHE}" --package-lock=false
+    as_www "npm install --no-fund --no-audit --cache "${NPM_CONFIG_CACHE}" --package-lock=false"
   fi
   chown -R www-data:www-data node_modules
 fi
