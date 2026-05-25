@@ -31,9 +31,6 @@ export COMPOSER_ALLOW_SUPERUSER=1
 mkdir -p vendor node_modules app/cache app/logs var
 
 chown -R www-data:www-data vendor node_modules app/cache app/logs var
-chmod -R ug+rwX vendor node_modules app/cache app/logs var
-
-as_www "composer install --no-interaction --prefer-dist"
 
 mkdir -p web/bundles
 chown -R www-data:www-data web
@@ -69,6 +66,7 @@ mkdir -p app/cache/${SYMFONY_ENV}/annotations
 chown -R www-data:www-data app/cache app/logs var || true
 chmod -R ug+rwX app/cache app/logs var || true
 
+as_www "composer install --no-interaction --prefer-dist"
 as_www "php app/console doctrine:database:create --if-not-exists --env=${SYMFONY_ENV} --no-debug"
 
 if ! as_www "php app/console doctrine:schema:validate --env=${SYMFONY_ENV} --no-debug" > /dev/null 2>&1; then
