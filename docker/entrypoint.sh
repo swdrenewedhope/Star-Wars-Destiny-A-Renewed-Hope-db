@@ -17,7 +17,7 @@ HANDLEBARS_BIN="${HANDLEBARS_BIN:-/var/www/html/node_modules/handlebars/bin/hand
 as_www() { su -s /bin/bash www-data -c "$*"; }
 
 mkdir -p app/cache app/logs var
-chown -R www-data:www-data app/cache app/logs var
+chown -R www-data:www-data app/cache app/logs var app/config/parameters.yml
 chmod -R ug+rwX app/cache app/logs var
 find app/cache app/logs var -type d -exec chmod 2775 {} \;
 
