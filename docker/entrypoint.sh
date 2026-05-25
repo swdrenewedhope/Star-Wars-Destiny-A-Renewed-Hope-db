@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-trap 'echo "[entrypoint] DIED on line $LINENO (exit code $?)"' ERR
-cd /var/www/html
-
-log(){ echo "[entrypoint] $*"; }
+cd /var/www/html || true
 
 SYMFONY_ENV="${SYMFONY_ENV:-prod}"
 SYMFONY_DEBUG="${SYMFONY_DEBUG:-0}"
@@ -16,75 +13,32 @@ DB_PASSWORD="${DB_PASSWORD:-swddb}"
 
 NODE_BIN="${NODE_BIN:-/usr/local/bin/node}"
 HANDLEBARS_BIN="${HANDLEBARS_BIN:-/var/www/html/node_modules/handlebars/bin/handlebars}"
-SKIP_IMPORT="${SKIP_IMPORT:-0}"
 
 as_www() { su -s /bin/bash www-data -c "$*"; }
 
 mkdir -p app/cache app/logs var
-chown -R www-data:www-data app/cache app/logs var || true
-chmod -R ug+rwX app/cache app/logs var || true
-find app/cache app/logs var -type d -exec chmod 2775 {} \; || true
-
-if [ ! -f app/config/parameters.yml ]; then
-  cat > app/config/parameters.yml <<EOF
-parameters:
-  db_host: "${DB_HOST}"
-  db_name: "${DB_NAME}"
-  db_username: "${DB_USER}"
-  db_password: "${DB_PASSWORD}"
-
-  node_bin: "${NODE_BIN}"
-  handlebars_bin: "${HANDLEBARS_BIN}"
-
-  happyr_messages_api_key: "${HAPPYR_MESSAGES_API_KEY:-}"
-  happyr_validators_api_key: "${HAPPYR_VALIDATORS_API_KEY:-}"
-
-  website_url: "${WEBSITE_URL:-localhost:8080}"
-  website_name: "${WEBSITE_NAME:-Dev}"
-  game_name: "${GAME_NAME:-Dev}"
-  publisher_name: "${PUBLISHER_NAME:-Dev}"
-
-  email_sender_address: "${EMAIL_SENDER_ADDRESS:-noreply@localhost}"
-  email_sender_name: "${EMAIL_SENDER_NAME:-Dev}"
-
-  mailer_transport: "${MAILER_TRANSPORT:-smtp}"
-  mailer_host: "${MAILER_HOST:-localhost}"
-  mailer_port: ${MAILER_PORT:-25}
-  mailer_user: "${MAILER_USER:-}"
-  mailer_password: "${MAILER_PASSWORD:-}"
-  mailer_encryption: ${MAILER_ENCRYPTION:-null}
-  mailer_auth_mode: ${MAILER_AUTH_MODE:-null}
-
-  google_analytics_tracking_code: "${GOOGLE_ANALYTICS_TRACKING_CODE:-UA-00000000-1}"
-  google_adsense_client: "${GOOGLE_ADSENSE_CLIENT:-ca-pub-000000000000000}"
-  google_adsense_slot: "${GOOGLE_ADSENSE_SLOT:-0000000000}"
-
-  moneytizer_site_id: "${MONEYTIZER_SITE_ID:-}"
-  moneytizer_ad_types: ${MONEYTIZER_AD_TYPES:-"[]"}
-  cache_expiration: ${CACHE_EXPIRATION:-600}
-  secret: "${SECRET:-dev}"
-EOF
-  chown www-data:www-data app/config/parameters.yml || true
-fi
+chown -R www-data:www-data app/cache app/logs var
+chmod -R ug+rwX app/cache app/logs var
+find app/cache app/logs var -type d -exec chmod 2775 {} \;
 
 until mysqladmin ping -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" --silent; do
-  log "Waiting for db..."
   sleep 1
 done
-log "db is up."
 
 export COMPOSER_CACHE_DIR=/tmp/composer-cache
 export COMPOSER_ALLOW_SUPERUSER=1
 
 mkdir -p vendor node_modules app/cache app/logs var
 
-chown -R www-data:www-data vendor node_modules app/cache app/logs var || true
-chmod -R ug+rwX vendor node_modules app/cache app/logs var || true
+chown -R www-data:www-data vendor node_modules app/cache app/logs var
+chmod -R ug+rwX vendor node_modules app/cache app/logs var
 
-if [ ! -f vendor/autoload.php ]; then
-  log "Installing PHP dependencies..."
-  as_www "composer install --no-interaction --no-progress --prefer-dist --no-scripts"
-fi
+as_www "composer install --no-interaction --prefer-dist"
+
+mkdir -p web/bundles
+chown -R www-data:www-data web
+chown -R www-data:www-data app
+chmod -R ug+rwX app
 
 export NPM_CONFIG_CACHE="${NPM_CONFIG_CACHE:-/tmp/.npm}"
 mkdir -p "$NPM_CONFIG_CACHE"
@@ -99,11 +53,10 @@ mkdir -p "${NPM_CONFIG_CACHE}" node_modules
 chown -R www-data:www-data "${NPM_CONFIG_CACHE}" node_modules || true
 
 if [ -f package-lock.json ]; then
-  chmod a+r package-lock.json || true
+  chmod a+r package-lock.json
 fi
 
 if [ ! -d node_modules ] || [ -z "$(ls -A node_modules 2>/dev/null)" ]; then
-  echo "[entrypoint] Installing Node dependencies..."
   if [ -f package-lock.json ]; then
     npm ci --no-fund --no-audit --cache "${NPM_CONFIG_CACHE}"
   else
@@ -122,28 +75,14 @@ if ! as_www "php app/console doctrine:schema:validate --env=${SYMFONY_ENV} --no-
     as_www "php app/console doctrine:schema:create --env=${SYMFONY_ENV} --no-debug"
 fi
 
-log "Updating schema..."
 
 mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -e "UPDATE user SET notif_locale = 'en' WHERE notif_locale IS NULL OR notif_locale = '';" || true
 as_www "php app/console doctrine:schema:update --force --env=${SYMFONY_ENV} --no-debug"
 
   CARD_COUNT="$(mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -Nse "SELECT COUNT(*) FROM card;" 2>/dev/null || echo 0)"
   if [ "${CARD_COUNT}" = "0" ]; then 
-    log "Importing dbJSON (cards empty)"
     as_www "php -d memory_limit=-1 app/console app:import:std /var/www/html/dbJSON --env=${SYMFONY_ENV} --no-debug || true"
-  else
-    log "Skipping import (cards=${CARD_COUNT})"
   fi
-
-if [ "${FORCE_ASSETS:-0}" = "1" ] || [ ! -f web/css/app.css ]; then
-  log "Dumping assetic assets"
-  as_www "php -d memory_limit=-1 app/console assetic:dump --env=${SYMFONY_ENV} --no-debug || true"
-fi
-
-log "Clearing cache...
-"
-as_www "php app/console cache:clear --env=${SYMFONY_ENV} --no-debug || true"
-as_www "php app/console cache:warmup --env=${SYMFONY_ENV} --no-debug || true"
 
 if [ "${CREATE_DEV_ADMIN:-1}" = "1" ]; then
   DEV_ADMIN_USER="${DEV_ADMIN_USER:-dev}"
@@ -151,15 +90,14 @@ if [ "${CREATE_DEV_ADMIN:-1}" = "1" ]; then
   DEV_ADMIN_PASS="${DEV_ADMIN_PASS:-dev}"
 
   EXISTING="$(mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -Nse "SELECT COUNT(*) FROM user WHERE username='${DEV_ADMIN_USER}';" 2>/dev/null || echo 0)"
+fi
+
   if [ "${EXISTING}" = "0" ]; then
-    log "Creating dev admin (${DEV_ADMIN_USER}/${DEV_ADMIN_PASS})"
     as_www "php app/console fos:user:create \"${DEV_ADMIN_USER}\" \"${DEV_ADMIN_EMAIL}\" \"${DEV_ADMIN_PASS}\" --env=${SYMFONY_ENV} --no-debug -n"
     as_www "php app/console fos:user:activate \"${DEV_ADMIN_USER}\" --env=${SYMFONY_ENV} --no-debug -n || true"
     as_www "php app/console fos:user:promote --super \"${DEV_ADMIN_USER}\" --env=${SYMFONY_ENV} --no-debug -n || true"
-  else
-    log "Dev admin exists"
   fi
-fi
+
 
 chown -R www-data:www-data app/cache app/logs var || true
 

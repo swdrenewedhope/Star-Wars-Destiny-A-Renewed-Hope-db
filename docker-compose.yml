@@ -16,6 +16,9 @@ services:
       DB_USER: "swddb"
       DB_PASSWORD: "swddbpass"
 
+      MAILER_HOST: "localhost"
+      MAILER_USER: "dev"
+
       CREATE_DEV_ADMIN: "1"
       DEV_ADMIN_USER: "dev"
       DEV_ADMIN_EMAIL: "dev@localhost"
@@ -39,11 +42,7 @@ services:
 
     volumes:
       - ./:/var/www/html
-   #   - vendor:/var/www/html/vendor
-   #   - node_modules:/var/www/html/node_modules
-      - symfony_cache:/var/www/html/app/cache
-      - symfony_logs:/var/www/html/app/logs
-      - symfony_var:/var/www/html/var
+    
     depends_on:
       - db
 
@@ -59,10 +58,4 @@ services:
       - mysql_data:/var/lib/mysql
 
 volumes:
-#  vendor:
-#  node_modules:
   mysql_data:
-  composer_cache:
-  symfony_cache:
-  symfony_logs:
-  symfony_var:
