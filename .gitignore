@@ -25,7 +25,6 @@ tags
 .idea/
 .DS_Store
 error_log
-.user.ini
 /src/AppBundle/Resources/public/images/cards/
 /web/robots.txt
 /var/.dev_admin_created

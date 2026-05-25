@@ -12,9 +12,9 @@ This guide assumes you know how to use the command-line & git commands.
 - ``cd`` into it
 - Run the command ``docker compose up -d --build`` in the project root directory.
 
-After the commands above have been run, the entire dev enviornment will be setup for you.
+After the commands above have finished, the dev enviornment will be setup for you.
 
-You can visit the server @ http://localhost:8080 in browser.
+You can visit the server @ http://localhost in browser.
 
 An admin user is automatically created with the following credentials:
 
