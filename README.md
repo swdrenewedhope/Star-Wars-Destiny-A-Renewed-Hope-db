@@ -22,5 +22,9 @@ Username: dev
 Password: dev
 
 You can reset the containers with:
-``docker compose down -v``
-``docker compose up --build``
+``docker compose down``
+``docker compose build --no-cache``
+``docker compose up``
+
+Optionally, you can also clear container data with:
+```docker compose down -v```
