@@ -2,8 +2,7 @@
 set -euo pipefail
 cd /var/www/html || true
 
-SYMFONY_ENV="${SYMFONY_ENV:-prod}"
-SYMFONY_DEBUG="${SYMFONY_DEBUG:-0}"
+SYMFONY_ENV="${SYMFONY_ENV:-dev}"
 
 DB_HOST="${DB_HOST:-db}"
 DB_PORT="${DB_PORT:-3306}"
@@ -28,14 +27,9 @@ done
 export COMPOSER_CACHE_DIR=/tmp/composer-cache
 export COMPOSER_ALLOW_SUPERUSER=1
 
-mkdir -p vendor node_modules app/cache app/logs var
-
-chown -R www-data:www-data vendor node_modules app/cache app/logs var
-
-mkdir -p web/bundles
-chown -R www-data:www-data web
-chown -R www-data:www-data app
-chmod -R ug+rwX app
+mkdir -p vendor node_modules app/cache app/cache/${SYMFONY_ENV}/annotations app/logs var web/bundles
+chown -R www-data:www-data vendor node_modules app/cache app/logs var web app
+chmod -R ug+rwX app app/cache app/logs var
 
 export NPM_CONFIG_CACHE="${NPM_CONFIG_CACHE:-/tmp/.npm}"
 mkdir -p "$NPM_CONFIG_CACHE"
@@ -62,10 +56,6 @@ if [ ! -d node_modules ] || [ -z "$(ls -A node_modules 2>/dev/null)" ]; then
   chown -R www-data:www-data node_modules
 fi
 
-mkdir -p app/cache/${SYMFONY_ENV}/annotations
-chown -R www-data:www-data app/cache app/logs var || true
-chmod -R ug+rwX app/cache app/logs var || true
-
 as_www "composer install --no-interaction --prefer-dist"
 as_www "php app/console doctrine:database:create --if-not-exists --env=${SYMFONY_ENV} --no-debug"
 
@@ -74,7 +64,7 @@ if ! as_www "php app/console doctrine:schema:validate --env=${SYMFONY_ENV} --no-
 fi
 
 
-mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -e "UPDATE user SET notif_locale = 'en' WHERE notif_locale IS NULL OR notif_locale = '';" || true
+mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -e "UPDATE user SET notif_locale = 'en' WHERE notif_locale IS NULL OR notif_locale = '';"
 as_www "php app/console doctrine:schema:update --force --env=${SYMFONY_ENV} --no-debug"
 
   CARD_COUNT="$(mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -Nse "SELECT COUNT(*) FROM card;" 2>/dev/null || echo 0)"
@@ -83,10 +73,6 @@ as_www "php app/console doctrine:schema:update --force --env=${SYMFONY_ENV} --no
   fi
 
 if [ "${CREATE_DEV_ADMIN:-1}" = "1" ]; then
-  DEV_ADMIN_USER="${DEV_ADMIN_USER:-dev}"
-  DEV_ADMIN_EMAIL="${DEV_ADMIN_EMAIL:-dev@localhost}"
-  DEV_ADMIN_PASS="${DEV_ADMIN_PASS:-dev}"
-
   EXISTING="$(mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -Nse "SELECT COUNT(*) FROM user WHERE username='${DEV_ADMIN_USER}';" 2>/dev/null || echo 0)"
 fi
 

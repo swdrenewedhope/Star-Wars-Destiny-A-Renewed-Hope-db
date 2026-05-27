@@ -8,7 +8,6 @@ services:
       - "80:80"
     environment:
       SYMFONY_ENV: "prod"
-      SYMFONY_DEBUG: "0"
 
       DB_HOST: "db"
       DB_PORT: "3306"
@@ -19,6 +18,8 @@ services:
       MAILER_HOST: "localhost"
       MAILER_USER: "dev"
 
+# Create dev admin account, this is useful for testing, set to 0 else wise.
+
       CREATE_DEV_ADMIN: "1"
       DEV_ADMIN_USER: "dev"
       DEV_ADMIN_EMAIL: "dev@localhost"
@@ -27,18 +28,23 @@ services:
       NODE_BIN: "/usr/local/bin/node"
       HANDLEBARS_BIN: "/var/www/html/node_modules/handlebars/bin/handlebars"
 
-      SKIP_IMPORT: "0"
-
       WEBSITE_URL: "localhost"
       WEBSITE_NAME: "dev"
       GAME_NAME: "dev"
       PUBLISHER_NAME: "dev"
       EMAIL_SENDER_ADDRESS: "noreply@localhost"
       EMAIL_SENDER_NAME: "dev"
-      SECRET: "dev"
 
-      HAPPYR_MESSAGES_API_KEY: ""
-      HAPPYR_VALIDATORS_API_KEY: ""
+
+      SECRET: "dev" # This acts as a secret for cryptographic functions, change it for production
+      
+      # HAPPYR
+
+      ## Franco hardcoded values, does this mean the value doesn't matter for one reason or another, or a mistake?
+      ## Borrowing them for now.
+
+      HAPPYR_MESSAGES_API_KEY: "-GeNAIp8XIzwIZCFZL3ZsP9k5vWBxo4F"
+      HAPPYR_VALIDATORS_API_KEY: "CWow0Q-lOtg1QdZaV5UsrhpKrd2fYz9z"
 
     volumes:
       - ./:/var/www/html
@@ -48,7 +54,7 @@ services:
 
   db:
     image: mysql:5.7
-    command: --character-set-server=utf8 --collation-server=utf8_general_ci --sql-mode="ONLY_FULL_GROUP_BY,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+    command: --character-set-server=utf8 --collation-server=utf8_general_ci
     environment:
       MYSQL_DATABASE: "swddb"
       MYSQL_USER: "swddb"

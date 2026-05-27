@@ -29,3 +29,4 @@ error_log
 /web/robots.txt
 /var/.dev_admin_created
 /var/.dev_initialized
+\#*\#
