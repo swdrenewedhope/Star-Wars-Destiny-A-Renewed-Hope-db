@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Loco xml export: XLIFF for Symfony
+ Project: Validators
+ Release: Working copy
+ Locale: hu, Hungarian
+ Status: Translated
+ Exported by: Francisco Franco
+ Exported at: Fri, 19 Nov 2021 18:53:38 -0600
+-->
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="file.ext" source-language="en" target-language="hu" datatype="plaintext" tool-id="loco">
+    <header>
+      <tool tool-id="loco" tool-name="Loco for Symfony" tool-version="1.0.25 20211027-1" tool-company="Loco"/>
+    </header>
+    <body>
+      <trans-unit id="loco:5863763652e1a1de618b4567">
+        <source>fos_user.email.already_used</source>
+        <target>Az email cím már foglalt</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b4568">
+        <source>fos_user.email.blank</source>
+        <target>Adj meg egy email címet</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b4569">
+        <source>fos_user.email.invalid</source>
+        <target>Az email cím érvénytelen</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456a">
+        <source>fos_user.email.long</source>
+        <target>[-Inf,Inf]Az email cím túl hosszú</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456b">
+        <source>fos_user.email.short</source>
+        <target>[-Inf,Inf]Az email cím túl rövid</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456c">
+        <source>fos_user.password.blank</source>
+        <target>Adj meg egy jelszót</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456d">
+        <source>fos_user.password.short</source>
+        <target>[-Inf,Inf]A jelszó túl rövid</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456e">
+        <source>fos_user.username.already_used</source>
+        <target>A felhasználónév már foglalt</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456f">
+        <source>fos_user.username.blank</source>
+        <target>Adj meg egy felhasználónevet</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b4570">
+        <source>fos_user.username.long</source>
+        <target>[-Inf,Inf]A felhasználónév túl hosszú</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b4571">
+        <source>fos_user.username.short</source>
+        <target>[-Inf,Inf]A felhasználónév túl rövid</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b4567">
+        <source>fos_user.password.mismatch</source>
+        <target>A jelszavak nem egyeznek</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b4568">
+        <source>fos_user.new_password.blank</source>
+        <target>Adj meg egy új jelszót</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b4569">
+        <source>fos_user.new_password.short</source>
+        <target>[-Inf,Inf]Az új jelszó túl rövid</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b456a">
+        <source>fos_user.current_password.invalid</source>
+        <target>A megadott jelszó érvénytelen</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b456b">
+        <source>fos_user.group.blank</source>
+        <target>Adj meg egy nevet</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b456c">
+        <source>fos_user.group.short</source>
+        <target>[-Inf,Inf]A név túl rövid</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b456d">
+        <source>fos_user.group.long</source>
+        <target>[-Inf,Inf]A név túl hosszú</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b456e">
+        <source>fos_group.name.already_used</source>
+        <target>A név már foglalt</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

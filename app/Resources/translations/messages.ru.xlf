@@ -1,0 +1,1677 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Loco xml export: XLIFF for Symfony
+ Project: Messages
+ Release: Working copy
+ Locale: ru, Russian
+ Status: Translated
+ Exported by: Francisco Franco
+ Exported at: Fri, 19 Nov 2021 18:53:37 -0600
+-->
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="file.ext" source-language="en" target-language="ru" datatype="plaintext" tool-id="loco">
+    <header>
+      <tool tool-id="loco" tool-name="Loco for Symfony" tool-version="1.0.25 20211027-1" tool-company="Loco"/>
+    </header>
+    <body>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4567">
+        <source>card.info.affiliation</source>
+        <target>Принадлежность</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4568">
+        <source>card.info.cost</source>
+        <target>Стоимость</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4569">
+        <source>card.info.die</source>
+        <target>Кубик</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b456a">
+        <source>card.info.faction</source>
+        <target>Цвет</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b456b">
+        <source>card.info.flavor</source>
+        <target>Художественный текст</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b456c">
+        <source>card.info.has_die</source>
+        <target>Есть кубик</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b456d">
+        <source>card.info.health</source>
+        <target>Здоровье</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b456e">
+        <source>card.info.illustrator</source>
+        <target>Художник</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b456f">
+        <source>card.info.medium.points_cost</source>
+        <target>Оч/Ст</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4570">
+        <source>card.info.name</source>
+        <target>Имя</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4571">
+        <source>card.info.points</source>
+        <target>Очки</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4572">
+        <source>card.info.points_cost</source>
+        <target>Очки/Стоимость</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4573">
+        <source>card.info.quantity</source>
+        <target>Количество</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4574">
+        <source>card.info.rarity</source>
+        <target>Редкость</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4575">
+        <source>card.info.set</source>
+        <target>Выпуск</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4576">
+        <source>card.info.sets</source>
+        <target>Выпуски</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4577">
+        <source>card.info.short.faction</source>
+        <target>Ф.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4578">
+        <source>card.info.short.health</source>
+        <target>Зд.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4579">
+        <source>card.info.short.points_cost</source>
+        <target>Ст.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b457a">
+        <source>card.info.short.type</source>
+        <target>Т.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b457b">
+        <source>card.info.subtitle</source>
+        <target>Подзаголовок</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b457c">
+        <source>card.info.subtype</source>
+        <target>Подтип</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b457d">
+        <source>card.info.text</source>
+        <target>Текст</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b457e">
+        <source>card.info.type</source>
+        <target>Тип</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b457f">
+        <source>card.info.unique</source>
+        <target>Уникальная</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4580">
+        <source>card.reviews.alerts.minimum</source>
+        <target>Ваш обзор должен содержать минимум %min% символов.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4581">
+        <source>card.reviews.comments.add</source>
+        <target>Добавить комментарий</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4582">
+        <source>card.reviews.comments.hint</source>
+        <target>Ваш комментарий</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4583">
+        <source>card.reviews.comments.post</source>
+        <target>Разместить</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4584">
+        <source>card.reviews.comments.posted</source>
+        <target>Ваш комментарий размещен. Он появится на сайте в течение нескольких минут.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4585">
+        <source>card.reviews.edit</source>
+        <target>Редактировать обзор</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4586">
+        <source>card.reviews.hint</source>
+        <target>Напишите свой анализ этой карты из минимум %min% символов. Вы можете написать количество обзоров на карты равное Вашей репутации. Это не место для вопросов или комментариев. Наберите # для ввода имени карты. Наберите $ для ввода символа.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4587">
+        <source>card.reviews.like</source>
+        <target>Нравится этот обзор</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4588">
+        <source>card.reviews.none</source>
+        <target>Еще нет обзора для этой карты.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4589">
+        <source>card.reviews.posted</source>
+        <target>Ваш обзор размещен. Он появится на сайте в течение нескольких минут.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b458a">
+        <source>card.reviews.submit</source>
+        <target>Разместить обзор</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b458b">
+        <source>card.reviews.title</source>
+        <target>Обзоры</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b458c">
+        <source>card.reviews.unreleased</source>
+        <target>Обзоры на эту карту будут разрешены, когда она будет официально выпущена.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b458d">
+        <source>card.reviews.write</source>
+        <target>Написать обзор</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b458e">
+        <source>collection.addstarter.confirm</source>
+        <target>Вы уверены, что хотите добавить карты и кубики набора «%pack%» из выпуска «%set%»? После этого нужно будет сохранить изменения.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b458f">
+        <source>collection.addstarter.label</source>
+        <target>Добавить стартовый набор</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4590">
+        <source>collection.cards_matching_filter</source>
+        <target>%cards% карта в игре, которая соответствует этому фильтру | %cards% карты в игре, которые соответствуют этому фильтру | %cards% карт в игре, которые соответствуют этому фильтру</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4591">
+        <source>collection.help</source>
+        <target>Помощь по фильтру</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4592">
+        <source>collection.options.filter_button.cumulative</source>
+        <target>Фильтры объединяющие</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4593">
+        <source>collection.options.filter_button.exclusive</source>
+        <target>Фильтры исключающие</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4594">
+        <source>collection.options.label</source>
+        <target>Опции</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4595">
+        <source>collection.options.link_cards_dice</source>
+        <target>Связать карты с кубиками</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4596">
+        <source>collection.options.only_show_owned</source>
+        <target>Показать только свои карты</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4597">
+        <source>collection.owned</source>
+        <target>В собственности</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4598">
+        <source>collection.searchhint</source>
+        <target>Поиск карты или фильтр списка</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4599">
+        <source>collection.sets.hint</source>
+        <target>Shift+Click для выбора одной опции ; Alt+Shift+Click для выбора всех других опций</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b459a">
+        <source>collection.sets.label</source>
+        <target>Выпуски</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b459b">
+        <source>collection.showing_cards.only_collection</source>
+        <target>Показывает %cards% карту из %total% в моей коллекции. | Показывает %cards% карты из %total% в моей коллекции. | Показывает %cards% карт из %total% в моей коллекции.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b459c">
+        <source>collection.showing_cards.total</source>
+        <target>Показывает %cards% карту из %total% в игре. | Показывает %cards% карты из %total% в игре. | Показывает %cards% карт из %total% в игре.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b459d" datatype="html">
+        <source>data_load_fail</source>
+        <target>Не получается загрузить данные. Щелкните &lt;a href='javascript:window.location.reload(true)'&gt;здесь&lt;/a&gt;, чтобы перегрузить страницу.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b459e">
+        <source>decklist.list.search.affiliation.any</source>
+        <target>любая</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b459f">
+        <source>decklist.list.search.affiliation.label</source>
+        <target>Принадлежность</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45a0">
+        <source>decklist.list.search.author.hint</source>
+        <target>Введите имя автора</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45a1">
+        <source>decklist.list.search.author.label</source>
+        <target>Имя автора</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45a2">
+        <source>decklist.list.search.decklist.hint</source>
+        <target>Введите текст для поиска в имени</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45a3">
+        <source>decklist.list.search.decklist.label</source>
+        <target>Имя колоды</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45a4">
+        <source>decklist.list.search.sort.date</source>
+        <target>По дате</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45a5">
+        <source>decklist.list.search.sort.label</source>
+        <target>Сортировать</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45a6">
+        <source>decklist.list.search.sort.likes</source>
+        <target>По количеству лайков</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45a7">
+        <source>decklist.list.search.sort.popularity</source>
+        <target>По популярности</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45a8">
+        <source>decklist.list.search.sort.reputation</source>
+        <target>По репутации автора</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45a9">
+        <source>decklist.list.search.used.hint</source>
+        <target>Введите имя карты</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45aa">
+        <source>decklist.list.search.used.label</source>
+        <target>Использованные карты</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45ab">
+        <source>decklist.list.titles.favorites</source>
+        <target>Избранные колоды</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45ac">
+        <source>decklist.list.titles.find</source>
+        <target>Результаты поиска колод</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45ad">
+        <source>decklist.list.titles.halloffame</source>
+        <target>Зал славы</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45ae">
+        <source>decklist.list.titles.hottopics</source>
+        <target>Горячие темы</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45af">
+        <source>decklist.list.titles.mine</source>
+        <target>Мои колоды</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45b0">
+        <source>decklist.list.titles.popular</source>
+        <target>Популярные колоды</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45b1">
+        <source>decklist.list.titles.recent</source>
+        <target>Последние колоды</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45b2">
+        <source>decklist.list.titles.search</source>
+        <target>Поиск колод</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45b3">
+        <source>decklist.list.types.hof</source>
+        <target>Зал славы</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45b4">
+        <source>decklist.list.types.hottopics</source>
+        <target>Горячие темы</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45b5">
+        <source>decklist.list.types.mydecklists</source>
+        <target>Мои колоды</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45b6">
+        <source>decklist.list.types.myfavorites</source>
+        <target>Мое избранное</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45b7">
+        <source>decklist.list.types.popular</source>
+        <target>Популярные</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45b8">
+        <source>decklist.list.types.recent</source>
+        <target>Недавние</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45b9">
+        <source>decklist.publish.derived</source>
+        <target>Образована от (скопируйте id или адрес колоды, которая вдохновила на создание данной колоды)</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45ba">
+        <source>decklist.publish.description</source>
+        <target>Описание</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45bb">
+        <source>decklist.publish.editor.cardtolink</source>
+        <target>Превратить имя карты в ссылку на нее</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45bc">
+        <source>decklist.publish.editor.entersymbol</source>
+        <target>Вставить игровой символ</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45bd">
+        <source>decklist.publish.editor.heading</source>
+        <target>Заголовок %number%</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45be">
+        <source>decklist.publish.editor.hint</source>
+        <target>Нажмите # для вставки имени карты, $ для вставки игрового символа.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45bf">
+        <source>decklist.publish.errors.antispam.limit</source>
+        <target>Для защиты от спама пользователи в сутки не могут публиковать колоды в количестве большем, чем их репутация.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45c0">
+        <source>decklist.publish.errors.antispam.newbie</source>
+        <target>Для защиты от спама новые пользователи должны подождать 24 часа перед тем, как смогут опубликовать колоду.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45c1">
+        <source>decklist.publish.errors.invalid</source>
+        <target>Колода не может быть опубликована, так как она некорректна.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45c2">
+        <source>decklist.publish.errors.pagetitle.spam</source>
+        <target>Защита от спама</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45c3">
+        <source>decklist.publish.errors.unauthorized</source>
+        <target>у Вас нет доступа к этой колоде.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45c4">
+        <source>decklist.publish.errors.unreleased</source>
+        <target>Вы пока не можете опубликовать эту колоду, так как в ней есть карты, которые еще не выпущены.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45c5">
+        <source>decklist.publish.name</source>
+        <target>Имя</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45c6" datatype="html">
+        <source>decklist.publish.warnings.published</source>
+        <target>Эта колода &lt;a href='%url%'&gt;уже была опубликована&lt;/a&gt; ранее. Вы пытаетесь создать дубликат.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45c7">
+        <source>decklist.view.comments.count</source>
+        <target>%count% комментарий | %count% комментария | %count% комментариев</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45c8">
+        <source>decklist.view.comments.hint</source>
+        <target>Введите комментарий в формате Markdown. Наберите # для ввода имени карты. Наберите $ для ввода символа. Наберите @ для ввода имени пользователя.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45c9">
+        <source>decklist.view.comments.submit</source>
+        <target>Разместить комментарий</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45ca">
+        <source>decklist.view.comments.submitted</source>
+        <target>Ваш комментарий размещен. Он появится на сайте в течение нескольких минут.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45cb">
+        <source>decklist.view.derived.none</source>
+        <target>Ничего. Это самодельная колода.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45cc">
+        <source>decklist.view.derived.title</source>
+        <target>Образована от</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45cd">
+        <source>decklist.view.duplicate</source>
+        <target>Дубликат от %duplicate%</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45ce">
+        <source>decklist.view.errors.notfound</source>
+        <target>Колода не найдена</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45cf">
+        <source>decklist.view.inspire.none</source>
+        <target>Еще ничего.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45d0">
+        <source>decklist.view.inspire.title</source>
+        <target>Основа для</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45d1">
+        <source>decklist.view.published</source>
+        <target>опубликована</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45d2">
+        <source>decklist.view.social.comment</source>
+        <target>Комментарий</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45d3">
+        <source>decklist.view.social.favorite</source>
+        <target>Избранное</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45d4">
+        <source>decklist.view.social.like</source>
+        <target>Нравится</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45d5">
+        <source>decklist.view.social.version</source>
+        <target>Версия</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45d6">
+        <source>decklist.view.toolbar.edit</source>
+        <target>Редактировать имя колоды / описание</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45d7">
+        <source>decklist.view.versions</source>
+        <target>Версии</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45d8">
+        <source>decks.build.choose.affiliation</source>
+        <target>Выберите свою принадлежность</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45d9">
+        <source>decks.build.errors.noaffiliation</source>
+        <target>Принадлежность обязательна.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45da">
+        <source>decks.build.newname</source>
+        <target>Новая колода: %affiliation%</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45db">
+        <source>decks.build.start</source>
+        <target>Начать создание колоды</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45dc">
+        <source>decks.charts.cost.subtitle</source>
+        <target>Стоимость Х игнорируется</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45dd">
+        <source>decks.charts.cost.title</source>
+        <target>Стоимость карт</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45de">
+        <source>decks.charts.cost.tooltip.header</source>
+        <target>Стоимость %cost%</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45df">
+        <source>decks.charts.cost.tooltip.label</source>
+        <target># карт</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45e0">
+        <source>decks.charts.dice.series.dice.name</source>
+        <target># кубиков</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45e1">
+        <source>decks.charts.dice.series.direct.name</source>
+        <target># граней без +</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45e2">
+        <source>decks.charts.dice.series.faces.name</source>
+        <target># граней</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45e3">
+        <source>decks.charts.dice.subtitle</source>
+        <target>Дубликаты не учитываются</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45e4">
+        <source>decks.charts.dice.title</source>
+        <target>Символы на кубиках</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45e5">
+        <source>decks.charts.globals.total</source>
+        <target>Всего</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45e6">
+        <source>decks.charts.rarity.subtitle</source>
+        <target>Щелкните для просмотра подробностей</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45e7">
+        <source>decks.charts.rarity.title</source>
+        <target>Редкость карт</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45e8">
+        <source>decks.charts.rarity.tooltip.amount</source>
+        <target>%amount% из %total%</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45e9">
+        <source>decks.charts.type.title</source>
+        <target>Типы карт</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45ea">
+        <source>decks.compare.battlefield</source>
+        <target>Поля боя</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45eb">
+        <source>decks.compare.characters</source>
+        <target>Персонажи</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45ec">
+        <source>decks.compare.decknumber</source>
+        <target>Колода #%id%</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45ed">
+        <source>decks.compare.drawdecks</source>
+        <target>Игровые колоды</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45ee">
+        <source>decks.defaultemptydesc</source>
+        <target>*Нет описания.*</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45ef">
+        <source>decks.description</source>
+        <target>Описание</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45f0">
+        <source>decks.edit.build.help</source>
+        <target>Помощь по фильтру</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45f1">
+        <source>decks.edit.build.options.display</source>
+        <target>Отображать в %cols% колонку | Отображать в %cols% колонки | Отображать в %cols% колонок</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45f2">
+        <source>decks.edit.build.options.filter_button.cumulative</source>
+        <target>Фильтры объединяющие</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45f3">
+        <source>decks.edit.build.options.filter_button.exclusive</source>
+        <target>Фильтры исключающие</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45f4">
+        <source>decks.edit.build.options.label</source>
+        <target>Опции</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45f5">
+        <source>decks.edit.build.options.show.onlyowned</source>
+        <target>Только свои карты</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45f6">
+        <source>decks.edit.build.options.show.onlyused</source>
+        <target>Только использованные карты</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45f7">
+        <source>decks.edit.build.options.show.unusable</source>
+        <target>Карты, которые нальзя использовать</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45f8">
+        <source>decks.edit.build.options.suggestions</source>
+        <target>Показывать %count% предложение | Показывать %count% предложения | Показывать %count% предложений</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45f9">
+        <source>decks.edit.build.searchhint</source>
+        <target>Поиск карты или фильтр списка</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45fa">
+        <source>decks.edit.build.sets.hint</source>
+        <target>Shift+Click для выбора одной опции ; Alt+Shift+Click для выбора всех других опций</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45fb">
+        <source>decks.edit.build.sets.label</source>
+        <target>Выпуски</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45fc">
+        <source>decks.edit.form.cancel</source>
+        <target>Отменить редактирование</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45fd">
+        <source>decks.edit.form.name</source>
+        <target>Имя</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45fe">
+        <source>decks.edit.meta.cards</source>
+        <target>%count% карта | %count% карты | %count% карт</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b45ff">
+        <source>decks.edit.meta.characters</source>
+        <target>Персонажи</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4600">
+        <source>decks.edit.meta.dice</source>
+        <target>%count% кубик | %count% кубика | %count% кубиков</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4601">
+        <source>decks.edit.meta.drawdeck</source>
+        <target>Игровая колодв</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4602">
+        <source>decks.edit.meta.points</source>
+        <target>%points% очко | %points% очка | %points% очков</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4603">
+        <source>decks.edit.meta.sets</source>
+        <target>Выпуски: %sets%</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4604">
+        <source>decks.edit.meta.setsrange</source>
+        <target>От %first% к %last%</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4605">
+        <source>decks.edit.notes.notes.hint</source>
+        <target>Наберите # для ввода имени карты. Наберите $ для ввода символа.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4606">
+        <source>decks.edit.notes.notes.label</source>
+        <target>Заметки</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4607" datatype="html">
+        <source>decks.edit.notes.tags.hint</source>
+        <target>Теги позволяют облегчить фильтрацию Ваших колод, например &lt;i&gt;соревновательная&lt;/i&gt; или &lt;i&gt;фановая&lt;/i&gt;.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4608">
+        <source>decks.edit.notes.tags.label</source>
+        <target>Теги</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4609">
+        <source>decks.edit.refresh</source>
+        <target>Обновить все данные приложения</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b460a">
+        <source>decks.edit.tabs.build</source>
+        <target>Создание</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b460b">
+        <source>decks.edit.tabs.charts</source>
+        <target>Диаграммы</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b460c">
+        <source>decks.edit.tabs.history</source>
+        <target>История</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b460d">
+        <source>decks.edit.tabs.notes</source>
+        <target>Заметки</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b460e">
+        <source>decks.edit.tabs.test</source>
+        <target>Тест</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b460f">
+        <source>decks.edit.unsaved</source>
+        <target>В этой колоде есть несохраненные изменения. Пожалуйста, сохраните колоду или отмените изменения перед продолжением редактирования.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4610">
+        <source>decks.form.build</source>
+        <target>Создать новую колоду</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4611">
+        <source>decks.form.download.text</source>
+        <target>Текстовый файл</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4612">
+        <source>decks.form.import.copypaste</source>
+        <target>Скопировать/вставить</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4613">
+        <source>decks.form.import.file</source>
+        <target>Файл</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4614">
+        <source>decks.form.import.label</source>
+        <target>Импортировать колоду</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4615">
+        <source>decks.form.labelswitch</source>
+        <target>Щелчок для преключения на этот тег. Shift+Щелчек для переключения этого тега.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4616">
+        <source>decks.form.new</source>
+        <target>Новая колода</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4617">
+        <source>decks.form.selection.compare.label</source>
+        <target>Сравнить</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4618">
+        <source>decks.form.selection.compare.twodecks</source>
+        <target>Сравнить две колоды</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4619">
+        <source>decks.form.selection.delete.label</source>
+        <target>Удалить</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b461a">
+        <source>decks.form.selection.delete.selected</source>
+        <target>Удалить все выбранные колоды</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b461b">
+        <source>decks.form.selection.label</source>
+        <target>С выбранными</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b461c">
+        <source>decks.form.selection.tags.add</source>
+        <target>Добавить один или несколько тегов</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b461d">
+        <source>decks.form.selection.tags.clear</source>
+        <target>Очистить все теги</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b461e">
+        <source>decks.form.selection.tags.label</source>
+        <target>Теги</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b461f">
+        <source>decks.form.selection.tags.remove</source>
+        <target>Удалить один или несколько тегов</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4620">
+        <source>decks.form.uploadarchive</source>
+        <target>Загрузить архив</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4621">
+        <source>decks.history.autosave</source>
+        <target>Автосохранение...</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4622">
+        <source>decks.history.columns.action</source>
+        <target>Действие</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4623">
+        <source>decks.history.columns.changes</source>
+        <target>Изменения</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4624">
+        <source>decks.history.columns.date</source>
+        <target>Дата</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4625">
+        <source>decks.history.columns.version</source>
+        <target>Версия</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4626">
+        <source>decks.history.firstversion</source>
+        <target>Первая версия</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4627">
+        <source>decks.history.revert</source>
+        <target>Вернуться</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4628">
+        <source>decks.history.timeremaining</source>
+        <target>Оставшееся время</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4629">
+        <source>decks.history.unsaved</source>
+        <target>не сохранено</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b462a">
+        <source>decks.modals.card.go</source>
+        <target>Перейти на страницу карты</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b462b">
+        <source>decks.modals.delete.confirm</source>
+        <target>Да, удаляй</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b462c">
+        <source>decks.modals.delete.question</source>
+        <target>Вы уверены, что хотите удалить колоду «%name%»?</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b462d">
+        <source>decks.modals.delete.title</source>
+        <target>Удалить колоду</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b462e">
+        <source>decks.modals.deletelist.confirm</source>
+        <target>Да, удаляй</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b462f">
+        <source>decks.modals.deletelist.question</source>
+        <target>Вы уверены, что хотите удалить все выбранные колоды?</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4630">
+        <source>decks.modals.deletelist.title</source>
+        <target>Удалить колоды</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4631">
+        <source>decks.modals.fileimport.file.label</source>
+        <target>Файл</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4632">
+        <source>decks.modals.fileimport.title</source>
+        <target>Загрузить файл с колодой</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4633">
+        <source>decks.modals.fileimport.type.label</source>
+        <target>Тип файла</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4634">
+        <source>decks.modals.fileimport.type.options.auto</source>
+        <target>Авто</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4635">
+        <source>decks.modals.fileimport.type.options.text</source>
+        <target>Текст</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4636">
+        <source>decks.modals.tags.clear.confirm</source>
+        <target>Да, очисти</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4637">
+        <source>decks.modals.tags.clear.question</source>
+        <target>Вы уверены, что хотите очистить все теги из выбранных колод?</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4638">
+        <source>decks.modals.tags.hint</source>
+        <target>некий-тег другой-тег</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4639">
+        <source>decks.modals.tags.label</source>
+        <target>Введите список тегов, разделенных пробелами</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b463a">
+        <source>decks.privatedecks</source>
+        <target>Мои приватные колоды</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b463b">
+        <source>decks.problems.faction_not_included</source>
+        <target>Содержит карты отсутствующего цвета</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b463c">
+        <source>decks.problems.incorrect_size</source>
+        <target>Игровая колода должна содержать 30 карт</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b463d">
+        <source>decks.problems.invalid_cards</source>
+        <target>Содержит запрещенные карты.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b463e">
+        <source>decks.problems.no_battlefield</source>
+        <target>Не выбрано ни одного поля боя</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b463f">
+        <source>decks.problems.too_many_character_points</source>
+        <target>Превышен предел по очкам персонажей.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4640">
+        <source>decks.problems.too_many_copies</source>
+        <target>Содержит слишком много копий одной карты.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4641">
+        <source>decks.published.none</source>
+        <target>Нет</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4642">
+        <source>decks.published.title</source>
+        <target>Опубликованные версии</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4643">
+        <source>decks.simulator.all</source>
+        <target>все</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4644">
+        <source>decks.simulator.draw</source>
+        <target>Вытянуть</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4645">
+        <source>decks.simulator.hint</source>
+        <target>Щелчек для вытягивания; Shift+Щелчек для сброса и вытягивания</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4646">
+        <source>decks.simulator.more</source>
+        <target>еще</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4647">
+        <source>decks.simulator.oddhint</source>
+        <target>Вероятности вытянуть минимум одну копию желаемой карты после вытягивания выбранного количества карт из колоды в зависимости от количества копий в колоде (1 - 2)</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4648">
+        <source>decks.simulator.odds</source>
+        <target>Вероятности</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4649">
+        <source>decks.simulator.title</source>
+        <target>Симулятор раздачи карт</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b464a">
+        <source>decks.slotcount</source>
+        <target>(%current%/%max% слотов)</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b464b" datatype="html">
+        <source>decks.smartfilter.example</source>
+        <target>Пример: &lt;tt&gt;f:red o&lt;3 d:1&lt;/tt&gt; покажет все красные карты с кубиком и стоимостью меньше трех.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b464c">
+        <source>decks.smartfilter.filters.affiliation</source>
+        <target>Принадлежность</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b464d">
+        <source>decks.smartfilter.filters.cards_owned</source>
+        <target>Сколько у меня копий</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b464e">
+        <source>decks.smartfilter.filters.cost</source>
+        <target>Стоимость</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b464f">
+        <source>decks.smartfilter.filters.dice_owned</source>
+        <target>Сколько соотв. кубиков у меня есть</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4650">
+        <source>decks.smartfilter.filters.faction_code</source>
+        <target>Цвет</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4651">
+        <source>decks.smartfilter.filters.flavor</source>
+        <target>Художественный текст</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4652">
+        <source>decks.smartfilter.filters.has_die</source>
+        <target>С кубиком</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4653">
+        <source>decks.smartfilter.filters.health</source>
+        <target>Здоровье</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4654">
+        <source>decks.smartfilter.filters.illustrator</source>
+        <target>Художник</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4655">
+        <source>decks.smartfilter.filters.is_unique</source>
+        <target>Уникальность</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4656">
+        <source>decks.smartfilter.filters.set_code</source>
+        <target>Выпуск</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4657">
+        <source>decks.smartfilter.filters.subtitle</source>
+        <target>Подзаголовок</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4658">
+        <source>decks.smartfilter.filters.subtype_code</source>
+        <target>Подтип</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4659">
+        <source>decks.smartfilter.filters.text</source>
+        <target>Текст</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b465a">
+        <source>decks.smartfilter.filters.type_code</source>
+        <target>Тип</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b465b">
+        <source>decks.smartfilter.title</source>
+        <target>Синтаксис умного фильтра</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b465c">
+        <source>decks.suggestions.title</source>
+        <target>Предложения карт</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b465d">
+        <source>decks.version</source>
+        <target>Версия %version%</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b465e">
+        <source>emails.newcomment.author</source>
+        <target>%author% прокомментировал Вашу колоду «%decklist%»</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b465f">
+        <source>emails.newcomment.commenter</source>
+        <target>%author% также прокомментировал колоду «%decklist%»</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4660">
+        <source>emails.newcomment.mentionned</source>
+        <target>%author% упомянул Вас в комментарии к колоде «%decklist%»</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4661">
+        <source>emails.newcomment.subject</source>
+        <target>Новый комментарий</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4662" datatype="html">
+        <source>emails.unsubscribe</source>
+        <target>Чтобы отписаться от этих уведомлений, измените настройки &lt;a href="%profile%"&gt;своего аккаунта&lt;/a&gt;.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4663">
+        <source>forms.add</source>
+        <target>Добавить</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4664">
+        <source>forms.back</source>
+        <target>Назад</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4665">
+        <source>forms.cancel</source>
+        <target>Отменить</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4666">
+        <source>forms.click_here</source>
+        <target>Щелкните здесь</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4667">
+        <source>forms.clone</source>
+        <target>Клонировать</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4668">
+        <source>forms.close</source>
+        <target>Закрыть</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4669">
+        <source>forms.copy</source>
+        <target>Копировать</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b466a">
+        <source>forms.delete</source>
+        <target>Удалить</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b466b">
+        <source>forms.download</source>
+        <target>Скачать</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b466c">
+        <source>forms.edit</source>
+        <target>Редактировать</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b466d">
+        <source>forms.imagefile</source>
+        <target>Файл изображения</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b466e">
+        <source>forms.import</source>
+        <target>Импортировать</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b466f">
+        <source>forms.print</source>
+        <target>Печать</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4670">
+        <source>forms.publish</source>
+        <target>Опубликовать</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4671">
+        <source>forms.remove</source>
+        <target>Убрать</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4672">
+        <source>forms.reset</source>
+        <target>Сбросить</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4673">
+        <source>forms.save</source>
+        <target>Сохранить</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4674">
+        <source>forms.saved</source>
+        <target>Данные сохранены</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4675">
+        <source>forms.search</source>
+        <target>Найти</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4676">
+        <source>forms.update</source>
+        <target>Обновить</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4677">
+        <source>forms.upload</source>
+        <target>Загрузить</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4678">
+        <source>icon.battlefield</source>
+        <target>Поле боя</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4679">
+        <source>icon.blank</source>
+        <target>Пустая грань</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b467a">
+        <source>icon.cards</source>
+        <target>Карты</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b467b">
+        <source>icon.character</source>
+        <target>Персонаж</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b467c">
+        <source>icon.die</source>
+        <target>Кубик</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b467d">
+        <source>icon.discard</source>
+        <target>Сброс</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b467e">
+        <source>icon.disrupt</source>
+        <target>Диверсия</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b467f">
+        <source>icon.event</source>
+        <target>Событие</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4680">
+        <source>icon.focus</source>
+        <target>Концентрация</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4681">
+        <source>icon.melee</source>
+        <target>Ближний урон</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4682">
+        <source>icon.ranged</source>
+        <target>Дальний урон</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4683">
+        <source>icon.resource</source>
+        <target>Ресурс</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4684">
+        <source>icon.shield</source>
+        <target>Щит</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4685">
+        <source>icon.special</source>
+        <target>Особенность</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4686">
+        <source>icon.support</source>
+        <target>Поддержка</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4687">
+        <source>icon.unique</source>
+        <target>Уникальный</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4688">
+        <source>icon.upgrade</source>
+        <target>Улучшение</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4689">
+        <source>keyword.ambush.name</source>
+        <target>Засада</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b468a">
+        <source>keyword.ambush.title</source>
+        <target>После того, как Вы сыграли эту карту, можете немедленно совершить одно дополнительное действие.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b468b">
+        <source>keyword.guardian.name</source>
+        <target>Страж</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b468d">
+        <source>keyword.redeploy.name</source>
+        <target>Перераспределение</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b468e">
+        <source>keyword.redeploy.title</source>
+        <target>После того как персонаж, к которому прикреплено это улучшение, побежден, можете немедленно прикрепить это улучшение к любому другому Вашему персонажу. Переложите его кубик на карту нового персонажа, даже если он был в Вашему пуле.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b468f">
+        <source>limited_pool_conflict</source>
+        <target>У Вас %count% карта в коллекции | У Вас %count% карты в коллекции | У Вас %count% карт в коллекции</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4690">
+        <source>login_required</source>
+        <target>Вам необходимо войти для этого действия.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4691">
+        <source>nav.advancedsearch</source>
+        <target>Расширенный поиск</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4692">
+        <source>nav.cards</source>
+        <target>Карты</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4693">
+        <source>nav.cardsearch</source>
+        <target>Поиск карт</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4694">
+        <source>nav.decklists</source>
+        <target>Колоды</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4695">
+        <source>nav.mycollection</source>
+        <target>Моя коллекция</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4696">
+        <source>nav.mydecks</source>
+        <target>Мои колоды</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4697">
+        <source>nav.user.editaccount</source>
+        <target>Редактировать аккаунт</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4698">
+        <source>nav.user.loginregister</source>
+        <target>Войти или зарегистрироваться</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b4699">
+        <source>nav.user.logout</source>
+        <target>Выйти</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b469a">
+        <source>nav.user.profile</source>
+        <target>Публичный профиль</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b469b">
+        <source>noimage</source>
+        <target>Нет изображения</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b469c">
+        <source>pag.cardscount</source>
+        <target>%count% карта | %count% карты | %count% карт</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b469d">
+        <source>profile.edit.about</source>
+        <target>Что-нибудь о Вас</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b469e">
+        <source>profile.edit.errors.user_exists</source>
+        <target>Пользователь «%username%» уже существует.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b469f">
+        <source>profile.edit.faction</source>
+        <target>Выберите цвет фракции для своего имени пользователя</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46a0">
+        <source>profile.edit.locale</source>
+        <target>Получать уведомления на языке:</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46a1">
+        <source>profile.edit.notif_author</source>
+        <target>Уведомлять о появлении комментариев к Вашим колодам</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46a2">
+        <source>profile.edit.notif_commenter</source>
+        <target>Уведомлять о появлении комментариев к колодам, которые Вы комментировали</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46a3">
+        <source>profile.edit.notif_mention</source>
+        <target>Уведомлять об упоминании Вас в комментариях</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46a4">
+        <source>profile.edit.share_decks.help</source>
+        <target>Если Вы отметите эту опцию, то страница Ваших колод будет публичной, а не приватной. Затем можно отправить ссылку Вашим друзьям. Если же убрать отметку, то все Ваши колоды немедленно станут приватными.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46a5">
+        <source>profile.edit.share_decks.label</source>
+        <target>Поделиться колодами</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46a6">
+        <source>profile.edit.success</source>
+        <target>Ваш профиль успешно сохранен.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46a7">
+        <source>profile.public.published_decklists</source>
+        <target>%count% опубликованная колода | %count% опубликованные колоды | %count% опубликованных колод</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46a8">
+        <source>profile.public.published_reviews</source>
+        <target>%count% опубликованный обзор | %count% опубликованные обзора | %count% опубликованных обзоров</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46a9">
+        <source>profile.public.since</source>
+        <target>Участник с %date%</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46aa">
+        <source>registration.title</source>
+        <target>Регистрация</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46ab">
+        <source>search.any</source>
+        <target>любое значение</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46ac">
+        <source>search.attributes</source>
+        <target>Атрибуты</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46ad">
+        <source>search.label</source>
+        <target>Найти</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46ae">
+        <source>search.nametexts</source>
+        <target>Имя и текстовая часть</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46af">
+        <source>search.no</source>
+        <target>Нет</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46b0">
+        <source>search.noresult</source>
+        <target>Под Ваш запрос не подходит ни одна карта.</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46b1">
+        <source>search.numerics</source>
+        <target>Чистовые параметры</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46b2">
+        <source>search.only</source>
+        <target>Один</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46b3">
+        <source>search.other</source>
+        <target>Другое</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46b4">
+        <source>search.previews</source>
+        <target>Обзоры</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46b5">
+        <source>search.setbrowse</source>
+        <target>Смотреть по выпуску</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46b6">
+        <source>search.sort.faction</source>
+        <target>Сортировать по фракции</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46b7">
+        <source>search.sort.name</source>
+        <target>Сортировать по имени</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46b8">
+        <source>search.sort.pointscost</source>
+        <target>Сортировать по очкам/стоимости</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46b9">
+        <source>search.sort.set</source>
+        <target>Сортировать по выпуску</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46ba">
+        <source>search.sort.type</source>
+        <target>Сортировать по типу</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46bb">
+        <source>search.submit</source>
+        <target>Представление</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46bc">
+        <source>search.title</source>
+        <target>Поиск карт</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46bd">
+        <source>search.view.card</source>
+        <target>Смотреть полные карты</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46be">
+        <source>search.view.list</source>
+        <target>Смотреть в виде перечня</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46bf">
+        <source>search.view.scan</source>
+        <target>Смотреть только сканы</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46c0">
+        <source>search.view.short</source>
+        <target>Смотреть в виде простого списка</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46c1">
+        <source>search.view.spoiler</source>
+        <target>Смотреть текст карт</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46c2">
+        <source>search.yes</source>
+        <target>Да</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46c3">
+        <source>seemore.affiliation</source>
+        <target>Больше с этой принадлежностью</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46c4">
+        <source>slogan</source>
+        <target>Колодостроитель для Star Wars Destiny</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46c5">
+        <source>user.confirmation_not_got</source>
+        <target>Не получили регистрационного письма?</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46c6">
+        <source>user.email</source>
+        <target>Эл. почта</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46c7">
+        <source>user.forgotten_password</source>
+        <target>Забыли пароль?</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46c8">
+        <source>user.profile</source>
+        <target>Профиль</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46c9">
+        <source>user.reputation</source>
+        <target>Репутация</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46ca">
+        <source>user.username</source>
+        <target>Имя пользователя</target>
+      </trans-unit>
+      <trans-unit id="loco:5862bc1e52e1a1da578b46cb">
+        <source>userby</source>
+        <target>%user%</target>
+      </trans-unit>
+      <trans-unit id="loco:58637d5352e1a104628b456d">
+        <source>footer.about</source>
+        <target>О сайте</target>
+      </trans-unit>
+      <trans-unit id="loco:58637dc852e1a106628b456e">
+        <source>footer.api</source>
+        <target>API</target>
+      </trans-unit>
+      <trans-unit id="loco:58637e1252e1a168628b4567">
+        <source>footer.donators.label</source>
+        <target>Спонсоры</target>
+      </trans-unit>
+      <trans-unit id="loco:58637e2452e1a14d628b4568">
+        <source>footer.donators.title</source>
+        <target>Великодушный спонсор</target>
+      </trans-unit>
+      <trans-unit id="loco:58637f3252e1a16a628b4567">
+        <source>footer.original</source>
+        <target>Оригинальный дизайн: Alsciende (%netrunner% and %thronesdb%).</target>
+      </trans-unit>
+      <trans-unit id="loco:58637f6752e1a17d628b4567">
+        <source>footer.adapted</source>
+        <target>Модифицировал и адаптировал для SW Destiny: fafranco82.</target>
+      </trans-unit>
+      <trans-unit id="loco:5863809f52e1a16d628b4567">
+        <source>footer.contact</source>
+        <target>Связаться</target>
+      </trans-unit>
+      <trans-unit id="loco:5863811a52e1a16b628b4568">
+        <source>footer.report</source>
+        <target>Пожалуйста, присылайте отчеты об ошибках и свои предложения на %link%.</target>
+      </trans-unit>
+      <trans-unit id="loco:5863817a52e1a16a628b4569">
+        <source>footer.contribute</source>
+        <target>Вы можете помочь, пожертвовав деньги на %link%.</target>
+      </trans-unit>
+      <trans-unit id="loco:5863819b52e1a169628b456c">
+        <source>footer.legal</source>
+        <target>Информация, представленная на этом сайте об игре Star Wars Destiny, как текстовая, так и графическая, принадлежит Fantasy Flight Games. Этот сайт не создавался, не одобрялся, не поддерживается компанией Fantasy Flight Games, и никак с ней не связан.</target>
+      </trans-unit>
+      <trans-unit id="loco:5863855352e1a100638b4567">
+        <source>footer.translated.text</source>
+        <target>Перевод на английский: fafranco82.</target>
+      </trans-unit>
+      <trans-unit id="loco:5863857b52e1a103638b4568" datatype="html">
+        <source>footer.translated.contact</source>
+        <target>&lt;a href="https://twitter.com/user" title="Twitter"&gt;&lt;span class="fa fa-twitter"&gt;&lt;/span&gt;&lt;/a&gt;
+&lt;a href="https://reddit.com/user/user/" title="Reddit"&gt;&lt;span class="fa fa-reddit"&gt;&lt;/span&gt;&lt;/a&gt;
+&lt;a href="mailto:name@domain.com" title="E-mail"&gt;&lt;span class="fa fa-envelope"&gt;&lt;/span&gt;&lt;/a&gt;</target>
+      </trans-unit>
+      <trans-unit id="loco:586392af52e1a1e0638b456a">
+        <source>decks.no-decks.heading</source>
+        <target>Что? Нет колод?</target>
+      </trans-unit>
+      <trans-unit id="loco:5863930652e1a1dd638b456a" datatype="html">
+        <source>decks.no-decks.paragraph0</source>
+        <target>&lt;p&gt;Колоды — это круто. Вы можете &lt;span class="fake-inline-button text-primary"&gt;&lt;span class="fa fa-pencil"&gt;&lt;/span&gt; Редактировать&lt;/span&gt; их, пока не будете удовлетворены, затем &lt;span class="fake-inline-button text-primary"&gt;&lt;span class="fa fa-share"&gt;&lt;/span&gt; Опубликовать&lt;/span&gt; их, чтобы обсудить с другими. Если же Вы хотите оставить их для себя, то можете &lt;span class="fake-inline-button text-primary"&gt;&lt;span class="fa fa-download"&gt;&lt;/span&gt; Скачать&lt;/span&gt; их или &lt;span class="fake-inline-button text-primary"&gt;&lt;span class="fa fa-clipboard"&gt;&lt;/span&gt; Экспортировать&lt;/span&gt;.&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="loco:5863937052e1a1e4638b4569" datatype="html">
+        <source>decks.no-decks.paragraph1</source>
+        <target>&lt;p&gt;Так чего же Вы ждете? Чтобы создать свою первую колоду, Вы можете или &lt;span class="fake-inline-button text-primary"&gt;&lt;span class="fa fa-plus"&gt; Построить&lt;/span&gt; ее с нуля с помощью Колодостроителя, или &lt;span class="fake-inline-button text-primary"&gt;&lt;span class="fa fa-upload"&gt; Импортировать&lt;/span&gt; ее из сети, или &lt;span class="fake-inline-button text-primary"&gt;&lt;span class="fa fa-upload"&gt;&lt;/span&gt; Загрузить&lt;/span&gt; файл с колодой в простом текстовом формате.&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="loco:58664cba52e1a107228b456b">
+        <source>toc</source>
+        <target>Содержание</target>
+      </trans-unit>
+      <trans-unit id="loco:58664dbb52e1a149228b4569">
+        <source>nav.rules</source>
+        <target>Правила</target>
+      </trans-unit>
+      <trans-unit id="loco:58664e1b52e1a153228b4568">
+        <source>nav.rulesreference</source>
+        <target>Справочник правил</target>
+      </trans-unit>
+      <trans-unit id="loco:58665a5c52e1a170238b4571">
+        <source>nav.faq</source>
+        <target>F.A.Q.</target>
+      </trans-unit>
+      <trans-unit id="loco:59102b7352e1a1b90f8b456a">
+        <source>card.with_errata</source>
+        <target>Эта карта была исправлена</target>
+      </trans-unit>
+      <trans-unit id="loco:5912f56b52e1a1ff5d8b456a">
+        <source>collection.trade</source>
+        <target>На продажу</target>
+      </trans-unit>
+      <trans-unit id="loco:5912f57c52e1a1fb5d8b4568">
+        <source>collection.wanted</source>
+        <target>Ищу</target>
+      </trans-unit>
+      <trans-unit id="loco:591b0e5652e1a15e2f8b457a">
+        <source>collection.charts.globals.total</source>
+        <target>Всего</target>
+      </trans-unit>
+      <trans-unit id="loco:591b0f1052e1a19e2f8b456a">
+        <source>collection.charts.rarity.title</source>
+        <target>% владения по редкости</target>
+      </trans-unit>
+      <trans-unit id="loco:591b0f4052e1a1d12f8b4571">
+        <source>collection.charts.rarity.subtitle</source>
+        <target>Стартеры игнорируются</target>
+      </trans-unit>
+      <trans-unit id="loco:591b204852e1a142378b456c">
+        <source>collection.charts.sets.subtitle</source>
+        <target>Стартеры игнорируются</target>
+      </trans-unit>
+      <trans-unit id="loco:591b205d52e1a13d378b4571">
+        <source>collection.charts.sets.title</source>
+        <target>% владения по выпускам</target>
+      </trans-unit>
+      <trans-unit id="loco:59abfb55a39ff336218b4567">
+        <source>card.info.reprintOf</source>
+        <target>Перепечатка «%card%»</target>
+      </trans-unit>
+      <trans-unit id="loco:59ac03d2a39ff3f4218b4567">
+        <source>card.info.reprinted</source>
+        <target>Перепечатана в</target>
+      </trans-unit>
+      <trans-unit id="loco:59db322a820ee906218b4567">
+        <source>decks.edit.meta.plots</source>
+        <target>Замыслы</target>
+      </trans-unit>
+      <trans-unit id="loco:59db3271820ee9fb208b4567">
+        <source>decks.problems.too_many_points</source>
+        <target>Превышен предел по очкам.</target>
+      </trans-unit>
+      <trans-unit id="loco:59e5e8c9a39ff3d5448b4569">
+        <source>cookiesconsent.message</source>
+        <target>Мы используем файлы cookie для персонализации содержимого и рекламы, для предоставления социальных функций и для анализа нашего трафика. Мы также делимся информацией о Вашем использовании нашего сайта с нашими партнерами по рекламе и аналитике, которые могут объединять полученные данные с другой информацией предоставленной Вами или собранной от Вас при пользовании их услугами.</target>
+      </trans-unit>
+      <trans-unit id="loco:59e5e8e8a39ff3d5448b456b">
+        <source>cookiesconsent.dismiss</source>
+        <target>Понятно!</target>
+      </trans-unit>
+      <trans-unit id="loco:59e5e917a39ff3d6448b4568">
+        <source>cookiesconsent.learnmore</source>
+        <target>Узнать больше...</target>
+      </trans-unit>
+      <trans-unit id="loco:5a53d04bc430fe11178b4568">
+        <source>icon.indirect</source>
+        <target>Непрямой урон</target>
+      </trans-unit>
+      <trans-unit id="loco:5a639f7ca39ff386638b4567">
+        <source>decks.edit.form.format</source>
+        <target>Формат</target>
+      </trans-unit>
+      <trans-unit id="loco:5a639f99a39ff3fc638b4567">
+        <source>decks.edit.meta.format</source>
+        <target>Формат</target>
+      </trans-unit>
+      <trans-unit id="loco:5a639fbca39ff358638b4567">
+        <source>card.balance</source>
+        <target>Очки карт сбалансированы в формате «%format%»</target>
+      </trans-unit>
+      <trans-unit id="loco:5a659a0da39ff3314a8b4568">
+        <source>decklist.list.search.format.label</source>
+        <target>Формат</target>
+      </trans-unit>
+      <trans-unit id="loco:5a659a3da39ff34e4a8b4567">
+        <source>decklist.list.search.format.any</source>
+        <target>любой</target>
+      </trans-unit>
+      <trans-unit id="loco:5a65a7dba39ff3b44d8b4567">
+        <source>decks.build.errors.noformat</source>
+        <target>Формат обязателен</target>
+      </trans-unit>
+      <trans-unit id="loco:5a65a905a39ff3c14d8b4567">
+        <source>decks.build.choose.format</source>
+        <target>Выберите формат колоды</target>
+      </trans-unit>
+      <trans-unit id="loco:5a65cd0aa39ff33a578b4567">
+        <source>decks.build.canbechanged</source>
+        <target>Можно будет изменить позже</target>
+      </trans-unit>
+      <trans-unit id="loco:5a69a715c430fe207d8b4567">
+        <source>card.info.legality</source>
+        <target>Легальность</target>
+      </trans-unit>
+      <trans-unit id="loco:5a69a72ac430fe2f7d8b456c">
+        <source>card.info.balance</source>
+        <target>Баланс Силы</target>
+      </trans-unit>
+      <trans-unit id="loco:5b377a457ec8ae3c2b773342">
+        <source>decks.problems.too_many_battlefields</source>
+        <target>Слишком много полей боя</target>
+      </trans-unit>
+      <trans-unit id="loco:5b4ef1e3a08ef15c250487e2">
+        <source>collection.export.title</source>
+        <target>Коллекция %user%</target>
+      </trans-unit>
+      <trans-unit id="loco:5b4ef21fa08ef15c793769c2">
+        <source>collection.export.filename</source>
+        <target>%user%-коллекция</target>
+      </trans-unit>
+      <trans-unit id="loco:5b4efe84a08ef15e4a09d515">
+        <source>card.info.collection</source>
+        <target>Коллекция</target>
+      </trans-unit>
+      <trans-unit id="loco:5b4f2618a08ef164f906c573">
+        <source>collection.dice</source>
+        <target>Кубики</target>
+      </trans-unit>
+      <trans-unit id="loco:5b4f2654a08ef164fc2e0ae3">
+        <source>collection.cards</source>
+        <target>Карты</target>
+      </trans-unit>
+      <trans-unit id="loco:5b4f6858a08ef175203f6dd2">
+        <source>collection.export.tooltip</source>
+        <target>Экспортировать коллекцию в Excel</target>
+      </trans-unit>
+      <trans-unit id="loco:5be4291f7ec8ae0f0d2c89e4">
+        <source>decks.problems.plot</source>
+        <target>Не соответствует ограничениям по замыслам</target>
+      </trans-unit>
+      <trans-unit id="loco:5c0edbbb72c2c914ac5aa2c4">
+        <source>icon.downgrade</source>
+        <target>Понижение</target>
+      </trans-unit>
+      <trans-unit id="loco:5d23820aed0cfa27ab71a392">
+        <source>decks.problems.restricted_list</source>
+        <target>В колоде больше одной карты из ограниченного списка</target>
+      </trans-unit>
+      <trans-unit id="loco:5d23876aed0cfa289f41f772">
+        <source>card.info.restricted</source>
+        <target>В ограниченном списке</target>
+      </trans-unit>
+      <trans-unit id="loco:5fdfadd694bb6d1bdd50f462">
+        <source>card.format.banned</source>
+        <target>Карта запрещена в этом формате</target>
+      </trans-unit>
+      <trans-unit id="loco:5fdfadf53e2e872c764e96d2">
+        <source>card.format.errata</source>
+        <target>Карта была исправлена в этом конкретном формате</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

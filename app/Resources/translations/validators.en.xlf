@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Loco xml export: XLIFF for Symfony
+ Project: Validators
+ Release: Working copy
+ Locale: en, English
+ Status: Translated
+ Exported by: Francisco Franco
+ Exported at: Fri, 19 Nov 2021 18:53:37 -0600
+-->
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="file.ext" source-language="en" target-language="en" datatype="plaintext" tool-id="loco">
+    <header>
+      <tool tool-id="loco" tool-name="Loco for Symfony" tool-version="1.0.25 20211027-1" tool-company="Loco"/>
+    </header>
+    <body>
+      <trans-unit id="loco:5863763652e1a1de618b4567">
+        <source>fos_user.email.already_used</source>
+        <target>The email is already used</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b4568">
+        <source>fos_user.email.blank</source>
+        <target>Please enter an email</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b4569">
+        <source>fos_user.email.invalid</source>
+        <target>The email is not valid</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456a">
+        <source>fos_user.email.long</source>
+        <target>[-Inf,Inf]The email is too long</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456b">
+        <source>fos_user.email.short</source>
+        <target>[-Inf,Inf]The email is too short</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456c">
+        <source>fos_user.password.blank</source>
+        <target>Please enter a password</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456d">
+        <source>fos_user.password.short</source>
+        <target>[-Inf,Inf]The password is too short</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456e">
+        <source>fos_user.username.already_used</source>
+        <target>The username is already used</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456f">
+        <source>fos_user.username.blank</source>
+        <target>Please enter a username</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b4570">
+        <source>fos_user.username.long</source>
+        <target>[-Inf,Inf]The username is too long</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b4571">
+        <source>fos_user.username.short</source>
+        <target>[-Inf,Inf]The username is too short</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b4567">
+        <source>fos_user.password.mismatch</source>
+        <target>The entered passwords don't match</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b4568">
+        <source>fos_user.new_password.blank</source>
+        <target>Please enter a new password</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b4569">
+        <source>fos_user.new_password.short</source>
+        <target>[-Inf,Inf]The new password is too short</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b456a">
+        <source>fos_user.current_password.invalid</source>
+        <target>The entered password is invalid</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b456b">
+        <source>fos_user.group.blank</source>
+        <target>Please enter a name</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b456c">
+        <source>fos_user.group.short</source>
+        <target>[-Inf,Inf]The name is too short</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b456d">
+        <source>fos_user.group.long</source>
+        <target>[-Inf,Inf]The name is too long</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b456e">
+        <source>fos_group.name.already_used</source>
+        <target>The name is already used</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

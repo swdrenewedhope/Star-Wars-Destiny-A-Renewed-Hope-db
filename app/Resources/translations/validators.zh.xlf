@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Loco xml export: XLIFF for Symfony
+ Project: Validators
+ Release: Working copy
+ Locale: zh, Simplified Chinese
+ Status: Translated
+ Exported by: Francisco Franco
+ Exported at: Fri, 19 Nov 2021 18:53:39 -0600
+-->
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="file.ext" source-language="en" target-language="zh" datatype="plaintext" tool-id="loco">
+    <header>
+      <tool tool-id="loco" tool-name="Loco for Symfony" tool-version="1.0.25 20211027-1" tool-company="Loco"/>
+    </header>
+    <body/>
+  </file>
+</xliff>
