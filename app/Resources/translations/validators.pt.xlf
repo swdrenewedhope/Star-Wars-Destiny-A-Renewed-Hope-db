@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Loco xml export: XLIFF for Symfony
+ Project: Validators
+ Release: Working copy
+ Locale: pt, Portuguese
+ Status: Translated
+ Exported by: Francisco Franco
+ Exported at: Fri, 19 Nov 2021 18:53:39 -0600
+-->
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="file.ext" source-language="en" target-language="pt" datatype="plaintext" tool-id="loco">
+    <header>
+      <tool tool-id="loco" tool-name="Loco for Symfony" tool-version="1.0.25 20211027-1" tool-company="Loco"/>
+    </header>
+    <body>
+      <trans-unit id="loco:5863763652e1a1de618b4567">
+        <source>fos_user.email.already_used</source>
+        <target>Este email já está sendo usado</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b4568">
+        <source>fos_user.email.blank</source>
+        <target>É necessário preencher o email</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b4569">
+        <source>fos_user.email.invalid</source>
+        <target>Este email é inválido</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456a">
+        <source>fos_user.email.long</source>
+        <target>[-Inf,Inf]Este email é muito longo</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456b">
+        <source>fos_user.email.short</source>
+        <target>[-Inf,Inf]Este email é muito curto</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456c">
+        <source>fos_user.password.blank</source>
+        <target>É necessário preencher sua senha</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456d">
+        <source>fos_user.password.short</source>
+        <target>[-Inf,Inf]Esta senha é muito curta</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456e">
+        <source>fos_user.username.already_used</source>
+        <target>Este nome de usuário já está sendo usado</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b456f">
+        <source>fos_user.username.blank</source>
+        <target>É necessário preencher o nome de usuário</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b4570">
+        <source>fos_user.username.long</source>
+        <target>[-Inf,Inf]Este nome de usuário é muito longo</target>
+      </trans-unit>
+      <trans-unit id="loco:5863763652e1a1de618b4571">
+        <source>fos_user.username.short</source>
+        <target>[-Inf,Inf]Este nome de usuário é muito curto</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b4567">
+        <source>fos_user.password.mismatch</source>
+        <target>As senhas não correspondem</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b4568">
+        <source>fos_user.new_password.blank</source>
+        <target>É necessário preencher a nova senha</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b4569">
+        <source>fos_user.new_password.short</source>
+        <target>[-Inf,Inf]A nova senha é muito curta</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b456a">
+        <source>fos_user.current_password.invalid</source>
+        <target>A senha está incorreta</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b456b">
+        <source>fos_user.group.blank</source>
+        <target>É necessário preencher o nome</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b456c">
+        <source>fos_user.group.short</source>
+        <target>[-Inf,Inf]O nome é muito curto</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b456d">
+        <source>fos_user.group.long</source>
+        <target>[-Inf,Inf]O nome é muito longo</target>
+      </trans-unit>
+      <trans-unit id="loco:5863768a52e1a1f2618b456e">
+        <source>fos_group.name.already_used</source>
+        <target>O nome já está em uso</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
