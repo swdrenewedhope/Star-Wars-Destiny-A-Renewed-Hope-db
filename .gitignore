@@ -29,3 +29,4 @@ error_log
 /var/.dev_admin_created
 /var/.dev_initialized
 \#*\#
+docker-compose.yml
