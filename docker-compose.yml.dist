@@ -18,7 +18,7 @@ services:
       MAILER_HOST: "localhost"
       MAILER_USER: "dev"
 
-# Create dev admin account, this is useful for testing, set to 0 else wise.
+# Create dev admin account, useful for testing, set to 0 otherwise.
 
       CREATE_DEV_ADMIN: "1"
       DEV_ADMIN_USER: "dev"
@@ -29,19 +29,16 @@ services:
       HANDLEBARS_BIN: "/var/www/html/node_modules/handlebars/bin/handlebars"
 
       WEBSITE_URL: "localhost"
-      WEBSITE_NAME: "dev"
-      GAME_NAME: "dev"
-      PUBLISHER_NAME: "dev"
+      WEBSITE_NAME: "swdestinydb"
+      GAME_NAME: "swdestinydb"
+      PUBLISHER_NAME: "swdestinydb"
       EMAIL_SENDER_ADDRESS: "noreply@localhost"
-      EMAIL_SENDER_NAME: "dev"
+      EMAIL_SENDER_NAME: "swdestinydb"
 
 
-      SECRET: "dev" # This acts as a secret for cryptographic functions, change it for production
+      SECRET: "please-change-me" # Secret for cryptographic functions, change for production.
       
-      # HAPPYR
-
-      ## Franco hardcoded values, does this mean the value doesn't matter for one reason or another, or a mistake?
-      ## Borrowing them for now.
+      # HAPPYR - Ignore this section for now
 
       HAPPYR_MESSAGES_API_KEY: "-GeNAIp8XIzwIZCFZL3ZsP9k5vWBxo4F"
       HAPPYR_VALIDATORS_API_KEY: "CWow0Q-lOtg1QdZaV5UsrhpKrd2fYz9z"
@@ -58,8 +55,8 @@ services:
     environment:
       MYSQL_DATABASE: "swddb"
       MYSQL_USER: "swddb"
-      MYSQL_PASSWORD: "swddbpass"
-      MYSQL_ROOT_PASSWORD: "rootpass"
+      MYSQL_PASSWORD: "please-change-me"
+      MYSQL_ROOT_PASSWORD: "please-change-me"
     volumes:
       - mysql_data:/var/lib/mysql
 
