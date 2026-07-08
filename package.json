@@ -1,21 +1,20 @@
 {
   "name": "swdestinydb",
   "version": "1.0.0",
-  "description": "SWDestinyDB =======",
+  "description": "ARH fork of swdestinydb",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fafranco82/swdestinydb.git"
+    "url": "git+https://github.com/swdrenewedhope/Star-Wars-Destiny-A-Renewed-Hope-db.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fafranco82/swdestinydb/issues"
+    "url": "https://github.com/swdrenewedhope/Star-Wars-Destiny-A-Renewed-Hope-db/issues"
   },
-  "homepage": "https://github.com/fafranco82/swdestinydb#readme",
   "devDependencies": {
     "handlebars": "^4.7.8"
   }
