@@ -10,13 +10,12 @@ This guide assumes you know how to use the command-line & git commands.
 - Add your user to the docker group.
 - Clone the repo
 - ``cd`` into it
+- Copy docker-compose.yml.dist -> docker-compose.yml and adjust as needed.
 - Run the command ``docker compose up -d --build`` in the project root directory.
-
-After the commands above have finished, the dev enviornment will be setup for you.
 
 You can visit the server @ http://localhost in browser.
 
-An admin user is automatically created with the following credentials:
+If CREATE_DEV_ADMIN is set to 1, a user is automatically created with the following credentials:
 
 Username: dev
 Password: dev
