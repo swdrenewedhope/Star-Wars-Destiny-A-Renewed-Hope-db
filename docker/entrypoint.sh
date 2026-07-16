@@ -2,17 +2,6 @@
 set -euo pipefail
 cd /var/www/html || true
 
-SYMFONY_ENV="${SYMFONY_ENV:-dev}"
-
-DB_HOST="${DB_HOST:-db}"
-DB_PORT="${DB_PORT:-3306}"
-DB_NAME="${DB_NAME:-swddb}"
-DB_USER="${DB_USER:-swddb}"
-DB_PASSWORD="${DB_PASSWORD:-swddb}"
-
-NODE_BIN="${NODE_BIN:-/usr/local/bin/node}"
-HANDLEBARS_BIN="${HANDLEBARS_BIN:-/var/www/html/node_modules/handlebars/bin/handlebars}"
-
 as_www() { su -s /bin/bash www-data -c "$*"; }
 
 mkdir -p app/cache app/logs var
@@ -63,7 +52,6 @@ if ! as_www "php app/console doctrine:schema:validate --env=${SYMFONY_ENV} --no-
     as_www "php app/console doctrine:schema:create --env=${SYMFONY_ENV} --no-debug"
 fi
 
-
 mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -e "UPDATE user SET notif_locale = 'en' WHERE notif_locale IS NULL OR notif_locale = '';"
 as_www "php app/console doctrine:schema:update --force --env=${SYMFONY_ENV} --no-debug"
 
@@ -74,15 +62,12 @@ as_www "php app/console doctrine:schema:update --force --env=${SYMFONY_ENV} --no
 
 if [ "${CREATE_DEV_ADMIN:-1}" = "1" ]; then
   EXISTING="$(mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -Nse "SELECT COUNT(*) FROM user WHERE username='${DEV_ADMIN_USER}';" 2>/dev/null || echo 0)"
-fi
-
-  if [ "${EXISTING}" = "0" ]; then
+ 
+ if [ "${EXISTING}" = "0" ]; then
     as_www "php app/console fos:user:create \"${DEV_ADMIN_USER}\" \"${DEV_ADMIN_EMAIL}\" \"${DEV_ADMIN_PASS}\" --env=${SYMFONY_ENV} --no-debug -n"
     as_www "php app/console fos:user:activate \"${DEV_ADMIN_USER}\" --env=${SYMFONY_ENV} --no-debug -n || true"
     as_www "php app/console fos:user:promote --super \"${DEV_ADMIN_USER}\" --env=${SYMFONY_ENV} --no-debug -n || true"
   fi
-
-
-chown -R www-data:www-data app/cache app/logs var || true
+fi
 
 exec "$@"

@@ -10,7 +10,7 @@ parameters:
     mailer_auth_mode:  ~
 
     # A secret key that's used to generate security-related tokens
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            insecure
     
     cache_expiration:  600 #seconds
     
@@ -34,9 +34,9 @@ parameters:
     moneytizer_ad_types: ~
 
     # Doctrine Config
-    db_name: swddb
-    db_username: swddb
-    db_password: swddbpass
+    db_name: swdestiny_db
+    db_username: swdestinydb_admin
+    db_password: insecure
     db_host: db
 
     # Happyr Config
