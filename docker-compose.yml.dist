@@ -7,20 +7,18 @@ services:
     ports:
       - "80:80"
     environment:
-      SYMFONY_ENV: "prod"
+      SYMFONY_ENV: "dev"
 
       DB_HOST: "db"
       DB_PORT: "3306"
-      DB_NAME: "swddb"
-      DB_USER: "swddb"
-      DB_PASSWORD: "swddbpass"
+      DB_NAME: "swdestiny_db"
+      DB_USER: "swdestinydb_admin"
+      DB_PASSWORD: "insecure"
 
       MAILER_HOST: "localhost"
       MAILER_USER: "dev"
 
-# Create dev admin account, useful for testing, set to 0 otherwise.
-
-      CREATE_DEV_ADMIN: "1"
+      CREATE_DEV_ADMIN: "0" # For testing, 1 to enable.
       DEV_ADMIN_USER: "dev"
       DEV_ADMIN_EMAIL: "dev@localhost"
       DEV_ADMIN_PASS: "dev"
@@ -36,7 +34,7 @@ services:
       EMAIL_SENDER_NAME: "swdestinydb"
 
 
-      SECRET: "please-change-me" # Secret for cryptographic functions, change for production.
+      SECRET: "insecure" # Secret for cryptographic functions.
       
       # HAPPYR - Ignore this section for now
 
@@ -53,10 +51,11 @@ services:
     image: mysql:5.7
     command: --character-set-server=utf8 --collation-server=utf8_general_ci
     environment:
-      MYSQL_DATABASE: "swddb"
-      MYSQL_USER: "swddb"
-      MYSQL_PASSWORD: "please-change-me"
-      MYSQL_ROOT_PASSWORD: "please-change-me"
+      MYSQL_DATABASE: "swdestiny_db"
+      MYSQL_USER: "swdestinydb_admin"
+      MYSQL_PASSWORD: "insecure"
+      MYSQL_ROOT_PASSWORD: "insecure"
+
     volumes:
       - mysql_data:/var/lib/mysql
 

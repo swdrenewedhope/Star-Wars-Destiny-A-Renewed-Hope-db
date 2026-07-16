@@ -1,4 +1,8 @@
-FROM php:7.3-apache
+FROM php:7.1-apache
+
+RUN echo 'deb http://archive.debian.org/debian buster main' > /etc/apt/sources.list \
+echo 'deb http://archive.debian.org/debian-security buster/updates main' >> /etc/apt/sources.list \
+apt-get -o Acquire::Check-Valid-Until=false update
 
 RUN apt-get update && apt-get install -y \
     git \
@@ -17,7 +21,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN docker-php-ext-configure gd \
     --with-freetype-dir=/usr \
-    --with-jpeg-dir=/usr 
+    --with-jpeg-dir=/usr
 
 RUN docker-php-ext-install \
     pdo_mysql \ 
