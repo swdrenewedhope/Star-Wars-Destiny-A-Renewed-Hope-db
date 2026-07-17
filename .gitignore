@@ -26,7 +26,5 @@ tags
 error_log
 /src/AppBundle/Resources/public/images/cards/
 /web/robots.txt
-/var/.dev_admin_created
-/var/.dev_initialized
 \#*\#
 docker-compose.yml
