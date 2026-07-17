@@ -49,7 +49,10 @@ as_www "composer install --no-interaction --prefer-dist"
 as_www "php app/console doctrine:database:create --if-not-exists --env=${SYMFONY_ENV} --no-debug"
 
 DOES_SCHEMA_EXIST=$(mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -se "SHOW TABLES LIKE 'ext_translations';")
- if [-z "$DOES_SCHEMA_EXIST"] then as_www "php app/console doctrine:schema:create --env=${SYMFONY_ENV} --no-debug" fi
+
+ if [ -z "$DOES_SCHEMA_EXIST" ]; then 
+ as_www "php app/console doctrine:schema:create --env=${SYMFONY_ENV} --no-debug" 
+ fi
 
 mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -e "UPDATE user SET notif_locale = 'en' WHERE notif_locale IS NULL OR notif_locale = '';"
 as_www "php app/console doctrine:schema:update --force --env=${SYMFONY_ENV} --no-debug"
