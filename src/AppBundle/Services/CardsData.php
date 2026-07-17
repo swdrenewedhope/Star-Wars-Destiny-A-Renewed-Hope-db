@@ -493,13 +493,13 @@ class CardsData
 		$cardinfo['url'] = $this->router->generate('cards_zoom', array('card_code' => $card->getCode()), UrlGeneratorInterface::ABSOLUTE_URL);
 
 		$setcode = str_pad($card->getSet()->getPosition(), 2, '0', STR_PAD_LEFT);
-		$imageurl = $this->assets_helper->getUrl("/bundles/cards/{$locale}/{$setcode}/{$card->getCode()}.jpg");
+		$imageurl = $this->assets_helper->getUrl("/bundles/app/images/cards/{$locale}/{$setcode}/{$card->getCode()}.jpg");
         $imagepath = $this->rootDir . '/../web' . preg_replace('/\?.*/', '', $imageurl);
 		
         if(file_exists($imagepath)) {
             $cardinfo['imagesrc'] = $this->ensureUrlIsAbsolute($imageurl);
             if($locale != 'en') {
-	        	$cardinfo['imagesrc_en'] = $this->ensureUrlIsAbsolute($this->assets_helper->getUrl("/bundles/cards/en/{$setcode}/{$card->getCode()}.jpg"));
+	        	$cardinfo['imagesrc_en'] = $this->ensureUrlIsAbsolute($this->assets_helper->getUrl("/bundles/app/images/cards/en/{$setcode}/{$card->getCode()}.jpg"));
 	        }
 		} elseif ($card->getReprintOf() != NULL) {
 			
@@ -508,13 +508,13 @@ class CardsData
 			$cardlevel = $card->getReprintOf();
 			
 			while ($foundbasecard === 0) {
-				$imageurl = $this->assets_helper->getUrl("/bundles/cards/{$locale}/".str_pad($cardlevel->getSet()->getPosition(), 2, '0', STR_PAD_LEFT)."/{$cardlevel->getCode()}.jpg");
+				$imageurl = $this->assets_helper->getUrl("/bundles/app/images/cards/{$locale}/".str_pad($cardlevel->getSet()->getPosition(), 2, '0', STR_PAD_LEFT)."/{$cardlevel->getCode()}.jpg");
 				$imagepath = $this->rootDir . '/../web' . preg_replace('/\?.*/', '', $imageurl);
 				
 				if(file_exists($imagepath)) {
 					$cardinfo['imagesrc'] = $this->ensureUrlIsAbsolute($imageurl);
 					if($locale != 'en') {
-						$cardinfo['imagesrc_en'] = $this->ensureUrlIsAbsolute($this->assets_helper->getUrl("/bundles/cards/en/".str_pad($cardlevel->getSet()->getPosition(), 2, '0', STR_PAD_LEFT)."/{$card->getReprintOf()->getCode()}.jpg"));
+						$cardinfo['imagesrc_en'] = $this->ensureUrlIsAbsolute($this->assets_helper->getUrl("/bundles/app/images/cards/en/".str_pad($cardlevel->getSet()->getPosition(), 2, '0', STR_PAD_LEFT)."/{$card->getReprintOf()->getCode()}.jpg"));
 					}
 					$foundbasecard = 1;
 				} elseif ($cardlevel->getReprintOf() != NULL) {
