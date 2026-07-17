@@ -20,7 +20,7 @@
 	<a href="{{ path('deck_buildform') }}" class="btn btn-default btn-sm"{% if cannotcreate %} disabled="disabled"{% endif %}><span class="fa fa-plus"></span> {{ 'decks.form.new' | trans}}</a>
 	<div class="btn-group">
 		<button type="button" class="btn btn-default btn-sm" onclick="" <!-- $('#fileModal').modal('show') -->
-  		<span class="fa fa-upload"></span> Import Deck (Coming Soon)</button>
+  		<span class="fa fa-upload"></span> Import Deck</button>
 	</div>
 </div>
 </div>
@@ -114,16 +114,8 @@
 			<a href="{{ path('deck_publish_form',{deck_id:deck.id}) }}" class="btn btn-xs btn-default" data-toggle="tooltip" title="{{ 'forms.publish' | trans}}"><span class="fa fa-share fa-fw"></span></a>
 			<button class="btn btn-xs btn-default btn-delete-deck" data-toggle="tooltip" title="{{ 'forms.delete' | trans}}"><span class="fa fa-trash-o fa-fw"></span></button>
 			<a href="{{ path('deck_clone', {deck_id:deck.id}) }}" class="btn btn-xs btn-default" data-toggle="tooltip" title="{{ 'forms.clone' | trans}}"><span class="fa fa-clone fa-fw"></span></a>
-			<a href="{{ path('deck_export_text', {deck_id:deck.id}) }}" class="btn btn-xs btn-default" data-toggle="tooltip" title="Export (Text)"><span class="fa fa-file-text fa-fw"></span></a>
-<a href="{{ path('deck_export_tts', {deck_id:deck.id}) }}"
-   class="btn btn-xs btn-default"
-   data-toggle="tooltip"
-   title="Export (TTS)"
-   onclick="window.__ttsDeprecatedToast && window.__ttsDeprecatedToast();">
-  <span class="fa fa-download fa-fw"></span>
-</a>
-		
-</td>
+			<a href="{{ path('deck_export_text', {deck_id:deck.id}) }}" class="btn btn-xs btn-default" data-toggle="tooltip" title="Export (Text)"><span class="fa fa-download fa-fw"></span></a>	
+		</td>
 	</tr>
 {% endfor %}
 </tbody>
@@ -136,25 +128,6 @@
 
 </div>
 </div><!-- /.container -->
-
-<div id="tts-deprecated-toast"
-     class="alert alert-warning"
-     style="display:none; position:fixed; right:16px; bottom:16px; z-index:99999; max-width:420px; box-shadow:0 6px 18px rgba(0,0,0,.2);">
-  <strong>Notice:</strong> Export to TTS is deprecated and will be removed in a future update. Please contact the ARH Team with any concerns about this.
-</div>
-
-<script>
-  window.__ttsDeprecatedToast = function () {
-    var el = document.getElementById('tts-deprecated-toast');
-    if (!el) return;
-    el.style.display = 'block';
-    clearTimeout(window.__ttsDeprecatedToastTimer);
-    window.__ttsDeprecatedToastTimer = setTimeout(function () {
-      el.style.display = 'none';
-    }, 20000);
-  };
-</script>
-
 
 {% include 'AppBundle:Modale:file.html.twig' %}
 {% include 'AppBundle:Modale:delete.html.twig' %}

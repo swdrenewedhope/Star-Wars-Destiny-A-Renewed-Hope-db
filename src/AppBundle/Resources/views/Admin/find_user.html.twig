@@ -1,7 +1,7 @@
 {% extends 'AppBundle:Admin:base.html.twig' %}
 
 {% block content -%}
-<h1>Find a User</h1>
+<h1>Find User</h1>
 
 {% for label, flashes in app.session.flashbag.all %}
     {% for flash in flashes %}
@@ -14,12 +14,12 @@
 <form action="{{ path('admin_find_user_process') }}" method="post">
 
 <div class="form-group">
-<label for="username">Find by Username</label>
+<label for="username">By Username</label>
 <input type="text" class="form-control" id="username" name="username"> 
 </div>
 
 <div class="form-group">
-<label for="id">Find by Id</label>
+<label for="id">By ID</label>
 <input type="text" class="form-control" id="id" name="id"> 
 </div>
 
