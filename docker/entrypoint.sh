@@ -48,9 +48,8 @@ fi
 as_www "composer install --no-interaction --prefer-dist"
 as_www "php app/console doctrine:database:create --if-not-exists --env=${SYMFONY_ENV} --no-debug"
 
-if ! as_www "php app/console doctrine:schema:validate --env=${SYMFONY_ENV} --no-debug" > /dev/null 2>&1; then
-    as_www "php app/console doctrine:schema:create --env=${SYMFONY_ENV} --no-debug"
-fi
+DOES_SCHEMA_EXIST=$(mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -se "SHOW TABLES LIKE 'ext_translations';")
+ if [-z "$DOES_SCHEMA_EXIST"] then as_www "php app/console doctrine:schema:create --env=${SYMFONY_ENV} --no-debug" fi
 
 mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -e "UPDATE user SET notif_locale = 'en' WHERE notif_locale IS NULL OR notif_locale = '';"
 as_www "php app/console doctrine:schema:update --force --env=${SYMFONY_ENV} --no-debug"
@@ -60,7 +59,7 @@ as_www "php app/console doctrine:schema:update --force --env=${SYMFONY_ENV} --no
     as_www "php -d memory_limit=-1 app/console app:import:std /var/www/html/dbJSON --env=${SYMFONY_ENV} --no-debug || true"
   fi
 
-if [ "${CREATE_DEV_ADMIN:-1}" = "1" ]; then
+if [ "${CREATE_DEV_ADMIN}" = "1" ]; then
   EXISTING="$(mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -Nse "SELECT COUNT(*) FROM user WHERE username='${DEV_ADMIN_USER}';" 2>/dev/null || echo 0)"
  
  if [ "${EXISTING}" = "0" ]; then
