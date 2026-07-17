@@ -46,3 +46,4 @@ parameters:
     # Assetic Config
     node_bin: /usr/bin/nodejs
     handlebars_bin: ./node_modules/handlebars/bin/handlebars
+

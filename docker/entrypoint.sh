@@ -62,13 +62,13 @@ as_www "php app/console doctrine:schema:update --force --env=${SYMFONY_ENV} --no
     as_www "php -d memory_limit=-1 app/console app:import:std /var/www/html/dbJSON --env=${SYMFONY_ENV} --no-debug || true"
   fi
 
-if [ "${CREATE_DEV_ADMIN}" = "1" ]; then
-  EXISTING="$(mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -Nse "SELECT COUNT(*) FROM user WHERE username='${DEV_ADMIN_USER}';" 2>/dev/null || echo 0)"
+if [ "${SYMFONY_ENV}" = "dev" ]; then
+  EXISTING="$(mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -Nse "SELECT COUNT(*) FROM user WHERE username='dev';" 2>/dev/null || echo 0)"
  
  if [ "${EXISTING}" = "0" ]; then
-    as_www "php app/console fos:user:create \"${DEV_ADMIN_USER}\" \"${DEV_ADMIN_EMAIL}\" \"${DEV_ADMIN_PASS}\" --env=${SYMFONY_ENV} --no-debug -n"
-    as_www "php app/console fos:user:activate \"${DEV_ADMIN_USER}\" --env=${SYMFONY_ENV} --no-debug -n || true"
-    as_www "php app/console fos:user:promote --super \"${DEV_ADMIN_USER}\" --env=${SYMFONY_ENV} --no-debug -n || true"
+    as_www "php app/console fos:user:create dev dev@localhost dev --env=${SYMFONY_ENV} -n"
+    as_www "php app/console fos:user:activate dev --env=${SYMFONY_ENV} -n"
+    as_www "php app/console fos:user:promote --super dev --env=${SYMFONY_ENV} -n"
   fi
 fi
 

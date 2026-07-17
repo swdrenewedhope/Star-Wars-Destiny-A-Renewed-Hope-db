@@ -7,7 +7,13 @@ services:
     ports:
       - "80:80"
     environment:
-      SYMFONY_ENV: "dev"
+	# GENERAL
+
+      SYMFONY_ENV: "dev" # dev(elopment) / prod(uction)
+	  NODE_BIN: "/usr/local/bin/node"
+      HANDLEBARS_BIN: "/var/www/html/node_modules/handlebars/bin/handlebars"
+
+	# DATABASE
 
       DB_HOST: "db"
       DB_PORT: "3306"
@@ -15,29 +21,23 @@ services:
       DB_USER: "swdestinydb_admin"
       DB_PASSWORD: "insecure"
 
+	# MAILER
+
       MAILER_HOST: "localhost"
       MAILER_USER: "dev"
+	  EMAIL_SENDER_ADDRESS: "noreply@localhost"
+      EMAIL_SENDER_NAME: "swdestinydb"
 
-      CREATE_DEV_ADMIN: "0" # For testing, 1 to enable.
-      DEV_ADMIN_USER: "dev"
-      DEV_ADMIN_EMAIL: "dev@localhost"
-      DEV_ADMIN_PASS: "dev"
+    # SECURITY
 
-      NODE_BIN: "/usr/local/bin/node"
-      HANDLEBARS_BIN: "/var/www/html/node_modules/handlebars/bin/handlebars"
+	SECRET: "insecure" # Secret for cryptographic functions.
+
+    # MISC
 
       WEBSITE_URL: "localhost"
       WEBSITE_NAME: "swdestinydb"
       GAME_NAME: "swdestinydb"
       PUBLISHER_NAME: "swdestinydb"
-      EMAIL_SENDER_ADDRESS: "noreply@localhost"
-      EMAIL_SENDER_NAME: "swdestinydb"
-
-
-      SECRET: "insecure" # Secret for cryptographic functions.
-      
-      # HAPPYR - Ignore this section for now
-
       HAPPYR_MESSAGES_API_KEY: "-GeNAIp8XIzwIZCFZL3ZsP9k5vWBxo4F"
       HAPPYR_VALIDATORS_API_KEY: "CWow0Q-lOtg1QdZaV5UsrhpKrd2fYz9z"
 
