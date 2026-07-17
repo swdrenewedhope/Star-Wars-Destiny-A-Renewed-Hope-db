@@ -55,7 +55,7 @@ DOES_SCHEMA_EXIST=$(mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_P
  fi
 
 mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -e "UPDATE user SET notif_locale = 'en' WHERE notif_locale IS NULL OR notif_locale = '';"
-as_www "php app/console doctrine:schema:update --force --env=${SYMFONY_ENV} --no-debug"
+as_www "php app/console doctrine:schema:update --force --env=${SYMFONY_ENV} --no-debug" || true
 
   CARD_COUNT="$(mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -Nse "SELECT COUNT(*) FROM card;" 2>/dev/null || echo 0)"
   if [ "${CARD_COUNT}" = "0" ]; then 
