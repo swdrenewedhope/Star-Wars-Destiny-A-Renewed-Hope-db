@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  Loco xml export: XLIFF for Symfony
- Project: Messages
- Release: Working copy
- Locale: en, English
- Status: Translated
- Exported by: Francisco Franco
- Exported at: Fri, 19 Nov 2021 18:53:35 -0600
 -->
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="file.ext" source-language="en" target-language="en" datatype="plaintext" tool-id="loco">
@@ -1236,19 +1230,19 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4695">
         <source>nav.mycollection</source>
-        <target>My collection</target>
+        <target>My Collection</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4696">
         <source>nav.mydecks</source>
-        <target>My decks</target>
+        <target>My Decks</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4697">
         <source>nav.user.editaccount</source>
-        <target>Edit account</target>
+        <target>Settings</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4698">
         <source>nav.user.loginregister</source>
-        <target>Login or register</target>
+        <target>Login / Register</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4699">
         <source>nav.user.logout</source>
@@ -1256,7 +1250,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b469a">
         <source>nav.user.profile</source>
-        <target>Public profile</target>
+        <target>View profile</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b469b">
         <source>noimage</source>
