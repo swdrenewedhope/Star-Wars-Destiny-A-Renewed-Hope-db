@@ -454,7 +454,7 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
 
         $user = $this->getUser();
         if (count($user->getDecks()) > $user->getMaxNbDecks())
-            return new Response('You have reached the maximum number of decks allowed. Delete some decks or increase your reputation.');
+            return new Response('You have reached the maximum number of decks allowed.');
 
         $id = filter_var($request->get('id'), FILTER_SANITIZE_NUMBER_INT);
         $deck = null;
@@ -499,13 +499,8 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
 
         $content = (array) json_decode($request->get('content'), true);
         if (! count($content)) {
-            return new Response('Cannot import empty deck');
+            return new Response('Cannot import empty deck, recieved: ' . json_encode($content));
         }
-
-		$content = (array) json_decode($request->get('content'), true);
-			if (! count($content)) {
-    		return new Response('Cannot import empty deck');
-		}
 
         $name = filter_var($request->get('name'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
         $decklist_id = filter_var($request->get('decklist_id'), FILTER_SANITIZE_NUMBER_INT);
@@ -620,7 +615,7 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
 				'AppBundle:Default:error.html.twig',
 				array(
 					'pagetitle' => "Error",
-					'error' => 'You are not allowed to view this deck. To get access, you can ask the deck owner to enable "Share your decks" on their account.'
+					'error' => 'You are not allowed to view this deck as the author does not have share private decks enabled.'
 				)
 			);
         }
@@ -797,8 +792,6 @@ public function listAction(Request $request)
         'url' => $request->getRequestUri(),
     ]);
 }
-
-
 
     public function copyAction ($decklist_id)
     {
