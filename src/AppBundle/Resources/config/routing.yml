@@ -92,11 +92,6 @@ about:
     defaults:
         _controller: AppBundle:Default:about
 
-rules:
-    path: /rules
-    defaults:
-        _controller: AppBundle:Default:rules  
-
 thumbs:
     path: /thumbs
     defaults:
