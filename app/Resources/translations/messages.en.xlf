@@ -818,11 +818,11 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4631">
         <source>decks.modals.fileimport.file.label</source>
-        <target>File</target>
+        <target>File (txt, zip)</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4632">
         <source>decks.modals.fileimport.title</source>
-        <target>Upload deck file</target>
+        <target>Upload Decks</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4633">
         <source>decks.modals.fileimport.type.label</source>
