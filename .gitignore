@@ -25,6 +25,5 @@ tags
 .DS_Store
 error_log
 /src/AppBundle/Resources/public/images/cards/
-/web/robots.txt
 \#*\#
 docker-compose.yml

@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /login
+Disallow: /register
+Disallow: /decks
+Disallow: /collection
+Disallow: /decklists/search
+Disallow: /decklists/mine
+Disallow: /decklists/favorites
+Disallow: /admin
+Disallow: /user
+
+Sitemap: https://db.swdrenewedhope.com/sitemap.xml
