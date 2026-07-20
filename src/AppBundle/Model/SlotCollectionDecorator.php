@@ -215,8 +215,8 @@ class SlotCollectionDecorator implements \AppBundle\Model\SlotCollectionInterfac
 			if($slot->getCard()->getType()->getCode() === 'character') {
 				if($slot->getCard()->getIsUnique()) {
 					$characterRow[] = $slot;
-				} else if(($slot instanceof Deckslot || $slot instanceof Decklistslot) && $slot->getDices()) {
-					foreach(explode(",", $slot->getDices()) as $i) {
+				} else if(($slot instanceof Deckslot || $slot instanceof Decklistslot) && $slot->getDice()) {
+					foreach(explode(",", $slot->getDice()) as $i) {
 						$slot->setDice($i);
 						$slot->setQuantity(1);
 						$characterRow[] = clone $slot;
@@ -254,9 +254,9 @@ class SlotCollectionDecorator implements \AppBundle\Model\SlotCollectionInterfac
 			}
 
 			$inc = 0;
-			if(($slot instanceof Deckslot || $slot instanceof Decklistslot) && $slot->getDices()) {
+			if(($slot instanceof Deckslot || $slot instanceof Decklistslot) && $slot->getDice()) {
 				
-				foreach(explode(",", $slot->getDices()) as $i) {
+				foreach(explode(",", $slot->getDice()) as $i) {
 					$pointValues = preg_split('/\//', $formatPoints);
 					$inc += intval($pointValues[$i-1], 10);
 				}
@@ -467,7 +467,6 @@ class SlotCollectionDecorator implements \AppBundle\Model\SlotCollectionInterfac
 				$arr [$slot->getCard()->getCode()] = array(
 					"quantity" => $slot->getQuantity(),
 					"dice" => $slot->getDice(),
-					"dices" => $slot->getDices()
 				);
 			} else {
 				$arr [$slot->getCard()->getCode()] = array(
