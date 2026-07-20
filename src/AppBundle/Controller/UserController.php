@@ -10,7 +10,7 @@ class UserController extends Controller
 {
 
     /*
-	 * displays details about a user and the list of decklists he published
+	 * displays details about a user and the list of decklists published
 	 */
     public function publicProfileAction ($user_id, $user_name, $page, Request $request)
     {
