@@ -1,7 +1,7 @@
-SWD : ARH DB
-=======
+Star Wars Destiny : ARH DB
+============================
 
-# Install a local copy
+# Installation 
 
 This guide assumes you know how to use the command-line, git commands and basic docker.
 
@@ -13,4 +13,4 @@ This guide assumes you know how to use the command-line, git commands and basic 
 
 You can visit the server @ http://localhost in browser.
 
-If SYMFONY_ENV is set to dev, a dev user is automatically created with user & password dev
+If SYMFONY_ENV is set to dev, a dev user is automatically created with user & password dev.
