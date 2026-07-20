@@ -1,7 +1,7 @@
 Star Wars Destiny : ARH DB
 ============================
 
-# Installation 
+## Installation 
 
 This guide assumes you know how to use the command-line, git commands and basic docker.
 
