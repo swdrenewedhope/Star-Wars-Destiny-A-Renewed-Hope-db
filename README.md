@@ -1,9 +1,9 @@
 SWD : ARH DB
 =======
 
-# Install a local copy (Experimental)
+# Install a local copy
 
-This guide assumes you know how to use the command-line & git commands.
+This guide assumes you know how to use the command-line, git commands and basic docker.
 
 - Install docker.
 - Install docker-compose.
@@ -11,19 +11,8 @@ This guide assumes you know how to use the command-line & git commands.
 - Clone the repo
 - ``cd`` into it
 - Copy docker-compose.yml.dist -> docker-compose.yml and adjust as needed.
-- Run the command ``docker compose up -d --build`` in the project root directory.
+- Run the command ``docker compose up`` in the project root directory.
 
 You can visit the server @ http://localhost in browser.
 
-If CREATE_DEV_ADMIN is set to 1, a user is automatically created with the following credentials:
-
-Username: dev
-Password: dev
-
-You can reset the containers with:
-``docker compose down``
-``docker compose build --no-cache``
-``docker compose up``
-
-Optionally, you can also clear container data with:
-```docker compose down -v```
+If SYMFONY_ENV is set to dev, a dev user is automatically created with user & password dev
