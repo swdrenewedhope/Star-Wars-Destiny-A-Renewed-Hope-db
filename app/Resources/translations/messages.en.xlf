@@ -1214,11 +1214,11 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4691">
         <source>nav.advancedsearch</source>
-        <target>Advanced Search</target>
+        <target> Advanced Search</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4692">
         <source>nav.cards</source>
-        <target>Cards</target>
+        <target>Sets</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4693">
         <source>nav.cardsearch</source>
