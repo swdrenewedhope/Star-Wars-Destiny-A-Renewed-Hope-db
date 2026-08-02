@@ -39,19 +39,23 @@
 	}
 	
 	/**
-	 * The user is loaded and they haven't written a review on the page yet
+	 * The user is loaded and they haven't written a review on the page yet - Disabled whilst fixing.
 	 */
+	
+
+	/**
 	ui.setup_write = function setup_write()
 	{
 		var button = $('<button class="pull-right btn btn-default" id="review-button"><span class="glyphicon glyphicon-plus"></span> '+Translator.trans('card.reviews.write')+'</button>');
 		$('#reviews-header').prepend(button);
 	}
+	*/
 	
 	ui.check_review = function check_review(event)
 	{
 		event.preventDefault();
-		if($('#review-form-preview').text().length < 200) {
-			alert(Translator.trans('card.reviews.alerts.minimum', {min: 200}));
+		if($('#review-form-preview').text().length < 100) {
+			alert(Translator.trans('card.reviews.alerts.minimum', {min: 100}));
 			return;
 		}
 	

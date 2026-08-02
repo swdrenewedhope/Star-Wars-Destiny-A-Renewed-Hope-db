@@ -1,7 +1,7 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block javascripts %}
-	{% javascripts '@AppBundle/Resources/public/js/ui.reviews.js' %}
+	{% javascripts '@AppBundle/Resources/public/js/ui.card.js' %}
 	<script src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 {% endblock %}
@@ -31,7 +31,6 @@
 {% endif %}
   </ul>
 </div>
-
 <div class="reviews row">
 	<div class="col-lg-8 col-lg-push-2">
 {% if reviews|length > 0 %}{% for i in 0..reviews|length-1 %}{% set review = reviews[i] %}{% set card = review.card %}
@@ -42,21 +41,20 @@
     </div>
     <article class="review" data-code="{{ review.id }}" id="review-{{ review.id }}">
        <div class="review-like">
-           <a id="review-social-icon-like" href="#" class="social-icon-like" data-toggle="tooltip" data-placement="bottom" title="Like that review">
+           <a id="review-social-icon-like" href="#" class="social-icon-like" data-toggle="tooltip" data-placement="bottom" title="Like review">
         	   <span class="fa fa-heart"></span> <span class="num">{{ review.nb_votes }}</span>
     	   </a>
        </div>
        <div class="review-content">
        <div class="review-text">
-    	   {{ review.text|raw }}
+    	   {{ review.text }}
        </div>
        <div class="review-date">
            <time datetime="{{ review.date_creation|date('c') }}" title="{{ review.date_creation|date('F jS, Y') }}">{{ review.date_creation|date('n/j/y') }}</time>
        </div>
        <div class="review-author">
            <a href="{{ path('user_profile_public', {user_id:review.user.id,user_name:review.user.username|e('url')}) }}" rel="author" class="username {{ review.user.faction }}">{{ review.user.username }}</a>
-           {% if review.user.donation > 0 %}<span class="fa fa-gift donator" title="ThronesDB Gracious Donator"></span>{% endif %}
-    	   <small class="reputation">{{ review.user.reputation }}</small>
+           {% if review.user.donation > 0 %}<span class="fa fa-gift donator" title="Donator"></span>{% endif %}
        </div>
 
        {% if review.comments|length %}
@@ -64,8 +62,8 @@
        {% for comment in review.comments %}
        <div class="review-comment text-muted small">{{ comment.text }}
        &mdash;
-       <a title="{{ comment.author.reputation }} reputation" href="{{ path('user_profile_public', {user_id:comment.author.id,user_name:comment.author.username|e('url')}) }}" rel="author" class="username {{ comment.author.faction }}">{{ comment.author.username }}</a>
-           {% if comment.author.donation > 0 %}<span class="fa fa-gift donator" title="ThronesDB Gracious Donator"></span>{% endif %}
+       <a href="{{ path('user_profile_public', {user_id:comment.user.id,user_name:comment.user.username|e('url')}) }}" rel="author" class="username {{ comment.author.faction }}">{{ comment.author.username }}</a>
+           {% if comment.user.donation > 0 %}<span class="fa fa-gift donator" title="Donator"></span>{% endif %}
        <time datetime="{{ comment.date_creation|date('c') }}" title="{{ comment.date_creation|date('F jS, Y') }}">{{ comment.date_creation|date('n/j/y') }}</time>
     </div>
        {% endfor %}
@@ -73,7 +71,7 @@
        {% endif %}
        <form action="{{ path('card_reviewcomment_post') }}" method="POST" class="form-comment">
        <input type="hidden" name="comment_review_id" value="{{ review.id }}">
-       <button class="btn btn-link btn-write-comment">Add a comment</button  >
+       <button class="btn btn-link btn-write-comment">Comment</button  >
        </form>
        </div>
     </article>
@@ -81,7 +79,6 @@
 {% endfor %}{% endif %}
 </div>
 </div>
-
 
 <div class="text-center">
 <ul class="pagination pagination-sm" style="margin:0">

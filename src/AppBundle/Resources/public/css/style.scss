@@ -884,6 +884,13 @@ article.review .review-comment {
 	padding: 0.5em;
 }
 
+article.review .review-text,
+article.review .review-comment {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
 /****************** BOOTSTRAP MARKDOWN *******************/
 
 .md-editor.md-fullscreen-mode {
