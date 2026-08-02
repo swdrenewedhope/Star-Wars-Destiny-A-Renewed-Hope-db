@@ -29,23 +29,12 @@ class ReviewController extends Controller
         	throw $this->createAccessDeniedException("You are not logged in.");
         }
 
-        // a user cannot post more reviews than her reputation
-        if(count($user->getReviews()) >= $user->getReputation()) 
-        {
-        	throw new \Exception("Your reputation doesn't allow you to write more reviews.");
-        }
-
         $card_id = filter_var($request->get('card_id'), FILTER_SANITIZE_NUMBER_INT);
-        /* @var $card Card */
+
         $card = $em->getRepository('AppBundle:Card')->find($card_id);
         if(!$card) 
         {
         	throw new \Exception("This card does not exist.");
-        }
-        
-        if(!$card->getPack()->getDateRelease()) 
-        {
-        	throw new \Exception("You may not write a review for an unreleased card.");
         }
 
         // checking the user didn't already write a review for that card
@@ -142,7 +131,7 @@ class ReviewController extends Controller
             throw new \Exception("Unable to find review.");
         }
 
-        // a user cannot vote on her own review
+        // a user cannot vote on their review
         if($review->getUser()->getId() != $user->getId())
         {
             // checking if the user didn't already vote on that review
@@ -349,6 +338,7 @@ class ReviewController extends Controller
 
         /* @var $user \AppBundle\Entity\User */
         $user = $this->getUser();
+		
         if(!$user) {
         	throw $this->createAccessDeniedException("You are not logged in.");
         }

@@ -142,7 +142,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4588">
         <source>card.reviews.none</source>
-        <target>No review yet for this card.</target>
+        <target>No review yet for this card. (Feature restoration in progress!)</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4589">
         <source>card.reviews.posted</source>
