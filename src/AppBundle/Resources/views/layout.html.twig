@@ -8,17 +8,13 @@
 
     <link rel="icon" sizes="192x192" href="/icon-192.png" />
 
-    {% if app.request.locale != "en" and app.request.attributes.get('_route') != "" %}
-      {% set _route_params = app.request.attributes.get('_route_params')|default({}) %}
-      {% set _get_params = app.request.query.all()|default({}) %}
-      <link rel="canonical" href="{{ url(app.request.attributes.get('_route'), _route_params|merge(_get_params)|merge({'_locale': 'en'})) }}"/>
-    {% endif %}
     {% if pagedescription is defined %}<meta name="description" content="{{ pagedescription }}">{% endif %}
 
     <link href='https://fonts.googleapis.com/css?family=Amiri:400,400i,700,700i|Open+Sans+Condensed:300|Open+Sans:400,400i,700,700i|Roboto|Abel|Josefin+Sans:wght@700' rel='stylesheet' type='text/css'>
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/2.1.1/jquery.qtip.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.9.0/css/bootstrap-markdown.min.css">
+	
 	{% if app.request.cookies.get('lightmode') %}
 	<link rel="stylesheet" id="lightmodesheet" href="/css/app.css" />
 	{% else %}
@@ -91,28 +87,26 @@
   {% set projectName = null %}
   {% for line in cards_data.allsetsdata() %}
     {% if line['projectName'] != 'Echoes of Destiny Archive' and line['projectName'] != 'A Renewed Hope' %}
-
       {% if projectName != line['projectName'] %}
         {% set projectName = line['projectName'] %}
-
-        <li>
-          <span style="font-weight:bold; padding: 3px 20px; display:block;">
-            {{ projectName }}
-          </span>
-        </li>
+        	<li>
+          		<span style="font-weight:bold; padding: 3px 20px; display:block;">
+            		{{ projectName }}
+          		</span>
+        	</li>
       {% endif %}
 
       <li><a href="{{ line['url'] }}">{{ line['label'] | raw }}</a></li>
 
     {% endif %}
   {% endfor %}
+    <li class="divider"></li>
 </ul>
 
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Resources<span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">More<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu" style="padding-top:6px;"> 
-			    <li><a href="{{ path('cards_search') }}"><i class="fa fa-search"></i>{{ 'nav.advancedsearch' | trans }}</a></li>
 			    <li class="divider"></li>
 			    <li><a style="font-weight:bold; text-align:center" href="https://swdrenewedhope.com/" target="_blank"><i class="fa fa-external-link fa-fw" aria-hidden="true"></i> A Renewed Hope</a></li>
 				<li class="divider"></li>
@@ -123,31 +117,30 @@
 				<li><a style="font-weight:bold; text-align:center" href="https://swdrenewedhope.com" target="_blank"><i class="fa fa-external-link fa-fw" aria-hidden="true"></i> Fantasy Flight Games</a></li>
 				<li class="divider"></li>
 				<li><a href="https://drive.google.com/drive/folders/1SQmOiSdrcH_QTnXDUxO4_1GNMA8Gy3BP?usp=sharing" target="_blank"><i class="fa fa-book fa-fw" aria-hidden="true"></i>Holocrons</a></li>
-			  </ul>
+			    <li class="divider"></li>
+			</ul>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown hidden-xs hidden-lg">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fa fa-search"></span></a>
-                <div class="dropdown-menu">
-                  <form action="{{ path('cards_find') }}" target="_blank">
-                    <input type="text" placeholder="{{ 'nav.cardsearch' | trans }}" class="form-control" name="q">
-                  </form>
-              </div>
+			 <a href="{{ path('cards_search') }}"><i class="fa fa-search"></i></a>
             </li>
             <li id="login">
                 <a href="#" class="disabled"><span class="fa fa-user"></span></a>
             </li>
-			{% if app.request.cookies.get('lightmode') %}
+
+			{% if app.request.cookies.get('theme') == 'light' %}
 			<li id="lightmodetoggle">
-    i            <a id="lightmode" href="#" class="disabled"><span class="fa fa-moon-o"></span></a>
+                <a id="lightmode" href="#" class="enabled"><span class="fa fa-sun-o"></span></a>
             </li>
+
 			{% else %}
 			<li id="lightmodetoggle">
                 <a id="lightmode" href="#" class="disabled"><span class="fa fa-moon-o"></span></a>
             </li>
 			{% endif %}
           </ul>
+
           <form class="navbar-form navbar-right visible-lg-block visible-xs-block external" action="{{ path('cards_find') }}" target="_blank">
             <div class="form-group">
               <input type="text" placeholder="{{ 'nav.cardsearch' | trans }}" class="form-control" name="q">
@@ -299,24 +292,13 @@
 			document.cookie = name+'=; Max-Age=-99999999;';  
 		}
 	
-		$('ul').on('click', 'a#darkmode', function(e) {
+		$('ul').on('click', '#themetoggle', function(e) {
 			e.preventDefault();
-			eraseCookie('lightmode');
-			$('#lightmodesheet').attr('href', '/css/app.css');
-			$('.lightflippy').css('background-color','#0b1822');
-			$('.fa-moon-o').toggleClass('fa-moon-o fa-moon-o');
-			$(this).attr('id', 'darkmode');
-		});
-		
-		$('ul').on('click', 'a#lightmode', function(e) {
-			e.preventDefault();
-			eraseCookie('lightmode');
-			$('#lightmodesheet').attr('href', '/css/app.css');
-			$('.lightflippy').css('background-color','#0b1822');
-			$('.fa-moon-o').toggleClass('fa-moon-o fa-moon-o');
-			$(this).attr('id', 'darkmode');
-		});
-		
+			var currentTheme = getCookie('theme');
+			var nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+			setCookie('theme', 'nextTheme', 365)
+			$('.fa-sun-o').toggleClass('fa-sun-o fa-moon-o');
+		});	
 	});
 	</script>
     </body>
