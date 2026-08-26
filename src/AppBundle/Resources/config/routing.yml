@@ -87,11 +87,6 @@ card_reviews_list:
     requirements:
         page: \d+
 
-about:
-    path: /about
-    defaults:
-        _controller: AppBundle:Default:about
-
 thumbs:
     path: /thumbs
     defaults:
