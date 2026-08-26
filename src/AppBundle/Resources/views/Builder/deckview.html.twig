@@ -3,7 +3,7 @@
 
 {% block stylesheets %}
 	<style type="text/css">
-	    /* Shrink a bit these buttons in Spanish to keep them showing in a single row */
+	    /* Shrink buttons in Spanish to keep them showing in a single row */
 		#btn-group-deck:lang(es) .btn {	padding-left: 9px; padding-right: 9px; }
 	</style>
 {% endblock %}
@@ -38,32 +38,22 @@
 
 		<!-- Right-side Column -->
 		<div class="col-md-6 hidden-print">
-
 			<div style="margin-bottom:20px" id="btn-group-deck">
-				<div style="margin-bottom:5px">
+				<div style="margin-bottom:5px; display:flex; gap:8px; justify-content: center; flex-wrap:wrap">
 					{% if is_owner %}
 					<a href="{{ path('deck_edit', {deck_id:deck_id}) }}" class="btn btn-primary"><span class="fa fa-pencil"></span> {{ 'forms.edit' | trans }}</a>
 					<a href="{{ path('deck_publish_form', {deck_id:deck_id}) }}" id="btn-publish" class="btn btn-success"><span class="fa fa-share"></span> {{ 'forms.publish' | trans }}</a>
 					<button type="button" id="btn-delete" class="btn btn-danger"><span class="fa fa-trash"></span> {{ 'forms.delete' | trans }}</button>
 					{% endif %}
-					<a href="{{ path('deck_clone', {deck_id:deck_id}) }}" id="btn-clone" class="btn btn-info"><span class="fa fa-clone"></span> {{ 'forms.clone' | trans }}</a>
-					<button type="button" id="btn-print" class="btn btn-default"><span class="fa fa-print"></span> {{ 'forms.print' | trans }}</button>
-					<div class="btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-							<span class="fa fa-download"></span> {{ 'forms.download' | trans }} <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="{{ path('deck_export_text', {deck_id:deck_id}) }}">{{ 'decks.form.download.text' | trans }}</a></li>	
-						</ul>
-					</div>
+					<a href="{{ path('deck_clone', {deck_id:deck_id}) }}" id="btn-clone" class="btn btn-info"><span class="fa fa-clone"></span> {{ 'forms.copy' | trans }}</a>
+					<button type="button" class="btn btn-default" onclick="window.location='{{ path('deck_export_text', {deck_id:deck_id}) }}'"><span class="fa fa-download"></span> {{ 'decks.form.download.text' | trans }}</button>
 				</div>
 			</div>
 
 			<p>
 				{{ 'decks.version' | trans({'%version%': deck.version}) }}
 			</p>
-			
-			<!-- Description -->
+
 			<div class="panel panel-default">
 			  <div class="panel-heading">
 			    <h3 class="panel-title">{{ 'decks.description' | trans }}</h3>
@@ -71,7 +61,6 @@
 			  <div class="panel-body" id="description">
 			  </div>
 			</div>
-			<!-- Description -->
 
 			{% include 'AppBundle:Builder:deck-charts.html.twig' %}
 			{% include 'AppBundle:Builder:draw-simulator.html.twig' %}

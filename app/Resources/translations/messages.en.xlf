@@ -690,7 +690,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4611">
         <source>decks.form.download.text</source>
-        <target>Text file</target>
+        <target> Download</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4612">
         <source>decks.form.import.copypaste</source>
@@ -1050,7 +1050,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b466b">
         <source>forms.download</source>
-        <target>Download</target>
+        <target>Export</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b466c">
         <source>forms.edit</source>
