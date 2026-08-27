@@ -1226,15 +1226,15 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4694">
         <source>nav.decklists</source>
-        <target>Decklists</target>
+        <target>Public Decks</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4695">
         <source>nav.mycollection</source>
-        <target>My Collection</target>
+        <target>Collection</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4696">
         <source>nav.mydecks</source>
-        <target>My Decks</target>
+        <target>Decks</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4697">
         <source>nav.user.editaccount</source>
