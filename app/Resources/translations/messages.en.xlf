@@ -1262,7 +1262,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b469d">
         <source>profile.edit.about</source>
-        <target>Something about you</target>
+        <target>About</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b469e">
         <source>profile.edit.errors.user_exists</source>
@@ -1270,7 +1270,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b469f">
         <source>profile.edit.faction</source>
-        <target>Select a faction color for your username</target>
+        <target>Choose a color for your username</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46a0">
         <source>profile.edit.locale</source>
@@ -1278,23 +1278,23 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46a1">
         <source>profile.edit.notif_author</source>
-        <target>Be notified when a user comments one of your decklists</target>
+        <target>When a user comments one of your published decks</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46a2">
         <source>profile.edit.notif_commenter</source>
-        <target>Be notified when a user also comments a decklist you commented</target>
+        <target>When a user comments on a published deck you commented on</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46a3">
         <source>profile.edit.notif_mention</source>
-        <target>Be notified when a user mentions you in a comment</target>
+        <target>When another user mentions you in a comment</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46a4">
         <source>profile.edit.share_decks.help</source>
-        <target>If you check this box, the "View" page of your decks will be public instead of private. You can then send the link to your friends. If you uncheck the box, all your decks become private immediately.</target>
+        <target>If you check this box, your decks will be publicly viewable through /deck/view/ID. This is required to use unpublished decks on TTS.</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46a5">
         <source>profile.edit.share_decks.label</source>
-        <target>Share your decks</target>
+        <target>Make private decks unlisted</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46a6">
         <source>profile.edit.success</source>
@@ -1302,15 +1302,15 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46a7">
         <source>profile.public.published_decklists</source>
-        <target>{0} No published decklist | {1} One published decklist | ]1,Inf] %count% published decklists</target>
+        <target>{0} No published decks | {1} One published decklist | ]1,Inf] %count% published decklists</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46a8">
         <source>profile.public.published_reviews</source>
-        <target>{0} No published review | {1} One published review | ]1,Inf] %count% published reviews</target>
+        <target>{0} No published reviews | {1} One published review | ]1,Inf] %count% published reviews</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46a9">
         <source>profile.public.since</source>
-        <target>Member since %date%</target>
+        <target>Account created on %date%</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46aa">
         <source>registration.title</source>
@@ -1434,7 +1434,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46c8">
         <source>user.profile</source>
-        <target>Profile</target>
+        <target>My Profile</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46c9">
         <source>user.reputation</source>
@@ -1462,7 +1462,7 @@
       </trans-unit>
       <trans-unit id="loco:58637e2452e1a14d628b4568">
         <source>footer.donators.title</source>
-        <target>The Gracious Donator</target>
+        <target>Donator</target>
       </trans-unit>
       <trans-unit id="loco:58637f3252e1a16a628b4567">
         <source>footer.original</source>
