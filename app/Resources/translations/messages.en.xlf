@@ -298,7 +298,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b45af">
         <source>decklist.list.titles.mine</source>
-        <target>My decklists</target>
+        <target>My published decks</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b45b0">
         <source>decklist.list.titles.popular</source>
@@ -686,7 +686,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4610">
         <source>decks.form.build</source>
-        <target>Build New Deck</target>
+        <target>Build deck</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4611">
         <source>decks.form.download.text</source>
@@ -854,7 +854,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b463a">
         <source>decks.privatedecks</source>
-        <target>My private decks</target>
+        <target>My Decks</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b463b">
         <source>decks.problems.faction_not_included</source>
@@ -918,7 +918,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b464a">
         <source>decks.slotcount</source>
-        <target>(%current%/%max% slots)</target>
+        <target>(%current%/%max%)</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b464b" datatype="html">
         <source>decks.smartfilter.example</source>
@@ -1500,15 +1500,11 @@
       </trans-unit>
       <trans-unit id="loco:586392af52e1a1e0638b456a">
         <source>decks.no-decks.heading</source>
-        <target>What, no deck?</target>
-      </trans-unit>
-      <trans-unit id="loco:5863930652e1a1dd638b456a" datatype="html">
-        <source>decks.no-decks.paragraph0</source>
-        <target>&lt;p&gt;Decks are awesome. You can &lt;span class="fake-inline-button text-primary"&gt;&lt;span class="fa fa-pencil"&gt;&lt;/span&gt; Edit&lt;/span&gt; them until you're satisfied, then &lt;span class="fake-inline-button text-primary"&gt;&lt;span class="fa fa-share"&gt;&lt;/span&gt; Publish&lt;/span&gt; them for others to discuss. And if you want to keep to yourself, you can still &lt;span class="fake-inline-button text-primary"&gt;&lt;span class="fa fa-download"&gt;&lt;/span&gt; Download&lt;/span&gt; them or &lt;span class="fake-inline-button text-primary"&gt;&lt;span class="fa fa-clipboard"&gt;&lt;/span&gt; Export&lt;/span&gt; them.&lt;/p&gt;</target>
+        <target>I find your lack of decks disturbing.</target>
       </trans-unit>
       <trans-unit id="loco:5863937052e1a1e4638b4569" datatype="html">
-        <source>decks.no-decks.paragraph1</source>
-        <target>&lt;p&gt;So what are you waiting for? To create your first deck, you can either &lt;span class="fake-inline-button text-primary"&gt;&lt;span class="fa fa-plus"&gt; Build&lt;/span&gt; one from scratch using the Deckbuilder, &lt;span class="fake-inline-button text-primary"&gt;&lt;span class="fa fa-upload"&gt; Import&lt;/span&gt; one from the web, or &lt;span class="fake-inline-button text-primary"&gt;&lt;span class="fa fa-upload"&gt;&lt;/span&gt; Upload&lt;/span&gt; a deck file in simple text format.&lt;/p&gt;</target>
+        <source>decks.no-decks.paragraph</source>
+		<target>To create your first deck, you can either &lt;span class="fake-inline-button text-primary"&gt;&lt;span class="fa fa-plus"&gt;&lt;/span&gt; Build&lt;/span&gt; one from scratch, or &lt;span class="fake-inline-button text-primary"&gt;&lt;span class="fa fa-upload"&gt;&lt;/span&gt; Import&lt;/span&gt; one from a compatible source.</target>
       </trans-unit>
       <trans-unit id="loco:58664cba52e1a107228b456b">
         <source>toc</source>

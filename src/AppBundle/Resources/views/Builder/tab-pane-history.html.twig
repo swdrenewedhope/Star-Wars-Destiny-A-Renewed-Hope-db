@@ -1,5 +1,5 @@
 {% import "AppBundle::macros.html.twig" as macros %}
-<!-- History -->
+
 <div class="row">
 	<div class="col-sm-12" id="history">
 	   <div class="progress">
@@ -19,11 +19,9 @@
 		  <tbody>
 		  </tbody>
 		</table>
-	</div><!-- /.col-sm-12 -->
-</div><!-- /.row -->
-<!-- History -->
+	</div>
+</div>
 
-<!-- Published decklists Table -->
 <table class="table table-condensed" id="table-predecessor">
 	<thead>
 		<tr><th colspan="{% if deck.children|length %}4{% else %}1{% endif %}"><span class="fa fa-share"></span> {{ 'decks.published.title' | trans }}</th></tr>
@@ -38,4 +36,3 @@
 	{% endif %}
 	</tbody>
 </table>
-<!-- Published decklists Table -->
