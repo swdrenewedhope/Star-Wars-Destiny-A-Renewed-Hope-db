@@ -82,7 +82,6 @@ deck.init = function init(data) {
 	if(app.data.isLoaded) {
 		deck.on_data_loaded(data);
 	} else {
-		console.log("deck.set_slots put on hold until data.app");
 		$(document).on('data.app', function () {
 			deck.on_data_loaded(data);
 		});
