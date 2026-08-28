@@ -29,15 +29,16 @@
     <textarea id="resume" name="resume" class="form-control">{{ user.resume }}</textarea>
   </div>
 
+  <div class="checkbox">
+    <label>
+        <input type="checkbox" name="share_decks" value="1" {% if user.isShareDecks %}checked{% endif %}>
+        {{'profile.edit.share_decks.label' | trans}}
+    </label>
+    <p class="help-block">{{'profile.edit.share_decks.help' | trans}}</p>
+  </div>
+  
   <div class="form-group">
-    <label for="notif_locale">{{'profile.edit.locale' | trans}}</label>
-    <select id="notif_locale" name="notif_locale" class="form-control">
-      {% for supported_locale in supported_locales %}
-        <option value="{{supported_locale}}" {% if user.notificationLocale==supported_locale %} selected="selected"{% endif %}>
-          {{locale_names[supported_locale]}}
-        </option>
-      {% endfor %}
-    </select>
+    <label for="notif_locale">Notifications</label>
   </div>
 
   <div class="checkbox">
@@ -61,14 +62,6 @@
     </label>
   </div>
 
-  <div class="checkbox">
-    <label>
-        <input type="checkbox" name="share_decks" value="1" {% if user.isShareDecks %}checked{% endif %}>
-        {{'profile.edit.share_decks.label' | trans}}
-    </label>
-    <p class="help-block">{{'profile.edit.share_decks.help' | trans}}</p>
-  </div>
-
   <div class="form-group">
     <label for="color">{{'profile.edit.faction' | trans}}</label>
     {% for faction in factions %}
@@ -88,6 +81,6 @@
 </div>
 </div>
 </div>
-</div> <!-- .container -->
+</div>
 
 {% endblock %}
