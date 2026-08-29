@@ -20,7 +20,7 @@
 <div class="row hidden-print" style="margin-bottom: 10px;">
 	<div class="col-sm-4">
 		<div class="btn-group">
-			<button id="btn-save" class="btn btn-sm btn-success">{{ 'forms.save' | trans }}</button>
+			<button id="btn-save" class="btn btn-sm btn-success" style="margin-right: 6px; border-radius: 4px">{{ 'forms.save' | trans }}</button>
 			<div class="btn-group">
 				<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
 					{{ 'collection.sets.label' | trans}} <span class="caret"></span>
@@ -62,27 +62,8 @@
 					</li>
 				</ul>
 			</div>
-			<div class="btn-group">
-				<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-					<span class="fa fa-plus"></span> {{ 'collection.addstarter.label' | trans}} <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu pull-left" id="add-starter">
-					{% set packset = "" %}
-					{% for starter in starters %}
-					{% if starter.set.code != packset %}
-					<li class="dropdown-header">{{starter.set.name}}</li>
-					{% endif %}
-					<li>
-						<a href="#" data-starter="{{starter.code}}">
-							{{starter.name}}
-						</a>
-					</li>
-					{% set packset = starter.set.code %}
-					{% endfor %}
-				</ul>
-			</div>
 			<a href="{{path('collection_export')}}" class="btn btn-default btn-sm" title="{{ 'collection.export.tooltip' | trans }}" data-toggle="tooltip">
-				<span class="fa fa-file-excel-o"></span>
+				<span class="fa fa-download"></span>
 			</a> 
 		</div>
 	</div>
@@ -125,8 +106,8 @@
 					<th colspan="2">
 						<a href="#" data-sort="owned.cards">{{ 'collection.owned' | trans}}</a>
 						<div class="btn-group btn-group-xs btn-all-spinner">
-							<button class="btn btn-danger btn-all-spin hidden-print">-</button>
-							<button class="btn btn-success btn-all-spin hidden-print">+</button>
+							<button class="btn btn-danger btn-all-spin hidden-print" style="margin-right: 3px">-</button>
+							<button class="btn btn-success btn-all-spin hidden-print" style="margin-right: 3px">+</button>
 						</div>
 					</th>
 					<th class="hidden-sm hidden-xs">
@@ -154,9 +135,9 @@
 			</thead>
 			<tbody id="collection-table" class="collection"></tbody>
 		</table>
-	</div><!-- /.col-sm-12 -->
+	</div>
 	<div id="collection-grid" class="col-sm-12"></div>
-</div><!-- /.row -->
+</div>
 <div class="row">
 	<div class="col-xs-12 text-right">
 		<small class="text-muted" id="showing-cards"></small>
