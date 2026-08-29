@@ -38,27 +38,22 @@
 	<td></td>
 </tr>
 <tr>
-	<td>Reputation</td>
-	<td>{{ user.reputation }}</td>
-	<td></td>
-</tr>
-<tr>
-	<td>Resume</td>
+	<td>About</td>
 	<td>{{ user.resume }}</td>
 	<td></td>
 </tr>
 <tr>
-	<td>Shares decks</td>
+	<td>Make unpublished decks unlisted</td>
 	<td>{% if user.isShareDecks %}Yes{% else %}No{% endif %}</td>
 	<td></td>
 </tr>
 <tr>
-	<td>Number of private decks</td>
+	<td>Number of decks</td>
 	<td>{{ user.decks|length }}</td>
 	<td></td>
 </tr>
 <tr>
-	<td>Number of published decklists</td>
+	<td>Number of published decks</td>
 	<td>{{ user.decklists|length }}</td>
 	<td><a href="{{ path('admin_user_decklists_show',{user_id:user.id}) }}" class="btn btn-default">Show</a></td>
 </tr>
