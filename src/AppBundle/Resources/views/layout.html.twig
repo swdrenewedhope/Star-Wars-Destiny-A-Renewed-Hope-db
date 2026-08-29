@@ -33,6 +33,7 @@
     {% include 'AppBundle:Default:cookiesconsent.html.twig' %}
   </head>
   <body>
+
   <div id="wrapper">
       <nav class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
@@ -52,11 +53,11 @@
 
         <div class="navbar-collapse collapse" style="margin-top: 4px">
           <ul class="nav navbar-nav">
-            <li><a href="{{ path('decks_list') }}">{{ 'nav.mydecks' | trans}}</a></li>
-            <li><a href="{{ path('collection_list') }}">{{ 'nav.mycollection' | trans}}</a></li>
-            <li><a href="{{ path('decklists_list') }}">{{ 'nav.decklists' | trans}}</a></li>
+            <li><a style="padding-left: 23px; padding-right: 23px" href="{{ path('decks_list') }}">{{ 'nav.mydecks' | trans}}</a></li>
+            <li><a style="padding-left: 23px; padding-right: 23px" href="{{ path('collection_list') }}">{{ 'nav.mycollection' | trans}}</a></li>
+            <li><a style="padding-left: 23px; padding-right: 23px" href="{{ path('decklists_list') }}">{{ 'nav.decklists' | trans}}</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'nav.cards' | trans}} <span class="caret"></span></a>
+              <a style="padding-left: 23px; padding-right: 23px" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'nav.cards' | trans}} <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
 
   	<li class="divider"></li>
@@ -99,12 +100,11 @@
 
     {% endif %}
   {% endfor %}
-    <li class="divider"></li>
 </ul>
 
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">More<span class="caret"></span></a>
+              <a style="padding-left: 23px; padding-right: 23px" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">More<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu" style="padding-top:6px;"> 
 			    <li class="divider"></li>
 			    <li><a style="font-weight:bold; text-align:center" href="https://swdrenewedhope.com/" target="_blank"><i class="fa fa-external-link fa-fw" aria-hidden="true"></i> A Renewed Hope</a></li>
@@ -116,7 +116,6 @@
 				<li><a style="font-weight:bold; text-align:center" href="https://swdrenewedhope.com" target="_blank"><i class="fa fa-external-link fa-fw" aria-hidden="true"></i> Fantasy Flight Games</a></li>
 				<li class="divider"></li>
 				<li><a href="https://drive.google.com/drive/folders/1SQmOiSdrcH_QTnXDUxO4_1GNMA8Gy3BP?usp=sharing" target="_blank"><i class="fa fa-book fa-fw" aria-hidden="true"></i>Holocrons</a></li>
-			    <li class="divider"></li>
 			</ul>
             </li>
           </ul>
@@ -130,12 +129,7 @@
 
 			{% if app.request.cookies.get('theme') == 'light' %}
 			<li id="lightmodetoggle">
-                <a id="lightmode" href="#" class="enabled"><span class="fa fa-sun-o"></span></a>
-            </li>
-
-			{% else %}
-			<li id="lightmodetoggle">
-                <a id="lightmode" href="#" class="disabled"><span class="fa fa-moon-o"></span></a>
+                <a id="lightmode" href="#"><span class="fa fa-sun-o"></span></a>
             </li>
 			{% endif %}
           </ul>
