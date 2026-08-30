@@ -162,7 +162,7 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
     $filetype = filter_var($request->get('type'), FILTER_SANITIZE_STRING);
     $uploadedFile = $request->files->get('upfile');
     if (!isset($uploadedFile)) {
-        return new Response('No file');
+        return new Response('Please upload a file!');
     }
 
     $origname = $uploadedFile->getClientOriginalName();
@@ -186,8 +186,11 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
 
     $format_code = 'INF';
 
+	$fileLines = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+	$deckname = trim($fileLines[0]);
+
     $properties = [
-        'name'             => preg_replace('/\.' . preg_quote($origext, '/') . '$/i', '', $origname),
+        'name'             => $deckname,
         'affiliation_code' => $parse['affiliation_code'] ?? '',
         'format_code'      => $format_code,
         'content'          => json_encode($parse['content'] ?? []),
@@ -197,57 +200,68 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
     return $this->forward('AppBundle:Builder:save', $properties);
 }
 
+        public function parseTextImport ($text)
+    {
+        /* @var $em \Doctrine\ORM\EntityManager */
+        $em = $this->getDoctrine()->getManager();
 
-    public function parseTextImport ($text)
-{
-    /* @var $em \Doctrine\ORM\EntityManager */
-    $em = $this->getDoctrine()->getManager();
+        $content = [];
+        $affiliation_code = '';
+        $description = '';
 
-    $content = [];
-    $affiliation_code = '';
-    $description = '';
+        $lines = preg_split("/\r\n|\n|\r/", $text);
 
-    $lines = preg_split("/\r\n|\n|\r/", $text);
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if ($line === '') continue;
 
-    foreach ($lines as $line) {
-        $line = trim($line);
-        if ($line === '') continue;
+            if (!$affiliation_code) {
+                if (preg_match('/^(hero|villain|villian)$/i', $line, $m)) {
+                    $word = strtolower($m[1]);
+                    if ($word === 'villian') $word = 'villain';
 
-        if (!$affiliation_code) {
-            if (preg_match('/^(hero|villain|villian)$/i', $line, $m)) {
-                $word = strtolower($m[1]);
-                if ($word === 'villian') $word = 'villain';
+                    $aff = $em->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $word]);
 
-                $aff = $em->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $word]);
+                    if (!$aff) {
+                        $aff = $em->getRepository('AppBundle:Affiliation')->findOneBy(['name' => ucfirst($word)]);
+                    }
 
-                if (!$aff) {
-                    $aff = $em->getRepository('AppBundle:Affiliation')->findOneBy(['name' => ucfirst($word)]);
+                    if ($aff) {
+                        $affiliation_code = $aff->getCode();
+                        continue;
+                    }
                 }
+            }
 
-                if ($aff) {
-                    $affiliation_code = $aff->getCode();
-                    continue;
+            if (preg_match('/^\s*(\d*)\s*x?\s*(.*?)\s*\(([^)]+)\)/u', $line, $m)) {
+                $quantity = ($m[1] === '') ? 1 : (int) $m[1];
+                $identifier = trim($m[3]);
+
+                list($setName, $cardNum) = explode(' #', $identifier);
+                $cardNum = (int) $cardNum;
+
+                $set = $em->getRepository('AppBundle:Set')->findOneBy(['name' => $setName]);
+                if ($set) {
+                    $card = $em->getRepository('AppBundle:Card')->findOneBy([
+                        'set' => $set,
+                        'position' => $cardNum
+                    ]);
+                    if ($card) {
+                         $content[$card->getCode()] = [
+                'quantity' => $quantity,
+                'dice' => $quantity
+            ];
+                    }
                 }
             }
         }
 
-		if (preg_match('/^\s*(\d+)\s*x?\s*(.+?)(?:\s*\(|$)/u', $line, $m)) {
-            $quantity = (int) $m[1];
-            $name = trim($m[2]);
-
-            $card = $em->getRepository('AppBundle:Card')->findOneBy(['name' => $name]);
-            if ($card) {
-                $content[$card->getCode()] = $quantity;
-            }
-        }
+        return [
+            'affiliation_code' => $affiliation_code,
+            'content' => $content,
+            'description' => $description
+        ];
     }
-
-    return [
-        'affiliation_code' => $affiliation_code,
-        'content' => $content,
-        'description' => $description
-    ];
-}
 
 
     public function parseOctgnImport ($octgn)
@@ -459,6 +473,7 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
         $id = filter_var($request->get('id'), FILTER_SANITIZE_NUMBER_INT);
         $deck = null;
         $source_deck = null;
+
         if($id) {
             $deck = $em->getRepository('AppBundle:Deck')->find($id);
             if (!$deck || $user->getId() != $deck->getUser()->getId()) {
@@ -471,13 +486,16 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
 		if(!$affiliation_code) {
 			return new Response('Cannot import deck without affiliation');
 		}
+
 		$affiliation = $em->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $affiliation_code]);
 		if(!$affiliation) {
 			return new Response('Cannot import deck with unknown affiliation ' . $affiliation_code);
 		}
 
         $format_code = filter_var($request->get('format_code'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+
         $format_code = $format_code ?: 'INF';
+
 		if(!$format_code) {
             return new Response('Cannot import deck without format');
         }
