@@ -98,12 +98,6 @@ doctrine:
         user: "%db_username%"
         password: "%db_password%"
         charset:  UTF8
-        # if using pdo_sqlite as your database driver:
-        #   1. add the path in parameters.yml
-        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
-        #   2. Uncomment database_path in parameters.yml.dist
-        #   3. Uncomment next line:
-        #     path:     "%database_path%"
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
@@ -122,7 +116,7 @@ doctrine:
                         type: annotation
                         prefix: Gedmo\Translatable\Entity
                         dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
-                        alias: GedmoTranslatable # (optional) it will default to the name set for the mapping
+                        alias: GedmoTranslatable
                         is_bundle: false
 
 doctrine_migrations:
@@ -177,10 +171,6 @@ fos_user:
 # FOSJsRoutingBundle Configuration
 fos_js_routing:
     routes_to_expose: [ '.*' ]
-
-
-# NelmioApiDocBundle Configuration
-nelmio_api_doc: ~
 
 # FOSOAuthServerBundle Configuration
 fos_oauth_server:
