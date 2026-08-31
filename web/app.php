@@ -6,13 +6,6 @@ $root = realpath(__DIR__ . '/..');
 
 $loader = require $root . '/vendor/autoload.php';
 
-/*
-use Symfony\Component\ClassLoader\ApcClassLoader;
-$apcLoader = new ApcClassLoader(sha1(__FILE__), $loader);
-$loader->unregister();
-$apcLoader->register(true);
-*/
-
 require $root . '/app/AppKernel.php';
 
 $kernel = new AppKernel('prod', false);

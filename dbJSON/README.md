@@ -1,15 +1,5 @@
 This folder stores database-related data in a format that can be easily updated and reviewed by multiple people.
 
-## Validating
-
-Using python >=2.6, type in command line:
-
-```
-./validate.py --verbose --fix_formatting
-```
-
-The above script requires python package `jsonschema` which can be installed via `pip install -U jsonschema`.
-
 ## Description of Properties in Schemas
 
 Required properties are in **bold**.
@@ -22,9 +12,9 @@ Required properties are in **bold**.
 
 *Italic* ``<em>`` for reminder text e.g. *(paying its cost)*
 
-Card types (e.g. character), faction (e.g. Blue), and affiliation (e.g. hero) are not formatted differently (though faction needs a capital letter).
+Card types (e.g. character), faction (e.g. Blue), and affiliation (e.g. hero) are not formatted differently.
 
-Though the convention throughout the history of the database has been not to highlight the errata in any way, exceptions exist where formatting rules in this section are matched.
+Though the convention throughout the history of the database has been not to highlight the errata, exceptions exist where formatting rules in this section are matched.
 
 ### Set Schema
 
@@ -198,13 +188,13 @@ Though the convention throughout the history of the database has been not to hig
 
 ### JSON text editing tips
 
-Full description of (very simple) JSON format can be found [here](http://www.json.org/), below there are a few tips most relevant to editing this repository.
+Full description of JSON format can be found [here](http://www.json.org/), below there are a few tips most relevant to editing this repository.
 
 ### Non-ASCII symbols
 
-When symbols outside the regular [ASCII range](https://en.wikipedia.org/wiki/ASCII#ASCII_printable_code_chart) are needed, UTF-8 symbols come in play. These need to be escaped using `\u<4 letter hexcode>`.
+When symbols outside the regular [ASCII range](https://en.wikipedia.org/wiki/ASCII#ASCII_printable_code_chart) are needed, they need to be escaped using `\u<4 letter hexcode>`.
 
-To get the 4-letter hexcode of a UTF-8 symbol (or look up what a particular hexcode represents), you can use a UTF-8 converter, such as [this online tool](http://www.ltg.ed.ac.uk/~richard/utf-8.cgi).
+To get the 4-letter hexcode of a UTF-8 symbol, you can use a UTF-8 converter, such as [this online tool](http://www.ltg.ed.ac.uk/~richard/utf-8.cgi).
 
 #### Quotes and Multiple Lines
 
@@ -212,7 +202,7 @@ To have text spanning multiple lines, use `\n` to separate them. To have quotes 
 
 > *"Orange and white: one of a kind." Poe Dameron*
 
-#### Star Wars Destiny symbols
+#### Symbols
 
 These can be used in a card's `text` section.
 
