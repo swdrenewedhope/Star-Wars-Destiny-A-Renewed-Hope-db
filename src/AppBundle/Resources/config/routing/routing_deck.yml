@@ -111,14 +111,6 @@ deck_export_text:
     requirements:
         deck_id: \d+
 
-deck_export_tts:
-    path: /export/tts/{deck_id}
-    methods: [GET]
-    defaults:
-        _controller: AppBundle:Builder:ttsexport
-    requirements:
-        deck_id: \d+
-
 deck_export_octgn_list:
     path: /export/octgn/list
     methods: [GET]
@@ -130,13 +122,6 @@ deck_export_text_list:
     methods: [GET]
     defaults:
         _controller: AppBundle:Builder:textexportList
-
-deck_email:
-    path: /export/email/{deck_id}
-    methods: [GET]
-    defaults:
-        _controller: AppBundle:Builder:email
-        deck_id: \d+
 
 deck_publish:
     path: /can_publish/{deck_id}

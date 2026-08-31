@@ -123,8 +123,6 @@ class ApiController extends Controller
 			return $response;
 		}
 
-		// build the response
-
 		$sets = array();
 		/* @var $set \AppBundle\Entity\Set */
 		foreach($list_sets as $set) {
@@ -422,8 +420,6 @@ class ApiController extends Controller
 			}
 		}
 
-		// build the response
-
 		$content = json_encode($cards);
 		if(isset($jsonp))
 		{
@@ -583,7 +579,7 @@ class ApiController extends Controller
 	}
 
 /**
- * Get the description of a deck as a JSON object (only if the owner's sharing is enabled).
+ * Get the description of a unlisted deck as a JSON object.
  *
  * @ApiDoc(
  *  section="Deck",
@@ -613,16 +609,13 @@ public function getDeckAction($deck_id, Request $request)
         return $response;
     }
 
-    // Load deck
     $deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($deck_id);
     if (!$deck) die();
 
-    // Check the owner's share setting (User::getIsShareDecks)
     $owner = method_exists($deck, 'getUser') ? $deck->getUser()
            : (method_exists($deck, 'getOwner') ? $deck->getOwner() : null);
     if (!$owner || !$owner->getIsShareDecks()) die();
 
-    // Cache headers (only if Deck exposes a date update)
     if (method_exists($deck, 'getDateUpdate') && $deck->getDateUpdate()) {
         $response->setLastModified($deck->getDateUpdate());
         if ($response->isNotModified($request)) {
@@ -630,7 +623,6 @@ public function getDeckAction($deck_id, Request $request)
         }
     }
 
-    // Build the response (same style as getDecklistAction)
     $content = json_encode($deck);
 
     if (isset($jsonp)) {

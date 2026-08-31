@@ -50,12 +50,6 @@ donators:
     defaults:
         _controller: AppBundle:Social:donators
 
-decks_list:
-    path: /decks
-    methods: [GET]
-    defaults:
-        _controller: AppBundle:Builder:list
-
 decklists_searchform:
     path: /decklists/search
     methods: [GET]
