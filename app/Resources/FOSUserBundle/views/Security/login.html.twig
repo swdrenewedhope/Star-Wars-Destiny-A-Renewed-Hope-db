@@ -37,10 +37,9 @@
     
     {% if error and error.messageKey == 'Account is disabled.' %}
     <p>
-    	{{'user.confirmation_not_got' | trans({}, 'messages')}}
         <a href="{{ path('remind_email',{username:last_username}) }}">
-            {{'forms.click_here' | trans({}, 'messages')}}
-        </a>.
+            {{'user.confirmation_not_got' | trans({}, 'messages')}}
+        </a>
     </p>
     {% endif %}
     

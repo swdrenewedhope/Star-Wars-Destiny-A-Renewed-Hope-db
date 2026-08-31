@@ -1422,7 +1422,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46c5">
         <source>user.confirmation_not_got</source>
-        <target>Never got the registration email?</target>
+        <target>Resend confirmation email</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46c6">
         <source>user.email</source>
