@@ -247,10 +247,8 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
                         'position' => $cardNum
                     ]);
                     if ($card) {
-                         $content[$card->getCode()] = [
-                'quantity' => $quantity,
-                'dice' => $quantity
-            ];
+                    	$content[$card->getCode()]['quantity'] += $quantity;
+						$content[$card->getCode()]['dice'] += $quantity;
                     }
                 }
             }
@@ -711,11 +709,9 @@ public function listAction(Request $request)
     $user = $this->getUser();
     $em = $this->getDoctrine()->getManager();
 
-    // how many per page
-    $limit = 10; 
+    $limit = 50; 
     $page  = max(1, (int) $request->query->get('page', 1));
 
-    // this returns ONLY the logged-in user's decks already
     $allDecks = $this->get('decks')->getByUser($user, false);
 
     $total = count($allDecks);
@@ -732,17 +728,14 @@ public function listAction(Request $request)
 
     $offset = ($page - 1) * $limit;
 
-    // tags for the sidebar should be from ALL decks
     $tags = [];
     foreach ($allDecks as $d) {
         if (!empty($d['tags'])) $tags[] = $d['tags'];
     }
     $tags = array_unique($tags);
 
-    // only keep decks for this page
     $decks = array_slice($allDecks, $offset, $limit);
 
-    // enrich ONLY page decks with plots/characters
     foreach ($decks as &$deck) {
         $deckEntity = $em->getRepository('AppBundle:Deck')->find($deck['id']);
         if (!$deckEntity) continue;
@@ -768,7 +761,6 @@ public function listAction(Request $request)
     }
     unset($deck);
 
-    // build URLs like /decks?page=2 (route stays /decks)
     $makeUrl = function (int $p) use ($request) {
         $params = $request->query->all();
         $params['page'] = $p;
@@ -778,7 +770,6 @@ public function listAction(Request $request)
     $prevurl = ($page > 1) ? $makeUrl($page - 1) : null;
     $nexturl = ($page < $lastPage) ? $makeUrl($page + 1) : null;
 
-    // close pages window 
     $window = 2;
     $start = max(1, $page - $window);
     $end   = min($lastPage, $page + $window);
@@ -798,12 +789,10 @@ public function listAction(Request $request)
         'decks' => $decks,
         'tags' => $tags,
 
-        // IMPORTANT: total decks, not page count
         'nbmax' => $user->getMaxNbDecks(),
         'nbdecks' => $total,
         'cannotcreate' => $user->getMaxNbDecks() <= $total,
 
-        // paginator partial vars
         'pages' => $pages,
         'prevurl' => $prevurl,
         'nexturl' => $nexturl,
