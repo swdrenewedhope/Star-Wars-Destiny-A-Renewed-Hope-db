@@ -247,8 +247,10 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
                         'position' => $cardNum
                     ]);
                     if ($card) {
-                    	$content[$card->getCode()]['quantity'] += $quantity;
-						$content[$card->getCode()]['dice'] += $quantity;
+						if ($content[$card->getCode()]['quantity'] < 10) {
+							$content[$card->getCode()]['quantity'] += $quantity;
+							$content[$card->getCode()]['dice'] += $quantity;
+						}
                     }
                 }
             }
