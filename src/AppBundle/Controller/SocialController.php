@@ -48,7 +48,8 @@ class SocialController extends Controller
         $query->setParameter('user', $user);
         $decklistsSinceYesterday = $query->getSingleScalarResult();
 
-        if($decklistsSinceYesterday > $user->getReputation()) {
+        if($decklistsSinceYesterday >= 3 && $user->getDonation() <= 0) {
+
             $this->get('session')->getFlashBag()->set('error', $translator->trans('decklist.publish.errors.antispam.limit'));
             return $this->redirect($this->generateUrl('deck_view', [ 'deck_id' => $deck->getId() ]));
         }
@@ -116,13 +117,6 @@ class SocialController extends Controller
         $query->setParameter('date', $yesterday);
         $query->setParameter('user', $user);
         $decklistsSinceYesterday = $query->getSingleScalarResult();
-
-        if($decklistsSinceYesterday > $user->getReputation()) {
-            return $this->render('AppBundle:Default:error.html.twig', [
-                'pagetitle' => $translator->trans('decklist.publish.errors.pagetitle.spam'),
-                'error' => $translator->trans('decklist.publish.errors.antispam.limit'),
-            ]);
-        }
 
         $deck_id = intval(filter_var($request->request->get('deck_id'), FILTER_SANITIZE_NUMBER_INT));
         
