@@ -4,7 +4,6 @@
 {{ deck.affiliation.name }}
 {% for faction in deck.factions %}{{ factionNames[faction] }}{% if not loop.last %} / {% endif %}{% endfor %}
 
-
 {% set first_set = deck.included_sets|first %}
 {% set last_set = deck.included_sets|last %}
 {{'card.info.sets' | trans}}: {% if deck.included_sets|length > 1 %}
@@ -23,7 +22,6 @@
 {{macros.slot_plain(slot, 0)}}
 {% endfor %}
 
-
 {% set plots = deck.slots_by_type.plot %}
 {% if plots|length > 0 %}
 {{plots.0.card.type.name|upper}}
@@ -34,7 +32,6 @@
 {{macros.slot_plain(slot, 0)}}
 {% endfor %}
 
-
 {% set characters = deck.slots_by_type.character %}
 {% if characters|length > 0 %}
 {{characters.0.card.type.name|upper}}
@@ -44,7 +41,6 @@
 {% for slot in characters %}
 {{macros.slot_plain(slot, slot.dice)}}
 {% endfor %}
-
 
 {% set upgrades = deck.slots_by_type.upgrade %}
 {% if upgrades|length > 0 %}
@@ -66,7 +62,6 @@
 {{macros.slot_plain(slot, slot.quantity)}}
 {% endfor %}
 
-
 {% set supports = deck.slots_by_type.support %}
 {% if supports|length > 0 %}
 {{supports.0.card.type.name | upper}}
@@ -77,7 +72,6 @@
 {{macros.slot_plain(slot, slot.quantity)}}
 {% endfor %}
 
-
 {% set events = deck.slots_by_type.event %}
 {% if events|length > 0 %}
 {{events.0.card.type.name | upper}}
@@ -87,6 +81,5 @@
 {% for slot in events %}
 {{macros.slot_plain(slot, slot.quantity)}}
 {% endfor %}
-
 
 {{ footer|default('') }}

@@ -18,11 +18,9 @@ class UserController extends Controller
         $response->setPublic();
         $response->setMaxAge($this->container->getParameter('cache_expiration'));
 
-        /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
-
-        /* @var $user \AppBundle\Entity\User */
         $user = $em->getRepository('AppBundle:User')->find($user_id);
+
         if (! $user)
             throw new NotFoundHttpException("No such user.");
 
@@ -45,7 +43,6 @@ class UserController extends Controller
 
     public function saveProfileAction(Request $request)
     {
-    	/* @var $user \AppBundle\Entity\User */
     	$user = $this->getUser();
     	$request = $request;
     	$em = $this->getDoctrine()->getManager();
@@ -155,14 +152,11 @@ class UserController extends Controller
             }
 
             if(isset($card_id)) {
-                /* @var $em \Doctrine\ORM\EntityManager */
                 $em = $this->getDoctrine()->getManager();
-                /* @var $card \AppBundle\Entity\Card */
                 $card = $em->getRepository('AppBundle:Card')->find($card_id);
 
                 if($card) {
                     $reviews = $card->getReviews();
-                    /* @var $review \AppBundle\Entity\Review */
                     foreach($reviews as $review) {
                         if($review->getUser()->getId() === $user->getId()) {
                             $content['review_id'] = $review->getId();
