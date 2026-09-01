@@ -13,7 +13,6 @@ class Reviews
     
     public function recent($start = 0, $limit = 30)
     {
-        /* @var $dbh \Doctrine\DBAL\Driver\PDOConnection */
         $dbh = $this->doctrine->getConnection();
     
         $rows = $dbh->executeQuery(

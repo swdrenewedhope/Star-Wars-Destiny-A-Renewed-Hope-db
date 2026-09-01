@@ -5,17 +5,11 @@ namespace AppBundle\DQL;
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;
 use Doctrine\ORM\Query\Lexer;
 
-/**
- * "POWER" "(" IntegerPrimary "," IntegerPrimary ")"
- */
 class PowerFunction extends FunctionNode {
 
 	public $basePrimary;
 	public $exponentPrimary;
 
-	/**
-	 * @override
-	 */
 	public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker) {
 		return sprintf(
 				"POW(%s,%d)",
@@ -24,9 +18,6 @@ class PowerFunction extends FunctionNode {
 				);
 	}
 
-	/**
-	 * @override
-	 */
 	public function parse(\Doctrine\ORM\Query\Parser $parser) {
 		$parser->match(Lexer::T_IDENTIFIER);
 		$parser->match(Lexer::T_OPEN_PARENTHESIS);

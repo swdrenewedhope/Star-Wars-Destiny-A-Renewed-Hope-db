@@ -2,52 +2,15 @@
 
 namespace AppBundle\Model;
 
-
-/**
- * Interface for a collection of SlotInterface 
- */
 interface SlotCollectionInterface extends \Countable, \IteratorAggregate, \ArrayAccess
 {
-	/**
-	 * Get quantity of cards
-	 * @return integer
-	 */
+
 	public function countCards();
-	
-	/**
-	 * Get included sets
-	 * @return \AppBundle\Entity\Set[]
-	 */
 	public function getIncludedSets();
-	
-	/**
-	 * Get a slot by card code
-	 * @return array
-	 */
 	public function getSlotByCode($code);
-
-	/**
-	 * 
-	 * @return boolean
-	 */
 	public function isSlotIncluded($code);
-
-	/**
-	 * Get all slots sorted by type code
-	 * @return array
-	 */
 	public function getSlotsByType();
-
-	/**
-	 * Get all slots sorted by affiliation code
-	 * @return array
-	 */
 	public function getSlotsByAffiliation();
-	
-	/**
-	 * Get all slot counts sorted by type code
-	 * @return array
-	 */
 	public function getCountByType();
 	
 	/**

@@ -1,5 +1,4 @@
 services:
-    # core exception listener
     core_exception_listener:
         class: AppBundle\Listener\CoreExceptionListener
         tags:
