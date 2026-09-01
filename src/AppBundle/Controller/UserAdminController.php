@@ -38,7 +38,6 @@ class UserAdminController extends Controller
 	public function showAction($user_id)
 	{
 		$entityManager = $this->getDoctrine()->getEntityManager();
-		/* @var $user \AppBundle\Entity\User */
 		$user = $entityManager->getRepository('AppBundle:User')->find($user_id);
 		if(!$user) {
 			throw $this->createNotFoundException("User not found");
@@ -53,7 +52,6 @@ class UserAdminController extends Controller
 	public function toggleLockedAction($user_id)
 	{
 		$entityManager = $this->getDoctrine()->getEntityManager();
-		/* @var $user \AppBundle\Entity\User */
 		$user = $entityManager->getRepository('AppBundle:User')->find($user_id);
 		if(!$user) {
 			throw $this->createNotFoundException("User not found");
@@ -68,7 +66,6 @@ class UserAdminController extends Controller
 	public function decklistsAction($user_id)
 	{
 		$entityManager = $this->getDoctrine()->getEntityManager();
-		/* @var $user \AppBundle\Entity\User */
 		$user = $entityManager->getRepository('AppBundle:User')->find($user_id);
 		if(!$user) {
 			throw $this->createNotFoundException("User not found");
@@ -83,20 +80,16 @@ class UserAdminController extends Controller
 	public function deleteDecklistAction($decklist_id)
 	{
 		$entityManager = $this->getDoctrine()->getEntityManager();
-		
-		/* @var $decklist \AppBundle\Entity\Decklist */
 		$decklist = $entityManager->getRepository('AppBundle:Decklist')->find($decklist_id);
+		
 		if(!$decklist) {
 			throw $this->createNotFoundException("Decklist not found");
 		}
-	
-		// first we remove the foreign keys in Decklist and Deck pointing to this decklist
-		
+			
 		$successors = $entityManager->getRepository('AppBundle:Decklist')->findBy(array(
 				'precedent' => $decklist
 		));
 		foreach($successors as $successor) {
-			/* @var $successor \AppBundle\Entity\Decklist */
 			$successor->setPrecedent(null);
 		}
 		
@@ -104,14 +97,10 @@ class UserAdminController extends Controller
 				'parent' => $decklist
 		));
 		foreach($children as $child) {
-			/* @var $child \AppBundle\Entity\Deck */
 			$child->setParent(null);
 		}
 		
-		$entityManager->flush();
-		
-		// then we remove the decklist itself
-		
+		$entityManager->flush();		
 		$entityManager->remove($decklist);
 		$entityManager->flush();
 	
@@ -121,7 +110,6 @@ class UserAdminController extends Controller
 	public function commentsAction($user_id)
 	{
 		$entityManager = $this->getDoctrine()->getEntityManager();
-		/* @var $user \AppBundle\Entity\User */
 		$user = $entityManager->getRepository('AppBundle:User')->find($user_id);
 		if(!$user) {
 			throw $this->createNotFoundException("User not found");
@@ -151,7 +139,6 @@ class UserAdminController extends Controller
 	public function deleteCommentAction($comment_id)
 	{
 		$entityManager = $this->getDoctrine()->getEntityManager();
-		/* @var $comment \AppBundle\Entity\Comment */
 		$comment = $entityManager->getRepository('AppBundle:Comment')->find($comment_id);
 		if(!$comment) {
 			throw $this->createNotFoundException("Comment not found");
