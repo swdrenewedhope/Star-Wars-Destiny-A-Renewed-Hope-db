@@ -338,8 +338,6 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
 
     public function saveAction (Request $request)
     {
-
-        /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
 
         $user = $this->getUser();
@@ -393,7 +391,7 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
 
         $content = (array) json_decode($request->get('content'), true);
         if (! count($content)) {
-            return new Response('Cannot import empty deck, recieved: ' . json_encode($content));
+            return new Response('Cannot import empty deck' . json_encode($content));
         }
 
         $name = filter_var($request->get('name'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -410,7 +408,6 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
 
     public function deleteAction (Request $request)
     {
-        /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
 
         $deck_id = filter_var($request->get('deck_id'), FILTER_SANITIZE_NUMBER_INT);
@@ -436,14 +433,12 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
 
     public function deleteListAction (Request $request)
     {
-        /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
 
         $list_id = explode('-', $request->get('ids'));
 
         foreach($list_id as $id)
         {
-            /* @var $deck Deck */
             $deck = $em->getRepository('AppBundle:Deck')->find($id);
             if(!$deck) continue;
             if ($this->getUser()->getId() != $deck->getUser()->getId()) continue;
@@ -509,7 +504,7 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
 				'AppBundle:Default:error.html.twig',
 				array(
 					'pagetitle' => "Error",
-					'error' => 'You are not allowed to view this deck as the author does not have share private decks enabled.'
+					'error' => 'You are not allowed to view this deck as the author does not have \'Make private decks unlisted\' enabled in settings.'
 				)
 			);
         }
@@ -529,10 +524,7 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
     {
     	$entityManager = $this->getDoctrine()->getManager();
     
-    	/* @var $deck1 \AppBundle\Entity\Deck */
     	$deck1 = $entityManager->getRepository('AppBundle:Deck')->find($deck1_id);
-    
-    	/* @var $deck2 \AppBundle\Entity\Deck */
     	$deck2 = $entityManager->getRepository('AppBundle:Deck')->find($deck2_id);
     
     	if(!$deck1 || !$deck2) {
@@ -551,7 +543,7 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
     				'AppBundle:Default:error.html.twig',
     				array(
     						'pagetitle' => "Error",
-    						'error' => 'You are not allowed to view this deck. To get access, you can ask the deck owner to enable "Share your decks" on their account.'
+    						'error' => 'You are not allowed to view this deck as the author does not have \'Make private decks unlisted\' enabled in settings.'
     				)
     		);
     	}
@@ -562,7 +554,7 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
     				'AppBundle:Default:error.html.twig',
     				array(
     						'pagetitle' => "Error",
-    						'error' => 'You are not allowed to view this deck. To get access, you can ask the deck owner to enable "Share your decks" on their account.'
+    						'error' => 'You are not allowed to view this deck as the author does not have \'Make private decks unlisted\' enabled in settings.'
     				)
     		);
     	}
@@ -680,13 +672,10 @@ public function listAction(Request $request)
 
     public function copyAction ($decklist_id)
     {
-        /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
-
-        /* @var $decklist \AppBundle\Entity\Decklist */
         $decklist = $em->getRepository('AppBundle:Decklist')->find($decklist_id);
-
         $content = $decklist->getSlots()->getContent();
+
         return $this->forward('AppBundle:Builder:save',
                 array(
                         'name' => $decklist->getName(),
@@ -700,11 +689,8 @@ public function listAction(Request $request)
 
     public function downloadallAction()
     {
-        /* @var $user \AppBundle\Entity\User */
         $user = $this->getUser();
-        /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
-
         $decks = $this->get('decks')->getByUser($user, FALSE);
 
         $file = tempnam("tmp", "zip");
@@ -755,10 +741,8 @@ public function listAction(Request $request)
         $filename = $uploadedFile->getPathname();
 
         if (function_exists("finfo_open")) {
-            // return mime type ala mimetype extension
             $finfo = finfo_open(FILEINFO_MIME);
 
-            // check to see if the mime-type is 'zip'
             if(substr(finfo_file($finfo, $filename), 0, 15) !== 'application/zip')
                 return new Response('Bad file');
         }
@@ -789,10 +773,7 @@ public function listAction(Request $request)
     public function autosaveAction(Request $request)
     {
         $user = $this->getUser();
-
-        /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
-
         $deck_id = $request->get('deck_id');
 
         $deck = $em->getRepository('AppBundle:Deck')->find($deck_id);
