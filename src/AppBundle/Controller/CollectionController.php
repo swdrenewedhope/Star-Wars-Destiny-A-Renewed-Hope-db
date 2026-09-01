@@ -66,7 +66,6 @@ class CollectionController extends Controller
         $phpExcelObject = $this->get('phpexcel')->createPHPExcelObject();
         $phpExcelObject->getProperties()
             ->setCreator($user->getUsername())
-            //->setLastModifiedBy($lastModified->format('Y-m-d'))
             ->setTitle($translator->trans("collection.export.title", ["user" => $user->getUsername()]))
         ;
         $phpActiveSheet = $phpExcelObject->setActiveSheetIndex(0);
@@ -93,7 +92,6 @@ class CollectionController extends Controller
         foreach($headers as $colIndex => $header)
         {
             $phpCell = $phpActiveSheet->getCellByColumnAndRow($colIndex, 1);
-            //print_r(get_class_methods($phpCell->getStyle()->getFont())); die();
             $phpCell->getStyle()->applyFromArray([
                 'fill' => ['type' => \PHPExcel_Style_Fill::FILL_SOLID, 'color' => ['argb' => 'FF0000FF']],
                 'font' => ['color' => ['argb' => 'FFFFFFFF'], 'bold' => true]

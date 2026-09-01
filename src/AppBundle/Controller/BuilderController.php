@@ -263,53 +263,6 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
         ];
     }
 
-
-    public function parseOctgnImport ($octgn)
-    {
-        /* @var $em \Doctrine\ORM\EntityManager */
-        $em = $this->getDoctrine()->getManager();
-
-        $crawler = new Crawler();
-        $crawler->addXmlContent($octgn);
-		// read octgnId
-        $cardcrawler = $crawler->filter('deck > section > card');
-		$octgnIds = [];
-		foreach ($cardcrawler as $domElement) {
-			$octgnIds[$domElement->getAttribute('id')] = intval($domElement->getAttribute('qty'));
-        }
-		// read desc
-		$desccrawler = $crawler->filter('deck > notes');
-        $descriptions = [];
-        foreach ($desccrawler as $domElement) {
-            $descriptions[] = $domElement->nodeValue;
-        }
-
-        $content = [];
-		$affiliation = null;
-        foreach ($octgnIds as $octgnId => $qty) {
-			$card = $em->getRepository('AppBundle:Card')->findOneBy(array(
-                    'octgnId' => $octgnId
-            ));
-            if ($card) {
-                $content[$card->getCode()] = $qty;
-            }
-			else {
-				$affiliation = $affiliation ?: $em->getRepository('AppBundle:Affiliation')->findOneBy(array(
-	                    'octgnId' => $octgnId
-	            ));
-			}
-        }
-
-		$description = implode("\n", $descriptions);
-
-        return array(
-				"affiliation_code" => $affiliation ? $affiliation->getCode() : '',
-                "content" => $content,
-                "description" => $description
-        );
-
-    }
-
     public function textexportAction ($deck_id)
     {
 		/* @var $em \Doctrine\ORM\EntityManager */
@@ -350,83 +303,6 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
 		$response->setContent($content);
 		return $response;
 
-    }
-
-	public function ttsexportAction ($deck_id)
-    {
-		/* @var $em \Doctrine\ORM\EntityManager */
-        $em = $this->getDoctrine()->getManager();
-
-        /* @var $deck \AppBundle\Entity\Deck */
-        $deck = $em->getRepository('AppBundle:Deck')->find($deck_id);
-
-        $is_owner = $this->getUser() && $this->getUser()->getId() == $deck->getUser()->getId();
-        if(!$deck->getUser()->getIsShareDecks() && !$is_owner) {
-        	return $this->render(
-        			'AppBundle:Default:error.html.twig',
-        			array(
-        					'pagetitle' => "Error",
-        					'error' => 'You are not allowed to view this deck. To get access, you can ask the deck owner to enable "Share your decks" on their account.'
-        			)
-        	);
-        }
-
-        $factionNames = [];
-        foreach($this->getDoctrine()->getRepository('AppBundle:Faction')->findAllAndOrderByName() as $faction) {
-            $factionNames[$faction->getCode()] = $faction->getName();
-        }
-
-        $content = $this->renderView('AppBundle:Export:tts.json.twig', [
-        	"deck" => $deck->getTtsExport(),
-            "factionNames" => $factionNames
-      	]);
-        $content = str_replace("\n", "\r\n", $content);
-
-		$response = new Response();
-		$response->headers->set('Content-Type', 'application/json');
-		$response->headers->set('Content-Disposition', $response->headers->makeDisposition(
-		    ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-				$this->get('texts')->slugify($deck->getName()) . '.json'
-		));
-
-		$response->setContent($content);
-		return $response;
-
-    }
-
-    public function octgnexportAction ($deck_id)
-    {
-        /* @var $em \Doctrine\ORM\EntityManager */
-        $em = $this->getDoctrine()->getManager();
-
-        /* @var $deck \AppBundle\Entity\Deck */
-        $deck = $em->getRepository('AppBundle:Deck')->find($deck_id);
-
-        $is_owner = $this->getUser() && $this->getUser()->getId() == $deck->getUser()->getId();
-        if(!$deck->getUser()->getIsShareDecks() && !$is_owner) {
-        	return $this->render(
-        			'AppBundle:Default:error.html.twig',
-        			array(
-        					'pagetitle' => "Error",
-        					'error' => 'You are not allowed to view this deck. To get access, you can ask the deck owner to enable "Share your decks" on their account.'
-        			)
-        	);
-        }
-        
-		$content = $this->renderView('AppBundle:Export:octgn.xml.twig', [
-        	"deck" => $deck->getTextExport()
-      	]);
-        
-		$response = new Response();
-
-		$response->headers->set('Content-Type', 'application/octgn');
-		$response->headers->set('Content-Disposition', $response->headers->makeDisposition(
-				ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-				$this->get('texts')->slugify($deck->getName()) . '.o8d'
-		));
-
-		$response->setContent($content);
-		return $response;
     }
 
     public function cloneAction ($deck_id)
