@@ -42,7 +42,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b456f">
         <source>card.info.medium.points_cost</source>
-        <target>P./C.</target>
+        <target>Points</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4570">
         <source>card.info.name</source>
@@ -54,7 +54,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4572">
         <source>card.info.points_cost</source>
-        <target>Points/Cost</target>
+        <target>Points</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4573">
         <source>card.info.quantity</source>
@@ -78,7 +78,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4578">
         <source>card.info.short.health</source>
-        <target>H.</target>
+        <target>HP</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4579">
         <source>card.info.short.points_cost</source>
@@ -362,7 +362,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b45bf">
         <source>decklist.publish.errors.antispam.limit</source>
-        <target>To prevent spam, accounts cannot publish more decklists than their reputation per 24 hours.</target>
+        <target>Standard accounts cannot publish more than 3 decks per 24 hours.</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b45c0">
         <source>decklist.publish.errors.antispam.newbie</source>
