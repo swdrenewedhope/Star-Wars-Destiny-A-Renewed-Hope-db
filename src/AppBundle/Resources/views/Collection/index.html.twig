@@ -100,37 +100,15 @@
 		<table class="table table-condensed table-hover" style="margin-bottom:10px">
 			<thead>
 				<tr>
-					<th>
-						<a href="#" data-sort="name">{{ 'card.info.name' | trans }}</a>
-					</th>
-					<th colspan="2">
-						<a href="#" data-sort="owned.cards">{{ 'collection.owned' | trans}}</a>
-						<div class="btn-group btn-group-xs btn-all-spinner">
-							<button class="btn btn-danger btn-all-spin hidden-print" style="margin-right: 3px">-</button>
-							<button class="btn btn-success btn-all-spin hidden-print" style="margin-right: 3px">+</button>
-						</div>
-					</th>
-					<th class="hidden-sm hidden-xs">
-						<a href="#" data-sort="affiliation_code">{{ 'card.info.affiliation' | trans }}</a>
-					</th>
-					<th class="hidden-sm hidden-xs" title="{{'card.info.points_cost' | trans}}">
-						<a href="#" data-sort="cp">{{ 'card.info.medium.points_cost' | trans }}</a>
-					</th>
-					<th class="hidden-sm hidden-xs">
-						<a href="#" data-sort="health">{{ 'card.info.health' | trans }}</a>
-					</th>
-					<th class="hidden-sm hidden-xs">
-						<a href="#" data-sort="type_code">{{ 'card.info.type' | trans }}</a>
-					</th>
-					<th class="hidden-xs">
-						<a href="#" data-sort="rarity_code">{{ 'card.info.rarity' | trans }}</a>
-					</th>
-					<th colspan="6" class="visible-lg text-nowrap">
-						<a href="#">{{ 'card.info.die' | trans}}</a>
-					</th>
-					<th>
-						<a href="#" data-sort="code" class="text-nowrap">{{ 'card.info.set' | trans }}</a>
-					</th>
+					<th> <a href="#" data-sort="name">{{ 'card.info.name' | trans }}</a></th>
+					<th colspan="2"> <a href="#" data-sort="owned.cards">{{ 'collection.owned' | trans}}</a></th>
+					<th class="hidden-sm hidden-xs"> <a href="#" data-sort="affiliation_code">{{ 'card.info.affiliation' | trans }}</a></th>
+					<th class="hidden-sm hidden-xs"> <a href="#" data-sort="cp">{{ 'card.info.medium.points_cost' | trans }}</a></th>
+					<th class="hidden-sm hidden-xs"> <a href="#" data-sort="health">{{ 'card.info.health' | trans }}</a></th>
+					<th class="hidden-sm hidden-xs"> <a href="#" data-sort="type_code">{{ 'card.info.type' | trans }}</a></th>
+					<th class="hidden-xs"> <a href="#" data-sort="rarity_code">{{ 'card.info.rarity' | trans }}</a></th>
+					<th colspan="6" class="visible-lg text-nowrap"> <a href="#">{{ 'card.info.die' | trans}}</a></th>
+					<th> <a href="#" data-sort="code" class="text-nowrap">{{ 'card.info.set' | trans }}</a></th>
 				</tr>
 			</thead>
 			<tbody id="collection-table" class="collection"></tbody>
@@ -138,12 +116,12 @@
 	</div>
 	<div id="collection-grid" class="col-sm-12"></div>
 </div>
+
 <div class="row">
 	<div class="col-xs-12 text-right">
 		<small class="text-muted" id="showing-cards"></small>
 	</div>
 </div>
-
 </div>
 
 {% endblock %}
