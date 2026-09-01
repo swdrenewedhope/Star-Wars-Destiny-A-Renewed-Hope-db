@@ -8,10 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
 {
-
-    /*
-	 * displays details about a user and the list of decklists published
-	 */
     public function publicProfileAction ($user_id, $user_name, $page, Request $request)
     {
         $response = new Response();
@@ -121,9 +117,7 @@ class UserController extends Controller
             );
 
             if(isset($decklist_id)) {
-                /* @var $em \Doctrine\ORM\EntityManager */
                 $em = $this->getDoctrine()->getManager();
-                /* @var $decklist \AppBundle\Entity\Decklist */
                 $decklist = $em->getRepository('AppBundle:Decklist')->find($decklist_id);
 
 				if ($decklist) {

@@ -21,18 +21,11 @@ use AppBundle\Entity\Pack;
 
 class SocialController extends Controller
 {
-    /**
-     * Checks to see if a deck can be published in its current saved state
-     * If it is, displays the decklist edit form for initial publication of a deck
-     */
     public function publishFormAction($deck_id, Request $request)
     {
         $translator = $this->get('translator');
-
-    	/* @var $em \Doctrine\ORM\EntityManager */
     	$em = $this->getDoctrine()->getManager();
 
-        /* @var $user \AppBundle\Entity\User */
     	$user = $this->getUser();
     	if (! $user) {
     		throw $this->createAccessDeniedException($translator->trans('login_required'));
@@ -145,15 +138,11 @@ class SocialController extends Controller
         $precedent_id = trim($request->request->get('precedent'));
         if(!preg_match('/^\d+$/', $precedent_id)) 
         {
-        	// route decklist_detail hard-coded
         	if(preg_match('/view\/(\d+)/', $precedent_id, $matches)) 
-        	{
-        		$precedent_id = $matches[1];
-        	}
-        	else 
-        	{
-        		$precedent_id = null;
-        	}
+        	{ 
+				$precedent_id = $matches[1]; 
+			}
+        	else { $precedent_id = null; }
         }
         $precedent = $precedent_id ? $em->getRepository('AppBundle:Decklist')->find($precedent_id) : null;
         
@@ -184,11 +173,9 @@ class SocialController extends Controller
      */
     public function editFormAction($decklist_id, Request $request)
     {
-    	/* @var $em \Doctrine\ORM\EntityManager */
     	$em = $this->getDoctrine()->getManager();
-    
-    	/* @var $user \AppBundle\Entity\User */
     	$user = $this->getUser();
+
     	if (! $user) {
     		throw $this->createAccessDeniedException("Anonymous access denied");
     	}
@@ -209,12 +196,8 @@ class SocialController extends Controller
     	]);
     }
     
-    /*
-     * save the name and description of a decklist by its publisher
-     */
     public function saveAction ($decklist_id, Request $request)
     {
-    	/* @var $em \Doctrine\ORM\EntityManager */
     	$em = $this->getDoctrine()->getManager();
     
     	$user = $this->getUser();
@@ -240,7 +223,6 @@ class SocialController extends Controller
     	$precedent_id = trim($request->request->get('precedent'));
         if(!preg_match('/^\d+$/', $precedent_id)) 
         {
-        	// route decklist_detail hard-coded
         	if(preg_match('/view\/(\d+)/', $precedent_id, $matches)) 
         	{
         		$precedent_id = $matches[1];
