@@ -62,7 +62,7 @@ class DeckValidationHelper
 			return true;
 		}
 
-		// Finn (AW #45) special case
+		// (AW #45) special case
 		if($deck->getSlots()->getSlotByCode('01045') != NULL) {
 			if(    $card->getAffiliation()->getCode()==='villain' 
 				&& $card->getFaction()->getCode()==='red' 
@@ -72,7 +72,7 @@ class DeckValidationHelper
 			}
 		}
 
-		// Bo-Katan Kryze (WotF #89) special case
+		// (WotF #89) special case
 		if($deck->getSlots()->getSlotByCode('07089') != NULL) {
 			if(    $card->getAffiliation()->getCode()==='villain' 
 				&& $card->getFaction()->getCode()==='yellow' 
@@ -82,7 +82,7 @@ class DeckValidationHelper
 			}
 		}
 
-		// Leia Organa (AtG #90) special case
+		// (AtG #90) special case
 		if($deck->getSlots()->getSlotByCode('08090') != NULL) {
 			if($card->getAffiliation()->getCode()==='villain')
 			{
@@ -90,7 +90,7 @@ class DeckValidationHelper
 			}
 		}
 
-		// Qi'Ra (AtG #135) special case
+		// (AtG #135) special case
 		if($deck->getSlots()->getSlotByCode('08135') != NULL) {
 			if(    $card->getFaction()->getCode()==='yellow' 
 				&& $card->getType()->getCode()==='event')
@@ -99,7 +99,7 @@ class DeckValidationHelper
 			}
 		}
 
-		// Enfys Nest (CONV #141) special case
+		// (CONV #141) special case
 		if($deck->getSlots()->getSlotByCode('09141') != NULL) {
 			if($card->getType()->getCode()!=='character')
 			{
@@ -107,7 +107,7 @@ class DeckValidationHelper
 			}
 		}
 
-		// Enfys Nest's Marauder (CONV #142) special case
+		// (CONV #142) special case
 		if($deck->getSlots()->getSlotByCode('09142') != NULL) {
 			if($card->getType()->getCode()!=='character')
 			{
@@ -115,7 +115,7 @@ class DeckValidationHelper
 			}
 		}
 
-		// Temporary Truce (SoH #119) special case
+		// (SoH #119) special case
 		if($deck->getSlots()->getSlotByCode('11119') != NULL) {
 			return true;
 		}
@@ -123,12 +123,12 @@ class DeckValidationHelper
 			return true;
 		}
 		
-		// The Father (DoP #87) special case
+		// (DoP #87) special case
 		if($deck->getSlots()->getSlotByCode('22087') != NULL) {
 			return true;
 		}
 
-		// Pong Krell (CM #3) special case
+		// (CM #3) special case
 		if($deck->getSlots()->getSlotByCode('12003') != NULL) {
 			if(    $card->getAffiliation()->getCode()==='hero' 
 				&& $card->getFaction()->getCode()==='blue' 
@@ -389,7 +389,8 @@ class DeckValidationHelper
 						return false;
 
 					return true;
-				//Temporary Truce (SoH 119)
+
+				// (SoH 119)
 			    case '11119':
 			    	if(some($deck->getSlots()->getDrawDeck()->getSlots(), function($slot) {
 						return $slot->getCard()->getFaction()->getCode() == 'gray';
@@ -424,7 +425,8 @@ class DeckValidationHelper
 						}
 						return false;
 			    	});
-				//Insurgent Group (SA 82)
+
+				// (SA 82)
 			    case '21082': 
 			    	return every($deck->getSlots()->getCharacterDeck(), function($slot) {
 			    		foreach($slot->getCard()->getSubtypes() as $subtype)
@@ -526,19 +528,6 @@ class DeckValidationHelper
 			if($limitExceeded > $maxLimitExceeded)
 				return 'too_many_copies';
 		}
-
-		/* Leia and Enfys Nest limits unimplemented until official aclarations about using them with Finn, Qi'Ra an Bo-Katan
-		if($deck->getSlots()->isSlotIncluded('08090') && $deck->getSlots()->getCountByAffiliation()["villain"] > 5)
-			return 'too_many_copies';
-
-		if($deck->getSlots()->isSlotIncluded('09141') || $deck->getSlots()->isSlotIncluded('09142'))
-		{
-			$limit = $deck->getSlots()->isSlotIncluded('09141') ? 2 : 1;
-			$otherAffiliation = $deck->getAffiliation()->getCode() == 'villain' ? 'hero' : 'villain';
-			if($deck->getSlots()->getCountByAffiliation()[$otherAffiliation] > $limit) 
-				return 'too_many_copies';
-		}
-		*/
 
 		if($deck->getSlots()->isSlotIncluded('12003')) {
 			$heroCards = count($deck->getSlots()->getSlotsByAffiliation()["hero"]);

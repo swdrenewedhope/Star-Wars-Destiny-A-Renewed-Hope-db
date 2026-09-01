@@ -19,14 +19,8 @@ class UserCollectionListener
 		$this->securityContext = $securityContext;
 	}
 
-	/**
-	 * If the user is logged in, add the collection to the user
-	 *
-	 * @param FilterControllerEvent $event An FilterControllerEvent instance
-	 */
 	public function onKernelController(FilterControllerEvent $event)
 	{
-		//only works on master request (not in embedded requests)
 		if($event->isMasterRequest())
 		{
 			if ($this->securityContext->getToken() && is_object($this->securityContext->getToken()->getUser()))

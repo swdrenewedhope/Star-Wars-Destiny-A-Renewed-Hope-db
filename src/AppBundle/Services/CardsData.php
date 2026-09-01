@@ -28,22 +28,13 @@ class CardsData
         $this->rootDir = $rootDir;
 	}
 
-	/**
-	 * Searches for and replaces symbol tokens with markup in a given text.
-	 * @param string $text
-	 * @return string
-	 */
 	public function replaceSymbols($text)
 	{
 		if($text != '') {
-			// Look for fixed game icons
 			$text = preg_replace('/\\[(blank|discard|disrupt|focus|melee|ranged|indirect|shield|resource|special|unique|reroll)\\]/i', '<span class="icon-$1"></span>', $text);
-			
-			// Look for set icons with as card number, and try to link to it
 			$text = preg_replace_callback('|\\(\\[([A-Za-z]*)\\][ ]*([0-9]*)([A-Z]*)\\)|', function($matches) {
 				$set = $this->doctrine->getRepository('AppBundle:Set')->findByCode($matches[1]);
 				if($set) {
-					// Rebuild card code from set position and given id
 					$card_code = sprintf('%02d%03d%s', $set->getPosition(), $matches[2], $matches[3]);
 					$url = $this->router->generate('cards_zoom', array('card_code' => $card_code), UrlGeneratorInterface::ABSOLUTE_URL);
 					return '(<a href="'.$url.'"><span class="icon-set-'.$matches[1].'"></span>'.$matches[2].'</a>)';
@@ -51,17 +42,11 @@ class CardsData
 				return $matches[0];
 			}, $text);
 			
-			// Automatically look for remaining icons as set icons
 			$text = preg_replace('/\\[([A-Za-z]*)\\]/i', '<span class="icon-set-$1"></span>', $text);
 		}
 		return $text;
 	}
 
-	/**
-	 * Searches for single keywords and surround them with <abbr>
-	 * @param string $text
-	 * @return string
-	 */
 	public function addAbbrTags($text)
 	{
 		$locale = $this->request_stack->getCurrentRequest()->getLocale();
@@ -76,8 +61,6 @@ class CardsData
 			}, $text);
 		}
 
-
-
 		return $text;
 	}
 
@@ -91,12 +74,11 @@ class CardsData
 	{
 		$list_sets = $this->doctrine->getRepository('AppBundle:Set')->findAll();
 		$lines = [];
-		/* @var $cycle \AppBundle\Entity\Cycle */
+
 		foreach($list_sets as $set) {
 			$known = count($set->getCards());
 			$max = $set->getSize();
 
-			// This +100 position trick will allow to have side project numbered as 1-based
 			$index = $set->getPosition() > 99 ? $set->getPosition() % 100 : $set->getPosition();
 			$label = sprintf("%02d", $index) . '. <span class="icon-set-'.$set->getCode().'"></span> ' . $set->getName();
 
@@ -120,7 +102,6 @@ class CardsData
 		$list_sets = $this->doctrine->getRepository('AppBundle:Set')->findAll();
 		$sets = [];
 
-		/* @var $set \AppBundle\Entity\Cycle */
 		foreach($list_sets as $set) {
 			$known = count($set->getCards());
 			$max = $set->getSize();
@@ -300,7 +281,7 @@ class CardsData
 				case 'string': {
 					switch($searchCode)
 					{
-						case '': // name or index
+						case '':
 						{
 							$or = [];
 							foreach($condition as $arg) {
@@ -712,9 +693,6 @@ class CardsData
 
     public function getDistinctTraits()
     {
-    	/**
-    	 * @var $em \Doctrine\ORM\EntityManager
-    	 */
     	$em = $this->doctrine->getManager();
     	$qb = $em->createQueryBuilder();
     	$qb->from('AppBundle:Card', 'c');

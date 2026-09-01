@@ -14,12 +14,6 @@ use AppBundle\Entity\Affiliation;
 use AppBundle\Entity\Faction;
 use Doctrine\Common\Collections\ArrayCollection;
 
-/**
- * The job of this class is to find and return decklists
- * @author alsciende
- * @property integer $maxcount Number of found rows for last request
- *
- */
 class DecklistManager
 {
 	protected $affiliation;
@@ -63,9 +57,6 @@ class DecklistManager
 		return $this->maxcount;
 	}
 
-	/**
-	 * creates the basic query builder and initializes it
-	 */
 	private function getQueryBuilder()
 	{
 		$qb = $this->doctrine->createQueryBuilder();
@@ -83,10 +74,6 @@ class DecklistManager
 		return $qb;
 	}
 
-	/**
-	 * creates the paginator around the query
-	 * @param Query $query
-	 */
 	private function getPaginator(Query $query)
 	{
 		$paginator = new Paginator($query, $fetchJoinCollection = FALSE);

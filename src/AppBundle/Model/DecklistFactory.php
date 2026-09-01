@@ -22,7 +22,7 @@ class DecklistFactory
 	{
 		$lastSet = $deck->getLastSet();
 		if(!$lastSet->getDateRelease() || $lastSet->getDateRelease() > new \DateTime()) {
-			throw new \Exception("You cannot publish this deck yet, because it has unreleased cards.");
+			throw new \Exception("You cannot publish this deck, because it has unreleased cards.");
 		}
 		
 		$problem = $this->deckValidationHelper->findProblem($deck);
@@ -30,9 +30,6 @@ class DecklistFactory
 			throw new \Exception('This deck cannot be published  because it is invalid: "'.$this->deckValidationHelper->getProblemLabel($problem).'".');
 		}
 
-		// all good for decklist publication
-
-		// increasing deck version
 		$deck->setMinorVersion(0);
 		$deck->setMajorVersion($deck->getMajorVersion() + 1);
 

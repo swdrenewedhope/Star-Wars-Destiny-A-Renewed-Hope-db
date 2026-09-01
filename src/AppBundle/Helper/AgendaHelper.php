@@ -13,17 +13,11 @@ class AgendaHelper
 		$this->entityManager = $entityManager;
 	}
 	
-	/**
-	 * Get the minor faction code
-	 * @param Card $agenda
-	 * @return string
-	 */
 	public function getMinorFactionCode(Card $agenda) {
 		if(empty($agenda)) {
 			return null;
 		}
-	
-		// special case for the Core Set Banners
+
 		$banners_core_set = [
 				'01198' => 'baratheon',
 				'01199' => 'greyjoy',
@@ -40,11 +34,6 @@ class AgendaHelper
 		return null;
 	}
 
-	/**
-	 * Get the minor faction 
-	 * @param Card $agenda
-	 * @return Faction
-	 */
 	public function getMinorFaction(Card $agenda) {
 		$code = $this->getMinorFactionCode($agenda);
 		if($code) {
@@ -52,5 +41,4 @@ class AgendaHelper
 		}
 		return null;
 	}
-	
 }

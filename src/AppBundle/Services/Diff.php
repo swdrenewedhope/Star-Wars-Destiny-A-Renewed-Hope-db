@@ -21,27 +21,16 @@ class Diff
     {
         $this->em = $doctrine;
     }
-    
-    /**
-     * Computes the diff between a list of SlotCollectionInterface
-     * Mutates its arguments by removing the intersection from them
-     * @param SlotCollectionInterface[] $list_slots
-     * @return SlotCollectionInterface $intersection
-     */
+
     public function getSlotsDiff($list_slots)
     {
-    	// list of all the codes found in every slots
     	$cardCodes = [];
     	
-    	/* @var $slots SlotCollectionInterface */
     	foreach($list_slots as $slots)
     	{
-    		/* @var $slot SlotInterface */
     		foreach($slots as $slot)
     		{
-    			// since we're going to mutate the slots, we detach them first
     			$this->em->detach($slot);
-    			
     			$cardCodes[] = $slot->getCard()->getCode();
     		}
     	}

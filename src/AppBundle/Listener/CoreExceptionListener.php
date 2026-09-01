@@ -4,11 +4,6 @@ namespace AppBundle\Listener;
 
 class CoreExceptionListener
 {
-	/**
-	 * Handles security related exceptions.
-	 *
-	 * @param \Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent $event An GetResponseForExceptionEvent instance
-	 */
 	public function onCoreException(\Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent $event)
 	{
 		$exception = $event->getException();
