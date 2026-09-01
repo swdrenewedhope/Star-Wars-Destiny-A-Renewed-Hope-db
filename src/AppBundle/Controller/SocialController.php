@@ -37,12 +37,6 @@ class SocialController extends Controller
         }
 
         $yesterday = (new \DateTime())->modify('-24 hours');
-        if($user->getDateCreation() > $yesterday) {
-			// Ace Jon: turning this off for now
-            //$this->get('session')->getFlashBag()->set('error', $translator->trans('decklist.publish.errors.antispam.newbie'));
-            //return $this->redirect($this->generateUrl('deck_view', [ 'deck_id' => $deck->getId() ]));
-        }
-
         $query = $em->createQuery("SELECT COUNT(d) FROM AppBundle:Decklist d WHERE d.dateCreation>:date AND d.user=:user");
         $query->setParameter('date', $yesterday);
         $query->setParameter('user', $user);
@@ -70,8 +64,6 @@ class SocialController extends Controller
         $new_signature = md5($new_content);
         $old_decklists = $this->getDoctrine()->getRepository('AppBundle:Decklist')->findBy([ 'signature' => $new_signature ]);
 
-        
-        /* @var $decklist \AppBundle\Entity\Decklist */
         foreach ($old_decklists as $decklist) {
             if (json_encode($decklist->getSlots()->getContent()) == $new_content) {
                 $url = $this->generateUrl('decklist_detail', array(
@@ -81,8 +73,7 @@ class SocialController extends Controller
                 $this->get('session')->getFlashBag()->set('warning', $translator->trans('decklist.publish.warnings.published', array("%url%" => $url)));
             }
         }
-        
-        // decklist for the form ; won't be persisted
+
         $decklist = $this->get('decklist_factory')->createDecklistFromDeck($deck, $deck->getName(), $deck->getDescriptionMd());
                 
         return $this->render('AppBundle:Decklist:decklist_edit.html.twig', [
@@ -92,26 +83,14 @@ class SocialController extends Controller
         ]);
     }
     
-    /**
-     * creates a new decklist from a deck (publish action)
-     */
     public function createAction (Request $request)
     {
         $translator = $this->get("translator");
 
-        /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
-        /* @var $user \AppBundle\Entity\User */
         $user = $this->getUser();
 
         $yesterday = (new \DateTime())->modify('-24 hours');
-        if($user->getDateCreation() > $yesterday) {
-			// Ace Jon: turning this off for now
-   //         return $this->render('AppBundle:Default:error.html.twig', [
-   //             'pagetitle' => $translator->trans('decklist.publish.errors.pagetitle.spam'),
-   //             'error' => $translator->trans('decklist.publish.errors.antispam.newbie'),
-   //         ]);
-        }
 
         $query = $em->createQuery("SELECT COUNT(d) FROM AppBundle:Decklist d WHERE d.dateCreation>:date AND d.user=:user");
         $query->setParameter('date', $yesterday);
@@ -120,7 +99,6 @@ class SocialController extends Controller
 
         $deck_id = intval(filter_var($request->request->get('deck_id'), FILTER_SANITIZE_NUMBER_INT));
         
-        /* @var $deck \AppBundle\Entity\Deck */
         $deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($deck_id);
         if ($user->getId() !== $deck->getUser()->getId()) {
         	throw $this->createAccessDeniedException("Access denied to this object.");
@@ -162,9 +140,6 @@ class SocialController extends Controller
         )));
     }
 
-    /**
-     * Displays the decklist edit form
-     */
     public function editFormAction($decklist_id, Request $request)
     {
     	$em = $this->getDoctrine()->getManager();
@@ -243,12 +218,8 @@ class SocialController extends Controller
     
     }
 
-    /**
-     * deletes a decklist if it has no comment, no vote, no favorite
-     */
     public function deleteAction ($decklist_id, Request $request)
     {
-    	/* @var $em \Doctrine\ORM\EntityManager */
     	$em = $this->getDoctrine()->getManager();
     
     	$user = $this->getUser();
@@ -265,13 +236,13 @@ class SocialController extends Controller
     	$precedent = $decklist->getPrecedent();
     
     	$children_decks = $decklist->getChildren();
-    	/* @var $children_deck Deck */
+
     	foreach ($children_decks as $children_deck) {
     		$children_deck->setParent($precedent);
     	}
     
     	$successor_decklists = $decklist->getSuccessors();
-    	/* @var $successor_decklist Decklist */
+
     	foreach ($successor_decklists as $successor_decklist) {
     		$successor_decklist->setPrecedent($precedent);
     	}
@@ -321,9 +292,6 @@ class SocialController extends Controller
         return $this->renderView('AppBundle:Search:form.html.twig', $params);
     }
 
-    /*
-	 * displays the lists of decklists
-	 */
     public function listAction ($type, $affiliation = null, $page = 1, Request $request)
     {
         $translator = $this->get('translator');
@@ -332,9 +300,6 @@ class SocialController extends Controller
         $response->setPublic();
         $response->setMaxAge($this->container->getParameter('cache_expiration'));
         
-        /**
-         * @var $decklist_manager DecklistManager
-         */
         $decklist_manager = $this->get('decklist_manager');
         $decklist_manager->setLimit(15);
         $decklist_manager->setPage($page);
@@ -411,9 +376,6 @@ class SocialController extends Controller
 
     }
 
-    /*
-	 * displays the content of a decklist along with comments, siblings, similar, etc.
-	 */
     public function viewAction ($decklist_id, $decklist_name, Request $request)
     {
         $response = new Response();
@@ -593,9 +555,10 @@ class SocialController extends Controller
                 'comment' => $comment_html,
                 'profile' => $this->generateUrl('user_profile_edit', [], UrlGeneratorInterface::ABSOLUTE_URL)
             );
+
             $translator = $this->get('translator');
-            // Save the current session locale
             $sessionLocale = $translator->getLocale();
+
             foreach($spool as $email => $data) {
                 $translator->setLocale($data['locale']);
                 $message = \Swift_Message::newInstance()
@@ -616,18 +579,13 @@ class SocialController extends Controller
 
     }
 
-    /*
-     * hides a comment, or if $hidden is false, unhide a comment
-     */
     public function hidecommentAction($comment_id, $hidden, Request $request)
     {
-        /* @var $user User */
         $user = $this->getUser();
         if(!$user) {
             throw new UnauthorizedHttpException('You must be logged in to comment.');
         }
 
-        /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
 
         $comment = $em->getRepository('AppBundle:Comment')->find($comment_id);
@@ -645,15 +603,11 @@ class SocialController extends Controller
         return new Response(json_encode(TRUE));
     }
 
-    /*
-	 * records a user's vote
-	 */
     public function voteAction (Request $request)
     {
-        /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
-
         $user = $this->getUser();
+
         if(!$user) {
             throw new UnauthorizedHttpException('You must be logged in to comment.');
         }
@@ -752,54 +706,14 @@ class SocialController extends Controller
 
     }
 
-    /*
-	 * returns a text file with the content of a decklist
-	 */
-    public function ttsexportAction ($decklist_id, Request $request)
-    {
-        $response = new Response();
-        $response->setPublic();
-        $response->setMaxAge($this->container->getParameter('cache_expiration'));
-
-        /* @var $em \Doctrine\ORM\EntityManager */
-        $em = $this->getDoctrine()->getManager();
-
-        /* @var $decklist \AppBundle\Entity\Decklist */
-        $decklist = $em->getRepository('AppBundle:Decklist')->find($decklist_id);
-        if (! $decklist)
-            throw new NotFoundHttpException("Unable to find decklist.");
-
-        $content = $this->renderView('AppBundle:Export:tts.json.twig', [
-        	"deck" => $decklist->getTtsExport()
-      	]);
-        $content = str_replace("\n", "\r\n", $content);
-
-        $response = new Response();
-
-        $response->headers->set('Content-Type', 'application/json');
-        $response->headers->set('Content-Disposition', $response->headers->makeDisposition(
-        		ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-        		$decklist->getNameCanonical() . '.json'
-        ));
-
-        $response->setContent($content);
-        return $response;
-    }
-
-    /*
-	 * returns a text file with the content of a decklist
-	 */
     public function textexportAction ($decklist_id, Request $request)
     {
         $response = new Response();
         $response->setPublic();
         $response->setMaxAge($this->container->getParameter('cache_expiration'));
-
-        /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
-
-        /* @var $decklist \AppBundle\Entity\Decklist */
         $decklist = $em->getRepository('AppBundle:Decklist')->find($decklist_id);
+
         if (! $decklist)
             throw new NotFoundHttpException("Unable to find decklist.");
 
@@ -826,53 +740,16 @@ class SocialController extends Controller
         return $response;
     }
 
-    /*
-	 * returns a octgn file with the content of a decklist
-	 */
-    public function octgnexportAction ($decklist_id, Request $request)
-    {
-        $response = new Response();
-        $response->setPublic();
-        $response->setMaxAge($this->container->getParameter('cache_expiration'));
-
-        /* @var $em \Doctrine\ORM\EntityManager */
-        $em = $this->getDoctrine()->getManager();
-
-        /* @var $decklist \AppBundle\Entity\Decklist */
-        $decklist = $em->getRepository('AppBundle:Decklist')->find($decklist_id);
-        if (! $decklist)
-            throw new NotFoundHttpException("Unable to find decklist.");
-
-        $content = $this->renderView('AppBundle:Export:octgn.xml.twig', [
-        	"deck" => $decklist->getTextExport()
-      	]);
-
-        $response = new Response();
-
-        $response->headers->set('Content-Type', 'application/octgn');
-        $response->headers->set('Content-Disposition', $response->headers->makeDisposition(
-        		ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-        		$decklist->getNameCanonical() . '.o8d'
-        ));
-
-        $response->setContent($content);
-        return $response;
-    }
-
     public function usercommentsAction ($page, Request $request)
     {
         $response = new Response();
         $response->setPrivate();
-
-        /* @var $user \AppBundle\Entity\User */
         $user = $this->getUser();
 
         $limit = 100;
         if ($page < 1)
             $page = 1;
         $start = ($page - 1) * $limit;
-
-        /* @var $dbh \Doctrine\DBAL\Driver\PDOConnection */
         $dbh = $this->getDoctrine()->getConnection();
 
         $comments = $dbh->executeQuery(
@@ -893,10 +770,6 @@ class SocialController extends Controller
             ->fetchAll(\PDO::FETCH_ASSOC);
 
         $maxcount = $dbh->executeQuery("SELECT FOUND_ROWS()")->fetch(\PDO::FETCH_NUM)[0];
-
-        // pagination : calcul de nbpages // currpage // prevpage // nextpage
-        // à partir de $start, $limit, $count, $maxcount, $page
-
         $currpage = $page;
         $prevpage = max(1, $currpage - 1);
         $nbpages = min(10, ceil($maxcount / $limit));
@@ -944,7 +817,6 @@ class SocialController extends Controller
             $page = 1;
         $start = ($page - 1) * $limit;
 
-        /* @var $dbh \Doctrine\DBAL\Driver\PDOConnection */
         $dbh = $this->getDoctrine()->getConnection();
 
         $comments = $dbh->executeQuery(
@@ -964,9 +836,6 @@ class SocialController extends Controller
 				limit $start, $limit", [])->fetchAll(\PDO::FETCH_ASSOC);
 
         $maxcount = $dbh->executeQuery("SELECT FOUND_ROWS()")->fetch(\PDO::FETCH_NUM)[0];
-
-        // pagination : calcul de nbpages // currpage // prevpage // nextpage
-        // à partir de $start, $limit, $count, $maxcount, $page
 
         $currpage = $page;
         $prevpage = max(1, $currpage - 1);
@@ -1043,7 +912,6 @@ class SocialController extends Controller
         $response->setPublic();
         $response->setMaxAge($this->container->getParameter('cache_expiration'));
 
-        /* @var $dbh \Doctrine\DBAL\Driver\PDOConnection */
         $dbh = $this->getDoctrine()->getConnection();
 
         $users = $dbh->executeQuery("SELECT * FROM user WHERE donation>0 ORDER BY donation DESC, username", [])->fetchAll(\PDO::FETCH_ASSOC);
