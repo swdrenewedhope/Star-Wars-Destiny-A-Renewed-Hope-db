@@ -70,12 +70,6 @@ deck_fileimport:
     defaults:
         _controller: AppBundle:Builder:fileimport
 
-deck_meteorimport:
-    path: /meteorimport
-    methods: [POST]
-    defaults:
-        _controller: AppBundle:Builder:meteorimport
-
 deck_copy:
     path: /copy/{decklist_id}
     defaults:

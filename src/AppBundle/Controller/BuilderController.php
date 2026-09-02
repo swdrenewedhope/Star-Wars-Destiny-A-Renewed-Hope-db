@@ -202,7 +202,6 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
 
         public function parseTextImport ($text)
     {
-        /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
 
         $content = [];
@@ -731,8 +730,8 @@ public function listAction(Request $request)
 
     public function uploadallAction(Request $request)
     {
-        // time-consuming task
-        ini_set('max_execution_time', 300);
+		die();
+	/* ini_set('max_execution_time', 300);
 
         $uploadedFile = $request->files->get('uparchive');
         if (! isset($uploadedFile))
@@ -767,7 +766,7 @@ public function listAction(Request $request)
             ->getFlashBag()
             ->set('notice', "Decks imported.");
 
-        return $this->redirect($this->generateUrl('decks_list'));
+        return $this->redirect($this->generateUrl('decks_list')); */
     }
 
     public function autosaveAction(Request $request)
