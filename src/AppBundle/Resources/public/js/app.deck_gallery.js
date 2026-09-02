@@ -1,8 +1,5 @@
 (function app_deck_gallery(deck_gallery, $) {
 
-/**
- * @memberOf deck_gallery
- */
 deck_gallery.display = function display(container) {
 	var table = $('<table>').appendTo(container),
 		row = $('<tr>').appendTo(table),

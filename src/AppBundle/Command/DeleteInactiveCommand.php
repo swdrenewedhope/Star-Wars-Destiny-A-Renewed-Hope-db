@@ -27,7 +27,6 @@ class DeleteInactiveCommand extends ContainerAwareCommand
 
         $users = $em->getRepository('AppBundle:User')->findBy(array('enabled' => false));
         foreach($users as $user) {
-            /* @var $user AppBundle\Entity\User */
             if($user->getDateCreation() < $limit) {
                 $count++;
                 $em->remove($user);

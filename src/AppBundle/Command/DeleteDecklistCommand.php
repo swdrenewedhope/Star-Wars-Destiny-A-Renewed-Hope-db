@@ -34,16 +34,12 @@ class DeleteDecklistCommand extends ContainerAwareCommand
 		$successors = $em->getRepository('AppBundle:Decklist')->findBy(array(
 				'precedent' => $decklist
 		));
-		foreach($successors as $successor) {
-			/* @var $successor \AppBundle\Entity\Decklist */
-			$successor->setPrecedent(null);
-		}
+		foreach($successors as $successor) { $successor->setPrecedent(null); }
 		
 		$children = $em->getRepository('AppBundle:Deck')->findBy(array(
 				'parent' => $decklist
 		));
 		foreach($children as $child) {
-			/* @var $child \AppBundle\Entity\Deck */
 			$child->setParent(null);
 		}
 		

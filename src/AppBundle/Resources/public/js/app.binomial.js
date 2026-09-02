@@ -5,9 +5,6 @@
 	
 	var memo = [];
 	
-	/**
-	 * @memberOf binomial
-	 */
 	binomial.get = function(n, k) {
 		if (k === 0) {
 			return 1;

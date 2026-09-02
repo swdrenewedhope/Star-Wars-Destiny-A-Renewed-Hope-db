@@ -410,7 +410,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b45cb">
         <source>decklist.view.derived.none</source>
-        <target>None. Self-made deck here.</target>
+        <target>Nothing.</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b45cc">
         <source>decklist.view.derived.title</source>

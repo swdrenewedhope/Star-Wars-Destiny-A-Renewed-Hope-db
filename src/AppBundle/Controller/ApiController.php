@@ -24,19 +24,7 @@ class ApiController extends Controller
 
 		return $response;
 	}
-	/**
-	 * Get the description of all the formats as an array of JSON objects.
-	 * 
-	 * @ApiDoc(
-	 *  section="Format",
-	 *  resource=true,
-	 *  description="All the Formats",
-	 *  parameters={
-	 *    {"name"="jsonp", "dataType"="string", "required"=false, "description"="JSONP callback"}
-	 *  },
-	 * )
-	 * @param Request $request
-	 */
+
 	public function listFormatsAction(Request $request)
 	{
 		$response = $this->createResponse($request);
@@ -46,7 +34,7 @@ class ApiController extends Controller
 		$list_formats = $this->getDoctrine()->getRepository('AppBundle:Format')->findAll();
 
 		$lastModified = NULL;
-		/* @var $format \AppBundle\Entity\Format */
+
 		foreach($list_formats as $format) {
 			if(!$lastModified || $lastModified < $format->getDateUpdate()) {
 				$lastModified = $format->getDateUpdate();
@@ -57,10 +45,8 @@ class ApiController extends Controller
 			return $response;
 		}
 
-		// build the response
-
 		$formats = array();
-		/* @var $format \AppBundle\Entity\Format */
+
 		foreach($list_formats as $format) {
 			$formats[] = array(
 					"name" => $format->getName(),
@@ -82,19 +68,6 @@ class ApiController extends Controller
 		return $response;
 	}
 
-	/**
-	 * Get the description of all the sets as an array of JSON objects.
-	 * 
-	 * @ApiDoc(
-	 *  section="Set",
-	 *  resource=true,
-	 *  description="All the Sets",
-	 *  parameters={
-	 *    {"name"="jsonp", "dataType"="string", "required"=false, "description"="JSONP callback"}
-	 *  },
-	 * )
-	 * @param Request $request
-	 */
 	public function listSetsAction(Request $request)
 	{
 		$response = new Response();
@@ -106,13 +79,9 @@ class ApiController extends Controller
 		));
 
 		$jsonp = $request->query->get('jsonp');
-
 		$list_sets = $this->getDoctrine()->getRepository('AppBundle:Set')->findAll();
-
-		// check the last-modified-since header
-
 		$lastModified = NULL;
-		/* @var $set \AppBundle\Entity\Set */
+
 		foreach($list_sets as $set) {
 			if(!$lastModified || $lastModified < $set->getDateUpdate()) {
 				$lastModified = $set->getDateUpdate();
@@ -124,7 +93,7 @@ class ApiController extends Controller
 		}
 
 		$sets = array();
-		/* @var $set \AppBundle\Entity\Set */
+
 		foreach($list_sets as $set) {
 			$real = count($set->getCards());
 			$max = $set->getSize();
@@ -152,32 +121,6 @@ class ApiController extends Controller
 		return $response;
 	}
 
-	/**
-	 * Get the description of a card as a JSON object.
-	 *
-	 * @ApiDoc(
-	 *  section="Card",
-	 *  resource=true,
-	 *  description="One Card",
-	 *  parameters={
-	 *      {"name"="jsonp", "dataType"="string", "required"=false, "description"="JSONP callback"}
-	 *  },
-	 *  requirements={
-     *      {
-     *          "name"="card_code",
-     *          "dataType"="string",
-     *          "description"="The code of the card to get, e.g. '01001'"
-     *      },
-     *      {
-     *          "name"="_format",
-     *          "dataType"="string",
-     *          "requirement"="json",
-     *          "description"="The format of the returned data. Only 'json' is supported at the moment."
-     *      }
-     *  },
-	 * )
-	 * @param Request $request
-	 */
 	public function getCardAction($card_code, Request $request)
 	{
 
@@ -190,13 +133,9 @@ class ApiController extends Controller
 		));
 
 		$jsonp = $request->query->get('jsonp');
-
 		$card = $this->getDoctrine()->getRepository('AppBundle:Card')->findOneBy(array("code" => $card_code));
-
-		// check the last-modified-since header
-
 		$lastModified = NULL;
-		/* @var $card \AppBundle\Entity\Card */
+
 		if(!$lastModified || $lastModified < $card->getDateUpdate()) {
 			$lastModified = $card->getDateUpdate();
 		}
@@ -205,9 +144,6 @@ class ApiController extends Controller
 			return $response;
 		}
 
-		// build the response
-
-		/* @var $card \AppBundle\Entity\Card */
 		$card = $this->get('cards_data')->getCardInfo($card, true, "en");
 
 		$content = json_encode($card);

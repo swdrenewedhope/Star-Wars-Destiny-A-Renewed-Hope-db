@@ -33,7 +33,6 @@ class ExcelController extends Controller
 
 		$associationMappings = $em->getClassMetadata('AppBundle:Card')->getAssociationMappings();
 
-		/* @var $card \AppBundle\Entity\Card */
 		foreach($cards as $card) {
 			if(empty($lastModified) || $lastModified < $card->getDateUpdate()) $lastModified = $card->getDateUpdate();
 		}
@@ -121,7 +120,6 @@ class ExcelController extends Controller
 
     public function uploadProcessAction(Request $request)
     {
-        /* @var $uploadedFile \Symfony\Component\HttpFoundation\File\UploadedFile */
         $uploadedFile = $request->files->get('upfile');
         $inputFileName = $uploadedFile->getPathname();
         $inputFileType = \PHPExcel_IOFactory::identify($inputFileName);
@@ -132,19 +130,16 @@ class ExcelController extends Controller
 
         $enableCardCreation = $request->request->has('create');
 
-        // analysis of first row
         $colNames = [];
 
         $cards = [];
         $firstRow = true;
         foreach($objWorksheet ->getRowIterator() as $row)
         {
-            // dismiss first row (titles)
             if($firstRow)
             {
                 $firstRow = false;
 
-                // analysis of first row
                 foreach ($row->getCellIterator() as $cell)
                 {
                 	$colNames[$cell->getColumn()] = $cell->getValue();
@@ -165,7 +160,6 @@ class ExcelController extends Controller
             if(count($card) && !empty($card['code'])) $cards[] = $card;
         }
 
-        /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('AppBundle:Card');
 
@@ -176,7 +170,6 @@ class ExcelController extends Controller
         $counter = 0;
         foreach($cards as $card)
         {
-        	/* @var $entity \AppBundle\Entity\Card */
         	$entity = $repo->findOneBy(array('code' => $card['code']));
         	if(!$entity) {
         		if($enableCardCreation) {
