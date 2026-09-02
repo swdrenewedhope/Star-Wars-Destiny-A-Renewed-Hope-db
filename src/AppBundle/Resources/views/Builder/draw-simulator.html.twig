@@ -12,7 +12,6 @@
 		    	{% for i in [1,2,5] %}
 		    	<button class="btn btn-default btn-sm" data-command="{{i}}">{{i}}</button>
 		    	{% endfor %}
-		    	<button class="btn btn-default btn-sm" data-command="all">{{ 'decks.simulator.all' | trans}}</button>
 		    	<button class="btn btn-default btn-sm" data-command="clear" disabled="disabled">{{ 'forms.reset' | trans}}</button>
 		    </div>
 		    <div title="{{ 'decks.simulator.oddhint' | trans }}">
@@ -24,8 +23,6 @@
 		    </div>
 		</td>
 	</tr>
-	<tr>
-		<td id="table-draw-simulator-content"></td>
-	</tr>
+	<tr> <td id="table-draw-simulator-content"></td> </tr>
 </tbody>
 </table>

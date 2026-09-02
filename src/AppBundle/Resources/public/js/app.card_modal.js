@@ -2,18 +2,12 @@
 
 var modal = null;
 
-/**
- * @memberOf card_modal
- */
 card_modal.display_modal = function display_modal(event, element) {
 	event.preventDefault();
 	$(element).qtip('destroy', true);
 	fill_modal($(element).data('code'));
 };
 
-/**
- * @memberOf card_modal
- */
 card_modal.typeahead = function typeahead(event, card) {
 	fill_modal(card.code);
 	$('#cardModal').modal('show');
@@ -25,7 +19,6 @@ var InfoTemplate = Handlebars.templates['card_modal-info'];
 function fill_modal (code) {
 	var card = app.data.cards.findById(code),
 		modal = $('#cardModal');
-
 	if(!card) return;
 
 	modal.data('code', code);
@@ -54,7 +47,6 @@ $(function () {
 	}}, '.card');
 	
 	$('[data-dismiss="modal"]').on({ click: function(event) {
-		// try to empty filter text if needed
 		setTimeout(function () {
 			let tmp = document.createElement("div");
    			tmp.innerHTML = $('#filter-text').val();

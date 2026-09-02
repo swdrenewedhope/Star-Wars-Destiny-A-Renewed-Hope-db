@@ -10,7 +10,6 @@ use Functional as F;
 
 class SearchController extends Controller
 {
-
 	public static $searchKeys = array(
 			''  => 'code',
 			'a' => 'affiliation',
@@ -56,9 +55,7 @@ class SearchController extends Controller
 		$response = new Response();
 		$response->setPublic();
 		$response->setMaxAge($this->container->getParameter('cache_expiration'));
-
 		$dbh = $this->getDoctrine()->getConnection();
-
 		$sets = $this->get('cards_data')->allsetsdata();
 
 		$types = $this->getDoctrine()->getRepository('AppBundle:Type')->findAll();
@@ -90,6 +87,7 @@ class SearchController extends Controller
 	public function zoomAction($card_code, Request $request)
 	{
 		$card = $this->getDoctrine()->getRepository('AppBundle:Card')->findByCode($card_code);
+		
 		if(!$card) throw $this->createNotFoundException('Sorry, this card is not in the database (yet?)');
 
 		$game_name = $this->container->getParameter('game_name');
@@ -169,11 +167,6 @@ class SearchController extends Controller
 		);
 	}
 
-	/**
-	 * Processes the action of the card search form 
-	 * @param Request $request
-	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
-	 */
 	public function processAction(Request $request)
 	{
 		$view = $request->query->get('view') ?: 'list';
@@ -214,20 +207,14 @@ class SearchController extends Controller
 		return $this->redirect($this->generateUrl('cards_find').'?'.http_build_query($find));
 	}
 
-	/**
-	 * Processes the action of the single card search input
-	 * @param Request $request
-	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-	 */
 	public function findAction(Request $request)
 	{
 		$q = $request->query->get('q');
 		$page = $request->query->get('page') ?: 1;
 		$view = $request->query->get('view') ?: 'list';
 		$sort = $request->query->get('sort') ?: 'name';
-
-		// we may be able to redirect to a better url if the search is on a single set
 		$conditions = $this->get('cards_data')->syntax($q);
+
 		if(count($conditions) == 1 && count($conditions[0]) == 3 && $conditions[0][1] == ":") {
 		    if($conditions[0][0] == array_search('set', SearchController::$searchKeys)) {
 		        $url = $this->get('router')->generate('cards_list', array('set_code' => $conditions[0][2], 'view' => $view, 'sort' => $sort, 'page' => $page));
@@ -278,9 +265,8 @@ class SearchController extends Controller
 
 		$conditions = $this->get('cards_data')->syntax($q);
 		$conditions = $this->get('cards_data')->validateConditions($conditions);
-
-		// reconstruction de la bonne chaine de recherche pour affichage
 		$q = $this->get('cards_data')->buildQueryFromConditions($conditions);
+
 		if($q && $rows = $this->get('cards_data')->get_search_rows($conditions, $sort))
 		{
 			if(count($rows) == 1)
@@ -305,7 +291,6 @@ class SearchController extends Controller
 					$set = $this->getDoctrine()->getRepository('AppBundle:Set')->findByCode($conditions[0][2]);
 					if($set) {
 						if ($set->getCode() == 'EoD') {
-							// Get ARHS format
 							$arhs = $this->getDoctrine()->getRepository('AppBundle:Format')->findByCode('ARHS');
 							$banlist = $arhs->getData()[banned];
 							$removelist = [];
@@ -323,8 +308,6 @@ class SearchController extends Controller
 				}
 			}
 
-
-			// calcul de la pagination
 			$nb_per_page = $pagesizes[$view];
 			$first = $nb_per_page * ($page - 1);
 			if($first > count($rows)) {
@@ -333,7 +316,6 @@ class SearchController extends Controller
 			}
 			$last = $first + $nb_per_page;
 
-			// data à passer à la view
 			for($rowindex = $first; $rowindex < $last && $rowindex < count($rows); $rowindex++) {
 				$card = $rows[$rowindex];
 				$set = $card->getSet();
@@ -351,7 +333,6 @@ class SearchController extends Controller
 
 			$first += 1;
 
-			// si on a des cartes on affiche une bande de navigation/pagination
 			if(count($rows)) {
 				if(count($rows) == 1) {
 					$pagination = $this->setnavigation($card, $q, $view, $sort);
@@ -360,7 +341,6 @@ class SearchController extends Controller
 				}
 			}
 
-			// si on est en vue "short" on casse la liste par tri
 			if(count($cards) && $view == "short") {
 
 				$sortfields = array(
@@ -392,7 +372,6 @@ class SearchController extends Controller
 			$pagetitle = $q;
 		}
 
-		// attention si $s="short", $cards est un tableau à 2 niveaux au lieu de 1 seul
 		return $this->render('AppBundle:Search:display-'.$view.'.html.twig', array(
 			"view" => $view,
 			"sort" => $sort,
@@ -435,34 +414,24 @@ class SearchController extends Controller
 
 	public function pagination($pagesize, $total, $current, $q, $view, $sort)
 	{
-		if($total < $pagesize) {
-			$pagesize = $total;
-		}
+		if($total < $pagesize) { $pagesize = $total; }
 
 		$pagecount = ceil($total / $pagesize);
-		$pageindex = ceil($current / $pagesize); #1-based
+		$pageindex = ceil($current / $pagesize);
 
 		$first = "";
-		if($pageindex > 2) {
-			$first = $this->paginationItem($q, $view, $sort, $pagesize, 1, $total);
-		}
+		if($pageindex > 2) { $first = $this->paginationItem($q, $view, $sort, $pagesize, 1, $total); }
 
 		$prev = "";
-		if($pageindex > 1) {
-			$prev = $this->paginationItem($q, $view, $sort, $pagesize, $pageindex - 1, $total);
-		}
+		if($pageindex > 1) { $prev = $this->paginationItem($q, $view, $sort, $pagesize, $pageindex - 1, $total);  }
 
 		$current = $this->paginationItem(null, $view, $sort, $pagesize, $pageindex, $total);
 
 		$next = "";
-		if($pageindex < $pagecount) {
-			$next = $this->paginationItem($q, $view, $sort, $pagesize, $pageindex + 1, $total);
-		}
+		if($pageindex < $pagecount) { $next = $this->paginationItem($q, $view, $sort, $pagesize, $pageindex + 1, $total); }
 
 		$last = "";
-		if($pageindex < $pagecount - 1) {
-			$last = $this->paginationItem($q, $view, $sort, $pagesize, $pagecount, $total);
-		}
+		if($pageindex < $pagecount - 1) { $last = $this->paginationItem($q, $view, $sort, $pagesize, $pagecount, $total); }
 
 		return $this->renderView('AppBundle:Search:pagination.html.twig', array(
 			"first" => $first,

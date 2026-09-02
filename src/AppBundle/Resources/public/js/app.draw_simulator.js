@@ -5,9 +5,6 @@ var deck = null,
 	draw_count = 0,
 	container = null;
 
-/**
- * @memberOf draw_simulator
- */
 draw_simulator.reset = function reset() {
 	$(container).empty();
 	draw_simulator.on_data_loaded();
@@ -16,9 +13,6 @@ draw_simulator.reset = function reset() {
 	$('#draw-simulator-clear').prop('disabled', true);
 };
 
-/**
- * @memberOf draw_simulator
- */
 draw_simulator.on_dom_loaded = function on_dom_loaded() {
 	$('#table-draw-simulator').on('click', 'button.btn', draw_simulator.handle_click);
 	$('#table-draw-simulator').on('click', 'img, div.card-proxy', draw_simulator.toggle_opacity);
@@ -27,9 +21,6 @@ draw_simulator.on_dom_loaded = function on_dom_loaded() {
 	$('#oddsModal').on({change: draw_simulator.compute_odds}, 'input');
 }
 
-/**
- * @memberOf draw_simulator
- */
 draw_simulator.compute_odds = function compute_odds() {
 	var inputs = {};
 	$.each(['N','K','n','k'], function (i, key) {
@@ -38,9 +29,6 @@ draw_simulator.compute_odds = function compute_odds() {
 	$('#odds-calculator-p').text( Math.round( 100 * app.hypergeometric.get_cumul(inputs.k, inputs.N, inputs.K, inputs.n) ) );
 }
 
-/**
- * @memberOf draw_simulator
- */
 draw_simulator.on_data_loaded = function on_data_loaded() {
 	deck = [];
 
@@ -53,9 +41,6 @@ draw_simulator.on_data_loaded = function on_data_loaded() {
 	initial_size = deck.length;
 }
 
-/**
- * @memberOf draw_simulator
- */
 draw_simulator.update_odds = function update_odds() {
 	for(var i=1; i<=2; i++) {
 		var odd = app.hypergeometric.get_cumul(1, initial_size, i, draw_count);
@@ -63,10 +48,6 @@ draw_simulator.update_odds = function update_odds() {
 	}
 }
 
-/**
- * @memberOf draw_simulator
- * @param draw integer
- */
 draw_simulator.do_draw = function do_draw(draw) {
 	for(var pick = 0; pick < draw && deck.length > 0; pick++) {
 		var rand = Math.floor(Math.random() * deck.length);
@@ -84,9 +65,6 @@ draw_simulator.do_draw = function do_draw(draw) {
 	draw_simulator.update_odds();
 }
 
-/**
- * @memberOf draw_simulator
- */
 draw_simulator.handle_click = function handle_click(event) {
 
 	event.preventDefault();
@@ -112,9 +90,6 @@ draw_simulator.handle_click = function handle_click(event) {
 
 };
 
-/**
- * @memberOf draw_simulator
- */
 draw_simulator.toggle_opacity = function toggle_opacity(event) {
 	$(this).css('opacity', 1.5 - parseFloat($(this).css('opacity')));
 };

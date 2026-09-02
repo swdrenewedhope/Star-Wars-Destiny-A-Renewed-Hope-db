@@ -273,7 +273,7 @@
             var amount = card.is_unique ? 1 : card.indeck.dice;
             var symbolsDie = {};
             card.sides.forEach(function(side) {
-				if (side[0] === 'X') side = side.slice(1); // Ignore X side
+				if (side[0] === 'X') side = side.slice(1);
                 var elems = /^([-+]?)([0-9X]*?)([-A-Z][a-zA-Z]?)(\d*?)$/.exec(side);
                 if(elems && elems.length > 2) {
 					var symbol = elems[3];
@@ -410,7 +410,6 @@
 			}]
 		});
 	};
-
 
 	deck_charts.setup = function setup(options) {
 		deck_charts.chart_type();

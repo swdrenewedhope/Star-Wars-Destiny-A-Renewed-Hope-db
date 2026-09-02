@@ -1,9 +1,7 @@
 (function app_collection(collection, $) {
 
 collection.isLoaded = false;
-/**
- * @memberOf collection
- */
+
 collection.init = function init(data) {
 	if(app.data.isLoaded) {
 		collection.set_owned(data);
@@ -39,10 +37,6 @@ collection.get_copies_owned = function get_copies_owned(code) {
 	return card.owned;
 }
 
-/**
- * @memberOf collection
- * @return boolean true if at least one other card quantity was updated
- */
 collection.set_card_owns = function set_card_owns(card_code, coll, quantity) {
 	var card = app.data.cards.findById(card_code);
 	if(!card) return false;

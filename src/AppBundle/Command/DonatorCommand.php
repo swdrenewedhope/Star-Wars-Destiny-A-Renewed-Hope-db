@@ -33,13 +33,10 @@ class DonatorCommand extends ContainerAwareCommand
     {
         $email = $input->getArgument('email');
         $donation = $input->getArgument('donation');
-
-        /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getContainer()->get('doctrine')->getManager();
-        /* @var $repo \AppBundle\Entity\ReviewRepository */
         $repo = $em->getRepository('AppBundle:User');
-        /* @var $user \AppBundle\Entity\User */
         $user = $repo->findOneBy(array('email' => $email));
+		
         if(!$user) {
         	$user = $repo->findOneBy(array('username' => $email));
         }

@@ -124,11 +124,9 @@ class UserAdminController extends Controller
 	public function toggleHiddenCommentAction($comment_id)
 	{
 		$entityManager = $this->getDoctrine()->getEntityManager();
-		/* @var $comment \AppBundle\Entity\Comment */
 		$comment = $entityManager->getRepository('AppBundle:Comment')->find($comment_id);
-		if(!$comment) {
-			throw $this->createNotFoundException("Comment not found");
-		}
+
+		if(!$comment) { throw $this->createNotFoundException("Comment not found"); }
 		
 		$comment->setIsHidden(!$comment->getIsHidden());
 		$entityManager->flush();
@@ -140,9 +138,8 @@ class UserAdminController extends Controller
 	{
 		$entityManager = $this->getDoctrine()->getEntityManager();
 		$comment = $entityManager->getRepository('AppBundle:Comment')->find($comment_id);
-		if(!$comment) {
-			throw $this->createNotFoundException("Comment not found");
-		}
+		
+		if(!$comment) { throw $this->createNotFoundException("Comment not found"); }
 	
 		$entityManager->remove($comment);
 		$entityManager->flush();

@@ -2,11 +2,6 @@
 
 var force_update = false;
 
-/**
- * loads the database from local
- * sets up a Promise on all data loading/updating
- * @memberOf data
- */
 data.load = function load() {
     data.isLoaded = false;
 
