@@ -23,26 +23,31 @@ class CollectionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $collection = $this->getDoctrine()->getRepository('AppBundle:Collection')->getCollection($this->getUser()->getId());
-        
         $changes = (array)json_decode($request->get('changes'));
+
         foreach($changes as $change)
         {
+			$card = $this->getDoctrine()->getRepository('AppBundle:Card')->findByCode($change->code);
+
+			if(!$card || $card->getSet()->getCode() === 'EoD1') { $EoDViolation = true; continue; } // Ignore changes to the EoD 2021 set.
+
             $slot = $collection->getSlots()->getSlotByCode($change->code);
             if(!$slot)
             {
                 $slot = new CollectionSlot();
-                $card = $this->getDoctrine()->getRepository('AppBundle:Card')->findByCode($change->code);
                 $slot->setCard($card)->setCollection($collection);
                 $collection->addSlot($slot);
             }
-            $slot->setQuantity($change->owned->cards);
+
+        $slot->setQuantity($change->owned->cards);
 	    $slot->setDice($change->owned->dice);
         }
 
         $em->persist($collection);
         $em->flush();
+		$this->get('session')->getFlashBag()->set('notice', $this->get("translator")->trans("forms.saved"));
 
-        $this->get('session')->getFlashBag()->set('notice', $this->get("translator")->trans("forms.saved"));
+		if($EoDViolation == true) { $this->get('session')->getFlashBag()->set('error', ("Changes to the Echoes of Destiny 2021 set were ignored.")); }
 
         return $this->redirect($this->generateUrl('collection_list'));
     }
