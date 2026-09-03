@@ -647,7 +647,6 @@ class CardsData
 
 	public function validateConditions($conditions)
 	{
-		// suppression des conditions invalides
 		$numeric = array('<', '>');
 
 		foreach($conditions as $i => $l)
@@ -657,7 +656,6 @@ class CardsData
 
 			if(in_array($searchOp, $numeric) && \AppBundle\Controller\SearchController::$searchTypes[$searchCode] !== 'integer')
 			{
-				// operator is numeric but searched property is not
 				unset($conditions[$i]);
 			}
 		}
@@ -667,7 +665,6 @@ class CardsData
 
 	public function buildQueryFromConditions($conditions)
 	{
-		// reconstruction de la bonne chaine de recherche pour affichage
 		return implode(" ", array_map(
 				function ($l) {
 					return ($l[0] ? $l[0].$l[1] : "")
