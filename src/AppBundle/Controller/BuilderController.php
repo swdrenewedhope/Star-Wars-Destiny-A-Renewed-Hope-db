@@ -337,7 +337,7 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
 
     public function saveAction (Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();		
 
         $user = $this->getUser();
         if (count($user->getDecks()) > $user->getMaxNbDecks())
@@ -392,6 +392,13 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
         if (! count($content)) {
             return new Response('Cannot import empty deck' . json_encode($content));
         }
+
+		// Ban Echoes of Destiny 2021 decks being created or updated during migration process.
+
+		if (preg_grep('/^17\d{3}$/', array_keys($content))) {
+    		$this->get('session')->getFlashBag()->set('error', ('Decks containing Echoes of Destiny 2021 cards cannot be created or modified. Please change them to their Echoes of Destiny counterpart or await manual migration.'));
+    		return $this->redirect($this->generateUrl('deck_view', [ 'deck_id' => $deck->getId() ]));
+		}
 
         $name = filter_var($request->get('name'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
         $decklist_id = filter_var($request->get('decklist_id'), FILTER_SANITIZE_NUMBER_INT);
@@ -797,7 +804,6 @@ public function listAction(Request $request)
             $em->persist($change);
             $em->flush();
         }
-
         return new Response($change->getDatecreation()->format('c'));
     }
 }
