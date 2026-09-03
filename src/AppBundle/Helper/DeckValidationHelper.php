@@ -11,10 +11,7 @@ use function Functional\none;
 class DeckValidationHelper
 {
 	
-	public function __construct()
-	{
-		
-	}
+	public function __construct() { }
 	
 	public function getInvalidCards($deck)
 	{

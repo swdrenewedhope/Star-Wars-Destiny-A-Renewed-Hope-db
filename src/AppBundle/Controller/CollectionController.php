@@ -6,21 +6,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use AppBundle\Entity\Card;
 use AppBundle\Entity\CollectionSlot;
 
-/**
- * Collection controller.
- *
- */
 class CollectionController extends Controller
 {
 
-    /**
-     * Lists all Card entities.
-     *
-     */
     public function indexAction()
     {
         return $this->render('AppBundle:Collection:index.html.twig', array(
@@ -71,7 +62,6 @@ class CollectionController extends Controller
         $phpActiveSheet = $phpExcelObject->setActiveSheetIndex(0);
         $phpActiveSheet->setTitle($translator->trans("card.info.collection"));
 
-        //header
         $headers = [
             $translator->trans("card.info.set"),
             "#",
