@@ -6,10 +6,6 @@ var SortKey = 'code',
 	Config = null,
 	Starters = null;
 
-/**
- * reads ui configuration from localStorage
- * @memberOf ui
- */
 ui.read_config_from_storage = function read_config_from_storage() {
 	if (localStorage) {
 		var stored = localStorage.getItem('ui.collection.config');
@@ -24,10 +20,6 @@ ui.read_config_from_storage = function read_config_from_storage() {
 	}, Config || {});
 }
 
-/**
- * write ui configuration to localStorage
- * @memberOf ui
- */
 ui.write_config_to_storage = function write_config_to_storage() {
 	if (localStorage) {
 		localStorage.setItem('ui.collection.config', JSON.stringify(Config));
@@ -74,16 +66,10 @@ ui.set_starters_data = function set_starters_data(data) {
 	Starters = _.keyBy(data, 'code');
 }
 
-/**
- * inits the state of config buttons
- * @memberOf ui
- */
 ui.init_config_buttons = function init_config_buttons() {
-	// radio
 	['buttons-behavior'].forEach(function (radio) {
 		$('input[name='+radio+'][value='+Config[radio]+']').prop('checked', true);
 	});
-	// checkbox
 	['only-show-owned', 'link-cards-dice'].forEach(function (checkbox) {
 		if(Config[checkbox]) $('input[name='+checkbox+']').prop('checked', true);
 	});
@@ -105,10 +91,6 @@ ui.init_filter_help = function init_filter_help() {
 	});
 }
 
-/**
- * sets the current quantity of cards and dice in collection
- * @memberOf ui
- */
 ui.set_current_owned = function set_current_owned() {
 	app.data.cards.find().forEach(function(record) {
 		app.data.cards.updateById(record.code, {
@@ -124,10 +106,6 @@ function get_examples(codes, key) {
 	});	
 }
 
-/**
- * builds the affiliation selector
- * @memberOf ui
- */
 ui.build_affiliation_selector = function build_affiliation_selector() {
 	$('[data-filter=affiliation_code]').empty();
 	var tpl = Handlebars.templates['ui_collection-affiliations'];
@@ -140,10 +118,6 @@ ui.build_affiliation_selector = function build_affiliation_selector() {
 	).button().find('label').tooltip({container: 'body'});
 }
 
-/**
- * builds the faction selector
- * @memberOf ui
- */
 ui.build_faction_selector = function build_faction_selector() {
 	$('[data-filter=faction_code]').empty();
 	var tpl = Handlebars.templates['ui_collection-factions'];
@@ -157,10 +131,6 @@ ui.build_faction_selector = function build_faction_selector() {
 	).button().find('label').tooltip({container: 'body'});
 }
 
-/**
- * builds the type selector
- * @memberOf ui
- */
 ui.build_type_selector = function build_type_selector() {
 	$('[data-filter=type_code]').empty();
 	var tpl = Handlebars.templates['ui_collection-types'];
@@ -170,10 +140,6 @@ ui.build_type_selector = function build_type_selector() {
 	).button().find('label').tooltip({container: 'body'});
 }
 
-/**
- * builds the rarity selector
- * @memberOf ui
- */
 ui.build_rarity_selector = function build_rarity_selector() {
 	$('[data-filter=rarity_code]').empty();
 	var tpl = Handlebars.templates['ui_collection-rarities'];
@@ -182,25 +148,14 @@ ui.build_rarity_selector = function build_rarity_selector() {
 	).button().find('label').tooltip({container: 'body'});
 }
 
-/**
- * builds the set selector
- * @memberOf ui
- */
 ui.build_set_selector = function build_set_selector() {
 	$('[data-filter=set_code]').empty();
 	app.data.sets.find({
-		name: {
-			'$exists': true
-		}, 
-		available: {
-			'$exists': true
-		}
-	}, {
-	    $orderBy: {
-	        position: 1
-	    }
+		name: { '$exists': true }, 
+		available: { '$exists': true },
+		code: {'$ne': 'EoD1'}
+	}, { $orderBy: { position: 1 }
 	}).forEach(function(record) {
-		// checked or unchecked ? checked by default
 		var checked = true;
 		$('<li><a href="#"><label><input type="checkbox" name="' + record.code + '"' + (checked ? ' checked="checked"' : '') + '><span class="icon-set-'+record.code+'"></span> ' + record.name + '</label></a></li>').appendTo('[data-filter=set_code]');
 	});
@@ -250,10 +205,6 @@ ui.on_click_filter = function on_click_filter(event) {
 	}
 }
 
-/**
- * @memberOf ui
- * @param event
- */
 ui.on_input_smartfilter = function on_input_smartfilter(event) {
 	var q = $(this).val();
 	if(q.match(/^\w[:<>!]/)) app.smart_filter.update(q);
@@ -261,10 +212,6 @@ ui.on_input_smartfilter = function on_input_smartfilter(event) {
 	ui.refresh_list();
 }
 
-/**
- * @memberOf ui
- * @param event
- */
 ui.on_submit_form = function on_submit_form(event) {
 	event.stopPropagation();
 	var toSave = ui.get_collection_changes();
@@ -273,10 +220,6 @@ ui.on_submit_form = function on_submit_form(event) {
 	$form.submit();
 }
 
-/**
- * sets up event handlers ; dataloaded not fired yet
- * @memberOf ui
- */
  ui.on_button_spin = function on_button_spin(event) {
 	event.stopPropagation();
 
@@ -289,7 +232,6 @@ ui.on_submit_form = function on_submit_form(event) {
 	if(quantity >= 0)
 		ui.on_quantity_change(code, coll, quantity);
 
-	//if cards and dice linked, update the other coll
 	if(Config['link-cards-dice']) {
 		var otherColl = coll=='cards' ? 'dice' : 'cards';
 		var otherQty = parseInt(row.find('[data-spin='+otherColl+']').find('span.value').text(), 10) + inc;
@@ -298,10 +240,6 @@ ui.on_submit_form = function on_submit_form(event) {
 	}
  }
  
- /**
-  * sets up event handlers ; dataloaded not fired yet
-  * @memberOf ui
-  */
   ui.on_all_spin = function on_all_spin(event) {
  	event.stopPropagation();
 
@@ -314,7 +252,6 @@ ui.on_submit_form = function on_submit_form(event) {
 		if(qty >= 0)
 			ui.on_quantity_change(code, 'cards', qty);
 			
-		//if cards and dice linked, update the other coll
 		if(Config['link-cards-dice']) {
 			var qty = parseInt(row.find('[data-spin=dice]').find('span.value').text(), 10) + inc;
 			if(qty >= 0)
@@ -323,10 +260,6 @@ ui.on_submit_form = function on_submit_form(event) {
 	})
   }
 
-/**
- * sets up event handlers ; dataloaded not fired yet
- * @memberOf ui
- */
  ui.on_quantity_change = function on_quantity_change(card_code, coll, quantity) {
 	var update_all = app.collection.set_card_owns(card_code, coll, quantity);
 	

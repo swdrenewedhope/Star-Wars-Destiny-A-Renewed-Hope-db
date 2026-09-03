@@ -1086,7 +1086,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4674">
         <source>forms.saved</source>
-        <target>Data saved</target>
+        <target>Collection updated!</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b4675">
         <source>forms.search</source>
