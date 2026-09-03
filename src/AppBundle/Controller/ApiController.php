@@ -28,11 +28,8 @@ class ApiController extends Controller
 	public function listFormatsAction(Request $request)
 	{
 		$response = $this->createResponse($request);
-
 		$jsonp = $request->query->get('jsonp');
-
 		$list_formats = $this->getDoctrine()->getRepository('AppBundle:Format')->findAll();
-
 		$lastModified = NULL;
 
 		foreach($list_formats as $format) {
@@ -40,10 +37,10 @@ class ApiController extends Controller
 				$lastModified = $format->getDateUpdate();
 			}
 		}
+
 		$response->setLastModified($lastModified);
-		if ($response->isNotModified($request)) {
-			return $response;
-		}
+		
+		if ($response->isNotModified($request)) { return $response; }
 
 		$formats = array();
 
@@ -123,7 +120,6 @@ class ApiController extends Controller
 
 	public function getCardAction($card_code, Request $request)
 	{
-
 		$response = new Response();
 		$response->setPublic();
 		$response->setMaxAge($this->container->getParameter('cache_expiration'));
@@ -145,8 +141,8 @@ class ApiController extends Controller
 		}
 
 		$card = $this->get('cards_data')->getCardInfo($card, true, "en");
-
 		$content = json_encode($card);
+
 		if(isset($jsonp))
 		{
 			$content = "$jsonp($content)";
@@ -160,20 +156,6 @@ class ApiController extends Controller
 
 	}
 
-
-	/**
-	 * Get the description of all the cards as an array of JSON objects.
-	 *
-	 * @ApiDoc(
-	 *  section="Card",
-	 *  resource=true,
-	 *  description="All the Cards",
-	 *  parameters={
-	 *      {"name"="jsonp", "dataType"="string", "required"=false, "description"="JSONP callback"}
-	 *  },
-	 * )
-	 * @param Request $request
-	 */
 	public function listCardsAction(Request $request)
 	{
 		$locale = $request->getLocale();
@@ -187,13 +169,9 @@ class ApiController extends Controller
 		));
 
 		$jsonp = $request->query->get('jsonp');
-
 		$list_cards = $this->getDoctrine()->getRepository('AppBundle:Card')->findAll();
-
-		// check the last-modified-since header
-
 		$lastModified = NULL;
-		/* @var $card \AppBundle\Entity\Card */
+
 		foreach($list_cards as $card) {
 			if(!$lastModified || $lastModified < $card->getDateUpdate()) {
 				$lastModified = $card->getDateUpdate();
@@ -204,10 +182,8 @@ class ApiController extends Controller
 			return $response;
 		}
 
-		// build the response
-
 		$cards = array();
-		/* @var $card \AppBundle\Entity\Card */
+
 		foreach($list_cards as $card) {
 			$cards[] = $this->get('cards_data')->getCardInfo($card, true, $locale);
 		}
@@ -226,33 +202,6 @@ class ApiController extends Controller
 
 	}
 
-
-	/**
-	 * Get the description of all the card from a set, as an array of JSON objects.
-	 *
-	 * @ApiDoc(
-	 *  section="Card",
-	 *  resource=true,
-	 *  description="All the Cards from One Pack",
-	 *  parameters={
-	 *      {"name"="jsonp", "dataType"="string", "required"=false, "description"="JSONP callback"}
-	 *  },
-	 *  requirements={
-     *      {
-     *          "name"="set_code",
-     *          "dataType"="string",
-     *          "description"="The code of the set to get the cards from, e.g. 'Core'"
-     *      },
-     *      {
-     *          "name"="_format",
-     *          "dataType"="string",
-     *          "requirement"="json|xml|xlsx|xls",
-     *          "description"="The format of the returned data. Only 'json' is supported at the moment."
-     *      }
-     *  },
-	 * )
-	 * @param Request $request
-	 */
 	public function listCardsBySetAction($set_code, Request $request)
 	{
 		$response = new Response();
@@ -306,20 +255,6 @@ class ApiController extends Controller
 		return $response;
 	}
 
-	/**
-	 * Find card(s) matching the same query format used on cards page on the web, as an array of JSON objects.
-	 *
-	 * @ApiDoc(
-	 *  section="Card",
-	 *  resource=true,
-	 *  description="All cards matching query",
-	 *  parameters={
-	 *      {"name"="q", "dataType"="string", "required"=false, "description"="The query to find cards"},
-	 *      {"name"="jsonp", "dataType"="string", "required"=false, "description"="JSONP callback"}
-	 *  }
-	 * )
-	 * @param Request $request
-	 */
 	public function findCardsAction(Request $request)
 	{
 		$locale = $request->getLocale();
@@ -369,34 +304,6 @@ class ApiController extends Controller
 		return $response;
 	}
 
-
-	/**
-	 * Get the description of a decklist as a JSON object.
-	 *
-	 * @ApiDoc(
-	 *  section="Decklist",
-	 *  resource=true,
-	 *  description="One Decklist",
-	 *  parameters={
-	 *      {"name"="jsonp", "dataType"="string", "required"=false, "description"="JSONP callback"}
-	 *  },
-	 *  requirements={
-	 *      {
-	 *          "name"="decklist_id",
-	 *          "dataType"="integer",
-	 *          "requirement"="\d+",
-	 *          "description"="The numeric identifier of the decklist"
-	 *      },
-	 *      {
-	 *          "name"="_format",
-	 *          "dataType"="string",
-	 *          "requirement"="json",
-	 *          "description"="The format of the returned data. Only 'json' is supported at the moment."
-	 *      }
-	 *  },
-	 * )
-	 * @param Request $request
-	 */
 	public function getDecklistAction($decklist_id, Request $request)
 	{
 		$response = new Response();
@@ -435,33 +342,6 @@ class ApiController extends Controller
 		
 	}
 
-	/**
-	 * Get the description of all the decklists published at a given date, as an array of JSON objects.
-	 *
-	 * @ApiDoc(
-	 *  section="Decklist",
-	 *  resource=true,
-	 *  description="All the Decklists from One Day",
-	 *  parameters={
-	 *      {"name"="jsonp", "dataType"="string", "required"=false, "description"="JSONP callback"}
-	 *  },
-	 *  requirements={
-     *      {
-     *          "name"="date",
-     *          "dataType"="string",
-     *          "requirement"="\d\d\d\d-\d\d-\d\d",
-     *          "description"="The date, format 'Y-m-d'"
-     *      },
-     *      {
-     *          "name"="_format",
-     *          "dataType"="string",
-     *          "requirement"="json",
-     *          "description"="The format of the returned data. Only 'json' is supported at the moment."
-     *      }
-     *  },
-	 * )
-	 * @param Request $request
-	 */
 	public function listDecklistsByDateAction($date, Request $request)
 	{
 		$response = new Response();
@@ -514,23 +394,6 @@ class ApiController extends Controller
 		
 	}
 
-/**
- * Get the description of a unlisted deck as a JSON object.
- *
- * @ApiDoc(
- *  section="Deck",
- *  resource=true,
- *  description="One Deck (public)",
- *  parameters={
- *      {"name"="jsonp", "dataType"="string", "required"=false, "description"="JSONP callback"}
- *  },
- *  requirements={
- *      {"name"="deck_id", "dataType"="integer", "requirement"="\d+", "description"="The numeric identifier of the deck"},
- *      {"name"="_format", "dataType"="string", "requirement"="json", "description"="The format of the returned data. Only 'json' is supported at the moment."}
- *  }
- * )
- * @param Request $request
- */
 public function getDeckAction($deck_id, Request $request)
 {
     $response = new Response();
