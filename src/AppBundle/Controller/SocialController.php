@@ -43,7 +43,6 @@ class SocialController extends Controller
         $decklistsSinceYesterday = $query->getSingleScalarResult();
 
         if($decklistsSinceYesterday >= 3 && $user->getDonation() <= 0) {
-
             $this->get('session')->getFlashBag()->set('error', $translator->trans('decklist.publish.errors.antispam.limit'));
             return $this->redirect($this->generateUrl('deck_view', [ 'deck_id' => $deck->getId() ]));
         }
