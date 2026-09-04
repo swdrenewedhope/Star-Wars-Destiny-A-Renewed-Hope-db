@@ -7972,5 +7972,24 @@
         "text": "Heal 3 damage from a character or remove 3 damage from a support.",
         "ttscardid": "47241",
         "type_code": "event"
+    },
+	{
+        "affiliation_code": "hero",
+        "code": "20317",
+        "cost": 0,
+        "deck_limit": 2,
+        "faction_code": "blue",
+        "has_die": false,
+        "has_errata": false,
+        "illustrator": "David Sondered",
+        "is_unique": false,
+        "name": "Krayt Dragon Howl",
+        "position": 38,
+        "rarity_code": "C",
+        "reprint_of": "02104",
+        "set_code": "EoD",
+        "text": "Spot a Blue character to choose an opponent's die. That opponent chooses to either remove that die or discard the top 2 cards of their deck.",
+        "ttscardid": "00000",
+        "type_code": "event"
     }
 ]
