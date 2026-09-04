@@ -140,10 +140,6 @@ ui.do_action_selection = function do_action_selection(event) {
 	return false;
 }
 
-/**
- * called when the DOM is loaded
- * @memberOf ui
- */
 ui.on_dom_loaded = function on_dom_loaded() {
 
 	$('#decks').on('click', 'button.btn-delete-deck', ui.confirm_delete);
@@ -173,20 +169,7 @@ ui.on_dom_loaded = function on_dom_loaded() {
 
 };
 
-/**
- * called when the app data is loaded
- * @memberOf ui
- */
-ui.on_data_loaded = function on_data_loaded() {
-
-};
-
-/**
- * called when both the DOM and the data app have finished loading
- * @memberOf ui
- */
-ui.on_all_loaded = function on_all_loaded() {
-};
-
+ui.on_data_loaded = function on_data_loaded() {};
+ui.on_all_loaded = function on_all_loaded() {};
 
 })(app.ui, jQuery);
