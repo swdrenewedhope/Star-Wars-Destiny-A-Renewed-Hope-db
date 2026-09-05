@@ -8010,5 +8010,24 @@
         "text": "Remove one of your character dice to force an opponent to choose and remove 2 of their dice.",
         "ttscardid": "00000",
         "type_code": "event"
+    },
+	{
+        "affiliation_code": "neutral",
+        "code": "20319",
+        "deck_limit": 1,
+        "faction_code": "gray",
+        "has_die": false,
+        "has_errata": false,
+        "illustrator": "Tiziano Baracchi",
+        "is_unique": false,
+        "name": "Espionage",
+        "points": "1",
+        "position": 320,
+        "rarity_code": "U",
+        "reprint_of": "05168",
+        "set_code": "EoD",
+        "text": "After setup, discard the top card from each deck.",
+        "ttscardid": "00000",
+        "type_code": "plot"
     }
 ]
