@@ -152,7 +152,7 @@ ui.build_set_selector = function build_set_selector() {
 	$('[data-filter=set_code]').empty();
 	app.data.sets.find({
 		name: { '$exists': true }, 
-		//code: {'$ne': 'EoD1'},
+		code: {'$nin': ['EoD', 'EoD1'] },
 		available: { '$exists': true }
 	}, { $orderBy: { position: 1 }
 	}).forEach(function(record) {

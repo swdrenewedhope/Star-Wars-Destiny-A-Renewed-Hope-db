@@ -29,9 +29,10 @@ class CollectionController extends Controller
         {
 			$card = $this->getDoctrine()->getRepository('AppBundle:Card')->findByCode($change->code);
 
-			if(!$card || $card->getSet()->getCode() === 'EoD1') { $EoDViolation = true; continue; } // Ignore changes to the EoD 2021 set.
-
-            $slot = $collection->getSlots()->getSlotByCode($change->code);
+			if(!$card || $card->getSet()->getCode() === 'EoD') { $EoDViolation = true; continue; } // Ignore changes to the EoD set.
+			if(!$card || $card->getSet()->getCode() === 'EoD1') { $EoDViolation = true; continue; } // Ignore changes to the EoD1 set.
+            
+			$slot = $collection->getSlots()->getSlotByCode($change->code);
             if(!$slot)
             {
                 $slot = new CollectionSlot();
@@ -47,7 +48,7 @@ class CollectionController extends Controller
         $em->flush();
 		$this->get('session')->getFlashBag()->set('notice', $this->get("translator")->trans("forms.saved"));
 
-		if($EoDViolation == true) { $this->get('session')->getFlashBag()->set('error', ("Changes to the Echoes of Destiny 2021 set were ignored.")); }
+		if($EoDViolation == true) { $this->get('session')->getFlashBag()->set('error', ("Changes to the Echoes of Destiny & Echoes of Destiny 2021 sets were ignored as they are re-print sets of existing cards.")); }
 
         return $this->redirect($this->generateUrl('collection_list'));
     }
