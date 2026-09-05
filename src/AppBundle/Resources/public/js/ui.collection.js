@@ -424,7 +424,7 @@ ui.refresh_list = _.debounce(function refresh_list() {
 	$('#showing-cards').text(showingText);
 
 	ui.update_spinners();
-}, 250); // Time to wait before rebuilding cards.
+}, 100); // Time to wait before rebuilding list.
 
 ui.refresh_row = function refresh_row(card_code) {
 	CardDivs.forEach(function(rows) {
