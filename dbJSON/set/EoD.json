@@ -7991,5 +7991,24 @@
         "text": "Spot a Blue character to choose an opponent's die. That opponent chooses to either remove that die or discard the top 2 cards of their deck.",
         "ttscardid": "00000",
         "type_code": "event"
+    },
+	{
+        "affiliation_code": "hero",
+        "code": "20318",
+        "cost": 1,
+        "deck_limit": 2,
+        "faction_code": "yellow",
+        "has_die": false,
+        "has_errata": false,
+        "illustrator": "Matt Bradbury",
+        "is_unique": false,
+        "name": "Negotiate",
+        "position": 319,
+        "rarity_code": "C",
+        "reprint_of": "01131",
+        "set_code": "EoD",
+        "text": "Remove one of your character dice to force an opponent to choose and remove 2 of their dice.",
+        "ttscardid": "00000",
+        "type_code": "event"
     }
 ]
