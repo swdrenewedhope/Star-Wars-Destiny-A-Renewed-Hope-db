@@ -179,10 +179,6 @@ function check_all_inactive() {
 	$(this).closest('[data-filter]').find("label:not(.active)").button('toggle');
 }
 
-/**
- * @memberOf ui
- * @param event
- */
 ui.on_click_filter = function on_click_filter(event) {
 	var dropdown = $(this).closest('ul').hasClass('dropdown-menu');
 	if (dropdown) {
@@ -271,11 +267,6 @@ ui.on_submit_form = function on_submit_form(event) {
 	}
  }
 
-
-/**
- * @memberOf ui
- * @param event
- */
 ui.on_config_change = function on_config_change(event) {
 	var name = $(this).attr('name');
 	var type = $(this).prop('type');
@@ -303,34 +294,6 @@ ui.on_config_change = function on_config_change(event) {
 	}
 }
 
-/**
- * @memberOf ui
- * @param event
- */
-ui.on_click_add_starter = function on_click_add_starter(event) {
-	event.stopPropagation();
-
-	var starter = Starters[$(this).data('starter')];
-	if(confirm(Translator.trans('collection.addstarter.confirm', {pack: starter.name, set: starter.set_name}))) {
-		$.each(starter.slots, function(code, qtys) {
-			var card = app.data.cards.findById(code);
-			app.data.cards.updateById(code, {
-				owned: {
-					cards: card.owned.cards + qtys.quantity,
-					dice: card.owned.dice + qtys.dice
-				}
-			});
-		});
-		ui.reset_list();
-	}
-	$('#add-starter').blur();
-}
-
-
-/**
- * @memberOf ui
- * @param event
- */
 ui.on_table_sort_click = function on_table_sort_click(event) {
 	event.preventDefault();
 	var new_sort = $(this).data('sort');
@@ -344,10 +307,6 @@ ui.on_table_sort_click = function on_table_sort_click(event) {
 	ui.update_sort_caret();
 }
 
-/**
- * sets up event handlers ; dataloaded not fired yet
- * @memberOf ui
- */
 ui.setup_event_handlers = function setup_event_handlers() {
 
 	$('[data-filter]').on({
@@ -356,15 +315,10 @@ ui.setup_event_handlers = function setup_event_handlers() {
 	}, 'label');
 
 	$('#btn-save').on('click', ui.on_submit_form);
-
 	$('#collection').on('click', 'button.btn-spin', ui.on_button_spin);
 	$('#collection').on('click', 'button.btn-all-spin', ui.on_all_spin);
-
 	$('#filter-text').on('input', ui.on_input_smartfilter);
 	$('#config-options').on('change', 'input', ui.on_config_change);
-
-	$('#add-starter').on('click', 'a[data-starter]', ui.on_click_add_starter);
-
 	$('thead').on('click', 'a[data-sort]', ui.on_table_sort_click);
 
 	$('#form').dirtyForms({
@@ -381,10 +335,6 @@ ui.setup_event_handlers = function setup_event_handlers() {
 	});
 }
 
-/**
- * returns the current card filters as an array
- * @memberOf ui
- */
 ui.get_filters = function get_filters() {
 	var filters = {};
 	$('[data-filter]').each(
@@ -397,10 +347,8 @@ ui.get_filters = function get_filters() {
 				}
 			);
 			if(arr.length) {
-				filters[column_name] = {
-					'$in': arr
-				};
-			}
+				filters[column_name] = { '$in': arr };
+			} else if (column_name === 'set_code') { filters[column_name] = {'$in': []} };
 		}
 	);
 	return filters;
@@ -413,10 +361,6 @@ ui.get_collection_changes = function get_collection_changes() {
 		.value();
 }
 
-/**
- * builds a row for the list of available cards
- * @memberOf ui
- */
 var DisplayColumnsTpl = Handlebars.templates['ui_collection-display-row'];
 ui.build_row = function build_row(card) {
 	var html = $(DisplayColumnsTpl({
@@ -433,11 +377,6 @@ ui.reset_list = function reset_list() {
 	ui.refresh_list();
 }
 
-/**
- * destroys and rebuilds the list of available cards
- * don't fire unless 250ms has passed since last invocation
- * @memberOf ui
- */
 ui.refresh_list = _.debounce(function refresh_list() {
 	ui.write_filters_to_storage();
 
@@ -485,18 +424,15 @@ ui.refresh_list = _.debounce(function refresh_list() {
 	$('#showing-cards').text(showingText);
 
 	ui.update_spinners();
-}, 250);
+}, 250); // Time to wait before rebuilding cards.
 
 ui.refresh_row = function refresh_row(card_code) {
-	// for each set of divs (1, 2, 3 columns)
 	CardDivs.forEach(function(rows) {
 		var row = rows[card_code];
 		if(!row) return;
 
 		var card = app.data.cards.findById(card_code);
-		
-		// rows[card_code] is the card row of our card
-		// for each "quantity switch" on that row
+
 		row.find('[data-spin]').each(function(idx, spinner) {
 			$(spinner).find('span.value').text(card.owned[$(spinner).data('spin')]);
 		});
@@ -537,20 +473,12 @@ ui.set_card_collection_status = function set_card_collection_status(card, row) {
 	}
 }
 
-/**
- * called when the DOM is loaded
- * @memberOf ui
- */
 ui.on_dom_loaded = function on_dom_loaded() {
 	ui.init_config_buttons();
 	ui.init_filter_help();
 	ui.setup_event_handlers();
 };
 
-/*
-* * called when the app data is loaded
- * @memberOf ui
- */
 ui.on_data_loaded = function on_data_loaded() {
 	if(app.collection.isLoaded) {
 		ui.set_current_owned();
@@ -561,10 +489,6 @@ ui.on_data_loaded = function on_data_loaded() {
 	}
 };
 
-/**
- * called when both the DOM and the data app have finished loading
- * @memberOf ui
- */
 ui.on_all_loaded = function on_all_loaded() {
 	ui.build_affiliation_selector();
 	ui.build_faction_selector();
