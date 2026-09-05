@@ -8059,5 +8059,36 @@
         "text": "After you play a <b>vehicle</b> <em>(including this support)</em>, you may deal 1 indirect damage ([indirect]) to an opponent.\nAfter you play a <i>droid</i> <em>(including this support)</em>, you may activate it.",
         "ttscardid": "00000",
         "type_code": "support"
+    },
+	{
+        "affiliation_code": "villain",
+        "code": "20321",
+        "cost": 4,
+        "deck_limit": 2,
+        "faction_code": "yellow",
+        "flavor": "\"There will be no bargain.\" <cite>Jabba the Hutt</cite>",
+        "has_die": true,
+        "has_errata": false,
+        "illustrator": " ",
+        "is_unique": false,
+        "name": "Crime Lord",
+        "position": 322,
+        "rarity_code": "L",
+        "reprint_of": "09049",
+        "set_code": "EoD",
+        "sides": [
+            "2F",
+            "3Dr1",
+            "2Sh",
+            "2R",
+            "Sp",
+            "Sp"
+        ],
+        "subtypes": [
+            "ability"
+        ],
+        "text": "Yellow Character only.\n[special] - Spend 5 resources to choose a character. Before this round ends, defeat that character.",
+        "ttscardid": "00000",
+        "type_code": "upgrade"
     }
 ]
