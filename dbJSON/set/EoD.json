@@ -8029,5 +8029,35 @@
         "text": "After setup, discard the top card from each deck.",
         "ttscardid": "00000",
         "type_code": "plot"
+    },
+	{
+        "affiliation_code": "neutral",
+        "code": "20320",
+        "cost": 4,
+        "deck_limit": 2,
+        "faction_code": "red",
+        "has_die": true,
+        "has_errata": false,
+        "is_unique": false,
+        "name": "Hailfire Droid Tank",
+        "position": 321,
+        "rarity_code": "L",
+        "reprint_of": "07130",
+        "set_code": "EoD",
+        "sides": [
+            "2RD",
+            "3RD1",
+            "2ID",
+            "3ID",
+            "2Dr",
+            "1Sh"
+        ],
+        "subtypes": [
+            "droid",
+            "vehicle"
+        ],
+        "text": "After you play a <b>vehicle</b> <em>(including this support)</em>, you may deal 1 indirect damage ([indirect]) to an opponent.\nAfter you play a <i>droid</i> <em>(including this support)</em>, you may activate it.",
+        "ttscardid": "00000",
+        "type_code": "support"
     }
 ]
