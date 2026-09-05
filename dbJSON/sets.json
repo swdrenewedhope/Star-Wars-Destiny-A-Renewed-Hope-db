@@ -209,17 +209,6 @@
     {
         "cgdb_id_end": null,
         "cgdb_id_start": null,
-        "code": "EoD1",
-        "cycle_code": "EoDA",
-        "date_release": "2021-11-01",
-        "name": "Echoes of Destiny 2021",
-        "position": 901,
-        "project_name": "Echoes of Destiny Archive",
-        "size": 100
-    },
-    {
-        "cgdb_id_end": null,
-        "cgdb_id_start": null,
         "code": "DoP",
         "cycle_code": "FA",
         "date_release": "2022-11-23",
