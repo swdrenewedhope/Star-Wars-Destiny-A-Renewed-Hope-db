@@ -86,7 +86,7 @@
 
   {% set projectName = null %}
   {% for line in cards_data.allsetsdata() %}
-    {% if line['projectName'] != 'Echoes of Destiny Archive' and line['projectName'] != 'A Renewed Hope' %}
+    {% if line['projectName'] != 'A Renewed Hope' %}
       {% if projectName != line['projectName'] %}
         {% set projectName = line['projectName'] %}
         	<li>

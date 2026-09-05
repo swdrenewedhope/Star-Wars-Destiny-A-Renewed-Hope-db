@@ -9,9 +9,7 @@ var SortKey = 'code',
 ui.read_config_from_storage = function read_config_from_storage() {
 	if (localStorage) {
 		var stored = localStorage.getItem('ui.collection.config');
-		if(stored) {
-			Config = JSON.parse(stored);
-		}
+		if(stored) { Config = JSON.parse(stored); }
 	}
 	Config = _.extend({
 		'only-show-owned': 0,
@@ -21,15 +19,11 @@ ui.read_config_from_storage = function read_config_from_storage() {
 }
 
 ui.write_config_to_storage = function write_config_to_storage() {
-	if (localStorage) {
-		localStorage.setItem('ui.collection.config', JSON.stringify(Config));
-	}
+	if (localStorage) { localStorage.setItem('ui.collection.config', JSON.stringify(Config)); }
 }
 
 ui.write_filters_to_storage = function write_filters_to_storage() {
-	if (localStorage) {
-		localStorage.setItem('ui.collection.filters', JSON.stringify(ui.get_active_filters()));
-	}
+	if (localStorage) { localStorage.setItem('ui.collection.filters', JSON.stringify(ui.get_active_filters())); }
 }
 
 ui.get_active_filters = function get_active_filters() {
@@ -62,9 +56,7 @@ ui.init_selectors = function init_selectors() {
 	}
 }
 
-ui.set_starters_data = function set_starters_data(data) {
-	Starters = _.keyBy(data, 'code');
-}
+ui.set_starters_data = function set_starters_data(data) { Starters = _.keyBy(data, 'code'); }
 
 ui.init_config_buttons = function init_config_buttons() {
 	['buttons-behavior'].forEach(function (radio) {
@@ -148,16 +140,29 @@ ui.build_rarity_selector = function build_rarity_selector() {
 	).button().find('label').tooltip({container: 'body'});
 }
 
-ui.build_set_selector = function build_set_selector() {
-	$('[data-filter=set_code]').empty();
-	app.data.sets.find({
-		name: { '$exists': true }, 
-		code: {'$nin': ['EoD', 'EoD1'] },
+ui.build_set_selector = function build_set_selector() { var FFGSets = {}; $('[data-filter=set_code]').empty();
+	app.data.formats.find({ code: 'FFGInf' }).forEach(function(format) {
+		format.data.sets.forEach(function(code) {
+			FFGSets[code] = true;
+		}); });
+
+	$('<li class="divider"></li><li><a style="font-weight:bold; text-align:center; pointer-events:none; cursor:default">A Renewed Hope</a></li><li class="divider"></li>').appendTo('[data-filter=set_code]'); app.data.sets.find({		
+		name: { '$exists': true },
+		code: { '$nin': ['EoD', 'EoD1'] },
 		available: { '$exists': true }
 	}, { $orderBy: { position: 1 }
-	}).forEach(function(record) {
-		var checked = true;
-		$('<li><a href="#"><label><input type="checkbox" name="' + record.code + '"' + (checked ? ' checked="checked"' : '') + '><span class="icon-set-'+record.code+'"></span> ' + record.name + '</label></a></li>').appendTo('[data-filter=set_code]');
+
+	}).forEach(function(record) { if(FFGSets[record.code]) return;
+		$('<li><a href="#"><label><input type="checkbox" name="' + record.code + '" checked="checked"><span class="icon-set-' + record.code + '"></span> ' + record.name + '</label></a></li>').appendTo('[data-filter=set_code]');
+	});
+
+	$('<li class="divider"></li><li><a style="font-weight:bold; text-align:center; pointer-events:none; cursor:default">Fantasy Flight Games</a></li><li class="divider"></li>').appendTo('[data-filter=set_code]'); app.data.sets.find({		
+		name: { '$exists': true },
+		available: { '$exists': true }
+	}, { $orderBy: { position: 1 }
+	
+	}).forEach(function(record) { if(!FFGSets[record.code]) return;
+		$('<li><a href="#"><label><input type="checkbox" name="' + record.code + '" checked="checked"><span class="icon-set-' + record.code + '"></span> ' + record.name + '</label></a></li>').appendTo('[data-filter=set_code]');
 	});
 }
 
@@ -259,12 +264,8 @@ ui.on_submit_form = function on_submit_form(event) {
  ui.on_quantity_change = function on_quantity_change(card_code, coll, quantity) {
 	var update_all = app.collection.set_card_owns(card_code, coll, quantity);
 	
-	if(update_all) {
-		ui.refresh_list();
-	}
-	else {
-		ui.refresh_row(card_code);
-	}
+	if(update_all) { ui.refresh_list(); }
+	else { ui.refresh_row(card_code); }
  }
 
 ui.on_config_change = function on_config_change(event) {
@@ -424,7 +425,7 @@ ui.refresh_list = _.debounce(function refresh_list() {
 	$('#showing-cards').text(showingText);
 
 	ui.update_spinners();
-}, 100); // Time to wait before rebuilding list.
+}, 100);
 
 ui.refresh_row = function refresh_row(card_code) {
 	CardDivs.forEach(function(rows) {
@@ -496,7 +497,6 @@ ui.on_all_loaded = function on_all_loaded() {
 	ui.build_rarity_selector();
 	ui.build_set_selector();
 	ui.init_selectors();
-
 	ui.refresh_list();
 };
 
