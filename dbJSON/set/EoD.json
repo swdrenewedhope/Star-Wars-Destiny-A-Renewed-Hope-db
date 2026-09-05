@@ -8090,5 +8090,35 @@
         "text": "Yellow Character only.\n[special] - Spend 5 resources to choose a character. Before this round ends, defeat that character.",
         "ttscardid": "00000",
         "type_code": "upgrade"
+    },
+	{
+        "affiliation_code": "hero",
+        "code": "20322",
+        "cost": 3,
+        "deck_limit": 2,
+        "faction_code": "blue",
+        "has_die": true,
+        "has_errata": false,
+        "illustrator": "Ameen Naksewee",
+        "is_unique": true,
+        "name": "Rey's Lightsaber",
+        "position": 323,
+        "rarity_code": "S",
+        "reprint_of": "04030",
+        "set_code": "EoD",
+        "sides": [
+            "2MD",
+            "3MD1",
+            "+2MD",
+            "1Sh",
+            "1R",
+            "-"
+        ],
+        "subtypes": [
+            "weapon"
+        ],
+        "text": "Redeploy.\nAfter you play this upgrade, give attached character 1 shield, or 2 shields instead if attached character is Rey.",
+        "ttscardid": "00000",
+        "type_code": "upgrade"
     }
 ]
