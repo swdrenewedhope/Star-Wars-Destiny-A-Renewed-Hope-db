@@ -67,7 +67,7 @@
     {% for faction in factions %}
     <div class="radio">
       <label class="fg-{{ faction.code }}">
-        <input type="radio" name="user_faction_code" id="optionsRadios1" value="{{ faction.code }}" {% if user.color == faction.code %}checked{% endif %}>
+        <input type="radio" name="user_affiliation_code" id="optionsRadios1" value="{{ faction.code }}" {% if user.color == faction.code %}checked{% endif %}>
           {{ faction.name }}
 	  </label>
 	</div>

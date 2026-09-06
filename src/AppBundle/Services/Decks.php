@@ -32,19 +32,6 @@ class Decks
 		return $list;
 	}
 
-	/**
-	 *
-	 * @param unknown $user
-	 * @param Deck $deck
-	 * @param unknown $decklist_id
-	 * @param unknown $name
-	 * @param unknown $affiliation
-	 * @param unknown $format
-	 * @param unknown $description
-	 * @param unknown $tags
-	 * @param unknown $content
-	 * @param unknown $source_deck
-	 */
 	public function saveDeck($user, $deck, $decklist_id, $name, $affiliation, $format, $description, $tags, $content, $source_deck)
 	{
 		$deck_content = [ ];
@@ -62,7 +49,6 @@ class Decks
 		$deck->setUser($user);
 		$deck->setMinorVersion($deck->getMinorVersion() + 1);
 		$cards = [];
-		/* @var $latestSet \AppBundle\Entity\Set */
 		$latestSet = null;
 		foreach($content as $card_code => $qtys) {
 			$card = $this->doctrine->getRepository('AppBundle:Card')->findOneBy(array(
@@ -79,10 +65,7 @@ class Decks
 			$cards[$card_code] = $card;
 		}
 		$deck->setLastSet($latestSet);
-		if(empty($tags)) {
-			// tags can never be empty. if it is we put affiliation in
-			$tags = [$affiliation->getCode()];
-		}
+		if(empty($tags)) { $tags = [$affiliation->getCode()]; }
 		if(is_string($tags)) 
 		{
 			$tags = preg_split('/\s+/', $tags);
@@ -93,18 +76,15 @@ class Decks
 
 		// on the deck content
 		if ($source_deck) {
-			// compute diff between current content and saved content
 			list($listings) = $this->diff->diffContents(array(
 				$content,
 				$source_deck->getSlots()->getContent()
 			));
-			// remove all change (autosave) since last deck update (changes are sorted)
 			$changes = $this->getUnsavedChanges($deck);
 			foreach($changes as $change) {
 				$this->doctrine->remove($change);
 			}
 			$this->doctrine->flush();
-			// save new change unless empty
 			if (count($listings[0]) || count($listings[1])) {
 				$change = new Deckchange();
 				$change->setDeck($deck);
@@ -115,7 +95,6 @@ class Decks
 				$this->doctrine->flush();
 			}
 
-			// copy version
 			$deck->setMajorVersion($source_deck->getMajorVersion());
 			$deck->setMinorVersion($source_deck->getMinorVersion());
 		}
@@ -153,7 +132,6 @@ class Decks
 		foreach ( $changes as $change ) {
 			$this->doctrine->remove ( $change );
 		}
-		// if deck has only one card and it's an agenda, we delete it
 		if(count($deck->getSlots()) === 0 || (
 			count($deck->getSlots()) === 1 && $deck->getSlots()->getAgenda()
 		) ) {

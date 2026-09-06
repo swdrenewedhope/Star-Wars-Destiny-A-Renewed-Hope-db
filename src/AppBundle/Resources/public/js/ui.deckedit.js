@@ -27,7 +27,6 @@ ui.read_config_from_storage = function read_config_from_storage() {
 		}
 	}
 	Config = _.extend({
-		'show-unusable': false,
 		'show-only-deck': false,
 		'show-only-owned': false,
 		'buttons-behavior': 'cumulative'

@@ -132,8 +132,6 @@ class CardsData
 	public function get_search_rows($conditions, $sortorder, $forceempty = false)
 	{
 		$i=0;
-
-		// construction de la requete sql
 		$repo = $this->doctrine->getRepository('AppBundle:Card');
 		$qb = $repo->createQueryBuilder('c')
 		           ->select('c', 's', 't', 'f', 'a', 'y', 'd', 'b')

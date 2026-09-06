@@ -35,33 +35,20 @@ class Diff
     		}
     	}
     	
-    	// then we count each code occurence
     	$cardCodeCounts = array_count_values($cardCodes);
-    	 
-    	// list of the slots common to every slots, after removing them from every slots
     	$intersection = new ArrayCollection();
     	 
     	foreach($cardCodeCounts as $cardCode => $occurences)
     	{
-    		// if this card cannot be found in every slots, move on
     		if($occurences < count($list_slots)) continue;
     		
-    		// we'll get the card later
     		$card = null;
-    		
-    		// this is the list of where we can find that code in each flatList
-    		$indexes = [];
-    		
-    		// this is the list of the quantities we found in each flatList
+    		$indexes = [];	
     		$quantities = [];
-
-            // this is the list of the dice we found in each flatList
             $dice = [];
     		
-    		// searching all slots for that code
     		foreach($list_slots as $j => $slots)
     		{
-    			// searching the slots
     			foreach($slots as $k => $slot) {
     				if($slot->getCard()->getCode() === $cardCode) {
     					$card = $slot->getCard();
@@ -73,20 +60,15 @@ class Diff
     			}
     		}
     
-    		// we need to find the minimum quantity among all SlotCollections
     		$minimum = min($quantities);
             $minimumDice = min($dice);
-    		 
-    		// we create a slot for this
     		$slot = new Deckslot();
     		$slot->setCard($card);
     		$slot->setQuantity($minimum);
             $slot->setDice($minimumDice);
-    		 
-    		// we add this slot to the list of common slots
+    	
     		$intersection->add($slot);
     		
-    		// then we remove that many cards from every SlotCollection
     		foreach($indexes as $j => $index)
     		{
     			$slot = $list_slots[$j][$index];

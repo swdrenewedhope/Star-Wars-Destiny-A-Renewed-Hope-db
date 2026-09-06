@@ -55,8 +55,7 @@
 	{
 		event.preventDefault();
 		if($('#review-form-preview').text().length < 100) {
-			alert(Translator.trans('card.reviews.alerts.minimum', {min: 100}));
-			return;
+			alert(Translator.trans('card.reviews.alerts.minimum', {min: 100})); return;
 		}
 	
 		var form = $("#review-edit-form");

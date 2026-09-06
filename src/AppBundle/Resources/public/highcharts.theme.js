@@ -40,5 +40,4 @@ window.Highcharts.theme = {
 	    }
 	}
 };
-// Apply the theme
 Highcharts.setOptions(Highcharts.theme);

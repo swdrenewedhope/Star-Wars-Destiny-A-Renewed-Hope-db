@@ -9,9 +9,6 @@ user.params = {};
  */
 user.loaded = $.Deferred();
 
-/**
- * @memberOf user
- */
 user.query = function query() {
 	$.ajax(Routing.generate('user_info', user.params), {
 		cache: false,
@@ -31,9 +28,6 @@ user.query = function query() {
 	});
 };
 
-/**
- * @memberOf user
- */
 user.retrieve = function retrieve() {
 	if(localStorage) {
 		var timestamp = new Date(parseInt(localStorage.getItem('user_timestamp'),10));
@@ -54,33 +48,21 @@ user.retrieve = function retrieve() {
 	user.query();
 };
 
-/**
- * @memberOf user
- */
 user.wipe = function wipe() {
 	localStorage.removeItem('user');
 	localStorage.removeItem('user_timestamp');
 };
 
-/**
- * @memberOf user
- */
 user.store = function store() {
 	localStorage.setItem('user', JSON.stringify(user.data));
 	localStorage.setItem('user_timestamp', new Date().getTime());
 };
 
-/**
- * @memberOf user
- */
 user.anonymous = function anonymous() {
 	user.wipe();
 	user.dropdown('<ul class="dropdown-menu"><li><a href="'+Routing.generate('fos_user_security_login')+'">'+Translator.trans('nav.user.loginregister')+'</a></li></ul>');
 };
 
-/**
- * @memberOf user
- */
 user.update = function update() {
 	user.store();
 	user.dropdown('<ul class="dropdown-menu"><li><a href="'
@@ -96,11 +78,7 @@ user.dropdown = function dropdown(list) {
 	$('#login a').append('<span class="caret"></span>').removeClass('disabled').addClass('dropdown-toggle').attr('data-toggle', 'dropdown').after(list);
 }
 
-/**
- * @memberOf user
- */
 user.display_ads = function display_ads() {
-	// show ads if not donator
 	if(user.data && user.data.donation > 0) return;
 
 	adsbygoogle = window.adsbygoogle || [];

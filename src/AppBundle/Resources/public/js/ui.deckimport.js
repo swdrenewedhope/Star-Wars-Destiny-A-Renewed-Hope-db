@@ -39,29 +39,16 @@ ui.on_content_change = function on_content_change(event) {
 	$('input[name=faction_code').val(faction_code);
 }
 
-/**
- * called when the DOM is loaded
- * @memberOf ui
- */
 ui.on_dom_loaded = function on_dom_loaded() {
 	$('#content').change(ui.on_content_change);
 };
 
-/**
- * called when the app data is loaded
- * @memberOf ui
- */
 ui.on_data_loaded = function on_data_loaded() {
 	var characters = _.unique(_.map(app.data.cards.find(), 'name').join('').split('').sort()).join('');
 	name_regexp = new RegExp('\\(?[\\d' + characters.replace(/[[\](){}?*+^$\\.|]/g, '\\$&') + ']+\\)?', 'g');
 };
 
-/**
- * called when both the DOM and the data app have finished loading
- * @memberOf ui
- */
 ui.on_all_loaded = function on_all_loaded() {
 };
-
 
 })(app.ui, jQuery);

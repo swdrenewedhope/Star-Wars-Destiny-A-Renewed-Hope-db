@@ -902,15 +902,8 @@ deck.get_notmatching_cards = function get_notmatching_cards() {
 	});
 }
 
-/**
- * returns true if the deck can include the card as parameter
- * @memberOf deck
- */
 deck.can_include_card = function can_include_card(card) {
-	// card not valid in format
 	if(!deck.within_format_sets(card)) return false;
-
-	// banned card
 	if(_.includes(app.deck.get_format_data().data.banned, card.code)) return false;
 
 	// neutral card => yes
@@ -1089,15 +1082,9 @@ deck.can_include_card = function can_include_card(card) {
 		}
 	}
 
-	// if none above => no
 	return false;
 }
 
-/**
-* returns true if the card set (or a set with a reprint of the card) is
-* included within valid set of formats
-* @memberOf deck
-*/
 deck.within_format_sets = function within_format_sets(card) {
 	var set_codes = [card.set_code];
 	if(_.has(card, 'reprints')) {
@@ -1169,10 +1156,6 @@ deck.own_enough_dice = function own_enough_dice(card) {
 	return card.indeck.dice <= card.owned.dice;
 }
 
-/**
- * returns the number of cards in the restricted list that are included in the deck
- * @memberOf deck
- */
 deck.get_restricted_count = function get_restricted_count() {
 	return _.reduce(deck.get_format_data().data.restricted, function(sum, code) {
 		return sum + (deck.is_included(code) ? 1 : 0);
