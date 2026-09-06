@@ -29,9 +29,8 @@ class CollectionController extends Controller
         {
 			$card = $this->getDoctrine()->getRepository('AppBundle:Card')->findByCode($change->code);
 
-			if(!$card || $card->getSet()->getCode() === 'EoD') { $EoDViolation = true; continue; } // Ignore changes to the EoD set.
-			if(!$card || $card->getSet()->getCode() === 'EoD1') { $EoDViolation = true; continue; } // Ignore changes to the EoD1 set.
-            
+			if(!$card || $card->getSet()->getCode() === 'EoD') { $EoDViolation = true; continue; }
+			if(!$card || $card->getSet()->getCode() === 'EoD1') { $EoDViolation = true; continue; } 
 			$slot = $collection->getSlots()->getSlotByCode($change->code);
             if(!$slot)
             {
@@ -98,6 +97,8 @@ class CollectionController extends Controller
         $rowIndex = 2;
         foreach($cards as $card)
         {
+			if($card->getSet()->getCode() === 'EoD') { continue; }
+			
             $slot = $collection->getSlots()->getSlotByCode($card->getCode());
 
             $values = [
