@@ -21,31 +21,28 @@
                     <h4 class="media-heading" style="white-space:nowrap"><a href="{{ path('decklist_detail',{decklist_id:data.decklist.id,decklist_name:data.decklist.nameCanonical}) }}">{{ data.decklist.name }}</a></h4>
                     <div class="small">
                       <span class="deck-format">{{ data.decklist.format.name }}</span>
-                      {% set username %}
-                        <span class="username">{{ macros.username_colorless(data.decklist.user) }}</span>
-                      {% endset %}
+					{% set username %}
+  						<span class="username">{{ macros.username_colorless(data.decklist.user) }}</span>
+					{% endset %}
                       {{ 'userby' | trans({'%user%': username}) | raw }}
                       &middot;
                       <time datetime="{{ data.decklist.dateCreation|date('c') }}">{{ data.decklist.dateCreation|date('M d, Y') }}</time>
-                    </div>
+                      &middot;
+					</div>
                 </div>
               </div>
           </div>
           <div class="lightflippy" style="background-color: {% if app.request.cookies.get('lightmode') %}white{% else %}#0b1822{% endif %}; padding: 10px 20px 20px 20px; border: 1px solid black; border-top: 0;">
-              <div class="small pull-right">
-                  {{ macros.decklist_social_icons(data.decklist ) }}
+              <div style="overflow:hidden;">
+                  <div class="small pull-right">
+                      {{ macros.decklist_social_icons(data.decklist ) }}
+                  </div>
               </div>
-              <div>
-                {% for faction in data.factions %}
-                  <span class="fg-{{faction}}">{{ factionNames[faction] }}</span>
-                  {% if not loop.last %} / {% endif %}
-                {% endfor %}
-              </div>
+
               <div class="text-center character-card-list plot-card-list">
                 {% for plot in data.plot_deck %}
                   {% set card = cards_data.getCardInfo(plot.getCard()) %}
                   <div class="index-plot">
-
                     <div class="plot-thumbnail card-thumbnail-2x card-thumbnail-plot" style="background-image:url('{{card.imagesrc}}')">
                       <div class="plot-icon">
                         <span class="icon-plot"></span>
@@ -82,7 +79,7 @@
                   </div>
                 {% endfor %}
               </div>
-              <table class="table small" style="width:50%; margin: 0 auto;">
+              <table class="table small" style="width:70%; margin: 0 auto;">
                 <thead>
                   <tr>
                     {% for type in data.count_by_type|keys %}
@@ -101,7 +98,6 @@
                   </tr>
                 </tbody>
               </table>
-              <div class="text-center small"><a href="{{ path('decklists_list',{type:'find',affiliation:data.affiliation.code}) }}">{{ 'seemore.affiliation' | trans }}</a></div>
               <div style="clear:both"></div>
           </div>
       </div>
