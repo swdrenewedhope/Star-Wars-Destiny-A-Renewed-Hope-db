@@ -111,8 +111,9 @@ $(function () {
 	<h5>
 		<time class="pull-right" datetime="{{ decklist.dateCreation|date('c') }}">{{ decklist.dateCreation|date('M d') }}</time>
 		<span class="username">
+			{% if decklist.user.donation > 0 %}<span class="icon-set-TPG donator" title="Donator"></span>{% endif %}
     		<a href="{{ path('user_profile_public', {user_id:decklist.user.id,user_name:decklist.user.username|e('url')}) }}" class="fg-{{ decklist.user.color }}">{{ decklist.user.username }}</a>
-    		{% if decklist.user.donation > 0 %}<span class="fa fa-gift donator" title="Donator"></span>{% endif %}
+    		{% if decklist.user.donation > 0 %}<span class="icon-set-TPG donator flipped" title="Donator"></span>{% endif %}
 		</span>
 	</h5>
 	</article>
