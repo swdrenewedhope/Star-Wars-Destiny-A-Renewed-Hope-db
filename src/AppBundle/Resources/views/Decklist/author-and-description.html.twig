@@ -1,6 +1,7 @@
-{% import "AppBundle::macros.html.twig" as macros %}
 <h3 class="username">
 	<span class="fa fa-user"></span>
-    {{ macros.username(decklist.user) }}
+	{% if decklist.user.donation > 0 %}<span style="font-size: 32px" class="icon-set-TPG donator" title="Donator"></span>{% endif %}
+	<a href="{{ path('user_profile_public', {user_id: decklist.user.id, user_name: decklist.user.username|e('url')}) }}" class="fg-{{ decklist.user.color }}">{{ decklist.user.username }}</a>
+	{% if decklist.user.donation > 0 %}<span style="font-size: 32px" class="icon-set-TPG donator flipped" title="Donator"></span>{% endif %}
 </h3>
 <div id="deck-description">{{ decklist.descriptionHtml|raw }}</div>

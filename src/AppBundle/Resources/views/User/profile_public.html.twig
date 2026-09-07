@@ -6,9 +6,9 @@
 
 <div class="jumbotron background-{{ user.color }}-10">
    <h1>
-  {% if user.donation > 0 %}<span class="icon-set-TPG donator" title="Donator"></span>{% endif %}
+  {% if user.donation > 0 %}<span class="icon-set-TPG donator" style="font-size: 32px" title="Donator"></span>{% endif %}
   <span class="fg-{{ user.color }}">{{ user.username }}</span>
-  {% if user.donation > 0 %}<span class="icon-set-TPG donator flipped" title="Donator"></span>{% endif %}
+  {% if user.donation > 0 %}<span class="icon-set-TPG donator flipped" style="font-size: 32px" title="Donator"></span>{% endif %}
    </h1>
 	<p>
         {{'profile.public.since' | trans({'%date%': user.dateCreation|localizeddate('long', 'none') })}}.
