@@ -6,15 +6,15 @@
 <div class="row">
 
 <div class="col-md-12">
-<h1>Donators</h1>
-<p class="lead">This database is brought to you by the following people.</p>
+<h1>The Green Sabers</h1>
+<p class="lead">This database is brought to you ad-free by the following people.</p>
 <p>As a thank you to these individuals, they get a flair, double the deck slots of free users, and unlimited deck publishing per day.</p>
-<ul>
+<p>If you would like to financially support our efforts, check out our <a href="https://www.patreon.com/swdrenewedhope" target="_blank">patreon</a> and become a Green Saber.</p>
+<ul style="list-style:none; padding-left:0">
 {% for donator in donators %}
 <li>
-	<span class="icon-set-TPG donator" title="Donator"></span>
+	<span class="icon-set-TPG donator flipped" title="Donator"></span>
     <a href="{{ path('user_profile_public', {user_id:donator.id,user_name:donator.username|e('url')}) }}" class="username fg-{{ donator.color }}">{{ donator.username }}</a>
-    <span class="icon-set-TPG donator flipped" title="Donator"></span>
 </li>
 {% endfor %}
 			</ul>
