@@ -5,6 +5,9 @@ info:
     This API is under construction, please be patient.
   version: "0.1"
 
+servers:
+  - url: http://db.swdrenewedhope.com
+
 paths:
   /api/public/card/{code}:
     get:
@@ -20,10 +23,49 @@ paths:
           example: "01001"
       responses:
         '200':
-          description: The card
+          description: Returns the properties of a card.
           content:
             application/json:
               schema:
                 type: object
+                properties:
+                  sides:
+                    type: array
+                    description: Testing
+              example:
+                sides: ["1RD", "2RD", "1F", "1Dc", "1R", "-"]
+                set_code: AW
+                set_name: Awakenings
+                type_code: character
+                type_name: Character
+                faction_code: red
+                faction_name: Command
+                affiliation_code: villain
+                affiliation_name: Villain
+                rarity_code: L
+                rarity_name: Legendary
+                subtypes:
+                  - { code: leader, name: Leader }
+                  - { code: trooper, name: Trooper }
+                position: 1
+                code: "01001"
+                ttscardid: "1300"
+                name: Captain Phasma
+                subtitle: Elite Trooper
+                cost: null
+                health: 11
+                points: "12/15"
+                text: "Your non-unique characters have the Guardian keyword."
+                deck_limit: 1
+                flavor: '"Whatever you''re planning, it won''t work."'
+                illustrator: Darren Tan
+                is_unique: true
+                has_die: true
+                has_errata: true
+                flip_card: false
+                url: http://db.swdrenewedhope.com/card/01001
+                imagesrc: http://db.swdrenewedhope.com/bundles/app/images/cards/en/01/01001.jpg
+                label: "<span class='icon-set-AW'></span> Captain Phasma - Elite Trooper"
+                cp: 1215
         '500':
           description: This card does not exist.
