@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Decklist;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Collections\Criteria;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class ApiController extends Controller
@@ -24,6 +23,19 @@ class ApiController extends Controller
 
 		return $response;
 	}
+
+    function showDocsAction ()
+    {
+    	$response = new Response();
+    	$response->setPublic();
+    	$response->setMaxAge($this->container->getParameter('cache_expiration'));
+
+    	return $this->render('AppBundle:API:API.html.twig', array(
+    			"pagetitle" => "API",
+    			"game_name" => $this->container->getParameter('game_name'),
+    			"publisher_name" => $this->container->getParameter('publisher_name'),
+    	), $response);
+    }
 
 	public function listFormatsAction(Request $request)
 	{

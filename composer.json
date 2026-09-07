@@ -36,7 +36,6 @@
         "patchwork/jsqueeze": "~1.0",
         "friendsofsymfony/oauth-server-bundle": "^1.4",
         "phpunit/phpunit": "4.8.*",
-        "nelmio/api-doc-bundle": "^2.9",
         "erusev/parsedown": "^1.6",
         "stof/doctrine-extensions-bundle": "^1.2",
         "willdurand/js-translation-bundle": "^2.5",
@@ -111,7 +110,7 @@
     },
     "config": {
         "platform": {
-                "php": "7.3"
+                "php": "7.4"
         }
     }
 }

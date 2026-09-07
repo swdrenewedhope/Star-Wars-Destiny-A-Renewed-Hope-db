@@ -1,0 +1,29 @@
+openapi: 3.0.0
+info:
+  title: 'Star Wars Destiny: ARH API'
+  description: >
+    This API is under construction, please be patient.
+  version: "0.1"
+
+paths:
+  /api/public/card/{code}:
+    get:
+      tags: [Cards]
+      summary: Get a single card by its code
+      parameters:
+        - name: code
+          in: path
+          required: true
+          description: Returns a single card from an int comprising of set code and card position.
+          schema:
+            type: integer
+          example: "01001"
+      responses:
+        '200':
+          description: The card
+          content:
+            application/json:
+              schema:
+                type: object
+        '500':
+          description: This card does not exist.

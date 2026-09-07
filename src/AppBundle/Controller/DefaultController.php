@@ -82,19 +82,6 @@ class DefaultController extends Controller
         ], $response);
     }
 
-    function apiIntroAction()
-    {
-    	$response = new Response();
-    	$response->setPublic();
-    	$response->setMaxAge($this->container->getParameter('cache_expiration'));
-
-    	return $this->render('AppBundle:Default:apiIntro.html.twig', array(
-    			"pagetitle" => "API",
-    			"game_name" => $this->container->getParameter('game_name'),
-    			"publisher_name" => $this->container->getParameter('publisher_name'),
-    	), $response);
-    }
-
     public function thumbsAction()
     {
         $response = new Response();
