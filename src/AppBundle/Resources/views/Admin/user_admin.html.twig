@@ -1,6 +1,10 @@
-{% extends 'AppBundle:Admin:base.html.twig' %}
-
-{% block content -%}
+{% extends 'AppBundle::layout.html.twig' %}
+{% block body -%}
+<div class="main admin container">
+<ol class="breadcrumb">
+  <li><a href="{{ path('admin') }}">admin</a></li>
+  <li class="active">{{ app.request.get('_route') }}</li>
+</ol>
 <h1>User Administration</h1>
 
 {% for label, flashes in app.session.flashbag.all %}
@@ -23,9 +27,9 @@
 	<td></td>
 </tr>
 <tr>
-	<td>Blocked</td>
+	<td>Account locked</td>
 	<td>{% if user.locked %}Yes{% else %}No{% endif %}</td>
-	<td><a href="{{ path('admin_user_locked_toggle',{user_id:user.id}) }}" class="btn btn-danger">{% if user.locked %}Unblock{% else %}Block{% endif %}</a></td>
+	<td><a href="{{ path('admin_user_locked_toggle',{user_id:user.id}) }}" class="btn btn-danger">{% if user.locked %}Unlock{% else %}Lock{% endif %}</a></td>
 </tr>
 <tr>
 	<td>Date of creation</td>

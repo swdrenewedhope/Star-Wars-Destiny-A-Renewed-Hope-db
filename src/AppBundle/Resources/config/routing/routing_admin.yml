@@ -2,59 +2,53 @@ admin:
     path: /
     methods: [GET]
     defaults:
-        _controller: AppBundle:Admin:index
-
-admin_find_user:
-    path: /user/find
-    methods: [GET]
-    defaults:
-        _controller: AppBundle:UserAdmin:find
+        _controller: AppBundle:Admin:find
 
 admin_find_user_process:
     path: /user/find_process
     methods: [POST]
     defaults:
-        _controller: AppBundle:UserAdmin:process
+        _controller: AppBundle:Admin:process
 
 admin_show_user:
     path: /user/show/{user_id}
     methods: [GET]
     defaults:
-        _controller: AppBundle:UserAdmin:show
+        _controller: AppBundle:Admin:show
         
 admin_user_locked_toggle:
     path: /user/toggle_locked/{user_id}
     methods: [GET]
     defaults:
-        _controller: AppBundle:UserAdmin:toggleLocked
+        _controller: AppBundle:Admin:toggleLocked
         
 admin_user_decklists_show:
     path: /user/decklists/{user_id}
     methods: [GET]
     defaults:
-        _controller: AppBundle:UserAdmin:decklists
+        _controller: AppBundle:Admin:decklists
 
 admin_decklist_delete:
     path: /decklist/delete/{decklist_id}
     methods: [GET]
     defaults:
-        _controller: AppBundle:UserAdmin:deleteDecklist
+        _controller: AppBundle:Admin:deleteDecklist
         
 admin_user_comments_show:
     path: /user/comments/{user_id}
     methods: [GET]
     defaults:
-        _controller: AppBundle:UserAdmin:comments
+        _controller: AppBundle:Admin:comments
 
 admin_comment_hidden_toggle:
     path: /comment/toggle_hidden/{comment_id}
     methods: [GET]
     defaults:
-        _controller: AppBundle:UserAdmin:toggleHiddenComment
+        _controller: AppBundle:Admin:toggleHiddenComment
 
 admin_comment_delete:
     path: /comment/delete/{comment_id}
     methods: [GET]
     defaults:
-        _controller: AppBundle:UserAdmin:deleteComment
+        _controller: AppBundle:Admin:deleteComment
         

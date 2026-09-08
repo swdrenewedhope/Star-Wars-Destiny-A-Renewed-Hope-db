@@ -5,11 +5,11 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class UserAdminController extends Controller
+class AdminController extends Controller
 {
 	public function findAction()
 	{
-		return $this->render('AppBundle:Admin:find_user.html.twig', [
+		return $this->render('AppBundle:Admin:index.html.twig', [
 				'pagetitle' => "Admin"
 		]);
 	}
@@ -17,21 +17,17 @@ class UserAdminController extends Controller
 	public function processAction(Request $request)
 	{
 		$parameters = $request->request->all();
-
 		$entityManager = $this->getDoctrine()->getEntityManager();
 		$user = null;
 
 		if($request->request->get('username')) {
 			$user = $entityManager->getRepository('AppBundle:User')->findOneBy(['username' => $request->request->get('username')]);
-		} else if($request->request->get('id')) {
-			$user = $entityManager->getRepository('AppBundle:User')->find($request->request->get('id'));
 		}
 
 		if(!$user) {
-			$this->addFlash('warning', "Cannot find user");
-			return $this->redirect($this->generateUrl('admin_find_user'));
+			$this->addFlash('danger', "Username does not exist.");
+			return $this->redirect($this->generateUrl('admin'));
 		}
-
 		return $this->redirect($this->generateUrl('admin_show_user', [ 'user_id' => $user->getId() ]));
 	}
 

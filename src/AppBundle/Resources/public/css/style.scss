@@ -274,8 +274,10 @@ td.type, td.faction {
 	background-color: #0b1822;
 }
 .container.main.admin {
-	background-color: #0b1822;
-	border: 1px solid red;
+  background-color: rgba(11, 24, 34, 0.92);
+  border: 1px solid #6d4aff;
+  border-radius: 8px;
+  box-shadow: 0 0 24px rgba(109, 74, 255, 0.25);
 }
 #wrapper {
   	flex: 1 0 auto;
