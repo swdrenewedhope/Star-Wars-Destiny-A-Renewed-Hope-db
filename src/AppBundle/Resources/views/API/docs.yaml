@@ -12,15 +12,21 @@ paths:
   /api/public/card/{code}:
     get:
       tags: [Cards]
-      summary: Get a single card by its code
+      summary: Return a single card's properties via its code.
       parameters:
         - name: code
           in: path
           required: true
-          description: Returns a single card from an int comprising of set code and card position.
+          description: |
+            | Part | Details|
+            |------|--------|
+            | Set ID | Which set the card belongs to (e.g. `01` = Awakenings) |
+            | Card ID | Card position within the set, starting at `001`. |
+
+            Therefore, `01001` becomes Captain Phasma, *Awakenings #1*.
           schema:
             type: integer
-          example: "01001"
+            example: "01001"
       responses:
         '200':
           description: Returns the properties of a card.
@@ -69,3 +75,11 @@ paths:
                 cp: 1215
         '500':
           description: This card does not exist.
+
+  /api/public/cards/:
+    get:
+      tags: [Cards]
+      summary: Return a list of all cards across all sets.
+      responses:
+        '200':
+          description: Returns all cards.
