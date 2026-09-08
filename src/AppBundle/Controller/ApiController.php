@@ -217,27 +217,21 @@ class ApiController extends Controller
 	public function listCardsBySetAction($set_code, Request $request)
 	{
 		$response = new Response();
-		$response->setPublic();
-		$response->setMaxAge($this->container->getParameter('cache_expiration'));
 		$response->headers->add(array('Access-Control-Allow-Origin' => '*'));
 
-		$jsonp = $request->query->get('jsonp');
-
-		$format = $request->getRequestFormat();
-		if($format !== 'json') {
-			$response->setContent($request->getRequestFormat() . ' format not supported. Only json is supported.');
-			return $response;
-		}
-
 		$set = $this->getDoctrine()->getRepository('AppBundle:Set')->findOneBy(array('code' => $set_code));
-		if(!$set) die();
+		if (!$set) { $response->setStatusCode(Response::HTTP_NOT_FOUND); return $response; }
+
+		$response->setMaxAge($this->container->getParameter('cache_expiration'));
+		$response->headers->set('Content-Type', 'application/json');		
+		$response->setPublic();
 
 		$conditions = $this->get('cards_data')->syntax("s:$set_code");
 		$this->get('cards_data')->validateConditions($conditions);
 		$query = $this->get('cards_data')->buildQueryFromConditions($conditions);
-
 		$cards = array();
 		$last_modified = null;
+
 		if($query && $rows = $this->get('cards_data')->get_search_rows($conditions, "set"))
 		{
 			for($rowindex = 0; $rowindex < count($rows); $rowindex++) {
@@ -254,16 +248,7 @@ class ApiController extends Controller
 		}
 
 		$content = json_encode($cards);
-		if(isset($jsonp))
-		{
-			$content = "$jsonp($content)";
-			$response->headers->set('Content-Type', 'application/javascript');
-		} else
-		{
-			$response->headers->set('Content-Type', 'application/json');
-		}
 		$response->setContent($content);
-
 		return $response;
 	}
 
@@ -331,7 +316,6 @@ class ApiController extends Controller
 			return $response;
 		}
 		
-		/* @var $decklist \AppBundle\Entity\Decklist */
 		$decklist = $this->getDoctrine()->getRepository('AppBundle:Decklist')->find($decklist_id);
 		if(!$decklist) die();
 		
@@ -379,7 +363,6 @@ class ApiController extends Controller
 		$criteria->where($expr->gte('dateCreation', $start));
 		$criteria->andWhere($expr->lt('dateCreation', $end));
 		
-		/* @var $decklists \Doctrine\Common\Collections\ArrayCollection */
 		$decklists = $this->getDoctrine()->getRepository('AppBundle:Decklist')->matching($criteria);
 		if(!$decklists) die();
 		

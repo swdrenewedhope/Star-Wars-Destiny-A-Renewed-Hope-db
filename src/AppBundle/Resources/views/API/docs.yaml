@@ -1,8 +1,11 @@
 openapi: 3.0.0
 info:
   title: 'Star Wars Destiny: ARH API'
-  description: >
-    This API is under construction, please be patient.
+  description: |
+    **This API is under construction, please be patient.**
+    
+    ⚠️ - Return very large payloads.
+
   version: "0.1"
 
 servers:
@@ -79,7 +82,32 @@ paths:
   /api/public/cards/:
     get:
       tags: [Cards]
-      summary: Return a list of all cards across all sets.
+      summary: ⚠️ Return a list of all cards across all sets. ⚠️
       responses:
         '200':
           description: Returns all cards.
+  
+  /api/public/cards/{set_code}:
+    get:
+      tags: [Cards]
+      summary: Return all cards belonging to a set.
+      parameters:
+        - name: set_code
+          in: path
+          required: true
+          description: |
+            Takes the codename of a set, for example:
+
+
+             Awakenings  -> `AW` 
+
+
+             Way of The Force  -> `WoTF` 
+          schema:
+            type: string
+            example: "AW"
+      responses:
+        '200':
+          description: Returns all cards from set_code.
+        '404':
+          description: This set does not exist.  
