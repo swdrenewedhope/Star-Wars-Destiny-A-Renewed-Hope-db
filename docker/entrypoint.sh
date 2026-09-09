@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
-cd /var/www/html || true
+cd /var/www/html
 
 as_www() { su -s /bin/bash www-data -c "$*"; }
 
-mkdir -p app/cache app/logs var
-chown -R www-data:www-data app var web
-chmod -R ug+rwX app/cache app/logs var
-find app/cache app/logs var -type d -exec chmod 2775 {} \;
+mkdir -p app/cache app/logs
+chown -R www-data:www-data app web
+chmod -R ug+rwX app/cache app/logs
+find app/cache app/logs -type d -exec chmod 2775 {} \;
 
 until mysqladmin ping -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" --silent; do
   sleep 1
@@ -16,9 +16,9 @@ done
 export COMPOSER_CACHE_DIR=/tmp/composer-cache
 export COMPOSER_ALLOW_SUPERUSER=1
 
-mkdir -p vendor node_modules app/cache app/cache/${SYMFONY_ENV}/annotations app/logs var web/bundles
-chown -R www-data:www-data vendor node_modules app/cache app/logs var web app
-chmod -R ug+rwX app app/cache app/logs var
+mkdir -p vendor node_modules app/cache app/cache/${SYMFONY_ENV}/annotations app/logs web/bundles
+chown -R www-data:www-data vendor node_modules app/cache app/logs web app
+chmod -R ug+rwX app app/cache app/logs
 
 export NPM_CONFIG_CACHE="${NPM_CONFIG_CACHE:-/tmp/.npm}"
 mkdir -p "$NPM_CONFIG_CACHE"
@@ -45,6 +45,12 @@ if [ ! -d node_modules ] || [ -z "$(ls -A node_modules 2>/dev/null)" ]; then
   chown -R www-data:www-data node_modules
 fi
 
+as_www "composer install --no-interaction --prefer-dist --no-scripts"
+
+# Manually patch php7.3-4 regressions (https://github.com/doctrine/orm/issues/7402)
+as_www "sed -i '2636s/continue;/break;/' /var/www/html/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php"
+as_www "sed -i '2665s/continue;/break;/' /var/www/html/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php"
+
 as_www "composer install --no-interaction --prefer-dist"
 as_www "php app/console doctrine:database:create --if-not-exists --env=${SYMFONY_ENV} --no-debug"
 
@@ -63,13 +69,9 @@ as_www "php app/console doctrine:schema:update --force --env=${SYMFONY_ENV} --no
   fi
 
 if [ "${SYMFONY_ENV}" = "dev" ]; then
-  EXISTING="$(mysql -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" -p"${DB_PASSWORD}" -D"${DB_NAME}" -Nse "SELECT COUNT(*) FROM user WHERE username='dev';" 2>/dev/null || echo 0)"
- 
- if [ "${EXISTING}" = "0" ]; then
-    as_www "php app/console fos:user:create dev dev@localhost dev --env=${SYMFONY_ENV} -n"
-    as_www "php app/console fos:user:activate dev --env=${SYMFONY_ENV} -n"
-    as_www "php app/console fos:user:promote --super dev --env=${SYMFONY_ENV} -n"
-  fi
+    as_www "php app/console fos:user:create dev dev@localhost dev --env=${SYMFONY_ENV} -n" || true
+    as_www "php app/console fos:user:activate dev --env=${SYMFONY_ENV} -n" || true
+    as_www "php app/console fos:user:promote --super dev --env=${SYMFONY_ENV} -n" || true
 fi
 
 exec "$@"

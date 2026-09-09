@@ -1,10 +1,9 @@
-FROM php:7.1-apache
+FROM php:7.4-apache
 
-RUN echo 'deb http://archive.debian.org/debian buster main' > /etc/apt/sources.list \
-echo 'deb http://archive.debian.org/debian-security buster/updates main' >> /etc/apt/sources.list \
-apt-get -o Acquire::Check-Valid-Until=false update
+RUN echo 'deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/20260901T000000Z/ bullseye main' > /etc/apt/sources.list && \
+    echo 'deb [check-valid-until=no] http://snapshot.debian.org/archive/debian-security/20260901T000000Z/ bullseye-security main' >> /etc/apt/sources.list
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get -o Acquire::Check-Valid-Until=false update && apt-get install -y \
     git \
     unzip \
     libicu-dev \
@@ -15,16 +14,17 @@ RUN apt-get update && apt-get install -y \
     libcurl4-openssl-dev \
     libxml2-dev \
     default-mysql-client \
-    nodejs		 \
-    npm			 \
+    nodejs \
+    npm \
+	libonig-dev \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-configure gd \
-    --with-freetype-dir=/usr \
-    --with-jpeg-dir=/usr
+    --with-freetype \
+    --with-jpeg
 
 RUN docker-php-ext-install \
-    pdo_mysql \ 
+    pdo_mysql \
     intl \
     zip \
     curl \
@@ -46,4 +46,3 @@ RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["apache2-foreground"]
-
