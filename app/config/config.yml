@@ -32,6 +32,7 @@ parameters:
         - ru
         - zh
     default_locale: en
+    remember_me_secure: true
 
 framework:
     #esi:             ~

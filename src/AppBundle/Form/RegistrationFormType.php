@@ -12,9 +12,6 @@ class RegistrationFormType extends BaseType
 {
 	private $class;
 
-	/**
-     * @param string $class The User class name
-     */
     public function __construct($class, RequestStack $request_stack)
     {
         parent::__construct($class);

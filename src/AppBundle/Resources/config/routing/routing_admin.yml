@@ -54,6 +54,7 @@ admin_comment_delete:
 
 admin_user_donation_toggle:
     path:      /admin/user/{user_id}/donation/toggle
-    defaults:  { _controller: AppBundle:Admin:toggleDonation }
     methods:   [GET]
+    defaults:  
+        _controller: AppBundle:Admin:toggleDonation
         

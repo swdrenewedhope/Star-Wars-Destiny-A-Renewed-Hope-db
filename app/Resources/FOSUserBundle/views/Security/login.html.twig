@@ -28,13 +28,6 @@
 	    <input type="password" id="password" name="_password" class="form-control" required="required" />
 	</div>
     
-    <div class="checkbox">
-    	<label>
-    		<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    		{{ 'security.login.remember_me'|trans }}
-	    </label>
-	</div>
-    
     {% if error and error.messageKey == 'Account is disabled.' %}
     <p>
         <a href="{{ path('remind_email',{username:last_username}) }}">
