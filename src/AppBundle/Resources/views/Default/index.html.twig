@@ -76,7 +76,7 @@
                   </div>
                 {% endfor %}
               </div>
-              <table class="table small" style="width:80%; margin: 0 auto;">
+              <table class="table small" style="width:60%; margin: 0 auto;">
                 <thead>
                   <tr>
                     {% for type in data.count_by_type|keys %}
@@ -89,7 +89,7 @@
                     {% for count in data.count_by_type %}
                     <td class="text-center">
                       {{count.cards}} <span class="icon-cards"></span>
-                      {% if count.dice %} {{count.dice}} <span class="icon-die"></span> {% endif %}
+                      {% if count.dice %}<br> {{count.dice}} <span class="icon-die"></span> {% endif %}
                     </td>
                     {% endfor %}
                   </tr>
