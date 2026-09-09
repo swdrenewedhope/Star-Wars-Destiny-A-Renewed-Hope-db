@@ -1,6 +1,11 @@
-{% extends 'AppBundle:Admin:base.html.twig' %}
+{% extends 'AppBundle::layout.html.twig' %}
+{% block body -%}
+<div class="main admin container">
+<ol class="breadcrumb">
+  <li><a href="{{ path('admin') }}">admin</a></li>
+  <li class="active">{{ app.request.get('_route') }}</li>
+</ol>
 
-{% block content -%}
 <h1>User Decklists</h1>
 
 {% for label, flashes in app.session.flashbag.all %}

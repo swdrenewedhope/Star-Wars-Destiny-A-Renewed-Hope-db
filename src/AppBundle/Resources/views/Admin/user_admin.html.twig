@@ -27,9 +27,14 @@
 	<td></td>
 </tr>
 <tr>
+	<td>Is Donator</td>
+	<td>{% if user.donation %}Yes{% else %}No{% endif %}</td>
+	<td><a href="{{ path('admin_user_donation_toggle',{user_id:user.id}) }}" class="btn btn-info">{% if user.donation %}Revoke{% else %}Grant{% endif %}</a></td>
+</tr>
+<tr>
 	<td>Account locked</td>
-	<td>{% if user.locked %}Yes{% else %}No{% endif %}</td>
-	<td><a href="{{ path('admin_user_locked_toggle',{user_id:user.id}) }}" class="btn btn-danger">{% if user.locked %}Unlock{% else %}Lock{% endif %}</a></td>
+	<td>{% if user.enabled %}No{% else %}Yes{% endif %}</td>
+	<td><a href="{{ path('admin_user_enabled_toggle',{user_id:user.id}) }}" class="btn btn-danger">{% if user.enabled %}Disable{% else %}Enable{% endif %}</a></td>
 </tr>
 <tr>
 	<td>Date of creation</td>

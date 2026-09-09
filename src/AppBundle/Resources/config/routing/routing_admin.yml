@@ -4,7 +4,7 @@ admin:
     defaults:
         _controller: AppBundle:Admin:find
 
-admin_find_user_process:
+admin_find_user:
     path: /user/find_process
     methods: [POST]
     defaults:
@@ -16,11 +16,11 @@ admin_show_user:
     defaults:
         _controller: AppBundle:Admin:show
         
-admin_user_locked_toggle:
-    path: /user/toggle_locked/{user_id}
+admin_user_enabled_toggle:
+    path: /user/toggle_enabled/{user_id}
     methods: [GET]
     defaults:
-        _controller: AppBundle:Admin:toggleLocked
+        _controller: AppBundle:Admin:toggleEnabled
         
 admin_user_decklists_show:
     path: /user/decklists/{user_id}
@@ -51,4 +51,9 @@ admin_comment_delete:
     methods: [GET]
     defaults:
         _controller: AppBundle:Admin:deleteComment
+
+admin_user_donation_toggle:
+    path:      /admin/user/{user_id}/donation/toggle
+    defaults:  { _controller: AppBundle:Admin:toggleDonation }
+    methods:   [GET]
         

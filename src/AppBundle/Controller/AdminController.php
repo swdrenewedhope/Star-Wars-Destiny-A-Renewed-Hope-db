@@ -45,17 +45,25 @@ class AdminController extends Controller
 		]);
 	}
 	
-	public function toggleLockedAction($user_id)
+	public function toggleEnabledAction($user_id)
 	{
 		$entityManager = $this->getDoctrine()->getEntityManager();
-		$user = $entityManager->getRepository('AppBundle:User')->find($user_id);
-		if(!$user) {
-			throw $this->createNotFoundException("User not found");
-		}
-		
-		$user->setLocked(!$user->isLocked());
+		$user = $entityManager->getRepository('AppBundle:User')->find($user_id);	
+		if ($user->getId() !== $this->getUser()->getId()) { $user->setEnabled(!$user->isEnabled()); }
 		$entityManager->flush();
-		
+
+		$this->addFlash('success', sprintf('Account of %s has been %s.', $user->getUsername(), $user->isEnabled() ? 'enabled' : 'disabled'));
+		return $this->redirect($this->generateUrl('admin_show_user', [ 'user_id' => $user->getId() ]));
+	}
+
+	public function toggleDonationAction(Request $request, $user_id)
+	{
+    	$em = $this->getDoctrine()->getManager();
+    	$user = $em->getRepository('AppBundle:User')->find($user_id);
+    	$user->setDonation(!$user->getDonation());
+    	$em->flush();
+
+    	$this->addFlash('success', sprintf( 'Donator status %s for user %s.', $user->getDonation() ? 'granted' : 'revoked', $user->getUsername()));
 		return $this->redirect($this->generateUrl('admin_show_user', [ 'user_id' => $user->getId() ]));
 	}
 
@@ -63,9 +71,6 @@ class AdminController extends Controller
 	{
 		$entityManager = $this->getDoctrine()->getEntityManager();
 		$user = $entityManager->getRepository('AppBundle:User')->find($user_id);
-		if(!$user) {
-			throw $this->createNotFoundException("User not found");
-		}
 	
 		return $this->render('AppBundle:Admin:user_decklists.html.twig', [
 				'pagetitle' => "User Admin",
