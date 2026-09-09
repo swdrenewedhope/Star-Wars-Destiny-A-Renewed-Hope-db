@@ -76,11 +76,11 @@
                   </div>
                 {% endfor %}
               </div>
-              <table class="table small" style="width:85%; margin: 0 auto;">
+              <table class="table small" style="width:80%; margin: 0 auto;">
                 <thead>
                   <tr>
                     {% for type in data.count_by_type|keys %}
-                    <th class="text-center">&middot; {{typeNames[type]}} &middot;</th>
+                    <th class="text-center"> {{typeNames[type]}} </th>
                     {% endfor %}
                   </tr>
                 </thead>
