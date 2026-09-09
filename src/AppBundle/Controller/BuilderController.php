@@ -89,10 +89,7 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
     public function initbuildAction (Request $request)
     {
         $translator = $this->get('translator');
-
-        /* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
-
         $affiliation_code = $request->request->get('affiliation');
 
         if(!$affiliation_code)
@@ -248,7 +245,7 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
                     if ($card) {
 						if ($content[$card->getCode()]['quantity'] < 10) {
 							$content[$card->getCode()]['quantity'] += $quantity;
-							$content[$card->getCode()]['dice'] += $quantity;
+							if ($card->getHasDie()) { $content[$card->getCode()]['dice'] += $quantity; }
 						}
                     }
                 }
