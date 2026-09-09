@@ -243,14 +243,13 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
                         'position' => $cardNum
                     ]);
                     if ($card) {
-						if ($content[$card->getCode()]['quantity'] < 10) {
-							$content[$card->getCode()]['quantity'] += $quantity;
-							if ($card->getHasDie()) { $content[$card->getCode()]['dice'] += $quantity; }
+						$content[$card->getCode()]['quantity'] += $quantity;
+						if ($content[$card->getCode()]['quantity'] > $card->getDeckLimit()) { $content[$card->getCode()]['quantity'] = $card->getDeckLimit() + 1; }
+						if ($card->getHasDie()) { $content[$card->getCode()]['dice'] = $content[$card->getCode()]['quantity']; }
 						}
                     }
                 }
             }
-        }
 
         return [
             'affiliation_code' => $affiliation_code,
