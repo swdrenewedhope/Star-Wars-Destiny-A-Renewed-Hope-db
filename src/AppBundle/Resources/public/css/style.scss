@@ -727,6 +727,12 @@ div.site-slogan {
 	color:#eee;
 }
 
+@media (max-width: 767px) {
+    div.site-slogan {
+        font-size: 33px;
+    }
+}
+
 .index-decklist {
 	th, td {
 		padding: 2px;

@@ -1,30 +1,23 @@
 (function ui_deck(ui, $) {
 
-var dom_loaded = new $.Deferred(),
-	data_loaded = new $.Deferred();
+var dom_loaded = new $.Deferred(), data_loaded = new $.Deferred();
 
-/**
- * called when the DOM is loaded
- * @memberOf ui
- */
 ui.on_dom_loaded = function on_dom_loaded() {};
-
-/**
- * called when the app data is loaded
- * @memberOf ui
- */
 ui.on_data_loaded = function on_data_loaded() {};
-
-/**
- * called when both the DOM and the app data have finished loading
- * @memberOf ui
- */
 ui.on_all_loaded = function on_all_loaded() {};
 
 ui.insert_alert_message = function ui_insert_alert_message(type, message) {
 	var alert = $('<div class="alert" role="alert"></div>').addClass('alert-'+type).append(message);
 	$('#wrapper>div.container').first().prepend(alert);
 }
+
+moment.locale('en', {
+    relativeTime: {
+        past: '%s ago', m: '1m', mm: '%dm', h: '1h',
+        hh: '%dh', d: '1d', dd: '%dd', M: '1mo', MM: '%dmo',
+        y: '1y', yy: '%dy'
+    }
+});
 
 $(document).ready(function () {
 	$('[data-toggle="tooltip"]').tooltip();
