@@ -15,9 +15,9 @@
           <div class="bg-faction bg-{{ data.predominantFaction.code }}" style="padding:10px 10px 5px 10px; border: 1px solid black;">
               <div class="media">
                 <div class="media-left">
-                    <img src="{{ asset('/bundles/app/images/affiliations/' ~ data.affiliation.code ~ '.png') }}" height="30" width="30"/>
+                    <img src="{{ asset('/bundles/app/images/affiliations/' ~ data.affiliation.code ~ '.png') }}" height="37" width="37"/>
                 </div>
-                <div class="media-body" style="padding-bottom: 2px;">
+                <div class="media-body" style="padding-bottom: 1.5px;">
                     <h4 class="media-heading" style="white-space:nowrap"><a href="{{ path('decklist_detail',{decklist_id:data.decklist.id,decklist_name:data.decklist.nameCanonical}) }}">{{ data.decklist.name }}</a></h4>
                     <div class="small">
                       <span class="deck-format">{{ data.decklist.format.name }}</span>
@@ -28,17 +28,12 @@
                       &middot;
                       <time datetime="{{ data.decklist.dateCreation|date('c') }}">{{ data.decklist.dateCreation|date('M d, Y') }}</time>
                       &middot;
+					  <div class="pull-right">{{ macros.decklist_social_icons(data.decklist )}} </div>
 					</div>
                 </div>
               </div>
           </div>
-          <div class="lightflippy" style="background-color: {% if app.request.cookies.get('lightmode') %}white{% else %}#0b1822{% endif %}; padding: 10px 20px 20px 20px; border: 1px solid black; border-top: 0;">
-              <div style="overflow:hidden;">
-                  <div class="small pull-right">
-                      {{ macros.decklist_social_icons(data.decklist ) }}
-                  </div>
-              </div>
-
+          <div class="lightflippy" style="background-color: {% if app.request.cookies.get('lightmode') %}white{% else %}#0b1822{% endif %}; padding: 15px 20px 5px 20px; border: 1px solid black; border-top: 0;">
               <div class="text-center character-card-list plot-card-list">
                 {% for plot in data.plot_deck %}
                   {% set card = cards_data.getCardInfo(plot.getCard()) %}
@@ -76,7 +71,7 @@
                   </div>
                 {% endfor %}
               </div>
-              <table class="table small" style="width:60%; margin: 0 auto;">
+              <table class="table small" style="width:50%; margin: 0 auto;">
                 <thead>
                   <tr>
                     {% for type in data.count_by_type|keys %}
