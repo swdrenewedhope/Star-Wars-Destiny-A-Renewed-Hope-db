@@ -267,9 +267,18 @@ td.type, td.faction {
 }
 .container.main {
 	margin-bottom: 20px;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding-top: 16px;
+	padding-bottom: 16px;
 }
+
+@media (max-width: 767px) {
+    .container.main {
+        padding-top: 0px;
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+    }
+}
+
 .container.main.white {
 	background-color: #0b1822;
 }
@@ -729,7 +738,7 @@ div.site-slogan {
 
 @media (max-width: 767px) {
     div.site-slogan {
-        font-size: 33px;
+        font-size: 28px;
     }
 }
 
