@@ -1446,7 +1446,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46cb">
         <source>userby</source>
-        <target>by %user%</target>
+        <target>%user%</target>
       </trans-unit>
       <trans-unit id="loco:58637d5352e1a104628b456d">
         <source>footer.about</source>

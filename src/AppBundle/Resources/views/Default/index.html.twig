@@ -24,9 +24,10 @@
 					{% set username %}
   						<span class="username">{{ macros.username_colorless(data.decklist.user) }}</span>
 					{% endset %}
-                      {{ 'userby' | trans({'%user%': username}) | raw }}
-                      &middot;
-                      <time datetime="{{ data.decklist.dateCreation|date('c') }}">{{ data.decklist.dateCreation|date('M d, Y') }}</time>
+                      {% if  data.decklist.user.donation < 1 %} &middot; {% endif %}
+					  {{ 'userby' | trans({'%user%': username}) | raw }}
+					  {% if  data.decklist.user.donation < 1 %} &middot; {% endif %}
+                      <time datetime="{{ data.decklist.dateCreation|date('c') }}">{{ data.decklist.dateCreation|date('M d, Y') }}</time> &middot;
 					  <div class="pull-right">{{ macros.decklist_social_icons(data.decklist )}} </div>
 					</div>
                 </div>
