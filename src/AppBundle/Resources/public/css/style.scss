@@ -1,23 +1,46 @@
-/* fonts */
+:root {
+    --bg-image: url('/bundles/app/images/background.png');
+	--site-slogan: white;
+	--footer-color: #334459;
+	--link-color: #73baff;
+	--container-color: #0b1822;
+	--container-text-color: #eaebec;
+}
+:root.light {
+    --bg-color:  #ecf0f1;
+	--bg-image: url('');
+	--site-slogan: rgb(24, 22, 22);
+	--footer-color: #a2b8b9;
+	--footer-nonlink-color: #454848;
+	--link-color: #337ab7;
+	--container-color: #ffffff;
+	--container-text-color: #3c3c3c;
+}
+
 body {
-	background-image: url('/bundles/app/images/background.png');
-	backround-repeat: repeat;
-	background-color: #000000;
+    background-image: var(--bg-image);
+    background-repeat: repeat;
+    background-color: var(--bg-color);
+	color: var(--container-text-color);
 }
 
-.index-decklist .donator {
-    color: inherit;
-    filter: none;       
-    animation: none;     
+.pagination > li:first-child > a,
+.pagination > li:last-child > a {
+  color: var(--link-color);
+  background-color: var(--bg-color);
+  border-color: var(--footer-color);
+
+  &:hover, &:focus { background-color: var(--footer-color); }
 }
 
-.index-decklist .donator::after {
-    display: none;
+.pagination > li.disabled > a {
+  color: #777;
 }
 
-.index-decklist .donator::before {
-    animation: saber-plain 0.1s ease-in-out infinite;
-}
+.index-decks { background-color: var(--container-color); }
+.index-decklist .donator::before { animation: saber-plain 0.1s ease-in-out infinite; }
+.index-decklist .donator { color: inherit; filter: none; animation: none; } 
+.index-decklist .donator::after { display: none; }
 
 .donator {
     display: inline-block;
@@ -29,9 +52,7 @@ body {
     filter: drop-shadow(0 0 5px rgba(120,255,160,.4));
 }
 
-.donator.flipped {
-    transform: scaleX(-1);
-}
+.donator.flipped { transform: scaleX(-1); }
 
 .donator::after {
     content: "\e910";
@@ -220,8 +241,6 @@ td.die-face {
 	}
 }
 
-
-
 .fa-exclamation-triangle {
 	&.limited-pool-conflict {
 		color: #ff0000;
@@ -280,7 +299,7 @@ td.type, td.faction {
 }
 
 .container.main.white {
-	background-color: #0b1822;
+	background-color: var(--container-color);
 }
 .container.main.admin {
   background-color: rgba(11, 24, 34, 0.92);
@@ -296,8 +315,8 @@ td.type, td.faction {
 
 footer {
 	padding-top: 20px;
-	background-color: #334459;
-	color: #eeeeee;
+	background-color: var(--footer-color);
+	color: var(--footer-nonlink-color);
 }
 .navbar-default {
 	font-size: 16px;
@@ -317,9 +336,7 @@ div.tags span.tag:not(:first-child)::before {
 
 .social-icons>*{margin-left:5px}
 .social-icon-like{color:red}
-.social-icon-favorite{color:orange}
 .social-icon-comment{color:green}
-.social-icon-version{color:#eee}
 
 /*** generic ****/
 
@@ -328,11 +345,7 @@ div.tags span.tag:not(:first-child)::before {
 }
 
 /* for the sets list in card search */
-ol {
-    padding-left: 30px;
-}
-
-/********** icon-bg ***********/
+ol { padding-left: 30px; }
 
 .icon-bg:before {
 	width: 100%;
@@ -450,8 +463,7 @@ ol {
 
 /********** NEW DECK **********/
 
-.list-factions li label {
-}
+.list-factions li label {}
 
 /************ DECK GALLERY **********/
 
@@ -720,21 +732,13 @@ ol {
 
 /************** INDEX PAGE ***************/
 
-h1.site-title {
-	font-family: 'Josefin Sans', sans-serif;
-	position:relative;
-	font-size:116px;
-	text-align:center;
-	margin-top: 0;
-	color:#eee;
-}
 div.site-slogan {
 	font-family: 'Saira Condensed', sans-serif;
 	position:relative;
 	font-size:40px;
 	text-align:center;
-	color:#eee;
-}
+	color: var(--site-slogan);
+} 
 
 @media (max-width: 767px) {
     div.site-slogan {
@@ -755,7 +759,6 @@ div.site-slogan {
 .character-card-list {
 	margin-bottom: 10px;
 }
-
 
 .index-character {
 	vertical-align: top;
@@ -924,7 +927,6 @@ article.review .review-comment {
     word-break: break-word;
 }
 
-
 /****************** BOOTSTRAP MARKDOWN *******************/
 
 .md-editor.md-fullscreen-mode {
@@ -973,6 +975,10 @@ article.review .review-comment {
 
 .diff {
 	background: rgba(255,0,0,.5);
+}
+
+a {
+    color: var(--link-color);
 }
 
 .highcharts-tooltip {

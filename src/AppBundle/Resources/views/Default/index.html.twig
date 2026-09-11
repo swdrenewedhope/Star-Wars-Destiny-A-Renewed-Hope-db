@@ -33,7 +33,7 @@
                 </div>
               </div>
           </div>
-          <div class="lightflippy" style="background-color: {% if app.request.cookies.get('lightmode') %}white{% else %}#0b1822{% endif %}; padding: 15px 20px 5px 20px; border: 1px solid black; border-top: 0;">
+          <div class="index-decks" style="padding: 15px 20px 5px 20px; border: 1px solid black; border-top: 0">
               <div class="text-center character-card-list plot-card-list">
                 {% for plot in data.plot_deck %}
                   {% set card = cards_data.getCardInfo(plot.getCard()) %}

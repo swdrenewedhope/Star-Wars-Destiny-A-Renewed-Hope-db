@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ app.request.locale }}">
+{% set theme = app.request.cookies.get('theme') %}
+<html lang="{{ app.request.locale }}" class="{{ theme == 'light' ? 'light' : '' }}">
   <head>
     <title>Star Wars Destiny: A Renewed Hope Database</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="mobile-web-app-capable" content="yes">
-
     <link rel="icon" sizes="192x192" href="/icon-192.jpg" />
-
     {% if pagedescription is defined %}<meta name="description" content="{{ pagedescription }}">{% endif %}
 
     <link href='https://fonts.googleapis.com/css?family=Amiri:400,400i,700,700i|Open+Sans+Condensed:300|Open+Sans:400,400i,700,700i|Roboto|Abel|Josefin+Sans:wght@700' rel='stylesheet' type='text/css'>
@@ -15,19 +14,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/2.1.1/jquery.qtip.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.9.0/css/bootstrap-markdown.min.css">
 	
-	{% if app.request.cookies.get('lightmode') %}
-	<link rel="stylesheet" id="lightmodesheet" href="/css/app.css" />
-	{% else %}
-    {% stylesheets filter="cssrewrite,scssphp" output="css/app.css"
-      'bundles/app/css/bootstrap.css'
-	  'bundles/app/css/bootstrap-essentials.css'
-      'bundles/app/css/style.scss'
-      'bundles/app/css/icons.css'
-      'bundles/app/css/languages.css'
-    %}
-	<link rel="stylesheet" id="lightmodesheet" href="{{ asset_url }}" />
+	{% stylesheets filter="cssrewrite,scssphp" output="css/app.css"
+  'bundles/app/css/bootstrap.css'
+  'bundles/app/css/bootstrap-essentials.css'
+  'bundles/app/css/style.scss'
+  'bundles/app/css/icons.css'
+  'bundles/app/css/languages.css'
+	%}
+	<link rel="stylesheet" id="themesheet" href="{{ asset_url }}" />
 	{% endstylesheets %}
-	{% endif %}
 
 	{% block stylesheets %}{% endblock %}
     {% include 'AppBundle:Default:cookiesconsent.html.twig' %}
@@ -101,7 +96,6 @@
     {% endif %}
   {% endfor %}
 </ul>
-
             </li>
             <li class="dropdown">
               <a style="padding-left: 23px; padding-right: 23px" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">More<span class="caret"></span></a>
@@ -126,16 +120,11 @@
             <li id="login">
                 <a href="#" class="disabled"><span class="fa fa-user"></span></a>
             </li>
-
-			{% if app.request.cookies.get('theme') == 'light' %}
-			<li id="lightmodetoggle">
-                <a id="lightmode" href="#"><span class="fa fa-sun-o"></span></a>
-            </li>
-			{% else %}
-			<li id="lightmodetoggle">
-                <a id="lightmode" href="#" class="disabled"><span class="fa fa-moon-o"></span></a>
-				
-			{% endif %}
+			<li>
+    			<a id="themetoggle" href="#">
+        			<span class="fa {{ theme == 'light' ? 'fa-sun-o' : 'fa-moon-o' }}"></span>
+    			</a>
+			</li>
           </ul>
 
           <form class="navbar-form navbar-right visible-lg-block visible-xs-block external" action="{{ path('cards_find') }}" target="_blank">
@@ -209,17 +198,13 @@
 	  });
     </script>
 
-	{% if app.environment == 'prod' %}
-		<!-- Google Analytics Tag -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNEPT3FZNL"></script>
-		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
-
-		  gtag('config', 'G-NNEPT3FZNL');
-		</script>
-	{% endif %}
+	<script async src="https://www.googletagmanager.com/gtag/js?id={{google_analytics_tracking_code}}"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', '{{google_analytics_tracking_code}}');
+	</script>
   
   {% javascripts filter="handlebars,?jsqueeze" output="js/templates.js"
     '@AppBundle/Resources/public/hbs/*.handlebars'
@@ -285,17 +270,16 @@
 			}
 			return null;
 		}
-		function eraseCookie(name) {   
-			document.cookie = name+'=; Max-Age=-99999999;';  
-		}
+
+		function eraseCookie(name) { document.cookie = name+'=; Max-Age=-99999999;'; }
 	
-		$('ul').on('click', '#themetoggle', function(e) {
-			e.preventDefault();
-			var currentTheme = getCookie('theme');
-			var nextTheme = currentTheme === 'light' ? 'dark' : 'light';
-			setCookie('theme', 'nextTheme', 365)
-			$('.fa-sun-o').toggleClass('fa-sun-o fa-moon-o');
-		});	
+		$('ul').on('click', '#themetoggle', function(e) { e.preventDefault();
+    		var goingLight = !document.documentElement.classList.contains('light');
+    		document.documentElement.classList.toggle('light', goingLight);
+    		setCookie('theme', goingLight ? 'light' : 'dark', 365);
+    		$(this).find('span').toggleClass('fa-sun-o fa-moon-o');
+  			if (goingLight == true) { alert("Warning - Light mode is still in development."); }
+		});
 	});
 	</script>
     </body>
