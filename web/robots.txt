@@ -8,5 +8,7 @@ Disallow: /decklists/mine
 Disallow: /decklists/favorites
 Disallow: /admin
 Disallow: /user
+Disallow: /deck/copy
+Disallow: /decklist/export
 
 Sitemap: https://db.swdrenewedhope.com/sitemap.xml
