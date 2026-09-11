@@ -14,9 +14,7 @@
 <tr>
 	<td class="decklist-name"><a href="{{ path('decklist_detail', { 'decklist_id': decklist.id, 'decklist_name': decklist.nameCanonical|e('url') }) }}">{{ decklist.name }}</a></td>
 	<td><span class="fa fa-heart social-icon-like"></span> {{ decklist.nbVotes }}</td>
-	<td><span class="fa fa-star social-icon-favorite"></span> {{ decklist.nbFavorites }}</td>
 	<td><span class="fa fa-comment social-icon-comment"></span> {{ decklist.nbComments }}</td>
-	<td><span class="fa fa-code-fork social-icon-version"></span> {{ decklist.version }}</td>
 </tr>
 {% endmacro %}
 
@@ -45,9 +43,6 @@
 	</a>
 	<a id="social-icon-comment" href="#comment-form" class="social-icon-comment" data-toggle="tooltip" data-placement="bottom" title="{{ 'decklist.view.social.comment' | trans }}">
 		<span class="fa fa-comment"></span> <span class="num">{{ decklist.nbComments }}</span>
-	</a>
-	<span class="social-icon-version" data-toggle="tooltip" data-placement="bottom" title="{{ 'decklist.view.social.version' | trans }}">
-		<span class="fa fa-code-fork"></span> <span class="num">{{ decklist.version + 0 }}</span>
 	</a>
 </span>
 {% endmacro %}
