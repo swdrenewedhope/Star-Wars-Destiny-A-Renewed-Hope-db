@@ -1,10 +1,12 @@
+{% if  app.user and app.user.id == decklist.user.id %}
 <a href="{{ path('decklist_edit', {decklist_id:decklist.id}) }}" id="decklist-edit" class="btn btn-sm btn-default">
 	<span class="fa fa-lg fa-pencil text-primary"></span> {{ 'forms.edit' | trans }}
 </a>
 
-<a href="#" title="Delete decklist" id="decklist-delete" class="btn btn-sm btn-default">
+<a href="#" id="decklist-delete" class="btn btn-sm btn-default">
 	<span class="fa fa-lg fa-trash-o text-danger"></span> {{ 'forms.delete' | trans }}
-</a>
+</a>	
+{% endif %}
 
 <a href="{{ path('deck_copy', {decklist_id:decklist.id}) }}" class="btn btn-sm btn-default">
 	<span class="fa fa-lg fa-save text-warning"></span> <span class="hidden-xs">{{ 'forms.copy' | trans }}</span>
