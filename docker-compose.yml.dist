@@ -7,13 +7,14 @@ services:
     ports:
       - "80:80"
     environment:
-	# GENERAL
+
+  # GENERAL
 
       SYMFONY_ENV: "dev" # dev(elopment) / prod(uction)
-	  NODE_BIN: "/usr/local/bin/node"
+      NODE_BIN: "/usr/local/bin/node"
       HANDLEBARS_BIN: "/var/www/html/node_modules/handlebars/bin/handlebars"
 
-	# DATABASE
+  # DATABASE
 
       DB_HOST: "db"
       DB_PORT: "3306"
@@ -21,23 +22,22 @@ services:
       DB_USER: "swdestinydb_admin"
       DB_PASSWORD: "insecure"
 
-	# MAILER
+  # MAILER
 
       MAILER_HOST: "localhost"
       MAILER_USER: "dev"
-	  EMAIL_SENDER_ADDRESS: "noreply@localhost"
+      EMAIL_SENDER_ADDRESS: "noreply@localhost"
       EMAIL_SENDER_NAME: "swdestinydb"
 
     # SECURITY
 
-	SECRET: "insecure" # Secret for cryptographic functions.
+      SECRET: "insecure" # Secret for cryptographic functions.
 
-    # Advertising & Analytics
+  # Advertising & Analytics
 
-	  GOOGLE_ANALYTICS_TRACKING_CODE: ~
+      GOOGLE_ANALYTICS_TRACKING_CODE: ~
 
-
-    # MISC
+  # MISC
 
       WEBSITE_URL: "localhost"
       WEBSITE_NAME: "swdestinydb"
