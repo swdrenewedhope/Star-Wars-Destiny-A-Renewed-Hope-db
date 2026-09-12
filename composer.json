@@ -1,7 +1,7 @@
 {
-    "name": "alsciende/thronesdb",
-    "description": "A Game of Thrones LCG deckbuilder",
-    "license": "proprietary",
+    "name": "swdrenewedhope/swdestinydb",
+    "description": "A Star Wars Destiny LCG deckbuilder",
+    "license": "AGPL-3.0",
     "type": "project",
     "autoload": {
         "psr-4": {
@@ -66,17 +66,6 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
-        ],
-        "post-update-cmd": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "php -d memory_limit=-1 app/console bazinga:js-translation:dump",
-            "php -d memory_limit=-1 app/console assetic:dump",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ]
     },
     "config": {
@@ -99,9 +88,6 @@
                 "mailer_port": "MAILER_PORT",
                 "mailer_user": "MAILER_USER",
                 "mailer_password": "MAILER_PASSWORD",
-                "aws_access_key_id": "AWS_ACCESS_KEY_ID",
-                "aws_secret_access_key": "AWS_SECRET_ACCESS_KEY",
-                "s3_bucket": "S3_BUCKET",
                 "google_analytics_tracking_code": "GOOGLE_ANALYTICS_TRACKING_CODE",
                 "google_adsense_client": "GOOGLE_ADSENSE_CLIENT",
                 "google_adsense_slot": "GOOGLE_ADSENSE_SLOT"

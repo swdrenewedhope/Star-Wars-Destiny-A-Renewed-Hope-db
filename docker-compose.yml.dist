@@ -32,6 +32,11 @@ services:
 
 	SECRET: "insecure" # Secret for cryptographic functions.
 
+    # Advertising & Analytics
+
+	  GOOGLE_ANALYTICS_TRACKING_CODE: ~
+
+
     # MISC
 
       WEBSITE_URL: "localhost"
