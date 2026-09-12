@@ -31,7 +31,6 @@ parameters:
     remember_me_secure: true
 
 framework:
-    #esi:             ~
     translator:      { fallbacks: [%default_locale%] }
     secret:          "%secret%"
     router:
@@ -40,12 +39,11 @@ framework:
     form:            ~
     csrf_protection: ~
     validation:      { enable_annotations: true }
-    #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
     default_locale:  "%locale%"
     trusted_hosts:   ~
-    trusted_proxies: ~
+    trusted_proxies: [172.18.0.0/16]
     session:
         handler_id: session.handler.native_file
         cookie_lifetime: 604800
@@ -202,17 +200,7 @@ jms_translation:
             excluded_dirs: [cache, data, logs]
             output_format: xliff
             extractors: [extra_translation_extractor]
-
-happyr_translation:
-    httplug_client: 'httplug.client'
-    httplug_message_factory: 'httplug.message_factory'
-    locales: %supported_locales%
-    projects:
-        messages:
-            api_key: "%happyr_messages_api_key%"
-        validators:
-            api_key: "%happyr_validators_api_key%"
-
+            
 services:
     fos_user.doctrine_registry:
         alias: doctrine

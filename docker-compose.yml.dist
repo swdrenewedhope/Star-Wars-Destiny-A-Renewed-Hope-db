@@ -43,8 +43,6 @@ services:
       WEBSITE_NAME: "swdestinydb"
       GAME_NAME: "swdestinydb"
       PUBLISHER_NAME: "swdestinydb"
-      HAPPYR_MESSAGES_API_KEY: "-GeNAIp8XIzwIZCFZL3ZsP9k5vWBxo4F"
-      HAPPYR_VALIDATORS_API_KEY: "CWow0Q-lOtg1QdZaV5UsrhpKrd2fYz9z"
 
     volumes:
       - ./:/var/www/html

@@ -21,7 +21,7 @@ security:
                 provider: fos_userbundle
                 check_path: oauth_server_auth_login_check
                 login_path: oauth_server_auth_login
-            anonymous: true
+            anonymous: false
 
         api_oauth2:
             pattern:    ^/api/oauth2
