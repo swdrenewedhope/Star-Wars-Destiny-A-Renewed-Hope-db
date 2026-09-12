@@ -5,28 +5,16 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use AppBundle\Entity\Deck;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class Oauth2Controller extends Controller
 {
-	/**
-	 * Get the description of all the Decks of the authenticated user
-	 *
-	 * @ApiDoc(
-	 *  section="Deck",
-	 *  resource=true,
-	 *  description="All the Decks",
-	 * )
-	 * @param Request $request
-	 */
 	public function listDecksAction(Request $request)
 	{
 		$response = new Response();
 		$response->headers->add(array('Access-Control-Allow-Origin' => '*'));
 		
-		/* @var $decks \AppBundle\Entity\Deck[] */
 		$decks = $this->getDoctrine()->getRepository('AppBundle:Deck')->findBy(['user' => $this->getUser()]);
 
 		$dateUpdates = array_map(function ($deck) {
@@ -45,31 +33,11 @@ class Oauth2Controller extends Controller
 		return $response;
 	}
 	
-
-	/**
-	 * Get the description of one Deck of the authenticated user
-	 *
-	 * @ApiDoc(
-	 *  section="Deck",
-	 *  resource=true,
-	 *  description="Load One Deck",
-	 *  requirements={
-	 *      {
-	 *          "name"="id",
-	 *          "dataType"="integer",
-	 *          "requirement"="\d+",
-	 *          "description"="The numeric identifier of the Deck to load"
-	 *      },
-	 *  },
-	 * )
-	 * @param Request $request
-	 */
 	public function loadDeckAction($id)
 	{
 		$response = new Response();
 		$response->headers->add(array('Access-Control-Allow-Origin' => '*'));
 		
-		/* @var $deck \AppBundle\Entity\Deck */
 		$deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id);
 
 		if($deck->getUser()->getId() !== $this->getUser()->getId())
@@ -89,39 +57,8 @@ class Oauth2Controller extends Controller
 		return $response;
 	}
 	
-
-	/**
-	 * Save one Deck of the authenticated user. The parameters are the same as in the response to the load method, but only a few are writable.
-	 * So you can parse the result from the load, change a few values, then send the object as the param of an ajax request.
-	 * If successful, id of Deck is in the msg
-	 *
-	 * @ApiDoc(
-	 *  section="Deck",
-	 *  resource=true,
-	 *  description="Save One Deck",
-	 *  requirements={
-	 *      {
-	 *          "name"="id",
-	 *          "dataType"="integer",
-	 *          "requirement"="\d+",
-	 *          "description"="The numeric identifier of the Deck to load ; 0 to create a new Deck"
-	 *      },
-	 *  },
-	 *  parameters={
-	 *      {"name"="name", "dataType"="string", "required"=true, "description"="Name of the Deck"},
-	 *      {"name"="decklist_id", "dataType"="integer", "required"=false, "description"="Identifier of the Decklist from which the Deck is copied"},
-	 *      {"name"="description_md", "dataType"="string", "required"=false, "description"="Description of the Decklist in Markdown"},
-	 *      {"name"="affiliation_code", "dataType"="string", "required"=false, "description"="Code of the affiliation of the Deck"},
-	 *      {"name"="tags", "dataType"="string", "required"=false, "description"="Space-separated list of tags"},
-	 *      {"name"="slots", "dataType"="string", "required"=true, "description"="Content of the Decklist as a JSON object"},
-	 *  },
-	 * )
-	 * @param Request $request
-	 */
 	public function saveDeckAction($id, Request $request)
 	{
-		/* @var $deck \AppBundle\Entity\Deck */
-
 		if(!$id)
 		{
 			$deck = new Deck();
@@ -191,33 +128,8 @@ class Oauth2Controller extends Controller
 		]);
 	}
 
-	/**
-	 * Try to publish one Deck of the authenticated user
-	 * If publication is successful, update the version of the deck and return the id of the decklist 
-	 *
-	 * @ApiDoc(
-	 *  section="Deck",
-	 *  resource=true,
-	 *  description="Publish One Deck",
-	 *  requirements={
-	 *      {
-	 *          "name"="id",
-	 *          "dataType"="integer",
-	 *          "requirement"="\d+",
-	 *          "description"="The numeric identifier of the Deck to publish"
-	 *      },
-	 *  },
-	 *  parameters={
-	 *      {"name"="description_md", "dataType"="string", "required"=false, "description"="Description of the Decklist in Markdown"},
-	 *      {"name"="tournament_id", "dataType"="integer", "required"=false, "description"="Identifier of the Tournament type of the Decklist"},
-	 *      {"name"="precedent_id", "dataType"="integer", "required"=false, "description"="Identifier of the Predecessor of the Decklist"},
-	 *  },
-	 * )
-	 * @param Request $request
-	 */
 	public function publishDeckAction($id, Request $request)
 	{
-		/* @var $deck \AppBundle\Entity\Deck */
 		$deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id);
 		if ($this->getUser()->getId() !== $deck->getUser()->getId()) {
 			throw $this->createAccessDeniedException("Access denied to this object.");
@@ -232,7 +144,6 @@ class Oauth2Controller extends Controller
 		$precedent_id = trim($request->request->get('precedent'));
 		if(!preg_match('/^\d+$/', $precedent_id)) 
 		{
-			// route decklist_detail hard-coded
 			if(preg_match('/view\/(\d+)/', $precedent_id, $matches)) 
 			{
 				$precedent_id = $matches[1];
