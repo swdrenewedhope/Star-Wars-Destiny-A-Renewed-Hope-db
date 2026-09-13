@@ -1,5 +1,6 @@
 {% extends 'AppBundle:Search:display.html.twig' %}
 {% import "AppBundle::macros.html.twig" as macros %}
+{% block pagination_bottom %}{% endblock %}
 
 {% block javascripts %}
 	{% javascripts '@AppBundle/Resources/public/js/ui.card.js' %}
@@ -47,9 +48,6 @@
         			{% endif %}
         		</div>
         	</div>
-        {% if includeReviews %}
-   	    	{% include 'AppBundle:Search:display-card-reviews.html.twig' %}
-        {% endif %}
 {% endfor %}
         </div>
     </div>

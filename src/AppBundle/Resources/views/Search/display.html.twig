@@ -23,7 +23,7 @@
 	
 {% endif %}
 
-{{ pagination|raw }}
+{% block pagination_bottom %} {{ pagination|raw }} {% endblock %}
 
 </div>
 
