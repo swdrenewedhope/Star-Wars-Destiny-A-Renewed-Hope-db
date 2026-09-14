@@ -17,10 +17,16 @@
         "name": "Convergence",
         "position": 3
     },
-    {
+	{
         "code": "FA",
         "date_release": null,
         "name": "Faltering Allegiances",
         "position": 4
+    },
+	{
+        "code": "EC",
+        "date_release": null,
+        "name": "Eternal Conflicts",
+        "position": 5
     }
 ]

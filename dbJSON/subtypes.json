@@ -171,6 +171,10 @@
         "code": "trap",
         "name": "Trap"
     },
+	{
+        "code": "triumvirate",
+        "name": "Triumvirate"
+    },
     {
         "code": "trooper",
         "name": "Trooper"

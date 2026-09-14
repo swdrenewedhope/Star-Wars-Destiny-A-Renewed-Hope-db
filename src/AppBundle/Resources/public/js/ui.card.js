@@ -7,7 +7,7 @@
 			var allFormats = app.data.formats.find({});
 
 			var FormatMap = [
-				{ title: 'Fan', prefixes: ['ARH', 'Galactic'] },
+				{ title: 'Fan', prefixes: ['ARH', 'TCI', 'Galactic'] },
 				{ title: 'FFG', prefixes: ['FFG'] }
 			];
 
@@ -43,7 +43,7 @@
 			var card = app.data.cards.findById(code);
 
 			var FormatMap = [
-				{ title: 'Fan', prefixes: ['ARH', 'Galactic'] },
+				{ title: 'Fan', prefixes: ['ARH', 'TCI', 'Galactic'] },
 				{ title: 'FFG', prefixes: ['FFG'] }
 			];
 

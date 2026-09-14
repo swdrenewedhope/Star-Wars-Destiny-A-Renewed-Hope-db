@@ -70,7 +70,21 @@
   {% endfor %}
 
   <li class="divider"></li>
- 
+
+  	<li>
+    	<a style="font-weight:bold; text-align:center" href="https://www.coruscant-initiative.org/" target="_blank">The Coruscant Initative</a>
+  	</li>
+
+    <li class="divider"></li>
+
+	{% for line in cards_data.allsetsdata() %}
+    {% if line['projectName'] == 'The Coruscant Initiative' %}
+      <li><a href="{{ line['url'] }}">{{ line['label'] | raw }}</a></li>
+    {% endif %}
+  {% endfor %}
+
+      <li class="divider"></li>
+
   <li>
     <a style="font-weight:bold; text-align:center"
        href="https://www.fantasyflightgames.com/en/products/star-wars-destiny/"
@@ -79,17 +93,8 @@
 
   <li class="divider"></li>
 
-  {% set projectName = null %}
   {% for line in cards_data.allsetsdata() %}
-    {% if line['projectName'] != 'A Renewed Hope' %}
-      {% if projectName != line['projectName'] %}
-        {% set projectName = line['projectName'] %}
-        	<li>
-          		<span style="font-weight:bold; padding: 3px 20px; display:block;">
-            		{{ projectName }}
-          		</span>
-        	</li>
-      {% endif %}
+    {% if line['projectName'] is empty %}
 
       <li><a href="{{ line['url'] }}">{{ line['label'] | raw }}</a></li>
 
