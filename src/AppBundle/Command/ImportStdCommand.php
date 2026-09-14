@@ -19,12 +19,8 @@ use AppBundle\Entity\StarterPackSlot;
 
 class ImportStdCommand extends ContainerAwareCommand
 {
-	/* @var $em EntityManager */
 	private $em;
-
-	/* @var $output OutputInterface */
 	private $output;
-	
 	private $collections = [];
 
 	protected function configure()

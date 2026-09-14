@@ -411,58 +411,6 @@ class SocialController extends Controller
     }
 
     /*
-	 * adds a decklist to a user's list of favorites
-	 */
-    public function favoriteAction (Request $request)
-    {
-        /* @var $em \Doctrine\ORM\EntityManager */
-        $em = $this->getDoctrine()->getManager();
-
-        $user = $this->getUser();
-        if(!$user) {
-            throw new UnauthorizedHttpException('You must be logged in to comment.');
-        }
-
-        $decklist_id = filter_var($request->get('id'), FILTER_SANITIZE_NUMBER_INT);
-
-        /* @var $decklist \AppBundle\Entity\Decklist */
-        $decklist = $em->getRepository('AppBundle:Decklist')->find($decklist_id);
-        if (! $decklist)
-            throw new NotFoundHttpException('Wrong id');
-
-        $author = $decklist->getUser();
-
-        $dbh = $this->getDoctrine()->getConnection();
-        $is_favorite = $dbh->executeQuery("SELECT
-				count(*)
-				from decklist d
-				join favorite f on f.decklist_id=d.id
-				where f.user_id=?
-				and d.id=?", array(
-                $user->getId(),
-                $decklist_id
-        ))
-            ->fetch(\PDO::FETCH_NUM)[0];
-
-        if ($is_favorite) {
-            $decklist->setNbfavorites($decklist->getNbFavorites() - 1);
-            $user->removeFavorite($decklist);
-            if ($author->getId() != $user->getId())
-                $author->setReputation($author->getReputation() - 5);
-        } else {
-            $decklist->setNbfavorites($decklist->getNbFavorites() + 1);
-            $user->addFavorite($decklist);
-            $decklist->setDateUpdate(new \DateTime());
-            if ($author->getId() != $user->getId())
-                $author->setReputation($author->getReputation() + 5);
-        }
-        $this->getDoctrine()->getManager()->flush();
-
-        return new Response($decklist->getNbFavorites());
-
-    }
-
-    /*
 	 * records a user's comment
 	 */
     public function commentAction (Request $request)

@@ -52,18 +52,6 @@ deck_delete_list:
     defaults:
         _controller: AppBundle:Builder:deleteList
 
-deck_import:
-    path: /import
-    methods: [GET]
-    defaults:
-        _controller: AppBundle:Builder:import
-
-deck_textimport:
-    path: /textimport
-    methods: [POST]
-    defaults:
-        _controller: AppBundle:Builder:textimport
-
 deck_fileimport:
     path: /fileimport
     methods: [POST]
@@ -96,12 +84,6 @@ deck_export_text:
         _controller: AppBundle:Builder:textexport
     requirements:
         deck_id: \d+
-
-deck_export_text_list:
-    path: /export/text/list
-    methods: [GET]
-    defaults:
-        _controller: AppBundle:Builder:textexportList
 
 deck_publish:
     path: /can_publish/{deck_id}
