@@ -517,8 +517,10 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
         		'pagetitle' => "Deckbuilder",
         		'deck' => $deck,
         		'deck_id' => $deck_id,
-        		'is_owner' => $is_owner
-        	)
+        		'is_owner' => $is_owner,
+				'collection' => $this->getDoctrine()->getRepository('AppBundle:Collection')->getCollection($this->getUser()->getId()),
+
+			)
         );
     }
 

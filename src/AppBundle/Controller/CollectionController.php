@@ -12,12 +12,13 @@ use AppBundle\Entity\CollectionSlot;
 class CollectionController extends Controller
 {
 
-    public function indexAction()
-    {
-        return $this->render('AppBundle:Collection:index.html.twig', array(
-            'starters' => $this->getDoctrine()->getRepository('AppBundle:StarterPack')->findAll()
-        ));
-    }
+   public function indexAction()
+{
+    return $this->render('AppBundle:Collection:index.html.twig', [
+        'collection' => $this->getDoctrine()->getRepository('AppBundle:Collection')->getCollection($this->getUser()->getId()),
+        'starters' => $this->getDoctrine()->getRepository('AppBundle:StarterPack')->findAll()
+    ]);
+}
 
     public function saveAction(Request $request)
     {

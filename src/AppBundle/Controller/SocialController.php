@@ -406,6 +406,8 @@ class SocialController extends Controller
                 		'duplicate' => $duplicate,
                 		'commenters' => $commenters,
                 		'versions' => $versions,
+						'collection' => $this->getDoctrine()->getRepository('AppBundle:Collection')->getCollection($this->getUser()->getId()),
+
                 ), $response);
 
     }

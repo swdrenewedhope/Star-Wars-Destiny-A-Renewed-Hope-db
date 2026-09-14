@@ -15,15 +15,6 @@ services:
         class: AppBundle\Listener\CoreExceptionListener
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onCoreException, priority: 1000 }
-            
-  user_collection_listener:
-        class: AppBundle\Listener\UserCollectionListener
-        arguments:
-            - @twig
-            - @doctrine.orm.entity_manager
-            - @security.context
-        tags:
-            - {name: kernel.event_listener, event: kernel.controller, method: onKernelController }
 
   user.app_user_registration.form.type:
         class: AppBundle\Form\RegistrationFormType
