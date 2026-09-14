@@ -399,6 +399,8 @@ class SocialController extends Controller
         
         $versions = $decklistRepo->findVersions($decklist);
         
+		if(is_object($this->getUser())) { $collection = $this->getDoctrine()->getRepository('AppBundle:Collection')->getCollection($this->getUser()->getId()); } else $collection = null;
+
         return $this->render('AppBundle:Decklist:decklist.html.twig',
                 array(
                         'pagetitle' => $decklist->getName(),
@@ -406,7 +408,7 @@ class SocialController extends Controller
                 		'duplicate' => $duplicate,
                 		'commenters' => $commenters,
                 		'versions' => $versions,
-						'collection' => $this->getDoctrine()->getRepository('AppBundle:Collection')->getCollection($this->getUser()->getId()),
+						'collection' => $collection,
 
                 ), $response);
 

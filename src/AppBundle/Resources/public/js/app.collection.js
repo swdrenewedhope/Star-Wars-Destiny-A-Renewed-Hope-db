@@ -3,6 +3,7 @@
 collection.isLoaded = false;
 
 collection.init = function init(data) {
+	if(!data) return;
 	if(app.data.isLoaded) {
 		collection.set_owned(data);
 	} else {
