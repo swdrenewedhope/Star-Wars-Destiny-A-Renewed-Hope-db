@@ -27,6 +27,30 @@ body {
 	color: var(--container-text-color);
 }
 
+html .navbar-default .navbar-nav > .open > a,
+html .navbar-default .navbar-nav > .open > a:hover,
+html .navbar-default .navbar-nav > .open > a:focus {
+    background-color: var(--bg-color);
+    color: var(--container-text-color);
+}
+
+html .dropdown-menu {
+    background-color: var(--container-color);
+    border-color: var(--border-color);
+}
+
+html .dropdown-menu > li > a {
+    color: var(--container-text-color);
+}
+html .dropdown-menu > li > a:hover,
+html .dropdown-menu > li > a:focus {
+    color: var(--container-text-color);
+    background-color: var(--bg-color);
+}
+
+html .dropdown-menu .divider {
+    background-color: var(--border-color);
+}
 
 .btn,
 .btn:hover,
@@ -41,7 +65,15 @@ body {
     color: var(--site-slogan) !important;
 }
 
+.navbar-default { background-color: var(--container-color);}
+a { color: var(--container-text-color);}
+
+.navbar-default .navbar-nav > li > a { color: var(--container-text-color) !important;}
 tspan { fill: var(--container-text-color); }
+
+.navbar-default .navbar-brand {
+    color: var(--link-color);
+}
 
 .panel-default > .panel-heading { background-color: var(--container-color); color: var(--container-text-color); border-color: var(--border-color);}
 .panel-body { background-color: var(--container-color);}
@@ -63,9 +95,21 @@ button, optgroup, select, textarea { background-color: var(--bg-color) !importan
   color: var(--container-text-color);
 }
 
+th.text-center { background-color: var(--bg-color); color: var(--container-text-color);}
+
 .table-striped > tbody > tr:nth-child(odd),
 .table-striped > tbody > tr:nth-child(even) {
     background-color: inherit !important;
+}
+
+.pager li > a,
+.pager li > span {
+    background-color: var(--container-color);
+    border-color: var(--border-color);
+}
+.pager li > a:hover,
+.pager li > a:focus {
+    background-color: var(--bg-color);
 }
 
 input.form-control, textarea.form-control {
@@ -203,7 +247,7 @@ td.die-face {
   border: 2px solid black;
   border-radius: 15px;
   margin-right: 1px;
-  background-color: #05121c;
+  background-color: var(--bg-color);
 }
 
 .card-die-face-blank {
@@ -341,6 +385,7 @@ td.type, td.faction {
 	margin-bottom: 20px;
 	padding-top: 16px;
 	padding-bottom: 16px;
+    background-color: var(--container-color);
 }
 
 @media (max-width: 767px) {
@@ -351,9 +396,10 @@ td.type, td.faction {
     }
 }
 
-.container.main.white {
-	background-color: var(--container-color);
+.modal-content {
+  background-color: var(--container-color);
 }
+
 .container.main.admin {
   background-color: rgba(11, 24, 34, 0.92);
   border: 1px solid #6d4aff;
