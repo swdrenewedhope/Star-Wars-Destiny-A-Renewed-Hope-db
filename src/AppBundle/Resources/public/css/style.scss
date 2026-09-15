@@ -1,20 +1,23 @@
 :root {
-    --bg-image: url('/bundles/app/images/background.png');
+    --bg-image: url('/bundles/app/images/background_dark.png');
 	--site-slogan: white;
 	--footer-color: #334459;
 	--link-color: #73baff;
 	--container-color: #0b1822;
 	--container-text-color: #eaebec;
+	--bg-color: #0b1822;
+	--border-color: #233449;
 }
 :root.light {
-    --bg-color:  #ecf0f1;
 	--bg-image: url('');
+    --bg-color:  #ecf0f1;
 	--site-slogan: rgb(24, 22, 22);
 	--footer-color: #a2b8b9;
 	--footer-nonlink-color: #454848;
 	--link-color: #337ab7;
 	--container-color: #ffffff;
 	--container-text-color: #3c3c3c;
+	--border-color: #dddddd;
 }
 
 body {
@@ -22,6 +25,56 @@ body {
     background-repeat: repeat;
     background-color: var(--bg-color);
 	color: var(--container-text-color);
+}
+
+
+.btn,
+.btn:hover,
+.btn:focus,
+.btn.active {
+    color: var(--container-text-color) !important;
+}
+
+.btn-success,
+.btn-success:hover,
+.btn-success:focus {
+    color: var(--site-slogan) !important;
+}
+
+tspan { fill: var(--container-text-color); }
+
+.panel-default > .panel-heading { background-color: var(--container-color); color: var(--container-text-color); border-color: var(--border-color);}
+.panel-body { background-color: var(--container-color);}
+
+.highcharts-background { fill: var(--container-color) !important; }
+
+.btn-default, .btn-default:hover { color: var(--container-color); background-color: var(--container-color); border-color: var(--bg-color);}
+
+.well {
+    background-color: var(--container-color) !important;
+}
+.text-muted {
+    color: var(--container-text-color) !important;
+}
+
+button, optgroup, select, textarea { background-color: var(--bg-color) !important;}
+
+.form-control {
+  color: var(--container-text-color);
+}
+
+.table-striped > tbody > tr:nth-child(odd),
+.table-striped > tbody > tr:nth-child(even) {
+    background-color: inherit !important;
+}
+
+input.form-control, textarea.form-control {
+    color: var(--container-text-color) !important;
+}
+
+.form-control {
+    color: var(--container-text-color) !important;
+    background-color: var(--bg-color) !important;
 }
 
 .pagination > li:first-child > a,

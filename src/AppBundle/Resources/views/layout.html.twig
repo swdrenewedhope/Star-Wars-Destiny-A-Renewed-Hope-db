@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-{% set theme = app.request.cookies.get('theme') %}
-<html lang="{{ app.request.locale }}" class="{{ theme == 'light' ? 'light' : '' }}">
+<html lang="{{ app.request.locale }}">
   <head>
+	<script>
+    (function () { if (localStorage.getItem('theme') === 'light') document.documentElement.classList.add('light');})();
+	</script>
     <title>Star Wars Destiny: A Renewed Hope Database</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -122,7 +124,7 @@
             </li>
 			<li>
     			<a id="themetoggle" href="#">
-        			<span class="fa {{ theme == 'light' ? 'fa-sun-o' : 'fa-moon-o' }}"></span>
+        			<span class="fa fa-moon-o"></span>
     			</a>
 			</li>
           </ul>
@@ -236,51 +238,31 @@
     '@AppBundle/Resources/public/js/app.deck_charts.js'
 	'@AppBundle/Resources/public/js/app.ui.js'
   %}
-	  <script src="{{ asset_url }}"></script><!--app!-->
+	  <script src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 
   <script type="text/javascript">
-  {% if collection is defined %}
-    app.collection && app.collection.init({{ collection|json_encode|raw }});
-  {% endif %}
+  {% if collection is defined %} app.collection && app.collection.init({{ collection|json_encode|raw }}); {% endif %}
   </script>
 
 	{% block javascripts %}{% endblock %}
 	<script src="{{ asset('/bundles/app/highcharts.theme.js') }}"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.dirtyforms/2.0.0/jquery.dirtyforms.min.js"></script>
 	<script type="text/javascript">
-	$( document ).ready(function() {
-	
-		function setCookie(name,value,days) {
-			var expires = "";
-			if (days) {
-				var date = new Date();
-				date.setTime(date.getTime() + (days*24*60*60*1000));
-				expires = "; expires=" + date.toUTCString();
-			}
-			document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-		}
-		function getCookie(name) {
-			var nameEQ = name + "=";
-			var ca = document.cookie.split(';');
-			for(var i=0;i < ca.length;i++) {
-				var c = ca[i];
-				while (c.charAt(0)==' ') c = c.substring(1,c.length);
-				if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-			}
-			return null;
-		}
+		
+	$(document).ready(function() {
+    $('ul').on('click', '#themetoggle', function(e) {
+        e.preventDefault();
+        var goingLight = !document.documentElement.classList.contains('light');
+        document.documentElement.classList.toggle('light', goingLight);
+        localStorage.setItem('theme', goingLight ? 'light' : 'dark');
+        $(this).find('span').toggleClass('fa-sun-o fa-moon-o');
+    });
 
-		function eraseCookie(name) { document.cookie = name+'=; Max-Age=-99999999;'; }
-	
-		$('ul').on('click', '#themetoggle', function(e) { e.preventDefault();
-    		var goingLight = !document.documentElement.classList.contains('light');
-    		document.documentElement.classList.toggle('light', goingLight);
-    		setCookie('theme', goingLight ? 'light' : 'dark', 365);
-    		$(this).find('span').toggleClass('fa-sun-o fa-moon-o');
-  			if (goingLight == true) { alert("Warning - Light mode is still in development."); }
-		});
-	});
+    if (document.documentElement.classList.contains('light')) {
+        $('#themetoggle span').removeClass('fa-moon-o').addClass('fa-sun-o');
+    }
+});
 	</script>
     </body>
 </html>
