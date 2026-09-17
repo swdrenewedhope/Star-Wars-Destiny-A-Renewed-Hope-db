@@ -1,15 +1,13 @@
-openapi: 3.0.0
+openapi: 3.1.0
 info:
-  title: 'Star Wars Destiny: ARH API'
+  title: 'ARH DB API Docs'
   description: |
-    **This API is under construction, please be patient.**
     
-    ⚠️ - Return very large payloads.
-
-  version: "0.1"
+    ⚠️ - Returns large payloads.
+  version: 'Up to date'
 
 servers:
-  - url: http://db.swdrenewedhope.com
+  - url: https://db.swdrenewedhope.com
 
 paths:
   /api/public/card/{code}:
@@ -33,50 +31,7 @@ paths:
       responses:
         '200':
           description: Returns the properties of a card.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  sides:
-                    type: array
-                    description: Testing
-              example:
-                sides: ["1RD", "2RD", "1F", "1Dc", "1R", "-"]
-                set_code: AW
-                set_name: Awakenings
-                type_code: character
-                type_name: Character
-                faction_code: red
-                faction_name: Command
-                affiliation_code: villain
-                affiliation_name: Villain
-                rarity_code: L
-                rarity_name: Legendary
-                subtypes:
-                  - { code: leader, name: Leader }
-                  - { code: trooper, name: Trooper }
-                position: 1
-                code: "01001"
-                ttscardid: "1300"
-                name: Captain Phasma
-                subtitle: Elite Trooper
-                cost: null
-                health: 11
-                points: "12/15"
-                text: "Your non-unique characters have the Guardian keyword."
-                deck_limit: 1
-                flavor: '"Whatever you''re planning, it won''t work."'
-                illustrator: Darren Tan
-                is_unique: true
-                has_die: true
-                has_errata: true
-                flip_card: false
-                url: http://db.swdrenewedhope.com/card/01001
-                imagesrc: http://db.swdrenewedhope.com/bundles/app/images/cards/en/01/01001.jpg
-                label: "<span class='icon-set-AW'></span> Captain Phasma - Elite Trooper"
-                cp: 1215
-        '500':
+        '404':
           description: This card does not exist.
 
   /api/public/cards/:
@@ -108,6 +63,145 @@ paths:
             example: "AW"
       responses:
         '200':
-          description: Returns all cards from set_code.
+          description: Returns all cards from set_code. 
         '404':
           description: This set does not exist.  
+
+  /api/public/sets/:
+    get:
+      tags: [Sets]
+      summary: Return a list of sets.
+      responses:
+        '200':
+          description: Returns all sets.
+
+  /api/public/formats/:
+      get:
+        tags: [Formats]
+        summary: Return a list of formats.
+        responses:
+          '200':
+            description: Returns all formats.
+
+  /api/public/decklist/{decklist_id}:
+      get:
+        tags: [Decklist]
+        summary: Return contents of a decklist.
+        parameters:
+        - name: decklist_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "2465"
+        responses:
+          '200':
+            description: Returns the decklist.
+          '404':
+            description: Decklist does not exist.
+
+  /api/public/find:
+    get:
+      tags:
+        - Find
+      summary: Return cards matching search critera.
+      parameters:
+        - name: q
+          in: query
+          required: false
+          description: | 
+            Takes several additional parameters, in no particular order and all optional:
+            
+
+            For certain parameters, such as subtype, see [here](https://github.com/swdrenewedhope/Star-Wars-Destiny-A-Renewed-Hope-db/blob/main/dbJSON/README.md) for all valid types.
+
+
+            - Sending something without anything like the below, is taken as cardname.
+            
+
+            - `l:` = Subtitle. Quoted.
+
+
+            - `x:` = Text on card(s). Quoted.
+
+
+            - `v:` = Flavour text on card(s). Quoted.
+
+
+            - `f:` = Faction, by exclude. e.g `f:blue|yellow` would only return blue and yellow.
+            
+
+            - `s:` = Set. e.g `s:AW`.
+
+
+            - `m:` = Format. e.g `m:STD`.
+
+
+            - `t:` = Card type. e.g `t:downgrade`.
+
+
+            - `b:` = Subtype. e.g `b:ability`.
+
+
+            - `u:` = Unique. e.g `u:1` (bool).
+
+
+            - `y:` = Rarity. e.g `y:C`.
+
+
+            - `a:` = Affiliation. e.g `a:neutral`.
+
+
+            - `o:`= Cost. e.g `o:1` OR `o>1`.
+
+
+            - `h:` = Health. e.g `h:1` OR `h>1`.
+
+
+            - `i:` = Illustrator. e.g `i:"Aldo Katayangi"`
+          schema:
+            type: string
+            example: "Captain Phasma l:\"Elite Trooper\""
+      responses:
+        '200':
+          description: Returns found cards.
+        '404':
+          description: No cards found matching search term.
+
+  /api/public/decklists/by_date/{date}:
+    get:
+      tags:
+        - Decklist
+      summary: Return cards matching date range.
+      parameters:
+        - name: date
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "2026-09-08"
+      responses:
+          '200':
+            description: Returns decklists within date.
+          '404':
+            description: No decklists found within date.
+    
+  /api/public/deck/{id}:
+    get:
+      tags:
+        - Deck
+      summary: Return unpublished deck.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "48571"
+      responses:
+          '200':
+            description: Returns deck.
+          '404':
+            description: Deck does not exist.
+          '403':
+            description: Deck owner has 'share unpublished decks' disabled.
