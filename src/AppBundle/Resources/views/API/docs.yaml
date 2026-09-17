@@ -34,7 +34,7 @@ paths:
         '404':
           description: This card does not exist.
 
-  /api/public/cards/:
+  /api/public/cards:
     get:
       tags: [Cards]
       summary: ⚠️ Return a list of all cards across all sets. ⚠️
@@ -67,7 +67,7 @@ paths:
         '404':
           description: This set does not exist.  
 
-  /api/public/sets/:
+  /api/public/sets:
     get:
       tags: [Sets]
       summary: Return a list of sets.
@@ -75,7 +75,7 @@ paths:
         '200':
           description: Returns all sets.
 
-  /api/public/formats/:
+  /api/public/formats:
       get:
         tags: [Formats]
         summary: Return a list of formats.
