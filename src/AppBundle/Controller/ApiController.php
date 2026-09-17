@@ -1,7 +1,5 @@
 <?php
-
 namespace AppBundle\Controller;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Decklist;
@@ -11,49 +9,12 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class ApiController extends Controller
 {
-	private function createResponse(Request $request)
-	{
-		$response = new Response();
-		$response->setPublic();
-		$response->setMaxAge($this->container->getParameter('cache_expiration'));
-		$response->headers->add(array(
-			'Access-Control-Allow-Origin' => '*',
-			'Content-Language' => $request->getLocale()
-		));
-
-		return $response;
-	}
-
-    function showDocsAction ()
-    {
-    	$response = new Response();
-    	$response->setPublic();
-    	$response->setMaxAge($this->container->getParameter('cache_expiration'));
-
-    	return $this->render('AppBundle:API:API.html.twig', array(
-    			"pagetitle" => "API",
-    			"game_name" => $this->container->getParameter('game_name'),
-    			"publisher_name" => $this->container->getParameter('publisher_name'),
-    	), $response);
-    }
+    function showDocsAction () { return $this->render('AppBundle:API:API.html.twig', [], new Response()); }
 
 	public function listFormatsAction(Request $request)
 	{
-		$response = $this->createResponse($request);
-		$jsonp = $request->query->get('jsonp');
+		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Language' => 'en'));
 		$list_formats = $this->getDoctrine()->getRepository('AppBundle:Format')->findAll();
-		$lastModified = NULL;
-
-		foreach($list_formats as $format) {
-			if(!$lastModified || $lastModified < $format->getDateUpdate()) {
-				$lastModified = $format->getDateUpdate();
-			}
-		}
-
-		$response->setLastModified($lastModified);
-		
-		if ($response->isNotModified($request)) { return $response; }
-
 		$formats = array();
 
 		foreach($list_formats as $format) {
@@ -64,43 +25,16 @@ class ApiController extends Controller
 			);
 		}
 
-		$content = json_encode($formats);
-		if(isset($jsonp))
-		{
-			$content = "$jsonp($content)";
-			$response->headers->set('Content-Type', 'application/javascript');
-		} else
-		{
-			$response->headers->set('Content-Type', 'application/json');
-		}
+		$content = json_encode($formats);	
+		$response->headers->set('Content-Type', 'application/json');
 		$response->setContent($content);
 		return $response;
 	}
 
 	public function listSetsAction(Request $request)
 	{
-		$response = new Response();
-		$response->setPublic();
-		$response->setMaxAge($this->container->getParameter('cache_expiration'));
-		$response->headers->add(array(
-			'Access-Control-Allow-Origin' => '*',
-			'Content-Language' => $request->getLocale()
-		));
-
-		$jsonp = $request->query->get('jsonp');
+		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Language' => 'en'));
 		$list_sets = $this->getDoctrine()->getRepository('AppBundle:Set')->findAll();
-		$lastModified = NULL;
-
-		foreach($list_sets as $set) {
-			if(!$lastModified || $lastModified < $set->getDateUpdate()) {
-				$lastModified = $set->getDateUpdate();
-			}
-		}
-		$response->setLastModified($lastModified);
-		if ($response->isNotModified($request)) {
-			return $response;
-		}
-
 		$sets = array();
 
 		foreach($list_sets as $set) {
@@ -118,129 +52,48 @@ class ApiController extends Controller
 		}
 
 		$content = json_encode($sets);
-		if(isset($jsonp))
-		{
-			$content = "$jsonp($content)";
-			$response->headers->set('Content-Type', 'application/javascript');
-		} else
-		{
-			$response->headers->set('Content-Type', 'application/json');
-		}
+		$response->headers->set('Content-Type', 'application/json');
 		$response->setContent($content);
 		return $response;
 	}
 
 	public function getCardAction($card_code, Request $request)
 	{
-		$response = new Response();
-		$response->setPublic();
-		$response->setMaxAge($this->container->getParameter('cache_expiration'));
-		$response->headers->add(array(
-			'Access-Control-Allow-Origin' => '*',
-			'Content-Language' => $request->getLocale()
-		));
-
-		$jsonp = $request->query->get('jsonp');
-		$card = $this->getDoctrine()->getRepository('AppBundle:Card')->findOneBy(array("code" => $card_code));
-		$lastModified = NULL;
-
-		if(!$lastModified || $lastModified < $card->getDateUpdate()) {
-			$lastModified = $card->getDateUpdate();
-		}
-		$response->setLastModified($lastModified);
-		if ($response->isNotModified($request)) {
-			return $response;
-		}
-
-		$card = $this->get('cards_data')->getCardInfo($card, true, "en");
-		$content = json_encode($card);
-
-		if(isset($jsonp))
-		{
-			$content = "$jsonp($content)";
-			$response->headers->set('Content-Type', 'application/javascript');
-		} else
-		{
-			$response->headers->set('Content-Type', 'application/json');
-		}
+		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Language' => 'en'));
+		$cardLookup = $this->getDoctrine()->getRepository('AppBundle:Card')->findOneBy(array("code" => $card_code));
+		if(!$cardLookup) { $response -> setStatusCode(404); return $response; }
+		$cardData = $this->get('cards_data')->getCardInfo($cardLookup, true, "en");
+		$content = json_encode($cardData);	
+		$response->headers->set('Content-Type', 'application/json');
 		$response->setContent($content);
 		return $response;
-
 	}
 
-	public function listCardsAction(Request $request)
+	public function listAllCardsAction(Request $request)
 	{
-		$locale = $request->getLocale();
-
-		$response = new Response();
-		$response->setPublic();
-		$response->setMaxAge($this->container->getParameter('cache_expiration'));
-		$response->headers->add(array(
-			'Access-Control-Allow-Origin' => '*',
-			'Content-Language' => $locale
-		));
-
-		$jsonp = $request->query->get('jsonp');
+		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Language' => 'en'));
 		$list_cards = $this->getDoctrine()->getRepository('AppBundle:Card')->findAll();
-		$lastModified = NULL;
-
-		foreach($list_cards as $card) {
-			if(!$lastModified || $lastModified < $card->getDateUpdate()) {
-				$lastModified = $card->getDateUpdate();
-			}
-		}
-		$response->setLastModified($lastModified);
-		if ($response->isNotModified($request)) {
-			return $response;
-		}
-
 		$cards = array();
-
-		foreach($list_cards as $card) {
-			$cards[] = $this->get('cards_data')->getCardInfo($card, true, $locale);
-		}
-
+		foreach($list_cards as $card) { $cards[] = $this->get('cards_data')->getCardInfo($card, true, 'en'); }
 		$content = json_encode($cards);
-		if(isset($jsonp))
-		{
-			$content = "$jsonp($content)";
-			$response->headers->set('Content-Type', 'application/javascript');
-		} else
-		{
-			$response->headers->set('Content-Type', 'application/json');
-		}
+		$response->headers->set('Content-Type', 'application/json');
 		$response->setContent($content);
 		return $response;
-
 	}
 
 	public function listCardsBySetAction($set_code, Request $request)
 	{
-		$response = new Response();
-		$response->headers->add(array('Access-Control-Allow-Origin' => '*'));
-
+		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Language' => 'en'));
 		$set = $this->getDoctrine()->getRepository('AppBundle:Set')->findOneBy(array('code' => $set_code));
-		if (!$set) { $response->setStatusCode(Response::HTTP_NOT_FOUND); return $response; }
-
-		$response->setMaxAge($this->container->getParameter('cache_expiration'));
+		if (!$set) { $response -> setStatusCode(404); return $response; }
 		$response->headers->set('Content-Type', 'application/json');		
-		$response->setPublic();
-
 		$conditions = $this->get('cards_data')->syntax("s:$set_code");
 		$this->get('cards_data')->validateConditions($conditions);
 		$query = $this->get('cards_data')->buildQueryFromConditions($conditions);
 		$cards = array();
-		$last_modified = null;
 
 		if($query && $rows = $this->get('cards_data')->get_search_rows($conditions, "set"))
 		{
-			for($rowindex = 0; $rowindex < count($rows); $rowindex++) {
-				if(empty($last_modified) || $last_modified < $rows[$rowindex]->getDateUpdate()) $last_modified = $rows[$rowindex]->getDateUpdate();
-			}
-			$response->setLastModified($last_modified);
-			if ($response->isNotModified($request)) {
-				return $response;
-			}
 			for($rowindex = 0; $rowindex < count($rows); $rowindex++) {
 				$card = $this->get('cards_data')->getCardInfo($rows[$rowindex], true, "en");
 				$cards[] = $card;
@@ -254,179 +107,67 @@ class ApiController extends Controller
 
 	public function findCardsAction(Request $request)
 	{
-		$locale = $request->getLocale();
-
-		$response = new Response();
-		$response->setPublic();
-		$response->setMaxAge($this->container->getParameter('cache_expiration'));
-		$response->headers->add(array(
-			'Access-Control-Allow-Origin' => '*',
-			'Content-Language' => $locale
-		));
-
-		$jsonp = $request->query->get('jsonp');
+		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Language' => 'en'));
 		$q = $request->query->get('q');
-
 		$conditions = $this->get('cards_data')->syntax($q);
 		$this->get('cards_data')->validateConditions($conditions);
 		$query = $this->get('cards_data')->buildQueryFromConditions($conditions);
-
 		$cards = array();
-		$last_modified = null;
+
 		if($query && $rows = $this->get('cards_data')->get_search_rows($conditions, "set"))
 		{
 			for($rowindex = 0; $rowindex < count($rows); $rowindex++) {
-				if(empty($last_modified) || $last_modified < $rows[$rowindex]->getDateUpdate()) $last_modified = $rows[$rowindex]->getDateUpdate();
-			}
-			$response->setLastModified($last_modified);
-			if ($response->isNotModified($request)) {
-				return $response;
-			}
-			for($rowindex = 0; $rowindex < count($rows); $rowindex++) {
-				$card = $this->get('cards_data')->getCardInfo($rows[$rowindex], true, $locale);
+				$card = $this->get('cards_data')->getCardInfo($rows[$rowindex], true, 'en');
 				$cards[] = $card;
 			}
 		}
 
+		if (!$cards) {$response -> setStatusCode(404); return $response;}
 		$content = json_encode($cards);
-		if(isset($jsonp))
-		{
-			$content = "$jsonp($content)";
-			$response->headers->set('Content-Type', 'application/javascript');
-		} else
-		{
-			$response->headers->set('Content-Type', 'application/json');
-		}
+		$response->headers->set('Content-Type', 'application/json');
 		$response->setContent($content);
 		return $response;
 	}
 
 	public function getDecklistAction($decklist_id, Request $request)
 	{
-		$response = new Response();
-		$response->setPublic();
-		$response->setMaxAge($this->container->getParameter('cache_expiration'));
-		$response->headers->add(array('Access-Control-Allow-Origin' => '*'));
-		
-		$jsonp = $request->query->get('jsonp');
-		
-		$format = $request->getRequestFormat();
-		if($format !== 'json') {
-			$response->setContent($request->getRequestFormat() . ' format not supported. Only json is supported.');
-			return $response;
-		}
-		
+		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Language' => 'en'));
 		$decklist = $this->getDoctrine()->getRepository('AppBundle:Decklist')->find($decklist_id);
-		if(!$decklist) die();
-		
-		$response->setLastModified($decklist->getDateUpdate());
-		if ($response->isNotModified($request)) {
-			return $response;
-		}
-		
-		$content = json_encode($decklist);
-		
-		if (isset($jsonp)) {
-			$content = "$jsonp($content)";
-			$response->headers->set('Content-Type', 'application/javascript');
-		} else {
-			$response->headers->set('Content-Type', 'application/json');
-		}
-		
+		if(!$decklist) { $response -> setStatusCode(404); return $response; }
+		$content = json_encode($decklist);	
+		$response->headers->set('Content-Type', 'application/json');
 		$response->setContent($content);
 		return $response;
-		
 	}
 
 	public function listDecklistsByDateAction($date, Request $request)
 	{
-		$response = new Response();
-		$response->setPublic();
-		$response->setMaxAge($this->container->getParameter('cache_expiration'));
-		$response->headers->add(array('Access-Control-Allow-Origin' => '*'));
-		
-		$jsonp = $request->query->get('jsonp');
-		
-		$format = $request->getRequestFormat();
-		if($format !== 'json') {
-			$response->setContent($request->getRequestFormat() . ' format not supported. Only json is supported.');
-			return $response;
-		}
-		
+		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Language' => 'en'));
 		$start = \DateTime::createFromFormat('Y-m-d', $date);
 		$start->setTime(0, 0, 0);
 		$end = clone $start;
 		$end->add(new \DateInterval("P1D"));
-		
 		$expr = Criteria::expr();
 		$criteria = Criteria::create();
 		$criteria->where($expr->gte('dateCreation', $start));
 		$criteria->andWhere($expr->lt('dateCreation', $end));
-		
-		$decklists = $this->getDoctrine()->getRepository('AppBundle:Decklist')->matching($criteria);
-		if(!$decklists) die();
-		
-		$dateUpdates = $decklists->map(function ($decklist) {
-			return $decklist->getDateUpdate();
-		})->toArray();
-		
-		$response->setLastModified(max($dateUpdates));
-		if ($response->isNotModified($request)) {
-			return $response;
-		}
-		
+		$decklists = iterator_to_array($this->getDoctrine()->getRepository('AppBundle:Decklist')->matching($criteria));
+		if(!$decklists) { $response -> setStatusCode(404); return $response; }
 		$content = json_encode($decklists);
-		
-		if (isset($jsonp)) {
-			$content = "$jsonp($content)";
-			$response->headers->set('Content-Type', 'application/javascript');
-		} else {
-			$response->headers->set('Content-Type', 'application/json');
-		}
-		
+		$response->headers->set('Content-Type', 'application/json');
 		$response->setContent($content);
 		return $response;
-		
 	}
 
-public function getDeckAction($deck_id, Request $request)
-{
-    $response = new Response();
-    $response->setPublic();
-    $response->setMaxAge($this->container->getParameter('cache_expiration'));
-    $response->headers->add(array('Access-Control-Allow-Origin' => '*'));
-
-    $jsonp  = $request->query->get('jsonp');
-    $format = $request->getRequestFormat();
-    if ($format !== 'json') {
-        $response->setContent($request->getRequestFormat() . ' format not supported. Only json is supported.');
-        return $response;
-    }
-
-    $deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($deck_id);
-    if (!$deck) die();
-
-    $owner = method_exists($deck, 'getUser') ? $deck->getUser()
-           : (method_exists($deck, 'getOwner') ? $deck->getOwner() : null);
-    if (!$owner || !$owner->getIsShareDecks()) die();
-
-    if (method_exists($deck, 'getDateUpdate') && $deck->getDateUpdate()) {
-        $response->setLastModified($deck->getDateUpdate());
-        if ($response->isNotModified($request)) {
-            return $response;
-        }
-    }
-
-    $content = json_encode($deck);
-
-    if (isset($jsonp)) {
-        $content = "$jsonp($content)";
-        $response->headers->set('Content-Type', 'application/javascript');
-    } else {
-        $response->headers->set('Content-Type', 'application/json');
-    }
-
-    $response->setContent($content);
-    return $response;
+	public function getDeckAction($deck_id, Request $request)
+	{
+		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Language' => 'en'));
+    	$deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($deck_id);
+    	if (!$deck) { $response -> setStatusCode(404); return $response; }
+ 		if (!$deck->getUser()->getIsShareDecks()) { $response -> setStatusCode(403); return $response; };
+    	$content = json_encode($deck);
+    	$response->headers->set('Content-Type', 'application/json');
+    	$response->setContent($content);
+    	return $response;
 	}
 }
