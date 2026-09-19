@@ -122,7 +122,7 @@ class ApiController extends Controller
 			}
 		}
 
-		if (!$cards) {$response -> setStatusCode(404); return $response;}
+		if (!$cards) {$response -> setStatusCode(204); return $response;}
 		$content = json_encode($cards);
 		$response->headers->set('Content-Type', 'application/json');
 		$response->setContent($content);

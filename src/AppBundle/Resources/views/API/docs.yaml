@@ -165,7 +165,7 @@ paths:
       responses:
         '200':
           description: Returns found cards.
-        '404':
+        '204':
           description: No cards found matching search term.
 
   /api/public/decklists/by_date/{date}:
