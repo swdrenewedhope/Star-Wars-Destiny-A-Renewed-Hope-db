@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:7.4-fpm
 
 RUN echo 'deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/20260901T000000Z/ bullseye main' > /etc/apt/sources.list && \
     echo 'deb [check-valid-until=no] http://snapshot.debian.org/archive/debian-security/20260901T000000Z/ bullseye-security main' >> /etc/apt/sources.list
@@ -34,15 +34,8 @@ RUN docker-php-ext-install \
     xml
 
 COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
-
-COPY docker/vhost.conf /etc/apache2/sites-available/000-default.conf
-
-RUN a2enmod rewrite
-
-WORKDIR /var/www/html
-
 COPY docker/entrypoint.sh /entrypoint.sh
+WORKDIR /var/www/html/
 RUN chmod +x /entrypoint.sh
-
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["apache2-foreground"]
+CMD ["php-fpm"]

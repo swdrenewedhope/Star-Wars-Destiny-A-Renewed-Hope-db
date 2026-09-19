@@ -36,10 +36,12 @@ as_www "sed -i '2636s/continue;/break;/' /var/www/html/vendor/doctrine/orm/lib/D
 as_www "sed -i '2665s/continue;/break;/' /var/www/html/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php"
 
 if [ "${SYMFONY_ENV}" = "dev" ]; then
-    as_www "php app/console fos:user:create dev dev@localhost dev --env=${SYMFONY_ENV} -n" || true
-    as_www "php app/console fos:user:activate dev --env=${SYMFONY_ENV} -n" || true
-    as_www "php app/console fos:user:promote --super dev --env=${SYMFONY_ENV} -n" || true
+	as_www "rm app/logs/dev.log" || true
+    as_www "php app/console fos:user:create dev dev@localhost dev -n" || true
+    as_www "php app/console fos:user:activate dev -n" || true
+    as_www "php app/console fos:user:promote --super dev -n" || true
 	as_www "composer install --no-interaction --prefer-dist"
+	as_www "cp -f web/app.php web/app_dev.php && php app/console server:run 0.0.0.0:80 & tail -F app/logs/dev.log"
 fi
 
 # Prod optimizations over dev

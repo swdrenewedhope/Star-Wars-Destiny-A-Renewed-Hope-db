@@ -4,7 +4,6 @@
 /app/config/parameters.yml
 /app/config/config_db.yml
 /app/logs/*
-!app/logs/.gitkeep
 /app/phpunit.xml
 /bin/
 /vendor/
@@ -21,9 +20,6 @@ tags
 .buildpath
 .project
 .tags_swap
-.idea/
-.DS_Store
-error_log
 /src/AppBundle/Resources/public/images/cards/
 \#*\#
 docker-compose.yml
