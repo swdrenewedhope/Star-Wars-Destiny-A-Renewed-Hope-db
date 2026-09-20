@@ -37,6 +37,9 @@ services:
 
       GOOGLE_ANALYTICS_TRACKING_CODE: ~
 
+  # fpm Tuning
+      FPM_MAX_CHILDREN: 20
+
   # MISC
 
       WEBSITE_URL: "localhost"

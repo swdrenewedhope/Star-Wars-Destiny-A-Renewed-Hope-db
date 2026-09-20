@@ -1,7 +1,7 @@
 FROM php:7.4-fpm
 
-RUN echo 'deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/20260901T000000Z/ bullseye main' > /etc/apt/sources.list && \
-    echo 'deb [check-valid-until=no] http://snapshot.debian.org/archive/debian-security/20260901T000000Z/ bullseye-security main' >> /etc/apt/sources.list
+RUN echo 'deb http://snapshot.debian.org/archive/debian/20260901T000000Z/ bullseye main' > /etc/apt/sources.list && \
+    echo 'deb http://snapshot.debian.org/archive/debian-security/20260901T000000Z/ bullseye-security main' >> /etc/apt/sources.list
 
 RUN apt-get -o Acquire::Check-Valid-Until=false update && apt-get install -y \
     git \

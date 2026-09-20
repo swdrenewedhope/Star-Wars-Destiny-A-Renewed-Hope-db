@@ -34,4 +34,9 @@ if [ "${SYMFONY_ENV}" = "prod" ]; then
 	realpath_cache_size = 4096K
 	realpath_cache_ttl = 31536000
 EOF
+	cat > /usr/local/etc/php-fpm.d/zz-custom.conf <<EOF
+	[www]
+	pm = static
+	pm.max_children = ${FPM_MAX_CHILDREN}
+EOF
 fi; chown -R www-data:www-data app/cache app/logs; exec "$@"
