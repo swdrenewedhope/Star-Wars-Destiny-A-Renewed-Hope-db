@@ -1,12 +1,78 @@
-AppBundle_api_public:
-    resource: "@AppBundle/Resources/config/routing/api/routing_api_public.yml"
-    prefix:   /public
-
-AppBundle_api_oauth2:
-    resource: "@AppBundle/Resources/config/routing/api/routing_api_oauth2.yml"
-    prefix:   /oauth2
-
 api_docs:
     path: /
-    defaults:
-        _controller: AppBundle:Api:showDocs
+    defaults: { _controller: AppBundle:API:showDocs }
+
+api_public_formats:
+  path: /formats
+  methods: [GET]
+  defaults: { _controller: AppBundle:API:listFormats }
+
+api_public_sets:
+  path: /sets
+  methods: [GET]
+  defaults: { _controller: AppBundle:API:listSets }
+
+api_public_card:
+  path: /card/{card_code}
+  methods: [GET]
+  defaults: { _controller: AppBundle:API:getCard }
+
+api_public_cards:
+  path: /cards
+  methods: [GET]
+  defaults: { _controller: AppBundle:API:listAllCards }
+
+api_public_cards_set:
+  path: /cards/{set_code}
+  methods: [GET]
+  defaults: { _controller: AppBundle:API:listCardsBySet }
+
+api_public_cards_find:
+  path: /find
+  methods: [GET]
+  defaults: { _controller: AppBundle:API:findCards }
+
+api_public_decklist:
+  path: /decklist/{decklist_id}
+  methods: [GET]
+  defaults: { _controller: AppBundle:API:getDecklist }
+  requirements: { decklist_id: \d+ }
+
+api_public_decklists_by_date:
+  path: /decklists/by_date/{date}
+  methods: [GET]
+  defaults: { _controller: AppBundle:API:listDecklistsByDate }
+  requirements: { date: \d\d\d\d-\d\d-\d\d }
+
+user_info:
+  path: /user/info
+  defaults: {_controller: AppBundle:User:info }
+
+api_public_deck:
+  path: /deck/{deck_id}
+  methods: [GET]
+  defaults: { _controller: AppBundle:API:getDeck }
+  requirements: { deck_id: \d+ }
+
+api_oauth2_decks:
+    path: /decks
+    methods: [GET]
+    defaults: { _controller: AppBundle:API:listDecks }
+
+api_oauth2_load_deck:
+    path: /deck/load/{id}
+    methods: [GET]
+    defaults: { _controller: AppBundle:API:loadDeck }
+    requirements: { id: \d+ }
+
+api_oauth2_save_deck:
+    path: /deck/save/{id}
+    methods: [PUT]
+    defaults: { _controller: AppBundle:API:saveDeck }
+    requirements: { id: \d+ }
+
+api_oauth2_publish_deck:
+    path: /deck/publish/{id}
+    methods: [PUT]
+    defaults: { _controller: AppBundle:API:publishDeck }
+    requirements: { id: \d+ }
