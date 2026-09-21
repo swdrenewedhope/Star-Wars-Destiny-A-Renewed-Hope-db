@@ -22,8 +22,7 @@ class APIController extends Controller
 	public function listFormatsAction(Request $request)
 	{
 		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Type' => 'application/json'));
-		$list_formats = $this->getDoctrine()->getRepository('AppBundle:Format')->findAll();
-		$formats = array();
+		$list_formats = $this->getDoctrine()->getRepository('AppBundle:Format')->findAll(); $formats = array();
 
 		foreach($list_formats as $format) {
 			$formats[] = array(
@@ -41,8 +40,7 @@ class APIController extends Controller
 	public function listSetsAction(Request $request)
 	{
 		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Type' => 'application/json'));
-		$list_sets = $this->getDoctrine()->getRepository('AppBundle:Set')->findAll();
-		$sets = array();
+		$list_sets = $this->getDoctrine()->getRepository('AppBundle:Set')->findAll(); $sets = array();
 
 		foreach($list_sets as $set) {
 			$real = count($set->getCards());
@@ -77,8 +75,7 @@ class APIController extends Controller
 	public function listAllCardsAction(Request $request)
 	{
 		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Type' => 'application/json'));
-		$list_cards = $this->getDoctrine()->getRepository('AppBundle:Card')->findAll();
-		$cards = array();
+		$list_cards = $this->getDoctrine()->getRepository('AppBundle:Card')->findAll(); $cards = array();
 		foreach($list_cards as $card) { $cards[] = $this->get('cards_data')->getCardInfo($card, true, 'en'); }
 		$content = json_encode($cards);
 		$response->setContent($content);
@@ -142,17 +139,11 @@ class APIController extends Controller
 
 	public function listDecklistsByDateAction($date, Request $request)
 	{
-		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Language' => 'en', 'Content-Type' => 'application/json'));	
-		$start = \DateTime::createFromFormat('Y-m-d', $date);
-		$start->setTime(0, 0, 0);
-		$end = clone $start;
-		$end->add(new \DateInterval("P1D"));
+		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Type' => 'application/json'));	
+		$start = \DateTime::createFromFormat('Y-m-d|', $date); $end = (clone $start)->modify('+1 day');
 		$expr = Criteria::expr();
-		$criteria = Criteria::create();
-		$criteria->where($expr->gte('dateCreation', $start));
-		$criteria->andWhere($expr->lt('dateCreation', $end));
+		$criteria = Criteria::create()->where($expr->gte('dateCreation', $start))->andWhere($expr->lt('dateCreation', $end));
 		$decklists = iterator_to_array($this->getDoctrine()->getRepository('AppBundle:Decklist')->matching($criteria));
-		if(!$decklists) { $response -> setStatusCode(404); return $response; }
 		$content = json_encode($decklists);
 		$response->setContent($content);
 		return $response;
@@ -163,15 +154,10 @@ class APIController extends Controller
 		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Type' => 'application/json'));
 		$deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($deck_id);
     	if (!$deck) { $response -> setStatusCode(404); return $response; }
-		$user = $this->getUser();
-		$isOwner = $user && $deck->getUser()->getId() === $user->getId();		
+		$isOwner = $this->getUser() && $deck->getUser()->getId() === $this->getUser()->getId();
 		if (!$deck->getUser()->getIsShareDecks() && !$isOwner) { $response -> setStatusCode(403); return $response; };
-    	
 		$response->setLastModified($deck->getDateUpdate());
-		if ($response->isNotModified($request)) {
-			return $response;
-		}
-
+		if ($response->isNotModified($request)) { return $response; }
 		$content = json_encode($deck);
 		$response->setContent($content);
     	return $response;
@@ -189,12 +175,8 @@ class APIController extends Controller
 		$decks = $this->getDoctrine()->getRepository('AppBundle:Deck')->findBy(['user' => $this->getUser()]);
 		if (!$decks) { $response->setContent(json_encode($decks)); return $response; }
 		$dateUpdates = array_map(function ($deck) { return $deck->getDateUpdate(); }, $decks);
-
 		$response->setLastModified(max($dateUpdates));
-		if ($response->isNotModified($request)) {
-			return $response;
-		}
-
+		if ($response->isNotModified($request)) { return $response; }
 		$content = json_encode($decks);
 		$response->setContent($content);
 		return $response;
