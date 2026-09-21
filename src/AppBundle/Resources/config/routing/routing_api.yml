@@ -48,7 +48,7 @@ user_info:
   path: /user/info
   defaults: {_controller: AppBundle:User:info }
 
-api_public_deck:
+api_public_oauth2_deck:
   path: /deck/{deck_id}
   methods: [GET]
   defaults: { _controller: AppBundle:API:getDeck }
@@ -58,12 +58,6 @@ api_oauth2_decks:
     path: /decks
     methods: [GET]
     defaults: { _controller: AppBundle:API:listDecks }
-
-api_oauth2_load_deck:
-    path: /deck/load/{id}
-    methods: [GET]
-    defaults: { _controller: AppBundle:API:loadDeck }
-    requirements: { id: \d+ }
 
 api_oauth2_save_deck:
     path: /deck/save/{id}

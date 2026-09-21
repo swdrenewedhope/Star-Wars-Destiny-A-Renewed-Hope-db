@@ -21,7 +21,7 @@ security:
                 provider: fos_userbundle
                 check_path: oauth_server_auth_login_check
                 login_path: oauth_server_auth_login
-            anonymous: false
+            anonymous: true
 
         api:
             pattern:    ^/api
@@ -64,7 +64,6 @@ security:
         - { path: ^/user/, role: ROLE_USER }
         - { path: ^/collection/, role: ROLE_USER }
         - { path: ^/api/decks, role: IS_AUTHENTICATED_FULLY }
-        - { path: ^/api/deck/load, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/deck/save, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/deck/publish, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/api, role: IS_AUTHENTICATED_ANONYMOUSLY }
