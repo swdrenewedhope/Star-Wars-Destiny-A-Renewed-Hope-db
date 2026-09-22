@@ -236,7 +236,7 @@ paths:
         '200':
           description: Return users decks.
   
-  /deck/save/{id}:
+  /api/deck/save/{id}:
     put:
       tags:
         - Deck
@@ -255,7 +255,7 @@ paths:
         '200':
           description: Save users deck.
 
-  /deck/publish/{id}:
+  /api/deck/publish/{id}:
     put:
       tags:
         - Deck
