@@ -24,12 +24,6 @@ user_profile_save:
     defaults:
         _controller: AppBundle:User:saveProfile
 
-decklist_favorite:
-    path: /favorite
-    methods: [POST]
-    defaults:
-        _controller: AppBundle:Social:favorite
-
 decklist_like:
     path: /like
     methods: [POST]

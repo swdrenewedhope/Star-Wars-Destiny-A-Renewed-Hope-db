@@ -1,9 +1,6 @@
 {% extends 'AppBundle::layout.html.twig' %}
-
 {% block body %}
-
 <div class="container">
-
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
 <div class="panel panel-default">
@@ -11,7 +8,6 @@
 <h3 class="panel-title" id="title">{{'user.profile' | trans}}</h3>
 </div>
 <div class="panel-body" id="main">
-
 <form role="form" action="{{ path('user_profile_save') }}" method="POST">
 
   <div class="form-group">

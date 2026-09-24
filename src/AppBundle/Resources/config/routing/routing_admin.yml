@@ -16,12 +16,6 @@ admin_show_user:
     defaults:
         _controller: AppBundle:Admin:show
         
-admin_user_enabled_toggle:
-    path: /user/toggle_enabled/{user_id}
-    methods: [GET]
-    defaults:
-        _controller: AppBundle:Admin:toggleEnabled
-        
 admin_user_decklists_show:
     path: /user/decklists/{user_id}
     methods: [GET]

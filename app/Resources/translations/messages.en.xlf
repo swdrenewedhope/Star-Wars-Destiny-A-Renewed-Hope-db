@@ -322,11 +322,11 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b45b5">
         <source>decklist.list.types.mydecklists</source>
-        <target>My decklists</target>
+        <target>My Published Decks</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b45b6">
         <source>decklist.list.types.myfavorites</source>
-        <target>My favorites</target>
+        <target>My Favorites</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b45b7">
         <source>decklist.list.types.popular</source>
@@ -1302,11 +1302,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46a7">
         <source>profile.public.published_decklists</source>
-        <target>{0} No published decks | {1} One published decklist | ]1,Inf] %count% published decklists</target>
-      </trans-unit>
-      <trans-unit id="loco:5862bc1e52e1a1da578b46a8">
-        <source>profile.public.published_reviews</source>
-        <target>{0} No published reviews | {1} One published review | ]1,Inf] %count% published reviews</target>
+        <target>{0} No published decks | {1} One published deck | ]1,Inf] %count% published decks</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b46a9">
         <source>profile.public.since</source>

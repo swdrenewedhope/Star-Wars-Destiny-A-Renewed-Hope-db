@@ -1,14 +1,11 @@
 {% extends 'AppBundle::layout.html.twig' %}
-
 {% block body %}
-
 <div class="main white container">
-
 <div class="jumbotron background-{{ user.color }}-10">
    <h1>
-  {% if user.donation > 0 %}<span class="icon-set-TPG donator" style="font-size: 32px" title="Donator"></span>{% endif %}
+  {% if user.donation > 0 %}<span class="icon-set-TPG donator" style="font-size: 42px" title="Donator"></span>{% endif %}
   <span class="fg-{{ user.color }}">{{ user.username }}</span>
-  {% if user.donation > 0 %}<span class="icon-set-TPG donator flipped" style="font-size: 32px" title="Donator"></span>{% endif %}
+  {% if user.donation > 0 %}<span class="icon-set-TPG donator flipped" style="font-size: 42px" title="Donator"></span>{% endif %}
    </h1>
 	<p>
         {{'profile.public.since' | trans({'%date%': user.dateCreation|localizeddate('long', 'none') })}}.
@@ -21,20 +18,8 @@
             {{'profile.public.published_decklists' | transchoice(user.decklists|length, {'%count%': user.decklists|length})}}.
         {% endif %}
         </div>
-        <div>
-        {% if user.reviews|length > 0 %}
-            <a href="{{ path('card_reviews_list_byauthor',{page:1,user_id:user.id}) }}">
-                {{'profile.public.published_reviews' | transchoice(user.reviews|length, {'%count%': user.reviews|length})}}.
-            </a>
-        {% else %}
-            {{'profile.public.published_reviews' | transchoice(user.reviews|length, {'%count%': user.reviews|length})}}.
-        {% endif %}
-        </div>
 	</p>
-    {% if user.resume %}
-        <p><em>{{ user.resume }}</em></p>
-    {% endif %}
+    {% if user.resume %} <p><em>{{ user.resume }}</em></p> {% endif %}
 	</div>
 </div>
-
 {% endblock %}

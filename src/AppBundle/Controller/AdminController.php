@@ -44,17 +44,6 @@ class AdminController extends Controller
 				'user' => $user,
 		]);
 	}
-	
-	public function toggleEnabledAction($user_id)
-	{
-		$entityManager = $this->getDoctrine()->getEntityManager();
-		$user = $entityManager->getRepository('AppBundle:User')->find($user_id);	
-		if ($user->getId() !== $this->getUser()->getId()) { $user->setEnabled(!$user->isEnabled()); }
-		$entityManager->flush();
-
-		$this->addFlash('success', sprintf('Account of %s has been %s.', $user->getUsername(), $user->isEnabled() ? 'enabled' : 'disabled'));
-		return $this->redirect($this->generateUrl('admin_show_user', [ 'user_id' => $user->getId() ]));
-	}
 
 	public function toggleDonationAction(Request $request, $user_id)
 	{
