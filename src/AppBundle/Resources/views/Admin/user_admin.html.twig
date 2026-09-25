@@ -27,7 +27,7 @@
 	<td></td>
 </tr>
 <tr>
-	<td>Is Donator</td>
+	<td>Donator?</td>
 	<td>{% if user.donation %}Yes{% else %}No{% endif %}</td>
 	<td><a href="{{ path('admin_user_donation_toggle',{user_id:user.id}) }}" class="btn btn-info">{% if user.donation %}Revoke{% else %}Grant{% endif %}</a></td>
 </tr>
@@ -47,13 +47,13 @@
 	<td></td>
 </tr>
 <tr>
-	<td>Make unpublished decks unlisted</td>
-	<td>{% if user.isShareDecks %}Yes{% else %}No{% endif %}</td>
+	<td>Number of decks</td>
+	<td>{{ user.decks|length }}</td>
 	<td></td>
 </tr>
 <tr>
-	<td>Number of decks</td>
-	<td>{{ user.decks|length }}</td>
+	<td>Unpublished decks unlisted?</td>
+	<td>{% if user.isShareDecks %}Yes{% else %}No{% endif %}</td>
 	<td></td>
 </tr>
 <tr>

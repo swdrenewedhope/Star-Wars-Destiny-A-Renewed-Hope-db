@@ -31,10 +31,7 @@
 	<td>{{ comment.dateCreation|date('r') }}</td>
 	<td>{{ comment.text|raw }}</td>
 	<td>{% if comment.isHidden %}Hidden{% else %}Visible{% endif %}</td>
-	<td>
-		<a href="{{ path('admin_comment_hidden_toggle',{comment_id:comment.id}) }}" class="btn btn-default">{% if comment.isHidden %}Unhide{% else %}Hide{% endif %}</a>
-		<a href="{{ path('admin_comment_delete',{comment_id:comment.id}) }}" class="btn btn-danger">Delete</a>
-	</td>
+	<td><a href="{{ path('admin_comment_delete',{comment_id:comment.id}) }}" class="btn btn-danger">Delete</a></td>
 </tr>
 {% endfor %}
 </table>    
