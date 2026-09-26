@@ -11,23 +11,6 @@ security:
             id: fos_user.user_provider.username_email
 
     firewalls:
-        oauth_token:
-            pattern:    ^/oauth/v2/token
-            security:   false
-
-        oauth_authorize:
-            pattern:    ^/oauth/v2/auth
-            form_login:
-                provider: fos_userbundle
-                check_path: oauth_server_auth_login_check
-                login_path: oauth_server_auth_login
-            anonymous: false
-
-        api_oauth2:
-            pattern:    ^/api/oauth2
-            fos_oauth:  true
-            stateless:  true
-
         dev:
             pattern:    ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
@@ -41,6 +24,8 @@ security:
                 default_target_path: index
             logout:       true
             anonymous:    true
+            fos_oauth:  true
+
             remember_me:
                 secure:   "%remember_me_secure%"
                 secret:   "%secret%"
@@ -48,15 +33,13 @@ security:
                 path:     /
                 domain:   ~
                 always_remember_me: true
-            
+
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/remind, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/api/public, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/oauth2, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/js/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/deck/view/, role: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -64,3 +47,7 @@ security:
         - { path: ^/decks, role: ROLE_USER }
         - { path: ^/user/, role: ROLE_USER }
         - { path: ^/collection/, role: ROLE_USER }
+        - { path: ^/api/decks, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/deck/save, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/deck/publish, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api, role: IS_AUTHENTICATED_ANONYMOUSLY }

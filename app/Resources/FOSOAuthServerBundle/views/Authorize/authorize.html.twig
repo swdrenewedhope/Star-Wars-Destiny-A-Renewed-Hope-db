@@ -1,21 +1,40 @@
 {% extends 'AppBundle::layout.html.twig' %}
-
-{% block navbar %}{% endblock %}
-
 {% block body %}
-
 <div class="container">
-
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h3 class="panel-title" style="line-height:2em">ARH DB Authorization</h3>
+</div>
+<div class="panel-body">
+	  <p>
+		  The application <i><b>{{ client.name }}</i></b> would like to connect to your account.
+	  </p>
+	  <p>
+		   If you agree, this application will be able to perform the following actions on your behalf:
+	   </p>
+	   <ul>
+		   <li>Read your decks.</li>
+		   <li>Modify, delete or create a new deck.</li>
+		   <li>Publish a deck.</li>
+	   </ul>
 
-{% block fos_oauth_server_content %}
-{% include "FOSOAuthServerBundle:Authorize:authorize_content.html.twig" %}
-{% endblock fos_oauth_server_content %}
-
+  <div class="form">
+<form action="{{ path('fos_oauth_server_authorize') }}" method="POST" class="fos_oauth_server_authorize" {{ form_enctype(form) }}>
+    <input type="submit" class="btn btn-primary" name="accepted" value="{{ 'authorize.accept'|trans({}, 'FOSOAuthServerBundle') }}" />
+    <input type="submit" class="btn btn-danger" name="rejected" value="{{ 'authorize.reject'|trans({}, 'FOSOAuthServerBundle') }}" />
+    {{ form_row(form.client_id) }}
+    {{ form_row(form.response_type) }}
+    {{ form_row(form.redirect_uri) }}
+    {{ form_row(form.state) }}
+    {{ form_row(form.scope) }}
+    {{ form_rest(form) }}
+</form>
+</div>
+</div>
+</div>
+</div> 
 </div>  
-</div>  
-  
+</div>
 {% endblock %}
-
-{% block footer %}{% endblock %}
