@@ -1,16 +1,23 @@
 openapi: 3.1.0
 info:
   title: 'ARH DB API Docs'
-  description: |
-    
-    ⚠️ - Returns large payloads.
   version: 'Up to date'
 
 servers:
   - url: https://db.swdrenewedhope.com
 
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://db.swdrenewedhope.com/oauth/v2/auth
+          tokenUrl: https://db.swdrenewedhope.com/oauth/v2/token
+          scopes: {}
+
 paths:
-  /api/public/card/{code}:
+  /api/card/{code}:
     get:
       tags: [Cards]
       summary: Return a single card's properties via its code.
@@ -28,21 +35,22 @@ paths:
           schema:
             type: integer
             example: "01001"
+          
       responses:
         '200':
           description: Returns the properties of a card.
         '404':
           description: This card does not exist.
 
-  /api/public/cards/:
+  /api/cards:
     get:
       tags: [Cards]
-      summary: ⚠️ Return a list of all cards across all sets. ⚠️
+      summary: Return a list of all cards across all sets.
       responses:
         '200':
           description: Returns all cards.
   
-  /api/public/cards/{set_code}:
+  /api/cards/{set_code}:
     get:
       tags: [Cards]
       summary: Return all cards belonging to a set.
@@ -67,7 +75,7 @@ paths:
         '404':
           description: This set does not exist.  
 
-  /api/public/sets/:
+  /api/sets:
     get:
       tags: [Sets]
       summary: Return a list of sets.
@@ -75,7 +83,7 @@ paths:
         '200':
           description: Returns all sets.
 
-  /api/public/formats/:
+  /api/formats:
       get:
         tags: [Formats]
         summary: Return a list of formats.
@@ -83,7 +91,7 @@ paths:
           '200':
             description: Returns all formats.
 
-  /api/public/decklist/{decklist_id}:
+  /api/decklist/{decklist_id}:
       get:
         tags: [Decklist]
         summary: Return contents of a decklist.
@@ -100,7 +108,7 @@ paths:
           '404':
             description: Decklist does not exist.
 
-  /api/public/find:
+  /api/find:
     get:
       tags:
         - Find
@@ -108,7 +116,7 @@ paths:
       parameters:
         - name: q
           in: query
-          required: false
+          required: true
           description: | 
             Takes several additional parameters, in no particular order and all optional:
             
@@ -164,11 +172,9 @@ paths:
             example: "Captain Phasma l:\"Elite Trooper\""
       responses:
         '200':
-          description: Returns found cards.
-        '404':
-          description: No cards found matching search term.
+          description: Returns search data.
 
-  /api/public/decklists/by_date/{date}:
+  /api/decklists/by_date/{date}:
     get:
       tags:
         - Decklist
@@ -186,11 +192,22 @@ paths:
           '404':
             description: No decklists found within date.
     
-  /api/public/deck/{id}:
+  /api/deck/{id}:
     get:
       tags:
         - Deck
-      summary: Return unpublished deck.
+      summary: Return unpublished or private deck.
+      description: |
+        This endpoint serves both unauthenticated and authenticated users.
+
+        If the deck's owner has marked it as unlisted, it can be fetched without authentication.
+
+        Otherwise, the request must carry an OAuth bearer token. The deck is then served if the 
+        authenticated user's ID matches the deck's owner.
+
+
+      security:
+        - oauth2: []
       parameters:
         - name: id
           in: path
@@ -204,4 +221,55 @@ paths:
           '404':
             description: Deck does not exist.
           '403':
-            description: Deck owner has 'share unpublished decks' disabled.
+            description: Deck owner has 'share unpublished decks' disabled, and you are not the owner.
+
+  /api/decks:
+    get:
+      tags:
+        - Deck
+      summary: Get authenticated users decks.
+      security:
+        - oauth2: []
+      responses:
+        '401': 
+          description: OAuth authentication is required.
+        '200':
+          description: Return users decks.
+  
+  /api/deck/save/{id}:
+    put:
+      tags:
+        - Deck
+      summary: Save authenticated users deck.
+      security:
+        - oauth2: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '405': 
+          description: You tried a non PUT operation.
+        '200':
+          description: Save users deck.
+
+  /api/deck/publish/{id}:
+    put:
+      tags:
+        - Deck
+      summary: Publish authenticated users private deck.
+      security:
+        - oauth2: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '405': 
+          description: You tried a non PUT operation.
+        '200':
+          description: Publish user deck.
