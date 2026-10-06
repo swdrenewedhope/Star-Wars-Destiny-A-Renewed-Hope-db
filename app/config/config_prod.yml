@@ -41,5 +41,4 @@ assetic:
 fos_js_routing:
   routes_to_expose:
     - user_info
-    - api_formats
     - '^api_'
