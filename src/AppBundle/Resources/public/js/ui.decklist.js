@@ -1,18 +1,13 @@
 (function ui_decklist(ui, $) {
-
 	ui.setup_event_handlers = function setup_event_handlers() {
-
 		$('#decklist-delete').on('click', ui.delete_form);
 		$('.social .social-icon-like').on('click', ui.send_like);
 		$('#btn-group-decklist button[id],a[id]').on('click', ui.do_action_decklist);
 		$('#btn-compare').on('click', ui.compare_form);
 		$('#btn-compare-submit').on('click', ui.compare_submit);
-
 	}
 
-	ui.on_collection_loaded = function on_collection_loaded() {
-		ui.sum_reprints_owned();
-	}
+	ui.on_collection_loaded = function on_collection_loaded() { ui.sum_reprints_owned(); }
 
 	ui.sum_reprints_owned = function sum_reprints_owned() {
 		app.data.cards.find({reprint_of: {$exists: true}}).forEach(function(card) {
@@ -26,29 +21,12 @@
 		});
 	}
 
-	ui.delete_form = function delete_form() {
-		$('#deleteModal').modal('show');
-	}
+	ui.delete_form = function delete_form() { $('#deleteModal').modal('show'); }
 
 	ui.do_action_decklist = function do_action_decklist(event) {
 		var action_id = $(this).attr('id');
-		if (!action_id) {
-			return;
-		}
-		switch (action_id) {
-		case 'btn-download-text':
-			location.href = Routing.generate('decklist_export_text', {decklist_id:app.deck.get_id()});
-			break;
-		case 'btn-export-bbcode':
-			export_bbcode();
-			break;
-		case 'btn-export-markdown':
-			export_markdown();
-			break;
-		case 'btn-export-plaintext':
-			export_plaintext();
-			break;
-		}
+		if (!action_id) { return; }
+		location.href = Routing.generate('decklist_export_text', {decklist_id:app.deck.get_id()});
 	}
 
 	ui.send_like = function send_like(event) {
@@ -62,25 +40,6 @@
 			$(that).find('.num').text(data);
 			$(that).removeClass('processing');
 		});
-	}
-
-	ui.send_favorite = function send_favorite(event) {
-		event.preventDefault();
-		var that = $(this);
-		if($(that).hasClass('processing')) return;
-		$(that).addClass('processing');
-		$.post(Routing.generate('decklist_favorite'), {
-			id : app.deck.get_id()
-		}, function(data, textStatus, jqXHR) {
-			that.find('.num').text(data);
-			var title = that.data('original-tooltip');
-			that.data('original-tooltip',
-					title == "Add to favorites" ? "Remove from favorites"
-							: "Add to favorites");
-			that.attr('title', that.data('original-tooltip'));
-			$(that).removeClass('processing');
-		});
-		ui.send_like.call($('.social .social-icon-like'), event);
 	}
 
 	ui.setup_comment_form = function setup_comment_form() {
@@ -123,28 +82,14 @@
 	}
 
 	ui.setup_social_icons = function setup_social_icons() {
-
 		if(!app.user.data || app.user.data.is_author || app.user.data.is_liked) {
 			var element = $('.social .social-icon-like');
 			element.replaceWith($('<span class="social-icon-like"></span').html(element.html()));
 		}
-
-		if(!app.user.data) {
-			var element = $('.social .social-icon-favorite');
-			element.replaceWith($('<span class="social-icon-favorite"></span').html(element.html()));
-		} else if(app.user.data.is_favorite) {
-			var element = $('.social .social-icon-favorite');
-			element.attr('title', "Remove from favorites");
-		} else {
-			var element = $('.social .social-icon-favorite');
-			element.attr('title', "Add to favorites");
-		}
-
 		if(!app.user.data) {
 			var element = $('.social .social-icon-comment');
 			element.replaceWith($('<span class="social-icon-comment"></span').html(element.html()));
 		}
-
 	}
 
 	ui.add_author_actions = function add_author_actions() {
@@ -152,96 +97,23 @@
 			$('#decklist-edit').show();
 			if(app.user.data.can_delete) {
 				$('#decklist-delete').show();
-			} else {
-				$('#decklist-delete').remove();
-			}
+			} else { $('#decklist-delete').remove(); }
 		} else {
 			$('#decklist-edit').remove();
 			$('#decklist-delete').remove();
 		}
 	}
 
-	ui.setup_comment_hide = function setup_comment_hide() {
-		if(app.user.data && app.user.data.is_author) {
-			$('.comment-hide-button').remove();
-			$('<a href="#" class="comment-hide-button"><span class="text-danger fa fa-times" style="margin-left:.5em"></span></a>').appendTo('.collapse.in > .comment-date').on('click', function (event) {
-				if(confirm('Do you really want to hide this comment for everybody?')) {
-					ui.hide_comment($(this).closest('td'));
-				}
-				return false;
-			});
-			$('<a href="#" class="comment-hide-button"><span class="text-success fa fa-check" style="margin-left:.5em"></span></a>').appendTo('.collapse:not(.in) > .comment-date').on('click', function (event) {
-				if(confirm('Do you really want to unhide this comment?')) {
-					ui.unhide_comment($(this).closest('td'));
-				}
-				return false;
-			});
-		}
-	}
-
-	ui.hide_comment = function hide_comment(element) {
-		var id = element.attr('id').replace(/comment-/, '');
-		$.ajax(Routing.generate('decklist_comment_hide', { comment_id: id, hidden: 1 }), {
-			type: 'POST',
-			dataType: 'json',
-			success: function(data, textStatus, jqXHR) {
-				if(data === true) {
-					$(element).find('.collapse').collapse('hide');
-					$(element).find('.comment-toggler').show().prepend('The comment will be hidden for everyone in a few minutes.');
-					setTimeout(ui.setup_comment_hide, 1000);
-				} else {
-					alert(data);
-				}
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				console.log('['+moment().format('YYYY-MM-DD HH:mm:ss')+'] Error on '+this.url, textStatus, errorThrown);
-				alert('An error occured while hiding this comment ('+jqXHR.statusText+'). Reload the page and try again.');
-			}
-		});
-	}
-
-	ui.unhide_comment = function unhide_comment(element) {
-		var id = element.attr('id').replace(/comment-/, '');
-		$.ajax(Routing.generate('decklist_comment_hide', { comment_id: id, hidden: 0 }), {
-			type: 'POST',
-			dataType: 'json',
-			success: function(data, textStatus, jqXHR) {
-				if(data === true) {
-					$(element).find('.collapse').collapse('show');
-					$(element).find('.comment-toggler').hide();
-					setTimeout(setup_comment_hide, 1000);
-				} else {
-					alert(data);
-				}
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				console.log('['+moment().format('YYYY-MM-DD HH:mm:ss')+'] Error on '+this.url, textStatus, errorThrown);
-				alert('An error occured while unhiding this comment ('+jqXHR.statusText+'). Reload the page and try again.');
-			}
-		});
-	}
-
-	/**
-	 * @memberOf ui
-	 */
 	ui.refresh_deck = function refresh_deck() {
 		app.deck.display('#deck-content');
 		app.deck_charts && app.deck_charts.setup();
 	}
 
-	/**
-	 * called when the DOM is loaded
-	 * @memberOf ui
-	 */
 	ui.on_dom_loaded = function on_dom_loaded() {
 		ui.setup_event_handlers();
 		app.draw_simulator && app.draw_simulator.on_dom_loaded();
 	};
 
-	/**
-	 * called when the app data is loaded
-	 * @memberOf ui
-	 */
 	ui.on_data_loaded = function on_data_loaded() {
 		if(app.collection.isLoaded) {
 			ui.on_collection_loaded();
@@ -252,10 +124,6 @@
 		}
 	};
 
-	/**
-	 * called when both the DOM and the data app have finished loading
-	 * @memberOf ui
-	 */
 	ui.on_all_loaded = function on_all_loaded() {
 		ui.refresh_deck();
 		app.draw_simulator && app.draw_simulator.reset();
@@ -263,12 +131,9 @@
 		app.user.loaded.done(function () {
 			ui.setup_comment_form();
 			ui.add_author_actions();
-			ui.setup_comment_hide();
 		}).fail(function () {
 			$('<p>You must be logged in to post comments.</p>').insertAfter('#comment-form');
 		}).always(function () {
 			ui.setup_social_icons();
 		});
-	};
-
-})(app.ui, jQuery);
+	};})(app.ui, jQuery);

@@ -40,16 +40,14 @@ $(function () {
 <ul class="nav nav-pills nav-stacked" style="margin-bottom:2em">
 {% set linkurl = path('decklists_list', {type:'popular'}) %}<li class="{% if url == linkurl %}active{% endif %}"><a href="{{ linkurl }}">{{ 'decklist.list.types.popular' | trans }}</a></li>
 {% set linkurl = path('decklists_list', {type:'recent'}) %}<li class="{% if url == linkurl %}active{% endif %}"><a href="{{ linkurl }}">{{ 'decklist.list.types.recent' | trans }}</a></li>
-{% set linkurl = path('decklists_list', {type:'hottopics'}) %}<li class="{% if url == linkurl %}active{% endif %}"><a href="{{ linkurl }}">{{ 'decklist.list.types.hottopics' | trans }}</a></li>
 {% set linkurl = path('decklists_list', {type:'halloffame'}) %}<li class="{% if url == linkurl %}active{% endif %}"><a href="{{ linkurl }}">{{ 'decklist.list.types.hof' | trans }}</a></li>
-{% set linkurl = path('decklists_list', {type:'mine'}) %}<li class="{% if url == linkurl %}active{% endif %}"><a href="{{ linkurl }}">{{ 'decklist.list.types.mydecklists' | trans }}</a></li>
+{% if app.user %} {% set linkurl = path('decklists_list', {type:'mine'}) %}<li class="{% if url == linkurl %}active{% endif %}"><a href="{{ linkurl }}">{{ 'decklist.list.types.mydecklists' | trans }}</a></li> {% endif %}
 {% set linkurl = path('decklists_searchform') %}<li class="{% if url == linkurl %}active{% endif %}"><a href="{{ linkurl }}"><span class="fa fa-search"></span> {{ 'forms.search' | trans }}</a></li>
 </ul>
 
 {% include 'AppBundle:Default:google-adaptable-ad.html.twig' %}
 
 </div>
-
 <div class="col-md-9">
 
 {{ header|raw }}
