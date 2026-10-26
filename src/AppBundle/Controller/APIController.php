@@ -88,7 +88,7 @@ class APIController extends Controller
 		$this->get('cards_data')->validateConditions($conditions);
 		$query = $this->get('cards_data')->buildQueryFromConditions($conditions); $cards = array();
 		if($query && $rows = $this->get('cards_data')->get_search_rows($conditions, "set"))
-		{ $response->setLastModified($this->get('cards_data')->getRowsLastModified($rows));
+		{ $response->setLastModified(max(array_map(function ($card) { return $card->getDateUpdate(); }, $rows)));
         	if ($response->isNotModified($request)) { return $response; }
 
 			for($rowindex = 0; $rowindex < count($rows); $rowindex++) {
