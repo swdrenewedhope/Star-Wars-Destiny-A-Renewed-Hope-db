@@ -210,15 +210,13 @@ class APIController extends Controller
 	public function publishDeckAction($id, Request $request)
 	{
 		$deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id);
+		if (!$deck) { return new Response('', 404); }
 		if ($this->getUser()->getId() !== $deck->getUser()->getId()) {
 			throw $this->createAccessDeniedException("Access denied to this object.");
 		}
 		
 		$name = filter_var($request->request->get('name'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		$descriptionMd = trim($request->request->get('description_md'));
-		
-		$tournament_id = intval(filter_var($request->request->get('tournament_id'), FILTER_SANITIZE_NUMBER_INT));
-		$tournament = $this->getDoctrine()->getManager()->getRepository('AppBundle:Tournament')->find($tournament_id);
 
 		$precedent_id = trim($request->request->get('precedent'));
 		if(!preg_match('/^\d+$/', $precedent_id)) 
@@ -232,7 +230,7 @@ class APIController extends Controller
 				$precedent_id = null;
 			}
 		}
-		$precedent = $precedent_id ? $em->getRepository('AppBundle:Decklist')->find($precedent_id) : null;
+		$precedent = $precedent_id ? $this->getDoctrine()->getRepository('AppBundle:Decklist')->find($precedent_id) : null;
 		
         try 
         {
@@ -246,7 +244,6 @@ class APIController extends Controller
         	]);
         }
         
-        $decklist->setTournament($tournament);
         $decklist->setPrecedent($precedent);
         $this->getDoctrine()->getManager()->persist($decklist);
         $this->getDoctrine()->getManager()->flush();
