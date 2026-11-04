@@ -50,11 +50,11 @@
 
         <div class="navbar-collapse collapse" style="margin-top: 4px">
           <ul class="nav navbar-nav">
-            <li><a style="padding-left: 32px; padding-right: 32px" href="{{ path('decks_list') }}">{{ 'nav.mydecks' | trans}}</a></li>
-            <li><a style="padding-left: 32px; padding-right: 32px" href="{{ path('collection_list') }}">{{ 'nav.mycollection' | trans}}</a></li>
-            <li><a style="padding-left: 32px; padding-right: 32px" href="{{ path('decklists_list') }}">{{ 'nav.decklists' | trans}}</a></li>
+            <li><a style="padding-left: 34px; padding-right: 34px" href="{{ path('decks_list') }}">{{ 'nav.mydecks' | trans}}</a></li>
+            <li><a style="padding-left: 34px; padding-right: 34px" href="{{ path('collection_list') }}">{{ 'nav.mycollection' | trans}}</a></li>
+            <li><a style="padding-left: 34px; padding-right: 34px" href="{{ path('decklists_list') }}">{{ 'nav.decklists' | trans}}</a></li>
             <li class="dropdown">
-              <a style="padding-left: 32px; padding-right: 32px" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'nav.cards' | trans}} <span class="caret"></span></a>
+              <a style="padding-left: 34px; padding-right: 34px" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'nav.cards' | trans}} <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
 
   	<li class="divider"></li>
@@ -97,10 +97,10 @@
 
     {% endif %}
   {% endfor %}
-</ul>
+</ul style="text-align:center">
             </li>
             <li class="dropdown">
-              <a style="padding-left: 23px; padding-right: 23px" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">More<span class="caret"></span></a>
+              <a style="padding-left: 34px; padding-right: 34px" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">More<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu" style="padding-top:6px;"> 
 			    <li class="divider"></li>
 			    <li><a style="font-weight:bold; text-align:center" href="https://swdrenewedhope.com/" target="_blank"><i class="fa fa-external-link fa-fw" aria-hidden="true"></i> A Renewed Hope</a></li>
@@ -114,11 +114,16 @@
 				<li><a href="https://drive.google.com/drive/folders/1SQmOiSdrcH_QTnXDUxO4_1GNMA8Gy3BP?usp=sharing" target="_blank"><i class="fa fa-book fa-fw" aria-hidden="true"></i>Holocrons</a></li>
 			</ul>
             </li>
-          </ul>
+</ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown hidden-xs hidden-lg">
 			 <a href="{{ path('cards_search') }}"><i class="fa fa-search"></i></a>
             </li>
+			<li class="visible-lg-block visible-xs-block">
+  				<a style="padding-right: 68px" href="{{ path('cards_search') }}">
+    				 {{ 'nav.cardsearch' | trans }} <span class="fa fa-search"></span>
+  				</a>
+			</li>
             <li id="login">
                 <a href="#" class="disabled"><span class="fa fa-user"></span></a>
             </li>
@@ -128,12 +133,6 @@
     			</a>
 			</li>
           </ul>
-
-          <form class="navbar-form navbar-right visible-lg-block visible-xs-block external" action="{{ path('cards_find') }}" target="_blank">
-            <div class="form-group">
-              <input type="text" placeholder="{{ 'nav.cardsearch' | trans }}" class="form-control" name="q">
-            </div>
-          </form>
         </div>
         {% endblock %}
       </div>
@@ -262,7 +261,4 @@
     if (document.documentElement.classList.contains('light')) {
         $('#themetoggle span').removeClass('fa-moon-o').addClass('fa-sun-o');
     }
-});
-	</script>
-    </body>
-</html>
+}); </script></body></html>
