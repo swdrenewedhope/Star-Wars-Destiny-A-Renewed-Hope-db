@@ -149,7 +149,8 @@ class APIController extends Controller
 		if(!$id) { $deck = new Deck(); $this->getDoctrine()->getManager()->persist($deck); }
 		else
 		{ $deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id);
-			if($deck->getUser()->getId() !== $this->getUser()->getId()) { $response -> setStatusCode(403); return $response; }
+			if(!$deck) { return new Response('', 404); }
+			if($deck->getUser()->getId() !== $this->getUser()->getId()) { return new Response('', 403); }
 		}
 		
 		$affiliation_code = filter_var($request->get('affiliation_code'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -166,8 +167,17 @@ class APIController extends Controller
 					'msg' => "Affiliation code invalid"
 			]);
 		}
-		$format = $this->getDoctrine()->getRepository('AppBundle:Format')->findOneBy(['code' => 'INF']);
-		$slots = (array) json_decode($request->get('slots'));
+		$format_code = filter_var($request->get('format_code'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		$format = $format_code
+			? $this->getDoctrine()->getRepository('AppBundle:Format')->findOneBy(['code' => $format_code])
+			: ($deck->getFormat() ?: $this->getDoctrine()->getRepository('AppBundle:Format')->findOneBy(['code' => 'INF']));
+		if(!$format) {
+			return new JsonResponse([
+					'success' => FALSE,
+					'msg' => "Format code invalid"
+			]);
+		}
+		$slots = (array) json_decode($request->get('slots'), true);
 		if (!count($slots)) {
 			return new JsonResponse([
 					'success' => FALSE,
@@ -176,7 +186,8 @@ class APIController extends Controller
 		}
 		foreach($slots as $card_code => $qty)
 		{
-			if(!is_string($card_code) || !is_integer($qty))
+			if(is_integer($qty)) { $slots[$card_code] = $qty = ['quantity' => $qty, 'dice' => 0]; }
+			if(!is_array($qty) || !is_integer($qty['quantity'] ?? null) || !is_integer($qty['dice'] ?? 0))
 			{
 				return new JsonResponse([
 						'success' => FALSE,
