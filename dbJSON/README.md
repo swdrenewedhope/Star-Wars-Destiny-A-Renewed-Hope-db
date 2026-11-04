@@ -58,9 +58,6 @@ Though the convention throughout the history of the database has been not to hig
 - **code** (int)  
   5 digit card identifier. First two digits are the set position, last three are position of the card within the set (printed on the card).
 
-- **ttscardid** (int)  
-  **Deprecated** — Put `00000` until it is removed completely.
-
 - **name** (string)  
   Name of the card.
 
