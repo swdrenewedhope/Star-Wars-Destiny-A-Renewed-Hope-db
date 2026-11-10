@@ -64,6 +64,12 @@ api_save_deck:
     defaults: { _controller: AppBundle:API:saveDeck }
     requirements: { id: \d+ }
 
+api_delete_deck:
+    path: /deck/delete/{id}
+    methods: [DELETE]
+    defaults: { _controller: AppBundle:API:deleteDeck }
+    requirements: { id: \d+ }
+
 api_publish_deck:
     path: /deck/publish/{id}
     methods: [PUT]
