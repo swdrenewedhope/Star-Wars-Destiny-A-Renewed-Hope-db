@@ -261,6 +261,29 @@ paths:
         '200':
           description: Save users deck.
 
+  /api/deck/delete/{id}:
+    delete:
+      tags:
+        - Deck
+      summary: Delete authenticated users deck.
+      security:
+        - oauth2: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '403':
+          description: The deck belongs to another user.
+        '404':
+          description: The deck does not exist.
+        '405':
+          description: You tried a non DELETE operation.
+        '200':
+          description: Delete users deck.
+
   /api/deck/publish/{id}:
     put:
       tags:

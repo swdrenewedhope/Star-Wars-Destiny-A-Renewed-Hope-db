@@ -218,6 +218,23 @@ class APIController extends Controller
 		]);
 	}
 
+	public function deleteDeckAction($id)
+	{
+		$em = $this->getDoctrine()->getManager();
+		$deck = $em->getRepository('AppBundle:Deck')->find($id);
+		if(!$deck) { return new Response('', 404); }
+		if($deck->getUser()->getId() !== $this->getUser()->getId()) { return new Response('', 403); }
+
+		foreach($deck->getChildren() as $decklist) { $decklist->setParent(null); }
+		$em->remove($deck);
+		$em->flush();
+
+		return new JsonResponse([
+				'success' => TRUE,
+				'msg' => (int) $id
+		]);
+	}
+
 	public function publishDeckAction($id, Request $request)
 	{
 		$deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id);
