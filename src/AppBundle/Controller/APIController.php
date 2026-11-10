@@ -138,8 +138,8 @@ class APIController extends Controller
 		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Type' => 'application/json'));		
 		$decks = $this->getDoctrine()->getRepository('AppBundle:Deck')->findBy(['user' => $this->getUser()]);
 		if (!$decks) { $response->setContent(json_encode($decks)); return $response; }
-		$dateUpdates = array_map(function ($deck) { return $deck->getDateUpdate(); }, $decks);
-		$response->setLastModified(max($dateUpdates));
+		$versions = array_map(function ($deck) { return $deck->getId().':'.$deck->getDateUpdate()->getTimestamp(); }, $decks);
+		$response->setEtag(md5(implode(',', $versions)));
 		if ($response->isNotModified($request)) { return $response; }
 		$content = json_encode($decks); $response->setContent($content); return $response;
 	}
