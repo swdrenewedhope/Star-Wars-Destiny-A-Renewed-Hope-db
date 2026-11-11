@@ -242,7 +242,10 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
                         'set' => $set,
                         'position' => $cardNum
                     ]);
-                    if ($card) {
+                    if ($card && $card->getIsUnique() && $card->getHasDie() && $card->getType()->getCode() === 'character') {
+						$content[$card->getCode()]['quantity'] = 1;
+						$content[$card->getCode()]['dice'] = ($content[$card->getCode()]['dice'] ?? 0) + $quantity;
+					} elseif ($card) {
 						$content[$card->getCode()]['quantity'] += $quantity;
 						if ($content[$card->getCode()]['quantity'] > $card->getDeckLimit()) { $content[$card->getCode()]['quantity'] = $card->getDeckLimit() + 1; }
 						if ($card->getHasDie()) { $content[$card->getCode()]['dice'] = $content[$card->getCode()]['quantity']; }
