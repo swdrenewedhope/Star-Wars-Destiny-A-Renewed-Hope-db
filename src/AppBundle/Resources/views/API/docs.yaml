@@ -28,14 +28,13 @@ paths:
           description: |
             | Part | Details|
             |------|--------|
-            | Set ID | Which set the card belongs to (e.g. `01` = Awakenings) |
+            | Set ID | Which set the card belongs to (`01` = Awakenings) |
             | Card ID | Card position within the set, starting at `001`. |
 
-            Therefore, `01001` becomes Captain Phasma, *Awakenings #1*.
+            `01001` becomes Captain Phasma, *Awakenings #1*.
           schema:
             type: integer
             example: "01001"
-          
       responses:
         '200':
           description: Returns the properties of a card.
@@ -59,13 +58,7 @@ paths:
           in: path
           required: true
           description: |
-            Takes the codename of a set, for example:
-
-
-             Awakenings  -> `AW` 
-
-
-             Way of The Force  -> `WoTF` 
+            See list of set codes via /api/sets endpoint.
           schema:
             type: string
             example: "AW"
@@ -82,7 +75,7 @@ paths:
       responses:
         '200':
           description: Returns all sets.
-
+        
   /api/formats:
       get:
         tags: [Formats]
@@ -100,7 +93,7 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
             example: "2465"
         responses:
           '200':
@@ -118,16 +111,16 @@ paths:
           in: query
           required: true
           description: | 
-            Takes several additional parameters, in no particular order and all optional:
+            Takes many optional parameters, in no particular order and all optional:
             
 
-            For certain parameters, such as subtype, see [here](https://github.com/swdrenewedhope/Star-Wars-Destiny-A-Renewed-Hope-db/blob/main/dbJSON/README.md) for all valid types.
+             See [here](https://github.com/swdrenewedhope/Star-Wars-Destiny-A-Renewed-Hope-db/blob/main/dbJSON/README.md) for more information.
 
 
-            - Sending something without anything like the below, is taken as cardname.
+            - Text without any parameter is taken as the search query.
             
 
-            - `l:` = Subtitle. Quoted.
+            - `l:` = Subtitle. Quoted
 
 
             - `x:` = Text on card(s). Quoted.
@@ -182,7 +175,7 @@ paths:
       parameters:
         - name: from
           in: query
-          required: false
+          required: true
           schema:
             type: string
             example: "2026-09-08"
@@ -194,7 +187,7 @@ paths:
             example: "2026-09-09"
       responses:
           '200':
-            description: Returns found data.
+            description: Returns found decklists matching date range.
           '400':
             description: Invalid query.
     
@@ -210,7 +203,6 @@ paths:
 
         Otherwise, the request must carry an OAuth bearer token. The deck is then served if the 
         authenticated user's ID matches the deck's owner.
-
 
       security:
         - oauth2: []
@@ -251,16 +243,131 @@ paths:
         - oauth2: []
       parameters:
         - name: id
-          in: path
-          required: true
+          in: query
+          required: false
           schema:
-            type: string
+            type: integer
+          description: |
+            If no ID of an existing deck is provided, a new deck will be created.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, affiliation, format, slots, description]
+              properties:
+                name:
+                  type: string
+                affiliation:
+                  type: string
+                  example: hero
+                format:
+                  type: string
+                  example: INF
+                description:
+                  type: string
+                slots:
+                  type: object 
+                  additionalProperties:
+                   type: object
+                   required: [quantity]
+                  minProperties: 1
+                  properties:
+                    quantity:
+                      type: integer
+                      minimum: 1
+                      example: 1
+                    dice:
+                      type: integer
+                      default: 0
+                      example: 1
+              example:
+                name: "You were the chosen one!"
+                description: "You were meant to destroy the sith, not join them!"
+                affiliation: "hero"
+                format: "ARHS"
+                slots:
+                  "01001":
+                    quantity: 1
+                    dice: 0
       responses:
-        '405': 
-          description: You tried a non PUT operation.
         '200':
-          description: Save users deck.
+          description: Deck saved.
+        '403':
+          description: The token bearer does not own the target deck id.
+        '400':
+          description: Required information was not sent with the request.
+        '404':
+          description: Deck not found.
+        '405':
+          description: You attempted a non-PUT operation.
 
+
+  /api/deck/save:
+    put:
+      tags:
+        - Deck
+      summary: Save new deck under authenticated user.
+      security:
+        - oauth2: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, affiliation, format, slots, description]
+              properties:
+                name:
+                  type: string
+                affiliation:
+                  type: string
+                  example: hero
+                format:
+                  type: string
+                  example: INF
+                description:
+                  type: string
+                slots:
+                  type: object 
+                  additionalProperties:
+                   type: object
+                   required: [quantity]
+                  minProperties: 1
+                  properties:
+                    quantity:
+                      type: integer
+                      minimum: 1
+                      example: 1
+                    dice:
+                      type: integer
+                      default: 0
+                      example: 1
+              example:
+                name: "You were the chosen one!"
+                description: "You were meant to destroy the sith, not join them!"
+                affiliation: "hero"
+                format: "ARHS"
+                slots:
+                  "01001":
+                    quantity: 1
+                    dice: 0
+      responses:
+        '200':
+          description: Deck saved.
+        '403':
+          description: The token bearer does not own the target deck id.
+        '400':
+          description: Required information was not sent with the request.
+        '404':
+          description: Deck not found.
+        '405':
+          description: You attempted a non-PUT operation.
+
+          
+
+   
   /api/deck/publish/{id}:
     put:
       tags:
