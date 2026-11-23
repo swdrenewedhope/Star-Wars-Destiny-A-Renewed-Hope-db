@@ -146,15 +146,15 @@ class APIController extends Controller
 	
 	public function saveDeckAction($id, Request $request)
 	{
-		$data = json_decode($request->getContent(), true);
-		$request->request->replace(is_array($data) ? $data : []);		
+		$data = json_decode($request->getContent(), true); $request->request->replace(is_array($data) ? $data : []);		
 		$user = $this->get('fos_user.user_manager')->findUserByUsername($this->getUser());
 		$deck = $id ? $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id): (new Deck())-> setUser($user);
 		if($deck->getUser()->getId() !== $user->getId()) { return new Response('', 403); }; $this->getDoctrine()->getManager()->persist($deck);
 		$affiliation = $this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $request->get('affiliation_code')]);
 		$format = $this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findOneBy(['code' => $request->get('format_code')]);
-		if (!$affiliation || !$format) { return new Response('', 400); }
-		$slots = (array) $request->get('slots'); if (!count($slots)) { return new Response('', 400); }
+		$slots = (array) $request->get('slots'); $name = $request->get('name') ?: $deck->getName() ?: 'New Deck';
+
+		if (!$affiliation || !$format || !count($slots)) { return new Response('', 400); }
 		
 		foreach($slots as $card_code => $qty)
 		{if(is_integer($qty)) { $slots[$card_code] = $qty = ['quantity' => $qty, 'dice' => 0]; }
@@ -162,7 +162,6 @@ class APIController extends Controller
 			{return new Response('', 400);}
 		}
 		
-		if(!$name = filter_var($request->get('name'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES)) { $name = 'New Deck'; }
 		$decklist_id = filter_var($request->get('decklist_id'), FILTER_SANITIZE_NUMBER_INT);
 		$description = trim($request->get('description'));
 		$tags = filter_var($request->get('tags'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
