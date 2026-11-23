@@ -151,10 +151,9 @@ class APIController extends Controller
 		$user = $this->get('fos_user.user_manager')->findUserByUsername($this->getUser());
 		$deck = $id ? $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id): (new Deck())-> setUser($user);
 		if($deck->getUser()->getId() !== $user->getId()) { return new Response('', 403); }; $this->getDoctrine()->getManager()->persist($deck);
-		$affiliation = filter_var($request->get('affiliation_code'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(!$this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $affiliation])) { return new Response('', 400); }
-		$format = filter_var($request->get('format_code'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(!$this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findOneBy(['code' => $format])) { $format = 'INF'; }
+		$affiliation = $this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $request->get('affiliation_code')]);
+		$format = $this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findOneBy(['code' => $request->get('format_code')]);
+		if (!$affiliation || !$format) { return new Response('', 400); }
 		$slots = (array) $request->get('slots'); if (!count($slots)) { return new Response('', 400); }
 		
 		foreach($slots as $card_code => $qty)
