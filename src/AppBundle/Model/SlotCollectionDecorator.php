@@ -248,7 +248,7 @@ class SlotCollectionDecorator implements \AppBundle\Model\SlotCollectionInterfac
 			if($card->getType()->getCode() != 'character') continue;
 
 			$formatPoints = $card->getPoints();
-			if($this->format && array_key_exists($card->getCode(), $this->format->getData()['balance']))
+			if($this->format && array_key_exists($card->getCode(), $this->format->getData()['balance'] ?? []))
 			{
 				$formatPoints = $this->format->getData()["balance"][$card->getCode()];
 			}
@@ -350,7 +350,7 @@ class SlotCollectionDecorator implements \AppBundle\Model\SlotCollectionInterfac
 			if($card->getType()->getCode() != 'plot') continue;
 			
 			$formatPoints = $card->getPoints();
-			if($this->format && array_key_exists($card->getCode(), $this->format->getData()['balance']))
+			if($this->format && array_key_exists($card->getCode(), $this->format->getData()['balance'] ?? []))
 			{
 				$formatPoints = $this->format->getData()["balance"][$card->getCode()];
 			}

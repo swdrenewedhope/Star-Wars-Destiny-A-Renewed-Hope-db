@@ -146,76 +146,29 @@ class APIController extends Controller
 	
 	public function saveDeckAction($id, Request $request)
 	{
-		if(!$id) { $deck = new Deck(); $this->getDoctrine()->getManager()->persist($deck); }
-		else
-		{ $deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id);
-			if(!$deck) { return new Response('', 404); }
-			if($deck->getUser()->getId() !== $this->getUser()->getId()) { return new Response('', 403); }
-		}
+		$data = json_decode($request->getContent(), true);
+		$request->request->replace(is_array($data) ? $data : []);		
+		$user = $this->get('fos_user.user_manager')->findUserByUsername($this->getUser());
+		$deck = $id ? $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id): (new Deck())-> setUser($user);
+		if($deck->getUser()->getId() !== $user->getId()) { return new Response('', 403); }; $this->getDoctrine()->getManager()->persist($deck);
+		$affiliation = filter_var($request->get('affiliation_code'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(!$this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $affiliation])) { return new Response('', 400); }
+		$format = filter_var($request->get('format_code'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(!$this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findOneBy(['code' => $format])) { $format = 'INF'; }
+		$slots = (array) $request->get('slots'); if (!count($slots)) { return new Response('', 400); }
 		
-		$affiliation_code = filter_var($request->get('affiliation_code'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(!$affiliation_code) {
-			return new JsonResponse([
-					'success' => FALSE,
-					'msg' => "Affiliation code missing"
-			]);
-		}
-		$affiliation = $this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $affiliation_code]);
-		if(!$affiliation) {
-			return new JsonResponse([
-					'success' => FALSE,
-					'msg' => "Affiliation code invalid"
-			]);
-		}
-		$format_code = filter_var($request->get('format_code'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		$format = $format_code
-			? $this->getDoctrine()->getRepository('AppBundle:Format')->findOneBy(['code' => $format_code])
-			: ($deck->getFormat() ?: $this->getDoctrine()->getRepository('AppBundle:Format')->findOneBy(['code' => 'INF']));
-		if(!$format) {
-			return new JsonResponse([
-					'success' => FALSE,
-					'msg' => "Format code invalid"
-			]);
-		}
-		$slots = (array) json_decode($request->get('slots'), true);
-		if (!count($slots)) {
-			return new JsonResponse([
-					'success' => FALSE,
-					'msg' => "Slots missing"
-			]);
-		}
 		foreach($slots as $card_code => $qty)
-		{
-			if(is_integer($qty)) { $slots[$card_code] = $qty = ['quantity' => $qty, 'dice' => 0]; }
+		{if(is_integer($qty)) { $slots[$card_code] = $qty = ['quantity' => $qty, 'dice' => 0]; }
 			if(!is_array($qty) || !is_integer($qty['quantity'] ?? null) || !is_integer($qty['dice'] ?? 0))
-			{
-				return new JsonResponse([
-						'success' => FALSE,
-						'msg' => "Slots invalid"
-				]);
-			}
+			{return new Response('', 400);}
 		}
 		
-		$name = filter_var($request->get('name'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(!$name) {
-			return new JsonResponse([
-					'success' => FALSE,
-					'msg' => "Name missing"
-			]);
-		}
-		
+		if(!$name = filter_var($request->get('name'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES)) { $name = 'New Deck'; }
 		$decklist_id = filter_var($request->get('decklist_id'), FILTER_SANITIZE_NUMBER_INT);
 		$description = trim($request->get('description'));
 		$tags = filter_var($request->get('tags'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		
 		$this->get('decks')->saveDeck($this->getUser(), $deck, $decklist_id, $name, $affiliation, $format, $description, $tags, $slots, null);
-		
-		$this->getDoctrine()->getManager()->flush();
-		
-		return new JsonResponse([
-				'success' => TRUE,
-				'msg' => $deck->getId()
-		]);
+		$this->getDoctrine()->getManager()->flush(); return new Response('', 200);
 	}
 
 	public function deleteDeckAction($id)
