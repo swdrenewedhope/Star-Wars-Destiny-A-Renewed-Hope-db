@@ -50,4 +50,5 @@ security:
         - { path: ^/api/decks, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/deck/save, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/deck/publish, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/deck/delete, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/api, role: IS_AUTHENTICATED_ANONYMOUSLY }
