@@ -149,70 +149,41 @@ class APIController extends Controller
 		$affiliation = $this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $request->get('affiliation_code')]);
 		$format = $this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findOneBy(['code' => $request->get('format_code')]);
 		$slots = (array) $request->get('slots'); $name = $request->get('name') ?: $deck->getName() ?: 'New Deck';
+		$decklist_id = $request->get('decklist_id'); $description = trim($request->get('description')); $tags = $request->get('tags');
 
-		if (!$affiliation || !$format || !count($slots)) { return new Response('', 400); } foreach($slots as $card_code => $qty) 
+		if (!$affiliation || !$format || !count($slots)) { return new Response('', 400); } foreach($slots as $card_code => $qty)
 			{ if(!is_array($qty) || !is_integer($qty['quantity'] ?? null) || !is_integer($qty['dice'] ?? 0)) {return new Response('', 400);}}
 		
-		$decklist_id = filter_var($request->get('decklist_id'), FILTER_SANITIZE_NUMBER_INT);
-		$description = trim($request->get('description'));
-		$tags = filter_var($request->get('tags'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		$this->get('decks')->saveDeck($this->getUser(), $deck, $decklist_id, $name, $affiliation, $format, $description, $tags, $slots, null);
 		$this->getDoctrine()->getManager()->flush(); return new Response('', 200);
 	}
 
 	public function deleteDeckAction($id)
 	{
-		$em = $this->getDoctrine()->getManager();
-		$deck = $em->getRepository('AppBundle:Deck')->find($id); if(!$deck) { return new Response('', 404); }
+		$deck = $this->getDoctrine()->getManager()->getRepository('AppBundle:Deck')->find($id); if(!$deck) { return new Response('', 404); }
 		if($deck->getUser()->getId() !== $this->getUser()->getId()) { return new Response('', 403); }
 		foreach($deck->getChildren() as $decklist) { $decklist->setParent(null); }
-		$em->remove($deck); $em->flush(); return new Response('', 200);
+		$this->getDoctrine()->getManager()->remove($deck); $this->getDoctrine()->getManager()->flush(); return new Response('', 200);
 	}
 
 	public function publishDeckAction($id, Request $request)
 	{
 		$deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id);
 		if (!$deck) { return new Response('', 404); }
-		if ($this->getUser()->getId() !== $deck->getUser()->getId()) {
-			throw $this->createAccessDeniedException("Access denied to this object.");
-		}
+		if ($this->getUser()->getId() !== $deck->getUser()->getId()) { return new Response('', 403); }
 		
-		$name = filter_var($request->request->get('name'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		$descriptionMd = trim($request->request->get('description_md'));
-
+		$name = $request->request->get('name'); $description = trim($request->request->get('description_md'));
 		$precedent_id = trim($request->request->get('precedent'));
+
 		if(!preg_match('/^\d+$/', $precedent_id)) 
-		{
-			if(preg_match('/view\/(\d+)/', $precedent_id, $matches)) 
-			{
-				$precedent_id = $matches[1];
-			}
-			else
-			{
-				$precedent_id = null;
-			}
-		}
+		{ if(preg_match('/view\/(\d+)/', $precedent_id, $matches)) { $precedent_id = $matches[1]; }
+			else { $precedent_id = null; }}
 		$precedent = $precedent_id ? $this->getDoctrine()->getRepository('AppBundle:Decklist')->find($precedent_id) : null;
 		
-        try 
-        {
-        	$decklist = $this->get('decklist_factory')->createDecklistFromDeck($deck, $name, $descriptionMd);
-        }
-        catch(\Exception $e)
-        {
-        	return new JsonResponse([
-        			'success' => FALSE,
-        			'msg' => $e->getMessage()
-        	]);
-        }
+        try { $decklist = $this->get('decklist_factory')->createDecklistFromDeck($deck, $name, $description); }
+        catch(\Exception $e) { return new Response('', 422); }
         
-        $decklist->setPrecedent($precedent);
-        $this->getDoctrine()->getManager()->persist($decklist);
-        $this->getDoctrine()->getManager()->flush();
-
-        return new JsonResponse([
-        		'success' => TRUE,
-        		'msg' => $decklist->getId()
-        ]);
+        $decklist->setPrecedent($precedent); $this->getDoctrine()->getManager()->persist($decklist);
+        $this->getDoctrine()->getManager()->flush(); return new Response('', 200);
     }
 }
