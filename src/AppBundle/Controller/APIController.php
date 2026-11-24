@@ -129,10 +129,6 @@ class APIController extends Controller
 		$content = json_encode($deck); $response->setContent($content); return $response;
 	}
 
-
-
-	# OAUTH API FUNCTIONS
-
 	public function listDecksAction(Request $request)
 	{
 		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Type' => 'application/json'));		
@@ -154,13 +150,8 @@ class APIController extends Controller
 		$format = $this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findOneBy(['code' => $request->get('format_code')]);
 		$slots = (array) $request->get('slots'); $name = $request->get('name') ?: $deck->getName() ?: 'New Deck';
 
-		if (!$affiliation || !$format || !count($slots)) { return new Response('', 400); }
-		
-		foreach($slots as $card_code => $qty)
-		{if(is_integer($qty)) { $slots[$card_code] = $qty = ['quantity' => $qty, 'dice' => 0]; }
-			if(!is_array($qty) || !is_integer($qty['quantity'] ?? null) || !is_integer($qty['dice'] ?? 0))
-			{return new Response('', 400);}
-		}
+		if (!$affiliation || !$format || !count($slots)) { return new Response('', 400); } foreach($slots as $card_code => $qty) 
+			{ if(!is_array($qty) || !is_integer($qty['quantity'] ?? null) || !is_integer($qty['dice'] ?? 0)) {return new Response('', 400);}}
 		
 		$decklist_id = filter_var($request->get('decklist_id'), FILTER_SANITIZE_NUMBER_INT);
 		$description = trim($request->get('description'));
@@ -172,18 +163,10 @@ class APIController extends Controller
 	public function deleteDeckAction($id)
 	{
 		$em = $this->getDoctrine()->getManager();
-		$deck = $em->getRepository('AppBundle:Deck')->find($id);
-		if(!$deck) { return new Response('', 404); }
+		$deck = $em->getRepository('AppBundle:Deck')->find($id); if(!$deck) { return new Response('', 404); }
 		if($deck->getUser()->getId() !== $this->getUser()->getId()) { return new Response('', 403); }
-
 		foreach($deck->getChildren() as $decklist) { $decklist->setParent(null); }
-		$em->remove($deck);
-		$em->flush();
-
-		return new JsonResponse([
-				'success' => TRUE,
-				'msg' => (int) $id
-		]);
+		$em->remove($deck); $em->flush(); return new Response('', 200);
 	}
 
 	public function publishDeckAction($id, Request $request)
