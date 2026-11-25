@@ -229,8 +229,6 @@ paths:
       security:
         - oauth2: []
       responses:
-        '401': 
-          description: OAuth authentication is required.
         '200':
           description: Return users decks.
   
@@ -298,8 +296,6 @@ paths:
           description: The token bearer does not own the target deck id.
         '400':
           description: Required information was not sent with the request.
-        '404':
-          description: Deck not found.
         '405':
           description: You attempted a non-PUT operation.
 
@@ -318,7 +314,7 @@ paths:
             type: string
       responses:
         '403':
-          description: The deck belongs to another user.
+          description: The token bearer does not own the target deck id.
         '404':
           description: The deck does not exist.
         '405':
@@ -326,71 +322,6 @@ paths:
         '200':
           description: Delete users deck.
 
-
-  /api/deck/save:
-    put:
-      tags:
-        - Deck
-      summary: Save new deck under authenticated user.
-      security:
-        - oauth2: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required: [name, affiliation, format, slots, description]
-              properties:
-                name:
-                  type: string
-                affiliation:
-                  type: string
-                  example: hero
-                format:
-                  type: string
-                  example: INF
-                description:
-                  type: string
-                slots:
-                  type: object 
-                  additionalProperties:
-                   type: object
-                   required: [quantity]
-                  minProperties: 1
-                  properties:
-                    quantity:
-                      type: integer
-                      minimum: 1
-                      example: 1
-                    dice:
-                      type: integer
-                      default: 0
-                      example: 1
-              example:
-                name: "You were the chosen one!"
-                description: "You were meant to destroy the sith, not join them!"
-                affiliation: "hero"
-                format: "ARHS"
-                slots:
-                  "01001":
-                    quantity: 1
-                    dice: 0
-      responses:
-        '200':
-          description: Deck saved.
-        '403':
-          description: The token bearer does not own the target deck id.
-        '400':
-          description: Required information was not sent with the request.
-        '404':
-          description: Deck not found.
-        '405':
-          description: You attempted a non-PUT operation.
-
-          
-
-   
   /api/deck/publish/{id}:
     put:
       tags:
@@ -405,7 +336,15 @@ paths:
           schema:
             type: string
       responses:
+        '200':
+          description: Deck published.
+        '403':
+          description: The token bearer does not own the deck to publish.
+        '404':
+          description: The deck to publish does not exist.
         '405': 
           description: You tried a non PUT operation.
-        '200':
-          description: Publish user deck.
+        '422':
+          description: The deck is not legal to publish.
+        '429':
+          description: You have exceeded the daily deck publishing limit for non-donators.
