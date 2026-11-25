@@ -165,20 +165,16 @@ class APIController extends Controller
 		$this->getDoctrine()->getManager()->remove($deck); $this->getDoctrine()->getManager()->flush(); return new Response('', 200);
 	}
 
-	public function publishDeckAction($id, Request $request)
+	public function publishDeckAction($id)
 	{
 		$deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id); if (!$deck) { return new Response('', 404); }
 		if ($this->getUser()->getId() !== $deck->getUser()->getId()) { return new Response('', 403); }
-
 		$yesterday = (new \DateTime())->modify('-24 hours'); 
 		$query = $this->getDoctrine()->getManager()->createQuery("SELECT COUNT(d) FROM AppBundle:Decklist d WHERE d.dateCreation>:date AND d.user=:user");
         $query->setParameter('date', $yesterday); $query->setParameter('user', $deck->getUser()); $decklistsSinceYesterday = $query->getSingleScalarResult();
         if($decklistsSinceYesterday >= 3 && $deck->getUser()->getDonation() <= 0) { return new Response('', 429);}
-
-        try { $name = $deck->getName(); $description = $deck->getDescriptionMd();
-			$decklist = $this->get('decklist_factory')->createDecklistFromDeck($deck, $name, $description); }
-        catch(\Exception $e) { return new Response('', 422); }
-        
-		$this->getDoctrine()->getManager()->persist($decklist); $this->getDoctrine()->getManager()->flush(); return new Response('', 200);
+        try { $decklist = $this->get('decklist_factory')->createDecklistFromDeck($deck, $deck->getName(), $deck->getDescriptionMd()); }
+        catch(\Exception $e) { return new Response('', 422); } $this->getDoctrine()->getManager()->persist($decklist); 
+		$this->getDoctrine()->getManager()->flush(); return new Response('', 200);
     }
 }
