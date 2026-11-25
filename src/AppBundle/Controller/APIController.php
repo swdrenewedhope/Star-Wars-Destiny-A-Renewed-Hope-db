@@ -135,8 +135,7 @@ class APIController extends Controller
 		$decks = $this->getDoctrine()->getRepository('AppBundle:Deck')->findBy(['user' => $this->getUser()]);
 		if (!$decks) { $response->setContent(json_encode($decks)); return $response; }
 		$versions = array_map(function ($deck) { return $deck->getId().':'.$deck->getDateUpdate()->getTimestamp(); }, $decks);
-		$response->setEtag(md5(implode(',', $versions)));
-		if ($response->isNotModified($request)) { return $response; }
+		$response->setEtag(md5(implode(',', $versions))); if ($response->isNotModified($request)) { return $response; }
 		$content = json_encode($decks); $response->setContent($content); return $response;
 	}
 	
@@ -158,7 +157,7 @@ class APIController extends Controller
 		$this->getDoctrine()->getManager()->flush(); return new Response('', 200);
 	}
 
-	public function deleteDeckAction($id)
+	public function deleteDeckAction($id) 
 	{
 		$deck = $this->getDoctrine()->getManager()->getRepository('AppBundle:Deck')->find($id); if(!$deck) { return new Response('', 404); }
 		if($deck->getUser()->getId() !== $this->getUser()->getId()) { return new Response('', 403); }
@@ -168,22 +167,18 @@ class APIController extends Controller
 
 	public function publishDeckAction($id, Request $request)
 	{
-		$deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id);
-		if (!$deck) { return new Response('', 404); }
+		$deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id); if (!$deck) { return new Response('', 404); }
 		if ($this->getUser()->getId() !== $deck->getUser()->getId()) { return new Response('', 403); }
-		
-		$name = $request->request->get('name'); $description = trim($request->request->get('description_md'));
-		$precedent_id = trim($request->request->get('precedent'));
 
-		if(!preg_match('/^\d+$/', $precedent_id)) 
-		{ if(preg_match('/view\/(\d+)/', $precedent_id, $matches)) { $precedent_id = $matches[1]; }
-			else { $precedent_id = null; }}
-		$precedent = $precedent_id ? $this->getDoctrine()->getRepository('AppBundle:Decklist')->find($precedent_id) : null;
-		
-        try { $decklist = $this->get('decklist_factory')->createDecklistFromDeck($deck, $name, $description); }
+		$yesterday = (new \DateTime())->modify('-24 hours'); 
+		$query = $this->getDoctrine()->getManager()->createQuery("SELECT COUNT(d) FROM AppBundle:Decklist d WHERE d.dateCreation>:date AND d.user=:user");
+        $query->setParameter('date', $yesterday); $query->setParameter('user', $deck->getUser()); $decklistsSinceYesterday = $query->getSingleScalarResult();
+        if($decklistsSinceYesterday >= 3 && $deck->getUser()->getDonation() <= 0) { return new Response('', 429);}
+
+        try { $name = $deck->getName(); $description = $deck->getDescriptionMd();
+			$decklist = $this->get('decklist_factory')->createDecklistFromDeck($deck, $name, $description); }
         catch(\Exception $e) { return new Response('', 422); }
         
-        $decklist->setPrecedent($precedent); $this->getDoctrine()->getManager()->persist($decklist);
-        $this->getDoctrine()->getManager()->flush(); return new Response('', 200);
+		$this->getDoctrine()->getManager()->persist($decklist); $this->getDoctrine()->getManager()->flush(); return new Response('', 200);
     }
 }
