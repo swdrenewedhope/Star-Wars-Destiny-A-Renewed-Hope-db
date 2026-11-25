@@ -403,7 +403,7 @@ ui.refresh_row = function refresh_row(card_code) {
 		if(!row) return;
 
 		var card = app.data.cards.findById(card_code);
-		var quantity = card.indeck.cards;
+		var quantity = (card.type_code == 'character' && card.is_unique && card.has_die) ? card.indeck.dice : card.indeck.cards;
 		var dice = card.indeck.dice;
 		var dices = card.indeck.dices;
 		
@@ -630,7 +630,7 @@ ui.refresh_list = _.debounce(function refresh_list(refresh) {
 
 		row.find('[data-toggle="tooltip"]').tooltip();
 
-		var quantity = card.indeck.cards;
+		var quantity = (card.type_code == 'character' && card.is_unique && card.has_die) ? card.indeck.dice : card.indeck.cards;
 		var dices = card.indeck.dices;
 		
 		if(quantity > 0 && dices) {
