@@ -175,6 +175,6 @@ class APIController extends Controller
         if($decklistsSinceYesterday >= 3 && $deck->getUser()->getDonation() <= 0) { return new Response('', 429);}
         try { $decklist = $this->get('decklist_factory')->createDecklistFromDeck($deck, $deck->getName(), $deck->getDescriptionMd()); }
         catch(\Exception $e) { return new Response('', 422); } $this->getDoctrine()->getManager()->persist($decklist); 
-		$this->getDoctrine()->getManager()->flush(); return new Response('', 200);
+		$this->getDoctrine()->getManager()->flush(); return new JsonResponse($decklist->getId());
     }
 }
