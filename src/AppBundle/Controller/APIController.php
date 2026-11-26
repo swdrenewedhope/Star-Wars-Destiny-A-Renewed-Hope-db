@@ -174,7 +174,7 @@ class APIController extends Controller
         $query->setParameter('date', $yesterday); $query->setParameter('user', $deck->getUser()); $decklistsSinceYesterday = $query->getSingleScalarResult();
         if($decklistsSinceYesterday >= 3 && $deck->getUser()->getDonation() <= 0) { return new Response('', 429);}
         try { $decklist = $this->get('decklist_factory')->createDecklistFromDeck($deck, $deck->getName(), $deck->getDescriptionMd()); }
-        catch(\Exception $e) { return new Response('', 422); } $this->getDoctrine()->getManager()->persist($decklist); 
+        catch(\Exception $e) { return new Response($e->getMessage(), 422); } $this->getDoctrine()->getManager()->persist($decklist); 
 		$this->getDoctrine()->getManager()->flush(); return new JsonResponse($decklist->getId());
     }
 }
