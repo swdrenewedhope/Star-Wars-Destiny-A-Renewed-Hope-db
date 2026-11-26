@@ -229,6 +229,8 @@ paths:
       security:
         - oauth2: []
       responses:
+        '401':
+          description: Missing OAuth token.
         '200':
           description: Return users decks.
   
@@ -290,6 +292,8 @@ paths:
                     quantity: 1
                     dice: 0
       responses:
+        '401':
+          description: Missing OAuth token.
         '200':
           description: Deck saved.
         '403':
@@ -298,29 +302,6 @@ paths:
           description: Required information was not sent with the request.
         '405':
           description: You attempted a non-PUT operation.
-
-  /api/deck/delete/{id}:
-    delete:
-      tags:
-        - Deck
-      summary: Delete authenticated users deck.
-      security:
-        - oauth2: []
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '403':
-          description: The token bearer does not own the target deck id.
-        '404':
-          description: The deck does not exist.
-        '405':
-          description: You tried a non DELETE operation.
-        '200':
-          description: Delete users deck.
 
   /api/deck/publish/{id}:
     put:
@@ -338,6 +319,8 @@ paths:
       responses:
         '200':
           description: Deck published.
+        '401':
+          description: Missing OAuth token.
         '403':
           description: The token bearer does not own the deck to publish.
         '404':
@@ -348,3 +331,28 @@ paths:
           description: The deck is not legal to publish.
         '429':
           description: You have exceeded the daily deck publishing limit for non-donators.
+
+  /api/deck/delete/{id}:
+    delete:
+      tags:
+        - Deck
+      summary: Delete authenticated users deck.
+      security:
+        - oauth2: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Missing OAuth token.
+        '403':
+          description: The token bearer does not own the target deck id.
+        '404':
+          description: The deck does not exist.
+        '405':
+          description: You tried a non DELETE operation.
+        '200':
+          description: Delete users deck.
