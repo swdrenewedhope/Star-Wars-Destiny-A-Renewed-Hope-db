@@ -143,7 +143,7 @@ class APIController extends Controller
 	{
 		$data = json_decode($request->getContent(), true); $request->request->replace(is_array($data) ? $data : []);		
 		$user = $this->get('fos_user.user_manager')->findUserByUsername($this->getUser());
-		$deck = $id ? $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id): (new Deck())-> setUser($user);
+		$deck = $id ? $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id): (new Deck())-> setUser($user); if (!$deck) { return new Response('', 404); }
 		if($deck->getUser()->getId() !== $user->getId()) { return new Response('', 403); }; $this->getDoctrine()->getManager()->persist($deck);
 		$affiliation = $this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $deck->getAffiliation()->getCode() ?? $request->get('affiliation_code')]);
 		$format = $this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findOneBy(['code' => $request->get('format_code')]);
