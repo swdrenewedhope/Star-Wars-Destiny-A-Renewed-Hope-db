@@ -175,11 +175,7 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
         }
     }
 
-    if ($filetype === "octgn" || ($filetype === "auto" && strtolower($origext) === "o8d")) {
-        $parse = $this->parseOctgnImport(file_get_contents($filename));
-    } else {
-        $parse = $this->parseTextImport(file_get_contents($filename));
-    }
+    $parse = $this->parseTextImport(file_get_contents($filename));
 
     $format_code = 'INF';
 
@@ -258,7 +254,7 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
         ];
     }
 
-    public function textexportAction ($deck_id)
+    public function textexportAction ($deck_id) // bad name -> downloadAction
     {
 		/* @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
@@ -388,13 +384,6 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
         if (! count($content)) {
             return new Response('Cannot import empty deck' . json_encode($content));
         }
-
-		// Ban Echoes of Destiny 2021 decks being created or updated during migration process.
-
-		if (preg_grep('/^17\d{3}$/', array_keys($content))) {
-    		$this->get('session')->getFlashBag()->set('error', ('Decks containing Echoes of Destiny 2021 cards cannot be created or modified. Please change them to their Echoes of Destiny counterpart or await manual migration.'));
-    		return $this->redirect($this->generateUrl('deck_view', [ 'deck_id' => $deck->getId() ]));
-		}
 
         $name = filter_var($request->get('name'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
         $decklist_id = filter_var($request->get('decklist_id'), FILTER_SANITIZE_NUMBER_INT);
@@ -689,89 +678,6 @@ public function listAction(Request $request)
                         'decklist_id' => $decklist_id
                 ));
 
-    }
-
-    public function downloadallAction()
-    {
-        $user = $this->getUser();
-        $em = $this->getDoctrine()->getManager();
-        $decks = $this->get('decks')->getByUser($user, FALSE);
-
-        $file = tempnam("tmp", "zip");
-        $zip = new \ZipArchive();
-        $res = $zip->open($file, \ZipArchive::OVERWRITE);
-        if ($res === TRUE)
-        {
-            foreach($decks as $deck)
-            {
-                $content = [];
-                foreach($deck['cards'] as $slot)
-                {
-                    $card = $em->getRepository('AppBundle:Card')->findOneBy(array('code' => $slot['card_code']));
-                    if(!$card) continue;
-                    $cardname = $card->getName();
-                    $packname = $card->getPack()->getName();
-                    if($packname == 'Core Set') $packname = 'Core';
-                    $qty = $slot['qty'];
-                    $content[] = "$cardname ($packname) x$qty";
-                }
-                $filename = str_replace('/', ' ', $deck['name']).'.txt';
-                $zip->addFromString($filename, implode("\r\n", $content));
-            }
-            $zip->close();
-        }
-        $response = new Response();
-        $response->headers->set('Content-Type', 'application/zip');
-        $response->headers->set('Content-Length', filesize($file));
-        $response->headers->set('Content-Disposition', $response->headers->makeDisposition(
-        		ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-        		$this->get('texts')->slugify('thronesdb') . '.zip'
-        ));
-        
-        $response->setContent(file_get_contents($file));
-        unlink($file);
-        return $response;
-    }
-
-    public function uploadallAction(Request $request)
-    {
-		die();
-	/* ini_set('max_execution_time', 300);
-
-        $uploadedFile = $request->files->get('uparchive');
-        if (! isset($uploadedFile))
-            return new Response('No file');
-
-        $filename = $uploadedFile->getPathname();
-
-        if (function_exists("finfo_open")) {
-            $finfo = finfo_open(FILEINFO_MIME);
-
-            if(substr(finfo_file($finfo, $filename), 0, 15) !== 'application/zip')
-                return new Response('Bad file');
-        }
-
-        $zip = new \ZipArchive;
-        $res = $zip->open($filename);
-        if ($res === TRUE) {
-            for ($i = 0; $i < $zip->numFiles; $i++) {
-                 $name = $zip->getNameIndex($i);
-                 $parse = $this->parseTextImport($zip->getFromIndex($i));
-
-                 $deck = new Deck();
-                 $em->persist($deck);
-                 $this->get('decks')->saveDeck($this->getUser(), $deck, null, $name, '', '', $parse['content']);
-            }
-        }
-        $zip->close();
-
-        $em->flush();
-        
-        $this->get('session')
-            ->getFlashBag()
-            ->set('notice', "Decks imported.");
-
-        return $this->redirect($this->generateUrl('decks_list')); */
     }
 
     public function autosaveAction(Request $request)
