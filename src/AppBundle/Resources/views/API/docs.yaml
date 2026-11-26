@@ -300,8 +300,6 @@ paths:
           description: The token bearer does not own the target deck id.
         '400':
           description: Required information was not sent with the request.
-        '405':
-          description: You attempted a non-PUT operation.
 
   /api/deck/publish/{id}:
     put:
@@ -314,8 +312,9 @@ paths:
         - name: id
           in: path
           required: true
+          description: On 200, the published decks ID is sent back as a response.
           schema:
-            type: string
+            type: integer
       responses:
         '200':
           description: Deck published.
@@ -325,8 +324,6 @@ paths:
           description: The token bearer does not own the deck to publish.
         '404':
           description: The deck to publish does not exist.
-        '405': 
-          description: You tried a non PUT operation.
         '422':
           description: The deck is not legal to publish.
         '429':
@@ -344,15 +341,13 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
       responses:
+        '200':
+          description: Deck deleted.
         '401':
           description: Missing OAuth token.
         '403':
           description: The token bearer does not own the target deck id.
         '404':
           description: The deck does not exist.
-        '405':
-          description: You tried a non DELETE operation.
-        '200':
-          description: Delete users deck.
