@@ -16,74 +16,21 @@ use AppBundle\Entity\Deckchange;
 
 class BuilderController extends Controller
 {
-	private function getCardSetCode(Card $card)
-{
-    // Card -> set
-    if (method_exists($card, 'getSet') && $card->getSet() && method_exists($card->getSet(), 'getCode')) {
-        return strtoupper(trim((string) $card->getSet()->getCode()));
-    }
-    if (method_exists($card, 'getSetCode')) {
-        return strtoupper(trim((string) $card->getSetCode()));
-    }
-
-    // Card -> pack -> set/cycle/code
-    if (method_exists($card, 'getPack') && $card->getPack()) {
-        $pack = $card->getPack();
-
-        if (method_exists($pack, 'getSet') && $pack->getSet() && method_exists($pack->getSet(), 'getCode')) {
-            return strtoupper(trim((string) $pack->getSet()->getCode()));
-        }
-        if (method_exists($pack, 'getCycle') && $pack->getCycle() && method_exists($pack->getCycle(), 'getCode')) {
-            return strtoupper(trim((string) $pack->getCycle()->getCode()));
-        }
-        if (method_exists($pack, 'getCode')) {
-            return strtoupper(trim((string) $pack->getCode()));
-        }
-    }
-    return null;
-}
-
-private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCode)
-{
-    $blockedSetCode = strtoupper(trim((string) $blockedSetCode));
-    $cardCodes = array_keys($content);
-    if (!count($cardCodes)) return false;
-
-    $cards = $em->getRepository('AppBundle:Card')->findBy(['code' => $cardCodes]);
-
-    foreach ($cards as $card) {
-        $setCode = $this->getCardSetCode($card);
-        if ($setCode === $blockedSetCode) {
-            return true;
-        }
-    }
-    return false;
-}
-
-	public function buildformAction (Request $request)
+	public function buildformAction()
 	{
-		$response = new Response();
-		$response->setPublic();
+		$response = new Response(); $response->setPublic();
 		$response->setMaxAge($this->container->getParameter('cache_expiration'));
+        $affiliations = $this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findPrimaries();
+		$formats = $this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findAll();
+        $setlist = $this->getDoctrine()->getManager()->getRepository('AppBundle:Set')->findAll(); $sets = [];
 
-		/* @var $em \Doctrine\ORM\EntityManager */
-		$em = $this->getDoctrine()->getManager();
-
-        $affiliations = $em->getRepository('AppBundle:Affiliation')->findPrimaries();
-		$formats = $em->getRepository('AppBundle:Format')->findAll();
-        $setlist = $em->getRepository('AppBundle:Set')->findAll();
-        $sets = [];
-        foreach($setlist as $set)
-        {
-            $sets[$set->getCode()] = $set->getName();
-        }
+        foreach($setlist as $set) { $sets[$set->getCode()] = $set->getName(); }
 
 		return $this->render('AppBundle:Builder:initbuild.html.twig', [
 				'pagetitle' => $this->get('translator')->trans('decks.form.new'),
                 'affiliations' => $affiliations,
                 'formats' => $formats,
-                'sets' => $sets
-		], $response);
+                'sets' => $sets ], $response);
     }
 
     public function initbuildAction (Request $request)
@@ -138,54 +85,20 @@ private function deckHasSetCode(EntityManager $em, array $content, $blockedSetCo
         return $this->redirect($this->get('router')->generate('deck_edit', ['deck_id' => $deck->getId()]));
     }
 
-    public function importAction ()
-    {
-        $response = new Response();
-        $response->setPublic();
-        $response->setMaxAge($this->container->getParameter('cache_expiration'));
-
-        $affiliations = $this->getDoctrine()->getRepository('AppBundle:Affiliation')->findAll();
-        
-        return $this->render('AppBundle:Builder:directimport.html.twig',
-                array(
-                        'pagetitle' => "Import a deck",
-                		'affiliations' => array_map(function ($affiliation) { return [ 'code' => $affiliation->getCode(), 'name' => $affiliation->getName() ]; }, $affiliations)
-                ), $response);
-
-    }
-
     public function fileimportAction (Request $request)
 {
-    $filetype = filter_var($request->get('type'), FILTER_SANITIZE_STRING);
     $uploadedFile = $request->files->get('upfile');
-    if (!isset($uploadedFile)) {
-        return new Response('Please upload a file!');
-    }
+    if (!isset($uploadedFile)) { return new Response('No file provided. Returning to /decks..', 400, array('Refresh' => '3; url=/decks')); }
 
-    $origname = $uploadedFile->getClientOriginalName();
-    $origext  = $uploadedFile->getClientOriginalExtension();
     $filename = $uploadedFile->getPathname();
-
-    if (function_exists("finfo_open")) {
-        $finfo = finfo_open(FILEINFO_MIME);
-        $mime  = finfo_file($finfo, $filename);
-        $is_text = (substr($mime, 0, 4) === 'text') || (substr($mime, 0, 15) === 'application/xml');
-        if (!$is_text) {
-            return new Response('Bad file');
-        }
-    }
-
     $parse = $this->parseTextImport(file_get_contents($filename));
 
-    $format_code = 'INF';
-
 	$fileLines = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-	$deckname = trim($fileLines[0]);
 
     $properties = [
-        'name'             => $deckname,
+        'name'             => trim($fileLines[0]),
         'affiliation_code' => $parse['affiliation_code'] ?? '',
-        'format_code'      => $format_code,
+        'format_code'      => $parse['format_code'] ?? 'INF',
         'content'          => json_encode($parse['content'] ?? []),
         'description'      => $parse['description'] ?? ''
     ];
@@ -683,10 +596,9 @@ public function listAction(Request $request)
     public function autosaveAction(Request $request)
     {
         $user = $this->getUser();
-        $em = $this->getDoctrine()->getManager();
         $deck_id = $request->get('deck_id');
 
-        $deck = $em->getRepository('AppBundle:Deck')->find($deck_id);
+        $deck = $this->getDoctrine()->getManager()->getRepository('AppBundle:Deck')->find($deck_id);
         if(!$deck) {
             throw new BadRequestHttpException("Cannot find deck ".$deck_id);
         }
@@ -705,8 +617,8 @@ public function listAction(Request $request)
             $change->setDeck($deck);
             $change->setVariation(json_encode($diff));
             $change->setIsSaved(FALSE);
-            $em->persist($change);
-            $em->flush();
+            $this->getDoctrine()->getManager()->persist($change);
+            $this->getDoctrine()->getManager()->flush();
         }
         return new Response($change->getDatecreation()->format('c'));
     }
