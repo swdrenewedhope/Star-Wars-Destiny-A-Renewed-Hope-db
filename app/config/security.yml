@@ -15,6 +15,13 @@ security:
             pattern:    ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
 
+        api:
+          pattern:    ^/api/deck
+          stateless:  true
+          anonymous:  true
+          fos_oauth:  true
+          http_basic: ~     
+
         default:
             pattern:    ^/
             form_login:
