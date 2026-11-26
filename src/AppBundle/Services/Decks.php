@@ -63,6 +63,11 @@ class Decks
 				$latestSet = $set;
 			}
 			$cards[$card_code] = $card;
+			if($card->getIsUnique() && $card->getHasDie() && $card->getType()->getCode() === 'character' && ($qtys['quantity'] ?? 0) > 0) {
+				$maxDice = count(explode('/', $card->getPoints()));
+				$content[$card_code]['dice'] = min(max($qtys['dice'] ?? 0, $qtys['quantity']), $maxDice);
+				$content[$card_code]['quantity'] = 1;
+			}
 		}
 		$deck->setLastSet($latestSet);
 		if(empty($tags)) { $tags = [$affiliation->getCode()]; }
