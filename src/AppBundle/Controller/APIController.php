@@ -151,7 +151,7 @@ class APIController extends Controller
 		$tags = $request->get('tags') ?: $deck->getTags();
 
 		if (!$affiliation || !$format || !count($slots)) { return new Response('', 400); } foreach($slots as $card_code => $qty)
-			{ if(!is_array($qty) || !is_integer($qty['quantity'] ?? null) || !is_integer($qty['dice'] ?? null)) {return new Response('', 400);}}
+			{ if(!is_array($qty) || !is_integer($qty['quantity'] ?? null) || !is_integer($qty['dice'] ?? 0)) {return new Response('', 400);}}
 		
 		$this->get('decks')->saveDeck($this->getUser(), $deck, $decklist_id, $name, $affiliation, $format, $description, $tags, $slots, null);
 		$this->getDoctrine()->getManager()->flush(); return new JsonResponse($deck->getId());
