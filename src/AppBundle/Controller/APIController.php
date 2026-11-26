@@ -133,7 +133,6 @@ class APIController extends Controller
 	{
 		$response = new Response('', 200, array('Access-Control-Allow-Origin' => '*', 'Content-Type' => 'application/json'));		
 		$decks = $this->getDoctrine()->getRepository('AppBundle:Deck')->findBy(['user' => $this->getUser()]);
-		if (!$decks) { $response->setContent(json_encode($decks)); return $response; }
 		$versions = array_map(function ($deck) { return $deck->getId().':'.$deck->getDateUpdate()->getTimestamp(); }, $decks);
 		$response->setEtag(md5(implode(',', $versions))); if ($response->isNotModified($request)) { return $response; }
 		$content = json_encode($decks); $response->setContent($content); return $response;
@@ -151,7 +150,7 @@ class APIController extends Controller
 		$decklist_id = $request->get('decklist_id'); $description = trim($request->get('description')); $tags = $request->get('tags');
 
 		if (!$affiliation || !$format || !count($slots)) { return new Response('', 400); } foreach($slots as $card_code => $qty)
-			{ if(!is_array($qty) || !is_integer($qty['quantity'] ?? null) || !is_integer($qty['dice'] ?? 0)) {return new Response('', 400);}}
+			{ if(!is_array($qty) || !is_integer($qty['quantity'] ?? null) || !is_integer($qty['dice'] ?? null)) {return new Response('', 400);}}
 		
 		$this->get('decks')->saveDeck($this->getUser(), $deck, $decklist_id, $name, $affiliation, $format, $description, $tags, $slots, null);
 		$this->getDoctrine()->getManager()->flush(); return new JsonResponse($deck->getId());

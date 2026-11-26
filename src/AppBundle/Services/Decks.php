@@ -41,7 +41,7 @@ class Decks
 			if ($decklist)
 				$deck->setParent($decklist);
 		}
-
+		
 		$deck->setName($name);
 		$deck->setAffiliation($affiliation);
 		$deck->setFormat($format);
