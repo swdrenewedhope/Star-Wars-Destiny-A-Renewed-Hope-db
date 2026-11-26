@@ -89,10 +89,7 @@ class BuilderController extends Controller
 {
     $uploadedFile = $request->files->get('upfile');
     if (!isset($uploadedFile)) { return new Response('No file provided. Returning to /decks..', 400, array('Refresh' => '3; url=/decks')); }
-
-    $filename = $uploadedFile->getPathname();
-    $parse = $this->parseTextImport(file_get_contents($filename));
-
+    $filename = $uploadedFile->getPathname(); $parse = $this->parseTextImport(file_get_contents($filename));
 	$fileLines = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
     $properties = [
@@ -101,19 +98,14 @@ class BuilderController extends Controller
         'format_code'      => $parse['format_code'] ?? 'INF',
         'content'          => json_encode($parse['content'] ?? []),
         'description'      => $parse['description'] ?? ''
-    ];
-
-    return $this->forward('AppBundle:Builder:save', $properties);
+    ]; return $this->forward('AppBundle:Builder:save', $properties);
 }
 
         public function parseTextImport ($text)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $content = [];
-        $affiliation_code = '';
-        $description = '';
-
+        $content = []; $affiliation_code = ''; $description = '';
         $lines = preg_split("/\r\n|\n|\r/", $text);
 
         foreach ($lines as $line) {
@@ -121,22 +113,11 @@ class BuilderController extends Controller
             if ($line === '') continue;
 
             if (!$affiliation_code) {
-                if (preg_match('/^(hero|villain|villian)$/i', $line, $m)) {
+                if (preg_match('/^(hero|villain)$/i', $line, $m)) {
                     $word = strtolower($m[1]);
-                    if ($word === 'villian') $word = 'villain';
-
                     $aff = $em->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $word]);
-
-                    if (!$aff) {
-                        $aff = $em->getRepository('AppBundle:Affiliation')->findOneBy(['name' => ucfirst($word)]);
-                    }
-
-                    if ($aff) {
-                        $affiliation_code = $aff->getCode();
-                        continue;
-                    }
-                }
-            }
+                    if ($aff) { $affiliation_code = $aff->getCode(); continue;
+                }}}
 
             if (preg_match('/^\s*(\d*)\s*x?\s*(.*?)\s*\(([^)]+)\)/u', $line, $m)) {
                 $quantity = ($m[1] === '') ? 1 : (int) $m[1];
