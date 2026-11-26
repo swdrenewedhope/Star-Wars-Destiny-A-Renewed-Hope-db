@@ -154,7 +154,7 @@ class APIController extends Controller
 			{ if(!is_array($qty) || !is_integer($qty['quantity'] ?? null) || !is_integer($qty['dice'] ?? 0)) {return new Response('', 400);}}
 		
 		$this->get('decks')->saveDeck($this->getUser(), $deck, $decklist_id, $name, $affiliation, $format, $description, $tags, $slots, null);
-		$this->getDoctrine()->getManager()->flush(); return new Response('', 200);
+		$this->getDoctrine()->getManager()->flush(); return new JsonResponse($deck->getId());
 	}
 
 	public function deleteDeckAction($id) 
