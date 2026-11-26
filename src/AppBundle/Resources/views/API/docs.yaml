@@ -255,14 +255,14 @@ paths:
           application/json:
             schema:
               type: object
-              required: [name, affiliation, format, slots, description]
+              required: [name, affiliation_code, format_code, slots, description]
               properties:
                 name:
                   type: string
-                affiliation:
+                affiliation_code:
                   type: string
                   example: hero
-                format:
+                format_code:
                   type: string
                   example: INF
                 description:
@@ -285,8 +285,8 @@ paths:
               example:
                 name: "You were the chosen one!"
                 description: "You were meant to destroy the sith, not join them!"
-                affiliation: "hero"
-                format: "ARHS"
+                affiliation_code: "hero"
+                format_code: "ARHS"
                 slots:
                   "01001":
                     quantity: 1

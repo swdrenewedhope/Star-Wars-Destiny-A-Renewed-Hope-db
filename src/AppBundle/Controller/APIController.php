@@ -144,10 +144,11 @@ class APIController extends Controller
 		$user = $this->get('fos_user.user_manager')->findUserByUsername($this->getUser());
 		$deck = $id ? $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id): (new Deck())-> setUser($user); if (!$deck) { return new Response('', 404); }
 		if($deck->getUser()->getId() !== $user->getId()) { return new Response('', 403); }; $this->getDoctrine()->getManager()->persist($deck);
-		$affiliation = $this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $deck->getAffiliation()->getCode() ?? $request->get('affiliation_code')]);
-		$format = $this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findOneBy(['code' => $request->get('format_code')]);
+		$affiliation = $this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $request->get('affiliation_code') ?: $deck->getAffiliation()->getCode()]);
+		$format = $this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findOneBy(['code' => $request->get('format_code') ?: $deck->getFormat()->getCode()]);
 		$slots = (array) $request->get('slots'); $name = $request->get('name') ?: $deck->getName() ?: 'New Deck';
-		$decklist_id = $request->get('decklist_id'); $description = trim($request->get('description')); $tags = $request->get('tags');
+		$decklist_id = $request->get('decklist_id') ?: $deck->getParent(); $description = trim($request->get('description')) ?: $deck->getDescriptionMd(); 
+		$tags = $request->get('tags') ?: $deck->getTags();
 
 		if (!$affiliation || !$format || !count($slots)) { return new Response('', 400); } foreach($slots as $card_code => $qty)
 			{ if(!is_array($qty) || !is_integer($qty['quantity'] ?? null) || !is_integer($qty['dice'] ?? null)) {return new Response('', 400);}}
