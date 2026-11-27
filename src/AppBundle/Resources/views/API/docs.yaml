@@ -7,6 +7,16 @@ servers:
   - url: https://db.swdrenewedhope.com
 
 components:
+  schemas:
+    Id:
+      type: object
+      properties:
+        id: {type: integer, example: 123}
+    Error:
+      type: object
+      properties:
+        error: {type: string, enum: [invalid_request, access_denied, forbidden, not_found, unprocessable, rate_limited]}
+        error_description: {type: string, example: format_code is missing or unknown.}
   securitySchemes:
     oauth2:
       type: oauth2
@@ -294,12 +304,24 @@ paths:
       responses:
         '401':
           description: Missing OAuth token.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
         '200':
           description: Deck saved.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Id'}
         '403':
           description: The token bearer does not own the target deck id.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
         '400':
-          description: Required information was not sent with the request.
+          description: Invalid request. error_description names the failing field or card code.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
 
   /api/deck/publish/{id}:
     put:
@@ -318,16 +340,34 @@ paths:
       responses:
         '200':
           description: Deck published.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Id'}
         '401':
           description: Missing OAuth token.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
         '403':
           description: The token bearer does not own the deck to publish.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
         '404':
           description: The deck to publish does not exist.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
         '422':
           description: The deck is not legal to publish.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
         '429':
           description: You have exceeded the daily deck publishing limit for non-donators.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
 
   /api/deck/delete/{id}:
     delete:
@@ -347,7 +387,16 @@ paths:
           description: Deck deleted.
         '401':
           description: Missing OAuth token.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
         '403':
           description: The token bearer does not own the target deck id.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
         '404':
           description: The deck does not exist.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
