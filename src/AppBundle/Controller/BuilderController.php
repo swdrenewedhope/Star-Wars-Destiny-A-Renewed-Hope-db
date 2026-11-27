@@ -358,29 +358,15 @@ public function listAction(Request $request)
 
     public function autosaveAction(Request $request)
     {
-        $user = $this->getUser(); $deck_id = $request->get('deck_id');
-
+        $user = $this->getUser(); $deck_id = $request->get('deck_id'); $diff = (array) json_decode($request->get('diff'));
         $deck = $this->getDoctrine()->getManager()->getRepository('AppBundle:Deck')->find($deck_id);
-        if(!$deck) {
-            throw new BadRequestHttpException("Cannot find deck ".$deck_id);
-        }
-        if ($user->getId() != $deck->getUser()->getId()) {
-            throw new UnauthorizedHttpException("You don't have access to this deck.");
-        }
-
-        $diff = (array) json_decode($request->get('diff'));
-        if (count($diff) != 2) {
-        	$this->get('logger')->error("cannot use diff", $diff);
-            throw new BadRequestHttpException("Wrong content ".json_encode($diff));
-        }
+        if ($user->getId() != $deck->getUser()->getId()) { throw new UnauthorizedHttpException("That deck you seek. See it you shall not."); }
 
         if(count((array)$diff[0]) || count((array)$diff[1])) {
-            $change = new Deckchange();
-            $change->setDeck($deck);
+            $change = new Deckchange();$change->setDeck($deck);
             $change->setVariation(json_encode($diff));
             $change->setIsSaved(FALSE);
             $this->getDoctrine()->getManager()->persist($change);
             $this->getDoctrine()->getManager()->flush();
-        }
-        return new Response($change->getDatecreation()->format('c'));
+        } return new Response($change->getDatecreation()->format('c'));
     }}
