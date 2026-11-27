@@ -474,7 +474,7 @@
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b45db">
         <source>decks.build.start</source>
-        <target>Create the deck and start building</target>
+        <target>Build, we must.</target>
       </trans-unit>
       <trans-unit id="loco:5862bc1e52e1a1da578b45dc">
         <source>decks.charts.cost.subtitle</source>
