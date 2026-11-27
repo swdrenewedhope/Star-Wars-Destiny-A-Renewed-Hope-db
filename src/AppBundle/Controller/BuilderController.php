@@ -303,14 +303,8 @@ class BuilderController extends Controller
 
 public function listAction(Request $request)
 {
-    $user = $this->getUser();$em = $this->getDoctrine()->getManager();
-    $limit = 1000; $page  = max(1, (int) $request->query->get('page', 1));
-    $allDecks = $this->get('decks')->getByUser($user, false);
-    $total = count($allDecks);
-    if (!$total) {return $this->render('AppBundle:Builder:no-decks.html.twig', ['nbmax' => $user->getMaxNbDecks()]);}
-
-    $lastPage = max(1, (int) ceil($total / $limit)); if ($page > $lastPage) $page = $lastPage;
-    $offset = ($page - 1) * $limit; $tags = [];
+    $user = $this->getUser();$em = $this->getDoctrine()->getManager(); $allDecks = $this->get('decks')->getByUser($user, false);
+    if (!count($allDecks)) {return $this->render('AppBundle:Builder:no-decks.html.twig', ['nbmax' => $user->getMaxNbDecks()]);}
 
     foreach ($allDecks as $d) { if (!empty($d['tags'])) $tags[] = $d['tags']; }
     $tags = array_unique($tags); $decks = array_slice($allDecks, $offset, $limit);
@@ -330,42 +324,20 @@ public function listAction(Request $request)
 
         foreach ($deckEntity->getSlots()->getPlotDeck() as $plot) {
             $info = $this->get('cards_data')->getCardInfo($plot->getCard(), false);
-            $info['qty'] = $plot->getQuantity();
-            $info['dice'] = $plot->getDice();
-            $plots[] = $info;
-        } $deck['plots'] = $plots;
-    }
-    unset($deck);
-
-    $makeUrl = function (int $p) use ($request) {
-        $params = $request->query->all();
-        $params['page'] = $p;
-        return $this->generateUrl('decks_list', $params);};
-
-    $prevurl = ($page > 1) ? $makeUrl($page - 1) : null;
-    $nexturl = ($page < $lastPage) ? $makeUrl($page + 1) : null;
-    $window = 2;
-    $start = max(1, $page - $window);
-    $end   = min($lastPage, $page + $window);
-    $pages = [];
-
-    for ($p = $start; $p <= $end; $p++) {
-        $pages[] = [
-            'numero'  => $p,
-            'url'     => $makeUrl($p),
-            'current' => ($p === $page),
-        ];}
+            $info['qty'] = $plot->getQuantity(); $info['dice'] = $plot->getDice();
+            $plots[] = $info; $deck['plots'] = $plots; } 
+    } unset($deck);
 
     return $this->render('AppBundle:Builder:decks.html.twig', [
         'pagetitle' => $this->get("translator")->trans('nav.mydecks'),
         'decks' => $decks,
         'tags' => $tags,
         'nbmax' => $user->getMaxNbDecks(),
-        'nbdecks' => $total,
-        'cannotcreate' => $user->getMaxNbDecks() <= $total,
-        'pages' => $pages,
-        'prevurl' => $prevurl,
-        'nexturl' => $nexturl,
+        'nbdecks' => count($allDecks),
+        'cannotcreate' => $user->getMaxNbDecks() <= count($allDecks),
+		'prevurl' => null,
+		'pages' => null,
+		'nexturl'=> null,
         'url' => $request->getRequestUri(),
     ]);}
 
