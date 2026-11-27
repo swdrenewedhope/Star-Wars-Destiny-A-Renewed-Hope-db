@@ -2,15 +2,19 @@
 namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
-use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use AppBundle\Entity\Deck;
+use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Deckchange;
+
+
+// Check these actually aren't used.
+
 use AppBundle\Entity\Deckslot;
 use AppBundle\Entity\Card;
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\Deckchange;
+use Symfony\Component\DomCrawler\Crawler;
 
 class BuilderController extends Controller
 {
@@ -19,12 +23,16 @@ class BuilderController extends Controller
 		$response = new Response(); $response->setPublic(); $response->setMaxAge($this->container->getParameter('cache_expiration'));
         $setlist = $this->getDoctrine()->getManager()->getRepository('AppBundle:Set')->findAll(); $sets = [];
         foreach($setlist as $set) { $sets[$set->getCode()] = $set->getName(); }
-		return $this->render('AppBundle:Builder:initbuild.html.twig', [
+		return $this->render('AppBundle:Builder:initbuild.html.twig', [ // Ideally, we want to remove initbuild and jump straight into the main builder. -->
                 'affiliations' => $this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findPrimaries(),
                 'formats' => $this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findAll(),
                 'sets' => $sets ], $response);}
 
-    public function initbuildAction (Request $request)
+    public function initbuildAction (Request $request) // Which would then make this function redundant.
+
+	// PROBLEM
+		// There is no way in the main builder to change affiliation.
+
     {
         $translator = $this->get('translator'); $em = $this->getDoctrine()->getManager();
         $affiliation = $em->getRepository('AppBundle:Affiliation')->findByCode($request->request->get('affiliation'));
@@ -138,44 +146,28 @@ class BuilderController extends Controller
         $deck = $em->getRepository('AppBundle:Deck')->find($deck_id);
 
         $is_owner = $this->getUser() && $this->getUser()->getId() == $deck->getUser()->getId();
-        if(!$deck->getUser()->getIsShareDecks() && !$is_owner) {
-        	return $this->render(
-        			'AppBundle:Default:error.html.twig',
-        			array('pagetitle' => "Error", 'error' => 'That deck you seek. See it you shall not.'));
-			}
+        if(!$deck->getUser()->getIsShareDecks() && !$is_owner) { return new Response('', 403);}
 
         $content = $deck->getSlots()->getContent();
         return $this->forward('AppBundle:Builder:save',
-            array(
-                'name' => $deck->getName().' (clone)',
+            array('name' => $deck->getName().' (clone)',
                 'affiliation_code' => $deck->getAffiliation()->getCode(),
                 'format_code' => $deck->getFormat()->getCode(),
                 'content' => json_encode($content),
-                'deck_id' => $deck->getParent() ? $deck->getParent()->getId() : null
-            ));
-    }
+                'deck_id' => $deck->getParent() ? $deck->getParent()->getId() : null));}
 
     public function saveAction (Request $request)
     {
         $em = $this->getDoctrine()->getManager(); $user = $this->getUser();
-        if (count($user->getDecks()) > $user->getMaxNbDecks())
-            return new Response('You have reached the maximum number of decks allowed. Impressive!');
-        $id = filter_var($request->get('id'), FILTER_SANITIZE_NUMBER_INT);
-        $deck = null; $source_deck = null;
+        if (count($user->getDecks()) > $user->getMaxNbDecks()) return new Response('', 409);
+        $id = $request->get('id'); $deck = null; $source_deck = null;
 
-        if($id) {
-            $deck = $em->getRepository('AppBundle:Deck')->find($id);
-            if (!$deck || $user->getId() != $deck->getUser()->getId()) {
-                throw new UnauthorizedHttpException("You don't have access to this deck.");
-            }
-            $source_deck = $deck;
-        }
+        if($id) { $deck = $em->getRepository('AppBundle:Deck')->find($id);
+            if (!$deck || $user->getId() != $deck->getUser()->getId()) { return new Response('', 403); }
+            $source_deck = $deck; }
 
-		$affiliation_code = $request->get('affiliation_code');
-		if(!$affiliation_code) { return new Response('Cannot import deck without affiliation'); }
-
-		$affiliation = $em->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $affiliation_code]);
-		if(!$affiliation) { return new Response('Cannot import deck with unknown affiliation ' . $affiliation_code); }
+		$affiliation_code = $em->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $request->get('affiliation_code')]);
+		if(!$affiliation_code) { return new Response('Unknown affiliation code. Returning to /decks', 422, array('Refresh' => '3; url=/decks')); }
 
         $format_code = $request->get('format_code') ?: 'INF';
 		if(!$format_code) { return new Response('Cannot import deck without format'); }
@@ -200,7 +192,7 @@ class BuilderController extends Controller
         $description = trim($request->get('description'));
         $tags = filter_var($request->get('tags'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
-        $this->get('decks')->saveDeck($this->getUser(), $deck, $decklist_id, $name, $affiliation, $format, $description, $tags, $content, $source_deck ? $source_deck : null);
+        $this->get('decks')->saveDeck($this->getUser(), $deck, $decklist_id, $name, $affiliation_code, $format, $description, $tags, $content, $source_deck ? $source_deck : null);
         $em->flush();
         
         return $this->redirect($this->generateUrl('decks_list'));
@@ -209,17 +201,16 @@ class BuilderController extends Controller
 
     public function deleteAction (Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $deck_id = $request->get('deck_id'); $deck = $em->getRepository('AppBundle:Deck')->find($deck_id);
-        
+        $deck = $this->getDoctrine()->getManager()->getRepository('AppBundle:Deck')->find($request->get('deck_id'));
 		if (!$deck) return $this->redirect($this->generateUrl('decks_list'));
-        if ($this->getUser()->getId() != $deck->getUser()->getId())
-            throw new UnauthorizedHttpException("That deck you seek. See it you shall not.");
+        if ($this->getUser()->getId() != $deck->getUser()->getId()) {
+        	return $this->render('AppBundle:Default:error.html.twig',
+        			array('error' => 'That deck you seek. See it you shall not.'), new Response('', 403));}
 
         foreach ($deck->getChildren() as $decklist) {
             $decklist->setParent(null);
         }
-        $em->remove($deck); $em->flush();
+        $this->getDoctrine()->getManager()->remove($deck); $this->getDoctrine()->getManager()->flush();
 
         $this->get('session')->getFlashBag()->set('notice', "Deck deleted.");
 
@@ -294,79 +285,59 @@ class BuilderController extends Controller
     	$drawIntersection = $this->get('diff')->getSlotsDiff([$deck1->getSlots()->getDrawDeck(), $deck2->getSlots()->getDrawDeck()]);
     
     	return $this->render('AppBundle:Compare:deck_compare.html.twig', [
-			'deck1' => $deck1,
-			'deck2' => $deck2,
+			'deck1' => $deck1,'deck2' => $deck2,
 			'character_deck' => $characterIntersection,
             'battlefield_deck' => $battlefieldIntersection,
-			'draw_deck' => $drawIntersection
-    	]);}
+			'draw_deck' => $drawIntersection]);}
 
 public function listAction(Request $request)
 {
-    $user = $this->getUser();$em = $this->getDoctrine()->getManager(); $allDecks = $this->get('decks')->getByUser($user, false);
-    if (!count($allDecks)) {return $this->render('AppBundle:Builder:no-decks.html.twig', ['nbmax' => $user->getMaxNbDecks()]);}
-
-    foreach ($allDecks as $d) { if (!empty($d['tags'])) $tags[] = $d['tags']; }
-    $tags = array_unique($tags); $decks = array_slice($allDecks, $offset, $limit);
-
+    $user = $this->getUser(); $em = $this->getDoctrine()->getManager(); $decks = $this->get('decks')->getByUser($user, false);
+    if (!count($decks)) {return $this->render('AppBundle:Builder:no-decks.html.twig', ['nbmax' => $user->getMaxNbDecks()]);}
     foreach ($decks as &$deck) {
+		if (!empty($deck['tags'])) $tags[] = $deck['tags'];
         $deckEntity = $em->getRepository('AppBundle:Deck')->find($deck['id']);
-        if (!$deckEntity) continue;
-
-        $characters = []; $plots = [];
+        $characters = [];
         foreach ($deckEntity->getSlots()->getCharacterRow() as $character) {
             $info = $this->get('cards_data')->getCardInfo($character->getCard(), false);
             $info['qty'] = $character->getQuantity();
             $info['dice'] = $character->getDice();
             $info['dices'] = $character->getDices();
-            $characters[] = $info;
-        } $deck['characters'] = $characters;
-
+            $characters[] = $info; } $plots = [];
         foreach ($deckEntity->getSlots()->getPlotDeck() as $plot) {
             $info = $this->get('cards_data')->getCardInfo($plot->getCard(), false);
             $info['qty'] = $plot->getQuantity(); $info['dice'] = $plot->getDice();
-            $plots[] = $info; $deck['plots'] = $plots; } 
+			$plots[] = $info; }
+		$deck['characters'] = $characters; $deck['plots'] = $plots;
     } unset($deck);
 
     return $this->render('AppBundle:Builder:decks.html.twig', [
-        'pagetitle' => $this->get("translator")->trans('nav.mydecks'),
-        'decks' => $decks,
-        'tags' => $tags,
+        'decks' => $decks,'tags' => $tags,
         'nbmax' => $user->getMaxNbDecks(),
-        'nbdecks' => count($allDecks),
-        'cannotcreate' => $user->getMaxNbDecks() <= count($allDecks),
-		'prevurl' => null,
-		'pages' => null,
-		'nexturl'=> null,
-        'url' => $request->getRequestUri(),
-    ]);}
+        'nbdecks' => count($decks),
+        'cannotcreate' => $user->getMaxNbDecks() <= count($decks),
+		'prevurl' => null,'pages' => null,
+		'nexturl'=> null, 'url' => $request->getRequestUri()]);}
 
     public function copyAction ($decklist_id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $decklist = $em->getRepository('AppBundle:Decklist')->find($decklist_id);
-        $content = $decklist->getSlots()->getContent();
-
-        return $this->forward('AppBundle:Builder:save',
-                array(
-                        'name' => $decklist->getName(),
-                		'affiliation_code' => $decklist->getAffiliation()->getCode(),
-                        'format_code' => $decklist->getFormat()->getCode(),
-                        'content' => json_encode($content),
-                        'decklist_id' => $decklist_id
-                ));}
+        $decklist = $this->getDoctrine()->getManager()->getRepository('AppBundle:Decklist')->find($decklist_id);
+        $content = $decklist->getSlots()->getContent(); return $this->forward('AppBundle:Builder:save',
+                array( 'name' => $decklist->getName(),
+                	'affiliation_code' => $decklist->getAffiliation()->getCode(),
+                    'format_code' => $decklist->getFormat()->getCode(),
+                    'content' => json_encode($content),
+                    'decklist_id' => $decklist_id));}
 
     public function autosaveAction(Request $request)
     {
         $user = $this->getUser(); $deck_id = $request->get('deck_id'); $diff = (array) json_decode($request->get('diff'));
         $deck = $this->getDoctrine()->getManager()->getRepository('AppBundle:Deck')->find($deck_id);
-        if ($user->getId() != $deck->getUser()->getId()) { throw new UnauthorizedHttpException("That deck you seek. See it you shall not."); }
-
+        if ($user->getId() != $deck->getUser()->getId()) { return new Response('', 403); }
         if(count((array)$diff[0]) || count((array)$diff[1])) {
             $change = new Deckchange();$change->setDeck($deck);
             $change->setVariation(json_encode($diff));
             $change->setIsSaved(FALSE);
             $this->getDoctrine()->getManager()->persist($change);
             $this->getDoctrine()->getManager()->flush();
-        } return new Response($change->getDatecreation()->format('c'));
-    }}
+        } return new Response($change->getDatecreation()->format('c'));}}
