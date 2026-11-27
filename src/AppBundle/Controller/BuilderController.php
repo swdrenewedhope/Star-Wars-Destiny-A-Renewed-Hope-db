@@ -27,53 +27,23 @@ class BuilderController extends Controller
 
     public function initbuildAction (Request $request)
     {
-        $translator = $this->get('translator');
-        $em = $this->getDoctrine()->getManager();
-        $affiliation_code = $request->request->get('affiliation');
-
-        if(!$affiliation_code)
-        {
+        $translator = $this->get('translator'); $em = $this->getDoctrine()->getManager();
+        $affiliation = $em->getRepository('AppBundle:Affiliation')->findByCode($request->request->get('affiliation'));
+        if(!$affiliation){
         	$this->get('session')->getFlashBag()->set('error', $translator->trans("decks.build.errors.noaffiliation"));
-        	return $this->redirect($this->generateUrl('deck_buildform'));
-        }
+        	return $this->redirect($this->generateUrl('deck_buildform'));}
 
-        $affiliation = $em->getRepository('AppBundle:Affiliation')->findByCode($affiliation_code);
-        if(!$affiliation)
-        {
-        	$this->get('session')->getFlashBag()->set('error', $translator->trans("decks.build.errors.noaffiliation"));
-        	return $this->redirect($this->generateUrl('deck_buildform'));
-        }
-		$tags = [ $affiliation_code ];
-
-        $format_code = $request->request->get('format');
-        if(!$format_code)
-        {
+        $format = $em->getRepository('AppBundle:Format')->findByCode($request->request->get('format'));
+        if(!$format){
             $this->get('session')->getFlashBag()->set('error', $translator->trans("decks.build.errors.noformat"));
-            return $this->redirect($this->generateUrl('deck_buildform'));
-        }
-
-        $format = $em->getRepository('AppBundle:Format')->findByCode($format_code);
-        if(!$format)
-        {
-            $this->get('session')->getFlashBag()->set('error', $translator->trans("decks.build.errors.noformat"));
-            return $this->redirect($this->generateUrl('deck_buildform'));
-        }
-        $tags[] = $format->getName();
+            return $this->redirect($this->generateUrl('deck_buildform'));}
 
         $name = $translator->trans("decks.build.newname", array("%affiliation%" => $affiliation->getName()));
-
-        $deck = new Deck();
-        $deck->setDescriptionMd("");
-        $deck->setAffiliation($affiliation);
-        $deck->setFormat($format);
-        $deck->setName($name);
-        $deck->setProblem('incorrect_size');
-        $deck->setTags(join(' ', array_unique($tags)));
-        $deck->setUser($this->getUser());
-
-        $em->persist($deck);
-        $em->flush();
-
+        $deck = new Deck(); $deck->setDescriptionMd("This deck's fate is not yet written.");
+        $deck->setAffiliation($affiliation); $deck->setFormat($format);
+        $deck->setName($name); $deck->setProblem('incorrect_size'); $deck->setUser($this->getUser());
+        $deck->setTags(join(' ', array_unique([$request->request->get('affiliation'), $format->getName()])));
+        $em->persist($deck); $em->flush();
         return $this->redirect($this->get('router')->generate('deck_edit', ['deck_id' => $deck->getId()]));
     }
 
