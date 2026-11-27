@@ -1,6 +1,5 @@
 <?php
 namespace AppBundle\Controller;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\DomCrawler\Crawler;
@@ -13,25 +12,18 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Deckchange;
 
-
 class BuilderController extends Controller
 {
 	public function buildformAction()
 	{
-		$response = new Response(); $response->setPublic();
-		$response->setMaxAge($this->container->getParameter('cache_expiration'));
-        $affiliations = $this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findPrimaries();
-		$formats = $this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findAll();
+		$response = new Response(); $response->setPublic(); $response->setMaxAge($this->container->getParameter('cache_expiration'));
         $setlist = $this->getDoctrine()->getManager()->getRepository('AppBundle:Set')->findAll(); $sets = [];
-
         foreach($setlist as $set) { $sets[$set->getCode()] = $set->getName(); }
-
 		return $this->render('AppBundle:Builder:initbuild.html.twig', [
 				'pagetitle' => $this->get('translator')->trans('decks.form.new'),
-                'affiliations' => $affiliations,
-                'formats' => $formats,
-                'sets' => $sets ], $response);
-    }
+                'affiliations' => $this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findPrimaries(),
+                'formats' => $this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findAll(),
+                'sets' => $sets ], $response);}
 
     public function initbuildAction (Request $request)
     {
@@ -406,18 +398,11 @@ public function listAction(Request $request)
     $total = count($allDecks);
     if (!$total) {return $this->render('AppBundle:Builder:no-decks.html.twig', ['nbmax' => $user->getMaxNbDecks()]);}
 
-    $lastPage = max(1, (int) ceil($total / $limit));
-    if ($page > $lastPage) $page = $lastPage;
+    $lastPage = max(1, (int) ceil($total / $limit)); if ($page > $lastPage) $page = $lastPage;
+    $offset = ($page - 1) * $limit; $tags = [];
 
-    $offset = ($page - 1) * $limit;
-
-    $tags = [];
-    foreach ($allDecks as $d) {
-        if (!empty($d['tags'])) $tags[] = $d['tags'];
-    }
-    $tags = array_unique($tags);
-
-    $decks = array_slice($allDecks, $offset, $limit);
+    foreach ($allDecks as $d) { if (!empty($d['tags'])) $tags[] = $d['tags']; }
+    $tags = array_unique($tags); $decks = array_slice($allDecks, $offset, $limit);
 
     foreach ($decks as &$deck) {
         $deckEntity = $em->getRepository('AppBundle:Deck')->find($deck['id']);
@@ -446,28 +431,24 @@ public function listAction(Request $request)
     $makeUrl = function (int $p) use ($request) {
         $params = $request->query->all();
         $params['page'] = $p;
-        return $this->generateUrl('decks_list', $params);
-    };
+        return $this->generateUrl('decks_list', $params);};
 
     $prevurl = ($page > 1) ? $makeUrl($page - 1) : null;
     $nexturl = ($page < $lastPage) ? $makeUrl($page + 1) : null;
-
     $window = 2;
     $start = max(1, $page - $window);
     $end   = min($lastPage, $page + $window);
-
     $pages = [];
+
     for ($p = $start; $p <= $end; $p++) {
         $pages[] = [
             'numero'  => $p,
             'url'     => $makeUrl($p),
             'current' => ($p === $page),
-        ];
-    }
+        ];}
 
     return $this->render('AppBundle:Builder:decks.html.twig', [
         'pagetitle' => $this->get("translator")->trans('nav.mydecks'),
-        'pagedescription' => "Create custom decks with the help of a powerful deckbuilder.",
         'decks' => $decks,
         'tags' => $tags,
         'nbmax' => $user->getMaxNbDecks(),
@@ -477,8 +458,7 @@ public function listAction(Request $request)
         'prevurl' => $prevurl,
         'nexturl' => $nexturl,
         'url' => $request->getRequestUri(),
-    ]);
-}
+    ]);}
 
     public function copyAction ($decklist_id)
     {
@@ -497,8 +477,7 @@ public function listAction(Request $request)
 
     public function autosaveAction(Request $request)
     {
-        $user = $this->getUser();
-        $deck_id = $request->get('deck_id');
+        $user = $this->getUser(); $deck_id = $request->get('deck_id');
 
         $deck = $this->getDoctrine()->getManager()->getRepository('AppBundle:Deck')->find($deck_id);
         if(!$deck) {
@@ -523,5 +502,4 @@ public function listAction(Request $request)
             $this->getDoctrine()->getManager()->flush();
         }
         return new Response($change->getDatecreation()->format('c'));
-    }
-}
+    }}
