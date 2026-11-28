@@ -34,7 +34,7 @@ class BuilderController extends Controller
         $deck = new Deck(); $deck->setDescriptionMd("This deck's fate is not yet written.");
         $deck->setAffiliation($affiliation); $deck->setFormat($format);
         $deck->setName($name); $deck->setProblem('incorrect_size'); $deck->setUser($this->getUser());
-        $deck->setTags(join(' ', array_unique([$request->request->get('affiliation'), $format->getName()])));
+        $deck->setTags(join(' ', array_unique([$request->request->get('affiliation'), $format->getCode()])));
         $em->persist($deck); $em->flush();
         return $this->redirect($this->get('router')->generate('deck_edit', ['deck_id' => $deck->getId()]));}
 
