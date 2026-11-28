@@ -1,7 +1,6 @@
 <?php
 namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use AppBundle\Entity\Deck;
@@ -44,31 +43,26 @@ class BuilderController extends Controller
     if (!isset($uploadedFile)) { return new Response('No file provided.', 400, array('Refresh' => '3; url=/decks')); }
     $filename = $uploadedFile->getPathname(); $parse = $this->parseTextImport(file_get_contents($filename));
 	$fileLines = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-
     $properties = [
         'name'             => trim($fileLines[0]),
         'affiliation_code' => $parse['affiliation_code'] ?? '',
         'format_code'      => $parse['format_code'] ?? 'INF',
         'content'          => json_encode($parse['content'] ?? []),
         'description'      => $parse['description'] ?? ''
-    ]; return $this->forward('AppBundle:Builder:save', $properties);
-}
+    ]; return $this->forward('AppBundle:Builder:save', $properties);}
 
         public function parseTextImport ($text)
     {
         $em = $this->getDoctrine()->getManager();
-
         $content = []; $affiliation_code = ''; $description = '';
         $lines = preg_split("/\r\n|\n|\r/", $text);
 
         foreach ($lines as $line) {
-            $line = trim($line);
-            if ($line === '') continue;
+            $line = trim($line); if ($line === '') continue;
 
             if (!$affiliation_code) {
                 if (preg_match('/^(hero|villain)$/i', $line, $m)) {
-                    $word = strtolower($m[1]);
-                    $aff = $em->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $word]);
+                    $aff = $em->getRepository('AppBundle:Affiliation')->findOneBy(['code' => strtolower($m[1])]);
                     if ($aff) { $affiliation_code = $aff->getCode(); continue;
                 }}}
 
@@ -102,15 +96,13 @@ class BuilderController extends Controller
 
     public function textexportAction ($deck_id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager(); $factionNames = [];
         $deck = $em->getRepository('AppBundle:Deck')->find($deck_id);
         $is_owner = $this->getUser() && $this->getUser()->getId() == $deck->getUser()->getId();
         if(!$deck->getUser()->getIsShareDecks() && !$is_owner) {
-        	return $this->render(
-        			'AppBundle:Default:error.html.twig',
+        	return $this->render('AppBundle:Default:error.html.twig',
         			array('pagetitle' => "Error", 'error' => 'That deck you seek. See it you shall not.'));}
 
-        $factionNames = [];
         foreach($this->getDoctrine()->getRepository('AppBundle:Faction')->findAllAndOrderByName() as $faction) {
             $factionNames[$faction->getCode()] = $faction->getName();}
 
@@ -121,8 +113,7 @@ class BuilderController extends Controller
 		$response->headers->set('Content-Disposition', $response->headers->makeDisposition(
 		    ResponseHeaderBag::DISPOSITION_ATTACHMENT,
 				$this->get('texts')->slugify($deck->getName()) . '.txt'
-		)); $response->setContent($content); return $response;
-    }
+		)); $response->setContent($content); return $response;}
 
     public function cloneAction ($deck_id)
     {
@@ -170,17 +161,10 @@ class BuilderController extends Controller
         if ($this->getUser()->getId() != $deck->getUser()->getId()) {
         	return $this->render('AppBundle:Default:error.html.twig',
         			array('error' => 'That deck you seek. See it you shall not.'), new Response('', 403));}
-
-        foreach ($deck->getChildren() as $decklist) {
-            $decklist->setParent(null);
-        }
+        foreach ($deck->getChildren() as $decklist) { $decklist->setParent(null); }
         $this->getDoctrine()->getManager()->remove($deck); $this->getDoctrine()->getManager()->flush();
-
         $this->get('session')->getFlashBag()->set('notice', "Deck deleted.");
-
-        return $this->redirect($this->generateUrl('decks_list'));
-
-    }
+        return $this->redirect($this->generateUrl('decks_list'));}
 
     public function deleteListAction (Request $request)
     {
@@ -205,8 +189,7 @@ class BuilderController extends Controller
         		array('pagetitle' => "Error",'error' => 'That deck you seek. See it you shall not.'));}
 
         return $this->render('AppBundle:Builder:deckedit.html.twig',
-        	array('deck' => $deck, 'collection' => $this->getDoctrine()->getRepository('AppBundle:Collection')->getCollection($this->getUser()->getId())));
-	}
+        	array('deck' => $deck, 'collection' => $this->getDoctrine()->getRepository('AppBundle:Collection')->getCollection($this->getUser()->getId())));}
 
     public function viewAction ($deck_id)
     {
