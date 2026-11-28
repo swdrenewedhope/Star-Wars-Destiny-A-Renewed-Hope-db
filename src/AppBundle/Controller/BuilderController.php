@@ -19,20 +19,12 @@ use Symfony\Component\DomCrawler\Crawler;
 class BuilderController extends Controller
 {
 	public function buildformAction()
-	{
-		$response = new Response(); $response->setPublic(); $response->setMaxAge($this->container->getParameter('cache_expiration'));
-        $setlist = $this->getDoctrine()->getManager()->getRepository('AppBundle:Set')->findAll(); $sets = [];
-        foreach($setlist as $set) { $sets[$set->getCode()] = $set->getName(); }
-		return $this->render('AppBundle:Builder:initbuild.html.twig', [ // Ideally, we want to remove initbuild and jump straight into the main builder. -->
+	{ $response = new Response(); $response->setPublic(); $response->setMaxAge($this->container->getParameter('cache_expiration'));
+		return $this->render('AppBundle:Builder:initbuild.html.twig', [ 
                 'affiliations' => $this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findPrimaries(),
-                'formats' => $this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findAll(),
-                'sets' => $sets ], $response);}
+                'formats' => $this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findAll()], $response);}
 
-    public function initbuildAction (Request $request) // Which would then make this function redundant.
-
-	// PROBLEM
-		// There is no way in the main builder to change affiliation.
-
+    public function initbuildAction (Request $request)
     {
         $translator = $this->get('translator'); $em = $this->getDoctrine()->getManager();
         $affiliation = $em->getRepository('AppBundle:Affiliation')->findByCode($request->request->get('affiliation'));
@@ -51,7 +43,7 @@ class BuilderController extends Controller
     public function fileimportAction (Request $request)
 {
     $uploadedFile = $request->files->get('upfile');
-    if (!isset($uploadedFile)) { return new Response('No file provided. Returning to /decks..', 400, array('Refresh' => '3; url=/decks')); }
+    if (!isset($uploadedFile)) { return new Response('No file provided.', 400, array('Refresh' => '3; url=/decks')); }
     $filename = $uploadedFile->getPathname(); $parse = $this->parseTextImport(file_get_contents($filename));
 	$fileLines = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
@@ -161,7 +153,7 @@ class BuilderController extends Controller
             $source_deck = $deck; }
 
 		$affiliation_code = $em->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $request->get('affiliation_code')]);
-		if(!$affiliation_code) { return new Response('Unknown affiliation code. Returning to /decks', 422, array('Refresh' => '3; url=/decks')); }
+		if(!$affiliation_code) { return new Response('Unknown affiliation code.', 422, array('Refresh' => '3; url=/decks')); }
         $format_code = $em->getRepository('AppBundle:Format')->findOneBy(['code' => $request->get('format_code') ?: 'INF']); // The default INF is kept to not invalidate existing deck files. Historically format wasn't saved.
 
         $cancel_edits = (bool) $request->get('cancel_edits'); if($cancel_edits) 
@@ -170,7 +162,7 @@ class BuilderController extends Controller
         $is_copy = (bool) $request->get('copy'); if($is_copy || !$id) { $deck = new Deck(); }
 
         $content = (array) json_decode($request->get('content'), true);
-        if (!count($content)) { return new Response('Deck is empty!', 400); }
+        if (!count($content)) { return new Response('Deck is empty!', 400, array('Refresh' => '3; url=/decks')); }
 
         $name = $request->get('name'); $decklist_id = $request->get('decklist_id');
         $description = trim($request->get('description')); $tags = $request->get('tags');
@@ -237,8 +229,7 @@ class BuilderController extends Controller
 
         return $this->render('AppBundle:Builder:deckview.html.twig',
         	array('deck' => $deck,'deck_id' => $deck_id,'is_owner' => $is_owner,
-				'collection' => $this->getDoctrine()->getRepository('AppBundle:Collection')->getCollection($this->getUser()->getId()),));
-	}
+				'collection' => $this->getDoctrine()->getRepository('AppBundle:Collection')->getCollection($this->getUser()->getId()),));}
 
     public function compareAction($deck1_id, $deck2_id)
     {
@@ -246,9 +237,8 @@ class BuilderController extends Controller
     	$deck1 = $entityManager->getRepository('AppBundle:Deck')->find($deck1_id);
     	$deck2 = $entityManager->getRepository('AppBundle:Deck')->find($deck2_id);
     
-    	if(!$deck1 || !$deck2) {
-    		return $this->render('AppBundle:Default:error.html.twig',
-    				array('error' => 'This deck cannot be found.'));}
+    	if(!$deck1 || !$deck2) { return $this->render('AppBundle:Default:error.html.twig', 
+			array('error' => 'No such deck has ever been known to the council.'));}
     	
     	$is_owner = $this->getUser() && $this->getUser()->getId() == $deck1->getUser()->getId();
     	if(!$deck1->getUser()->getIsShareDecks() && !$is_owner) {
