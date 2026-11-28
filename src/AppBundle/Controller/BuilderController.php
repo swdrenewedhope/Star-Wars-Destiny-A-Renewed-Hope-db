@@ -7,14 +7,6 @@ use AppBundle\Entity\Deck;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Deckchange;
 
-
-// Check these actually aren't used.
-
-use AppBundle\Entity\Deckslot;
-use AppBundle\Entity\Card;
-use Doctrine\ORM\EntityManager;
-use Symfony\Component\DomCrawler\Crawler;
-
 class BuilderController extends Controller
 {
 	public function buildformAction()
@@ -28,10 +20,9 @@ class BuilderController extends Controller
         $affiliation = $em->getRepository('AppBundle:Affiliation')->findByCode($request->request->get('affiliation'));
         if(!$affiliation){$this->get('session')->getFlashBag()->set('error', $translator->trans("decks.build.errors.noaffiliation"));
         	return $this->redirect($this->generateUrl('deck_buildform'));}
-        $format = $em->getRepository('AppBundle:Format')->findByCode('INF');
         $name = $translator->trans("decks.build.newname", array("%affiliation%" => $affiliation->getName()));
         $deck = new Deck(); $deck->setDescriptionMd("This deck's fate is not yet written.");
-        $deck->setAffiliation($affiliation); $deck->setFormat($format);
+        $deck->setAffiliation($affiliation); $deck->setFormat($em->getRepository('AppBundle:Format')->findByCode('INF'));
         $deck->setName($name); $deck->setProblem('incorrect_size'); $deck->setUser($this->getUser());
         $deck->setTags(join(' ', array_unique([$request->request->get('affiliation')])));
         $em->persist($deck); $em->flush();
@@ -39,60 +30,30 @@ class BuilderController extends Controller
 
     public function fileimportAction (Request $request)
 {
-    $uploadedFile = $request->files->get('upfile');
+    $uploadedFile = $request->files->get('upfile'); $em = $this->getDoctrine()->getManager();
     if (!isset($uploadedFile)) { return new Response('No file provided.', 400, array('Refresh' => '3; url=/decks')); }
-    $filename = $uploadedFile->getPathname(); $parse = $this->parseTextImport(file_get_contents($filename));
-	$fileLines = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    $filename = $uploadedFile->getPathname(); $fileContent = file_get_contents($filename);
+    $content = []; $affiliation_code = ''; $description = ''; $name = '';
+    foreach (preg_split("/\r\n|\n|\r/", $fileContent) as $line) { $line = trim($line); if ($line === '') continue;
+		if (!$name) { $name = $line; } if (!$affiliation_code) { if (preg_match('/^(hero|villain)$/i', $line, $m)) {
+                $affiliation_code = $em->getRepository('AppBundle:Affiliation')->findOneBy(['code' => strtolower($m[1])])->getCode();}}
+        if (preg_match('/^\s*(\d*)\s*x?\s*(.*?)\s*\(([^)]+)\)/u', $line, $m)) {
+             $quantity = ($m[1] === '') ? 1 : (int) $m[1]; $identifier = trim($m[3]);
+             list($setName, $cardNum) = explode(' #', $identifier); $cardNum = (int) $cardNum;
+             $set = $em->getRepository('AppBundle:Set')->findOneBy(['name' => $setName]);
+            if ($set) { $card = $em->getRepository('AppBundle:Card')->findOneBy(['set' => $set,
+                     'position' => $cardNum]);
+                if ($card) {
+					$content[$card->getCode()]['quantity'] += $quantity;
+					if ($content[$card->getCode()]['quantity'] > $card->getDeckLimit()) { $content[$card->getCode()]['quantity'] = $card->getDeckLimit() + 1; }
+					if ($card->getHasDie()) { $content[$card->getCode()]['dice'] = $content[$card->getCode()]['quantity']; }}}}}
     $properties = [
-        'name'             => trim($fileLines[0]),
-        'affiliation_code' => $parse['affiliation_code'] ?? '',
-        'format_code'      => $parse['format_code'] ?? 'INF',
-        'content'          => json_encode($parse['content'] ?? []),
-        'description'      => $parse['description'] ?? ''
+        'name'             => $name,
+        'affiliation_code' => $affiliation_code,
+        'format_code'      => $format_code ?? 'INF',
+        'content'          => json_encode($content),
+        'description'      => $description,
     ]; return $this->forward('AppBundle:Builder:save', $properties);}
-
-        public function parseTextImport ($text)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $content = []; $affiliation_code = ''; $description = '';
-        $lines = preg_split("/\r\n|\n|\r/", $text);
-
-        foreach ($lines as $line) {
-            $line = trim($line); if ($line === '') continue;
-
-            if (!$affiliation_code) {
-                if (preg_match('/^(hero|villain)$/i', $line, $m)) {
-                    $aff = $em->getRepository('AppBundle:Affiliation')->findOneBy(['code' => strtolower($m[1])]);
-                    if ($aff) { $affiliation_code = $aff->getCode(); continue;
-                }}}
-
-            if (preg_match('/^\s*(\d*)\s*x?\s*(.*?)\s*\(([^)]+)\)/u', $line, $m)) {
-                $quantity = ($m[1] === '') ? 1 : (int) $m[1];
-                $identifier = trim($m[3]);
-
-                list($setName, $cardNum) = explode(' #', $identifier);
-                $cardNum = (int) $cardNum;
-
-                $set = $em->getRepository('AppBundle:Set')->findOneBy(['name' => $setName]);
-                if ($set) {
-                    $card = $em->getRepository('AppBundle:Card')->findOneBy(['set' => $set,
-                        'position' => $cardNum]);
-
-                    if ($card) {
-						$content[$card->getCode()]['quantity'] += $quantity;
-						if ($content[$card->getCode()]['quantity'] > $card->getDeckLimit()) { $content[$card->getCode()]['quantity'] = $card->getDeckLimit() + 1; }
-						if ($card->getHasDie()) { $content[$card->getCode()]['dice'] = $content[$card->getCode()]['quantity']; }
-						}
-                    }
-                }
-            }
-
-        return [
-            'affiliation_code' => $affiliation_code,
-            'content' => $content,
-            'description' => $description
-        ];
-    }
 
     public function textexportAction ($deck_id)
     {
@@ -102,13 +63,10 @@ class BuilderController extends Controller
         if(!$deck->getUser()->getIsShareDecks() && !$is_owner) {
         	return $this->render('AppBundle:Default:error.html.twig',
         			array('pagetitle' => "Error", 'error' => 'That deck you seek. See it you shall not.'));}
-
         foreach($this->getDoctrine()->getRepository('AppBundle:Faction')->findAllAndOrderByName() as $faction) {
             $factionNames[$faction->getCode()] = $faction->getName();}
-
         $content = $this->renderView('AppBundle:Export:plain.txt.twig', ["deck" => $deck->getTextExport(), "factionNames" => $factionNames]);
         $content = str_replace("\n", "\r\n", $content);
-
 		$response = new Response(); $response->headers->set('Content-Type', 'text/plain');
 		$response->headers->set('Content-Disposition', $response->headers->makeDisposition(
 		    ResponseHeaderBag::DISPOSITION_ATTACHMENT,
@@ -119,10 +77,8 @@ class BuilderController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $deck = $em->getRepository('AppBundle:Deck')->find($deck_id);
-
         $is_owner = $this->getUser() && $this->getUser()->getId() == $deck->getUser()->getId();
         if(!$deck->getUser()->getIsShareDecks() && !$is_owner) { return new Response('', 403);}
-
         $content = $deck->getSlots()->getContent();
         return $this->forward('AppBundle:Builder:save',
             array('name' => $deck->getName().' (clone)',
@@ -143,7 +99,7 @@ class BuilderController extends Controller
 
 		$affiliation_code = $em->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $request->get('affiliation_code')]);
 		if(!$affiliation_code) { return new Response('Unknown affiliation code.', 422, array('Refresh' => '3; url=/decks')); }
-        $format_code = $em->getRepository('AppBundle:Format')->findOneBy(['code' => $request->get('format_code') ?: 'INF']); // The default INF is kept to not invalidate existing deck files. Historically format wasn't saved.
+        $format_code = $em->getRepository('AppBundle:Format')->findOneBy(['code' => $request->get('format_code')]);
         $cancel_edits = (bool) $request->get('cancel_edits'); if($cancel_edits || !count((array) json_decode($request->get('content'), true)))
 		{ if($deck) $this->get('decks')->revertDeck($deck); return $this->redirect($this->generateUrl('decks_list'));}
 
@@ -151,8 +107,7 @@ class BuilderController extends Controller
         $name = $request->get('name'); $decklist_id = $request->get('decklist_id');
         $description = trim($request->get('description')); $tags = $request->get('tags');
         $this->get('decks')->saveDeck($this->getUser(), $deck, $decklist_id, $name, $affiliation_code, $format_code, $description, $tags, (array) json_decode($request->get('content'), true), $source_deck ? $source_deck : null);
-        $em->flush(); return $this->redirect($this->generateUrl('decks_list'));
-    }
+        $em->flush(); return $this->redirect($this->generateUrl('decks_list'));}
 
     public function deleteAction (Request $request)
     {
