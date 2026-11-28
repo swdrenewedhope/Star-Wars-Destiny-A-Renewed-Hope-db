@@ -20,7 +20,6 @@ security:
           stateless:  true
           anonymous:  true
           fos_oauth:  true
-          http_basic: ~     
 
         default:
             pattern:    ^/

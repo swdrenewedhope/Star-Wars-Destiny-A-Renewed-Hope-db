@@ -140,41 +140,50 @@ class APIController extends Controller
 	
 	public function saveDeckAction($id, Request $request)
 	{
-		$data = json_decode($request->getContent(), true); $request->request->replace(is_array($data) ? $data : []);		
+		$data = json_decode($request->getContent(), true); if (!is_array($data)) { return $this->apiError(400, 'invalid_request', 'Request body must be a JSON object.'); }
+		$request->request->replace($data);
 		$user = $this->get('fos_user.user_manager')->findUserByUsername($this->getUser());
-		$deck = $id ? $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id): (new Deck())-> setUser($user); if (!$deck) { return new Response('', 404); }
-		if($deck->getUser()->getId() !== $user->getId()) { return new Response('', 403); }; $this->getDoctrine()->getManager()->persist($deck);
-		$affiliation = $this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $request->get('affiliation_code') ?: $deck->getAffiliation()->getCode()]);
-		$format = $this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findOneBy(['code' => $request->get('format_code') ?: $deck->getFormat()->getCode()]);
+		$deck = $id ? $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id): (new Deck())-> setUser($user); if (!$deck) { return $this->apiError(404, 'not_found', 'Deck not found.'); }
+		if($deck->getUser()->getId() !== $user->getId()) { return $this->apiError(403, 'forbidden', 'This deck belongs to another user.'); }
+		$affiliation = $this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $request->get('affiliation_code') ?: ($deck->getAffiliation() ? $deck->getAffiliation()->getCode() : null)]);
+		$format = $this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findOneBy(['code' => $request->get('format_code') ?: ($deck->getFormat() ? $deck->getFormat()->getCode() : null)]);
 		$slots = (array) $request->get('slots'); $name = $request->get('name') ?: $deck->getName() ?: 'New Deck';
 		$decklist_id = $request->get('decklist_id') ?: $deck->getParent(); $description = trim($request->get('description')) ?: $deck->getDescriptionMd(); 
 		$tags = $request->get('tags') ?: $deck->getTags();
 
-		if (!$affiliation || !$format || !count($slots)) { return new Response('', 400); } foreach($slots as $card_code => $qty)
-			{ if(!is_array($qty) || !is_integer($qty['quantity'] ?? null) || !is_integer($qty['dice'] ?? 0)) {return new Response('', 400);}}
-		
+		if (!$affiliation) { return $this->apiError(400, 'invalid_request', 'affiliation_code is missing or unknown.'); }
+		if (!$format) { return $this->apiError(400, 'invalid_request', 'format_code is missing or unknown.'); }
+		if (!count($slots)) { return $this->apiError(400, 'invalid_request', 'slots must not be empty.'); }
+		foreach($slots as $card_code => $qty) { if(!is_array($qty) || !is_integer($qty['quantity'] ?? null) || !is_integer($qty['dice'] ?? 0))
+			{ return $this->apiError(400, 'invalid_request', "Slot $card_code: quantity must be an integer, and dice an integer when present."); }}
+		$known = array_map(function ($card) { return $card->getCode(); }, $this->getDoctrine()->getRepository('AppBundle:Card')->findBy(['code' => array_map('strval', array_keys($slots))]));
+		$unknown = array_diff(array_map('strval', array_keys($slots)), $known); if ($unknown) { return $this->apiError(400, 'invalid_request', 'Unknown card code: '.implode(', ', $unknown).'.'); }
+
+		$this->getDoctrine()->getManager()->persist($deck);
 		$this->get('decks')->saveDeck($this->getUser(), $deck, $decklist_id, $name, $affiliation, $format, $description, $tags, $slots, null);
-		$this->getDoctrine()->getManager()->flush(); return new JsonResponse($deck->getId());
+		$this->getDoctrine()->getManager()->flush(); return new JsonResponse(['id' => $deck->getId()]);
 	}
 
 	public function deleteDeckAction($id) 
 	{
-		$deck = $this->getDoctrine()->getManager()->getRepository('AppBundle:Deck')->find($id); if(!$deck) { return new Response('', 404); }
-		if($deck->getUser()->getId() !== $this->getUser()->getId()) { return new Response('', 403); }
+		$deck = $this->getDoctrine()->getManager()->getRepository('AppBundle:Deck')->find($id); if(!$deck) { return $this->apiError(404, 'not_found', 'Deck not found.'); }
+		if($deck->getUser()->getId() !== $this->getUser()->getId()) { return $this->apiError(403, 'forbidden', 'This deck belongs to another user.'); }
 		foreach($deck->getChildren() as $decklist) { $decklist->setParent(null); }
 		$this->getDoctrine()->getManager()->remove($deck); $this->getDoctrine()->getManager()->flush(); return new Response('', 200);
 	}
 
 	public function publishDeckAction($id)
 	{
-		$deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id); if (!$deck) { return new Response('', 404); }
-		if ($this->getUser()->getId() !== $deck->getUser()->getId()) { return new Response('', 403); }
+		$deck = $this->getDoctrine()->getRepository('AppBundle:Deck')->find($id); if (!$deck) { return $this->apiError(404, 'not_found', 'Deck not found.'); }
+		if ($this->getUser()->getId() !== $deck->getUser()->getId()) { return $this->apiError(403, 'forbidden', 'This deck belongs to another user.'); }
 		$yesterday = (new \DateTime())->modify('-24 hours'); 
 		$query = $this->getDoctrine()->getManager()->createQuery("SELECT COUNT(d) FROM AppBundle:Decklist d WHERE d.dateCreation>:date AND d.user=:user");
         $query->setParameter('date', $yesterday); $query->setParameter('user', $deck->getUser()); $decklistsSinceYesterday = $query->getSingleScalarResult();
-        if($decklistsSinceYesterday >= 3 && $deck->getUser()->getDonation() <= 0) { return new Response('', 429);}
+        if($decklistsSinceYesterday >= 3 && $deck->getUser()->getDonation() <= 0) { return $this->apiError(429, 'rate_limited', 'Non-donators can publish 3 decklists per 24 hours.'); }
         try { $decklist = $this->get('decklist_factory')->createDecklistFromDeck($deck, $deck->getName(), $deck->getDescriptionMd()); }
-        catch(\Exception $e) { return new Response($e->getMessage(), 422); } $this->getDoctrine()->getManager()->persist($decklist); 
-		$this->getDoctrine()->getManager()->flush(); return new JsonResponse($decklist->getId());
+        catch(\Exception $e) { return $this->apiError(422, 'unprocessable', $e->getMessage()); } $this->getDoctrine()->getManager()->persist($decklist); 
+		$this->getDoctrine()->getManager()->flush(); return new JsonResponse(['id' => $decklist->getId()]);
     }
+
+	private function apiError($status, $error, $description) { return new JsonResponse(['error' => $error, 'error_description' => $description], $status); }
 }
