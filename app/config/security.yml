@@ -15,6 +15,12 @@ security:
             pattern:    ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
 
+        api:
+          pattern:    ^/api/deck
+          stateless:  true
+          anonymous:  true
+          fos_oauth:  true
+
         default:
             pattern:    ^/
             form_login:
@@ -50,4 +56,5 @@ security:
         - { path: ^/api/decks, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/deck/save, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/deck/publish, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/deck/delete, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/api, role: IS_AUTHENTICATED_ANONYMOUSLY }

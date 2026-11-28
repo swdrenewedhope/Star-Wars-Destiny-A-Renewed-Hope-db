@@ -27,7 +27,7 @@ class DecklistFactory
 		
 		$problem = $this->deckValidationHelper->findProblem($deck);
 		if($problem) {
-			throw new \Exception('This deck cannot be published  because it is invalid: "'.$problem.'".');
+			throw new \Exception('This deck cannot be published because it is invalid: '.$problem.'.');
 		}
 
 		$deck->setMinorVersion(0);
