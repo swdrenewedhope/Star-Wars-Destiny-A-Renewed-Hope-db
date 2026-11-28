@@ -36,23 +36,17 @@ class BuilderController extends Controller
     {
         $translator = $this->get('translator'); $em = $this->getDoctrine()->getManager();
         $affiliation = $em->getRepository('AppBundle:Affiliation')->findByCode($request->request->get('affiliation'));
-        if(!$affiliation){
-        	$this->get('session')->getFlashBag()->set('error', $translator->trans("decks.build.errors.noaffiliation"));
+        if(!$affiliation){$this->get('session')->getFlashBag()->set('error', $translator->trans("decks.build.errors.noaffiliation"));
         	return $this->redirect($this->generateUrl('deck_buildform'));}
 
-        $format = $em->getRepository('AppBundle:Format')->findByCode($request->request->get('format'));
-        if(!$format){
-            $this->get('session')->getFlashBag()->set('error', $translator->trans("decks.build.errors.noformat"));
-            return $this->redirect($this->generateUrl('deck_buildform'));}
-
+        $format = $em->getRepository('AppBundle:Format')->findByCode('INF');
         $name = $translator->trans("decks.build.newname", array("%affiliation%" => $affiliation->getName()));
         $deck = new Deck(); $deck->setDescriptionMd("This deck's fate is not yet written.");
         $deck->setAffiliation($affiliation); $deck->setFormat($format);
         $deck->setName($name); $deck->setProblem('incorrect_size'); $deck->setUser($this->getUser());
         $deck->setTags(join(' ', array_unique([$request->request->get('affiliation'), $format->getName()])));
         $em->persist($deck); $em->flush();
-        return $this->redirect($this->get('router')->generate('deck_edit', ['deck_id' => $deck->getId()]));
-    }
+        return $this->redirect($this->get('router')->generate('deck_edit', ['deck_id' => $deck->getId()]));}
 
     public function fileimportAction (Request $request)
 {
@@ -168,35 +162,21 @@ class BuilderController extends Controller
 
 		$affiliation_code = $em->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $request->get('affiliation_code')]);
 		if(!$affiliation_code) { return new Response('Unknown affiliation code. Returning to /decks', 422, array('Refresh' => '3; url=/decks')); }
+        $format_code = $em->getRepository('AppBundle:Format')->findOneBy(['code' => $request->get('format_code') ?: 'INF']); // The default INF is kept to not invalidate existing deck files. Historically format wasn't saved.
 
-        $format_code = $request->get('format_code') ?: 'INF';
-		if(!$format_code) { return new Response('Cannot import deck without format'); }
+        $cancel_edits = (bool) $request->get('cancel_edits'); if($cancel_edits) 
+		{ if($deck) $this->get('decks')->revertDeck($deck); return $this->redirect($this->generateUrl('decks_list'));}
 
-        $format = $em->getRepository('AppBundle:Format')->findOneBy(['code' => $format_code]);
-        if(!$format) { return new Response('Cannot import deck with unknown format ' . $format_code); }
-
-        $cancel_edits = (bool) $request->get('cancel_edits');
-        if($cancel_edits) { if($deck) $this->get('decks')->revertDeck($deck);
-            return $this->redirect($this->generateUrl('decks_list'));}
-
-        $is_copy = (bool) $request->get('copy');
-        if($is_copy || !$id) { $deck = new Deck(); }
+        $is_copy = (bool) $request->get('copy'); if($is_copy || !$id) { $deck = new Deck(); }
 
         $content = (array) json_decode($request->get('content'), true);
-        if (! count($content)) {
-            return new Response('Cannot import empty deck' . json_encode($content));
-        }
+        if (!count($content)) { return new Response('Deck is empty!', 400); }
 
-        $name = filter_var($request->get('name'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-        $decklist_id = filter_var($request->get('decklist_id'), FILTER_SANITIZE_NUMBER_INT);
-        $description = trim($request->get('description'));
-        $tags = filter_var($request->get('tags'), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+        $name = $request->get('name'); $decklist_id = $request->get('decklist_id');
+        $description = trim($request->get('description')); $tags = $request->get('tags');
 
-        $this->get('decks')->saveDeck($this->getUser(), $deck, $decklist_id, $name, $affiliation_code, $format, $description, $tags, $content, $source_deck ? $source_deck : null);
-        $em->flush();
-        
-        return $this->redirect($this->generateUrl('decks_list'));
-
+        $this->get('decks')->saveDeck($this->getUser(), $deck, $decklist_id, $name, $affiliation_code, $format_code, $description, $tags, $content, $source_deck ? $source_deck : null);
+        $em->flush(); return $this->redirect($this->generateUrl('decks_list'));
     }
 
     public function deleteAction (Request $request)
