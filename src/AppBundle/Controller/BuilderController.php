@@ -21,8 +21,7 @@ class BuilderController extends Controller
 	public function buildformAction()
 	{ $response = new Response(); $response->setPublic(); $response->setMaxAge($this->container->getParameter('cache_expiration'));
 		return $this->render('AppBundle:Builder:initbuild.html.twig', [ 
-                'affiliations' => $this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findPrimaries(),
-                'formats' => $this->getDoctrine()->getManager()->getRepository('AppBundle:Format')->findAll()], $response);}
+                'affiliations' => $this->getDoctrine()->getManager()->getRepository('AppBundle:Affiliation')->findPrimaries()], $response);}
 
     public function initbuildAction (Request $request)
     {
@@ -30,7 +29,6 @@ class BuilderController extends Controller
         $affiliation = $em->getRepository('AppBundle:Affiliation')->findByCode($request->request->get('affiliation'));
         if(!$affiliation){$this->get('session')->getFlashBag()->set('error', $translator->trans("decks.build.errors.noaffiliation"));
         	return $this->redirect($this->generateUrl('deck_buildform'));}
-
         $format = $em->getRepository('AppBundle:Format')->findByCode('INF');
         $name = $translator->trans("decks.build.newname", array("%affiliation%" => $affiliation->getName()));
         $deck = new Deck(); $deck->setDescriptionMd("This deck's fate is not yet written.");
@@ -155,18 +153,12 @@ class BuilderController extends Controller
 		$affiliation_code = $em->getRepository('AppBundle:Affiliation')->findOneBy(['code' => $request->get('affiliation_code')]);
 		if(!$affiliation_code) { return new Response('Unknown affiliation code.', 422, array('Refresh' => '3; url=/decks')); }
         $format_code = $em->getRepository('AppBundle:Format')->findOneBy(['code' => $request->get('format_code') ?: 'INF']); // The default INF is kept to not invalidate existing deck files. Historically format wasn't saved.
-
-        $cancel_edits = (bool) $request->get('cancel_edits'); if($cancel_edits) 
+        $cancel_edits = (bool) $request->get('cancel_edits'); if($cancel_edits || !count((array) json_decode($request->get('content'), true)))
 		{ if($deck) $this->get('decks')->revertDeck($deck); return $this->redirect($this->generateUrl('decks_list'));}
 
         $is_copy = (bool) $request->get('copy'); if($is_copy || !$id) { $deck = new Deck(); }
-
-        $content = (array) json_decode($request->get('content'), true);
-        if (!count($content)) { return new Response('Deck is empty!', 400, array('Refresh' => '3; url=/decks')); }
-
         $name = $request->get('name'); $decklist_id = $request->get('decklist_id');
         $description = trim($request->get('description')); $tags = $request->get('tags');
-
         $this->get('decks')->saveDeck($this->getUser(), $deck, $decklist_id, $name, $affiliation_code, $format_code, $description, $tags, $content, $source_deck ? $source_deck : null);
         $em->flush(); return $this->redirect($this->generateUrl('decks_list'));
     }
