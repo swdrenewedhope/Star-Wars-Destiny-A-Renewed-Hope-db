@@ -34,7 +34,7 @@ class BuilderController extends Controller
         $deck = new Deck(); $deck->setDescriptionMd("This deck's fate is not yet written.");
         $deck->setAffiliation($affiliation); $deck->setFormat($format);
         $deck->setName($name); $deck->setProblem('incorrect_size'); $deck->setUser($this->getUser());
-        $deck->setTags(join(' ', array_unique([$request->request->get('affiliation'), $format->getCode()])));
+        $deck->setTags(join(' ', array_unique([$request->request->get('affiliation')])));
         $em->persist($deck); $em->flush();
         return $this->redirect($this->get('router')->generate('deck_edit', ['deck_id' => $deck->getId()]));}
 
@@ -159,7 +159,7 @@ class BuilderController extends Controller
         $is_copy = (bool) $request->get('copy'); if($is_copy || !$id) { $deck = new Deck(); }
         $name = $request->get('name'); $decklist_id = $request->get('decklist_id');
         $description = trim($request->get('description')); $tags = $request->get('tags');
-        $this->get('decks')->saveDeck($this->getUser(), $deck, $decklist_id, $name, $affiliation_code, $format_code, $description, $tags, $content, $source_deck ? $source_deck : null);
+        $this->get('decks')->saveDeck($this->getUser(), $deck, $decklist_id, $name, $affiliation_code, $format_code, $description, $tags, (array) json_decode($request->get('content'), true), $source_deck ? $source_deck : null);
         $em->flush(); return $this->redirect($this->generateUrl('decks_list'));
     }
 
