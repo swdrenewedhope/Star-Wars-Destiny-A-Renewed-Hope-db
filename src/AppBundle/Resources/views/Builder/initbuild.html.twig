@@ -7,13 +7,13 @@
 
 <form action="{{ path('deck_initbuild') }}" method="post" enctype="application/x-www-form-urlencoded">
 <div class="row">
-	<div class="col-md-6">
-		<h1>{{ 'decks.build.choose.affiliation' | trans }}</h1>
+	<div class="col-md-12">
+		<h1 class="text-center">{{ 'decks.build.choose.affiliation' | trans }}</h1>
 		<div class="row">
 			{% for affiliation in affiliations %}
-			<div class="col-md-3 col-sm-4">
+			<div class="col-md-6 col-sm-6">
 				<label class="thumbnail">
-					<img src="{{ asset('/bundles/app/images/affiliations/' ~ affiliation.code ~ '.png') }}" class="hidden-xs">
+					<img src="{{ asset('/bundles/app/images/affiliations/' ~ affiliation.code ~ '.png') }}" class="img-responsive center-block" style="width:40%;">
 					<div class="caption text-center" style="white-space:nowrap">
 							<input type="radio" name="affiliation" value="{{ affiliation.code }}"> <small>{{ affiliation.name }}</small>
 					</div>
@@ -22,79 +22,13 @@
 			{% endfor %}
 		</div>
 	</div>
-	<div class="col-md-6">
-		<h1>{{ 'decks.build.choose.format' | trans }}</h1>
-		<p><small>{{ 'decks.build.canbechanged' | trans }}</small></p>
-
-<div class="well well-sm">
-  <strong>A Renewed Hope</strong>
-  <hr style="margin:3px">
-
-  {% for format in formats if ('ARHS' in format.code) %}
-    <div class="clearfix">
-      <label class="pull-left">
-        <input type="radio" name="format" value="{{ format.code }}">
-        {{ format.name|replace({'ARH ': ''}) }} -
-      </label>
-
-      <span class="pull-left hidden-xs" style="margin-left:4px; margin-top:5px; margin-bottom:3px;">
-        {% for set_code in format.data.sets %}
-          <span class="icon-set-{{ set_code }}" title="{{ sets[set_code] }}" data-toggle="tooltip"></span>
-        {% endfor %}
-      </span>
-    </div>
-  {% endfor %}
-</div>
-
-<div class="well well-sm">
-  <strong>Fantasy Flight Games</strong>
-  <hr style="margin:3px">
-
-  {% for format in formats if ('STD' in format.code) or ('TRI' in format.code) %}
-    <div class="clearfix">
-      <label class="pull-left">
-        <input type="radio" name="format" value="{{ format.code }}">
-        {{ format.name|replace({'FFG ': ''}) }} -
-      </label>
-
-      <span class="pull-left hidden-xs" style="margin-left:4px; margin-top:5px; margin-bottom:3px;">
-        {% for set_code in format.data.sets %}
-          <span class="icon-set-{{ set_code }}" title="{{ sets[set_code] }}" data-toggle="tooltip"></span>
-        {% endfor %}
-      </span>
-    </div>
-  {% endfor %}
-</div>
-
-<div class="well well-sm">
-  <strong>Extras</strong>
-  <hr style="margin:3px;">
-
-  {% for format in formats if ('INF' in format.code) %}
-    <div class="clearfix">
-      <label class="pull-left">
-        <input type="radio" name="format" value="{{ format.code }}">
-        {{ format.name }} -
-      </label>
-
-      <span class="pull-left hidden-xs" style="margin-left:4px; margin-top:5px; margin-bottom:3px;">
-        {% for set_code in format.data.sets %}
-          <span class="icon-set-{{ set_code }}" title="{{ sets[set_code] }}" data-toggle="tooltip"></span>
-        {% endfor %}
-      </span>
-    </div>
-  {% endfor %}
-</div>
-
-	</div>
 </div>
 <div class="row">
 	<div class="col-md-12">
-		<button type="submit" class="btn btn-primary btn-block">{{ 'decks.build.start' | trans }}</button>
+		<button type="submit" class="btn btn-primary btn-block btn-lg">{{ 'decks.build.start' | trans }}</button>
 	</div>
 </div>
 </form>
-
 </div>
 
 {% endblock %}
